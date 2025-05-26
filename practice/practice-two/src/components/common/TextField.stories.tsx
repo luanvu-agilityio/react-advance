@@ -21,7 +21,7 @@ const meta = {
       control: 'radio',
       options: ['left', 'right'],
     },
-    fullWidth: { control: 'boolean' },
+
     variant: {
       control: 'radio',
       options: ['default', 'search'],
@@ -67,7 +67,7 @@ export const SearchVariant: Story = {
     type: 'text',
     placeholder: 'Search Products, categories ...',
     variant: 'search',
-    fullWidth: true,
+
     icon: <Search size={20} />,
     iconPosition: 'right',
   },

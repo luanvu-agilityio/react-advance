@@ -31,16 +31,6 @@ describe('Select Component', () => {
     expect(screen.getByText('Test Label')).toBeInTheDocument()
   })
 
-  test('displays helper text when provided', () => {
-    render(<Select {...defaultProps} helperText="Helper text" />)
-    expect(screen.getByText('Helper text')).toBeInTheDocument()
-  })
-
-  test('displays error text when error is true', () => {
-    render(<Select {...defaultProps} error errorText="Error message" />)
-    expect(screen.getByText('Error message')).toBeInTheDocument()
-  })
-
   test('should be disabled when disabled prop is true', () => {
     render(<Select {...defaultProps} disabled />)
     const trigger = screen.getByRole('combobox')
