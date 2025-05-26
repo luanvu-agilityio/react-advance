@@ -1,0 +1,57 @@
+:root {
+  /* font family */
+  --font-family-primary: 'Poppins';
+  --font-family-secondary: 'Open Sans';
+
+  /* font sizes */
+
+  --font-size-12: 1.2rem;
+  --font-size-14: 1.4rem;
+  --font-size-15: 1.5rem;
+  --font-size-17: 1.7rem;
+  --font-size-18: 1.8rem;
+  --font-size-22: 2.2rem;
+  --font-size-26: 2.6rem;
+  --font-size-32: 3.2rem;
+
+  /* font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* colors */
+  --black-color-default: #151515;
+  --black-shade-1: #575757;
+  --black-shade-2: #a9a9a9;
+  --black-shade-3: #d1d1d1;
+  --black-shade-4: #ebebeb;
+  --black-shade-5: #f5f5f5;
+  --black-shade-6: #f9f9f9;
+
+  --green-color-default: #6a983c;
+  --green-shade-1: #46760a;
+  --green-shade-2: #92c064;
+  --green-shade-3: #c8deb3;
+  --green-shade-4: #f4f8ec;
+
+  --brown-color-default: #d0a866;
+  --brown-shade-1: #b28a48;
+  --brown-shade-2: #ecd2a6;
+  --brown-shade-3: #faedd8;
+  --brown-shade-4: #fff9f0;
+
+  --coral-color-default: #e5704b;
+  --coral-shade-1: #c7522d;
+  --coral-shade-2: #eb8d70;
+  --coral-shade-3: #f7c6b7;
+  --coral-shade-4: #fff1ed;
+
+  --cyan-color-default: #37d0d6;
+  --cyan-shade-1: #19b2b8;
+  --cyan-shade-2: #7cd0d3;
+  --cyan-shade-3: #b9e6e8;
+  --cyan-shade-4: #ecf6f6;
+
+  --white-color: #ffffff;
+}
