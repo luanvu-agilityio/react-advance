@@ -70,6 +70,7 @@ const BreadcrumbWrapper = styled(Box)`
     display: block;
     margin: 0 auto;
     width: 1260px;
+    padding: 12px 45px;
   }
 `
 

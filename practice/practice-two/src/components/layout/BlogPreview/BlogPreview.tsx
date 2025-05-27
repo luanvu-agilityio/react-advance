@@ -323,7 +323,7 @@ export default function BlogPreviewSection() {
   }
 
   return (
-    <SectionContainer className="section" style={{ margin: 0 }}>
+    <SectionContainer className="section">
       <SectionHeader>
         <SectionTitle className="section-title">
           Read our Blog posts
