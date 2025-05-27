@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import {
@@ -19,6 +19,7 @@ import {
 
 import { useFormSection } from '@hooks/useForm'
 import FormError from '../components/FormError'
+import { useCheckout } from '@contexts/CheckoutContext'
 
 interface PaymentMethodSectionProps {
   paymentMethod: string
@@ -27,17 +28,48 @@ interface PaymentMethodSectionProps {
 
 export const PaymentMethodSection = memo(
   ({ paymentMethod, setPaymentMethod }: PaymentMethodSectionProps) => {
+    const { updatePaymentInfo } = useCheckout()
+
     const { formValues, formErrors, handleInputChange, handleBlur } =
-      useFormSection({
-        cardNumber: '',
-        cardHolder: '',
-        expirationDate: '',
-        cvc: '',
-      })
+      useFormSection(
+        {
+          cardNumber: '',
+          cardHolder: '',
+          expirationDate: '',
+          cvc: '',
+        },
+        updatePaymentInfo
+      )
+
+    const handlePaymentMethodChange = useCallback(
+      (value: string) => {
+        setPaymentMethod(value)
+        if (value === 'credit-card') {
+          // Use existing form values if available
+          updatePaymentInfo({
+            paymentMethod: value,
+            ...formValues,
+          })
+        } else {
+          // For other payment methods, just update the method
+          updatePaymentInfo({
+            paymentMethod: value,
+            cardNumber: '',
+            cardHolder: '',
+            expirationDate: '',
+            cvc: '',
+          })
+        }
+      },
+      [setPaymentMethod, updatePaymentInfo, formValues]
+    )
 
     return (
       <StepContainer>
-        <RadioGroup.Root value={paymentMethod} onValueChange={setPaymentMethod}>
+        <RadioGroup.Root
+          value={paymentMethod}
+          onValueChange={handlePaymentMethodChange}
+        >
           <PaymentMethodOption
             htmlFor="credit-card"
             data-state={paymentMethod === 'credit-card' ? 'checked' : ''}

@@ -1,6 +1,6 @@
 import { useCheckout } from '@contexts/CheckoutContext'
 import { useCartSummary } from '@hooks/useCartSummary'
-import { useCallback, useRef, type FormEvent } from 'react'
+import { useCallback, useMemo, useRef, type FormEvent } from 'react'
 import * as Form from '@radix-ui/react-form'
 import {
   StepContainer,
@@ -60,7 +60,34 @@ const CheckoutContent = ({
     handleRemove,
   } = useCartSummary(shippingMethod)
 
-  const checkoutSteps = useCallback(
+  const billingStep = useMemo(
+    () => (
+      <BillingInfoSection
+        ref={billingInfoRef}
+        sameAddressChecked={sameAddressChecked}
+        setSameAddressChecked={setSameAddressChecked}
+      />
+    ),
+    [sameAddressChecked, setSameAddressChecked]
+  )
+
+  const shippingStep = useMemo(() => <ShippingMethodSection />, [])
+
+  const paymentStep = useMemo(
+    () => (
+      <PaymentMethodSection
+        paymentMethod={paymentMethod}
+        setPaymentMethod={updatePaymentMethod}
+      />
+    ),
+    [paymentMethod, updatePaymentMethod]
+  )
+
+  const additionalStep = useMemo(() => <AdditionalInfoSection />, [])
+
+  const confirmationStep = useMemo(() => <ConfirmationSection />, [])
+
+  const checkoutSteps = useMemo(
     () => [
       {
         id: 'billing',
@@ -68,13 +95,7 @@ const CheckoutContent = ({
         stepNumber: 'Step 1 of 5',
         description: 'Please enter your billing info',
         isComplete: false,
-        content: (
-          <BillingInfoSection
-            ref={billingInfoRef}
-            sameAddressChecked={sameAddressChecked}
-            setSameAddressChecked={setSameAddressChecked}
-          />
-        ),
+        content: billingStep,
       },
       {
         id: 'shipping',
@@ -82,7 +103,7 @@ const CheckoutContent = ({
         stepNumber: 'Step 2 of 5',
         description: 'Choose your shipping method',
         isComplete: false,
-        content: <ShippingMethodSection />,
+        content: shippingStep,
       },
       {
         id: 'payment',
@@ -90,12 +111,7 @@ const CheckoutContent = ({
         stepNumber: 'Step 3 of 5',
         description: 'Please enter your payment method',
         isComplete: false,
-        content: (
-          <PaymentMethodSection
-            paymentMethod={paymentMethod}
-            setPaymentMethod={updatePaymentMethod}
-          />
-        ),
+        content: paymentStep,
       },
       {
         id: 'additional',
@@ -103,7 +119,7 @@ const CheckoutContent = ({
         stepNumber: 'Step 4 of 5',
         description: 'Need something else? We will make it for you!',
         isComplete: false,
-        content: <AdditionalInfoSection />,
+        content: additionalStep,
       },
       {
         id: 'confirmation',
@@ -112,15 +128,10 @@ const CheckoutContent = ({
         description:
           'We are getting to the end. Just few clicks and your order is ready!',
         isComplete: false,
-        content: <ConfirmationSection />,
+        content: confirmationStep,
       },
     ],
-    [
-      sameAddressChecked,
-      setSameAddressChecked,
-      paymentMethod,
-      updatePaymentMethod,
-    ]
+    [billingStep, shippingStep, paymentStep, additionalStep, confirmationStep]
   )
 
   const handleApplyPromo = useCallback(() => {
@@ -132,6 +143,11 @@ const CheckoutContent = ({
   const handleSubmit = useCallback(
     (event: FormEvent) => {
       event.preventDefault()
+
+      if (billingInfoRef.current) {
+        billingInfoRef.current.getFormData()
+      }
+
       setShowThankYouModal(true)
     },
     [setShowThankYouModal]
@@ -140,7 +156,7 @@ const CheckoutContent = ({
   const DesktopStepContent = ({
     step,
   }: {
-    step: ReturnType<typeof checkoutSteps>[0]
+    step: (typeof checkoutSteps)[number]
   }) => (
     <StepContainer>
       <StepHeader>
@@ -154,7 +170,7 @@ const CheckoutContent = ({
     </StepContainer>
   )
 
-  const steps = checkoutSteps()
+  const steps = checkoutSteps
 
   return (
     <CheckoutContainer>

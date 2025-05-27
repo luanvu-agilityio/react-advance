@@ -7,11 +7,16 @@ import {
 } from '../CheckoutStyle'
 
 import { useFormSection } from '@hooks/useForm'
+import { useCheckout } from '@contexts/CheckoutContext'
 
 const AdditionalInfoSection = memo(() => {
-  const { formValues, handleInputChange } = useFormSection({
-    notes: '',
-  })
+  const { updateAdditionalInfo } = useCheckout()
+  const { formValues, handleInputChange } = useFormSection(
+    {
+      notes: '',
+    },
+    updateAdditionalInfo
+  )
 
   return (
     <StepContainer>

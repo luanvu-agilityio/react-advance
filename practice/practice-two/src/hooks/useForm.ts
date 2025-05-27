@@ -40,6 +40,7 @@ export function useFormSection<T extends Record<string, string>>(
     },
     []
   )
+
   const updateContext = useCallback(() => {
     if (onUpdate) {
       onUpdate(formValues)
