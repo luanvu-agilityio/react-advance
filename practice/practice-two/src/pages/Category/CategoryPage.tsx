@@ -1,26 +1,56 @@
-import { useEffect, useState, useMemo, useCallback } from 'react'
+// ============================================================================
+// IMPORTS
+// ============================================================================
+import {
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+  startTransition,
+  useDeferredValue,
+} from 'react'
 import {
   useParams,
   useNavigate,
   useSearchParams,
   useLocation,
 } from 'react-router-dom'
-import styled from 'styled-components'
 import { Text, RadioGroup } from '@radix-ui/themes'
 
 // Components
 import Breadcrumbs from '@components/layout/Breadcrumb/Breadcrumb'
 import FilterComponents from '@components/product/Filter/FilteringComponents'
 import ProductListing from '@components/product/ProductCard/ProductListing'
+import { LoadingSpinner } from '@components/common/LoadingSpinner'
+import ErrorDisplay from '@components/common/ErrorDisplay'
 
-// Data
+// Data & Services
 import { navbarData } from '@data/navbar'
 import { productData } from '@data/product-data'
 import productApi from '@services/product'
+
+// Types & Hooks
 import type { Product } from 'types/Product'
 import type { StarRating } from 'types/Filter'
+import { useResetFilters } from '@hooks/useResetFilter'
+import {
+  ContentContainer,
+  CountBadge,
+  NoResultsContainer,
+  NoResultsIcon,
+  NoResultsText,
+  NoResultsTitle,
+  PageContainer,
+  PageHeader,
+  PageTitle,
+  ProductCount,
+  ResetFiltersButton,
+  ViewModeContainer,
+} from './CategoryStyles'
 
-// Types
+// ============================================================================
+// TYPES & INTERFACES
+// ============================================================================
 interface CategoryPageHeaderProps {
   title: string
   productCount: number
@@ -41,131 +71,14 @@ interface BrandState {
   count: number
 }
 
-// Styled Components
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-const PageHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 0 16px;
-  margin-bottom: 24px;
+interface NoResultsSectionProps {
+  searchQuery: string | null
+  onResetFilters: () => void
+}
 
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 45px;
-  }
-`
-
-const PageTitle = styled.h1`
-  font-size: 24px;
-  font-weight: var(--font-weight-semibold);
-  color: var(--black-color-default);
-  margin: 0;
-
-  @media (min-width: 768px) {
-    font-size: 32px;
-  }
-`
-const ViewModeContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-  font-family: var(--font-family-secondary);
-  font-size: 12px;
-  font-weight: var(--font-weight-regular);
-
-  @media (min-width: 768px) {
-    gap: 24px;
-  }
-`
-
-const ProductCount = styled.span`
-  color: var(--black-shade-2);
-  font-size: 12px;
-  font-weight: var(--font-weight-medium);
-`
-
-const ContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 0 16px 32px;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    gap: 32px;
-    padding: 0 45px 64px;
-  }
-`
-
-const CountBadge = styled.span`
-  font-family: var(--font-family-primary);
-  background-color: var(--green-shade-4);
-  color: var(--green-shade-1);
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: var(--font-weight-semibold);
-  padding: 0 8px;
-  text-align: center;
-`
-
-const NoResultsIcon = styled.div`
-  margin-bottom: 16px;
-  opacity: 0.5;
-
-  img {
-    width: 64px;
-    height: 64px;
-  }
-`
-
-const NoResultsTitle = styled.h3`
-  font-size: 20px;
-  font-weight: var(--font-weight-semibold);
-  color: var(--black-shade-1);
-  margin-bottom: 8px;
-`
-
-const NoResultsText = styled.p`
-  font-size: 16px;
-  color: var(--black-shade-2);
-  margin-bottom: 16px;
-`
-
-const ResetFiltersButton = styled.button`
-  background-color: var(--green-color-default);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 10px 24px;
-  font-size: 14px;
-  font-weight: var(--font-weight-semibold);
-  cursor: pointer;
-
-  &:hover {
-    background-color: #5daf34;
-  }
-`
-const NoResultsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 48px 32px;
-  text-align: center;
-  background-color: var(--black-shade-6);
-  border-radius: 12px;
-  margin-top: 24px;
-`
-
-// Components
+// ============================================================================
+// COMPONENT HELPERS
+// ============================================================================
 const ViewModeOption = ({
   value,
   label,
@@ -235,8 +148,42 @@ const CategoryPageHeader = ({
   </PageHeader>
 )
 
-// Main Component
+const ResetFiltersAction = ({ onReset }: { onReset: () => void }) => (
+  <ResetFiltersButton onClick={onReset}>Reset Filters</ResetFiltersButton>
+)
+
+const NoResultsSection = ({
+  searchQuery,
+  onResetFilters,
+}: NoResultsSectionProps) => (
+  <NoResultsContainer>
+    <NoResultsIcon>
+      <img
+        src="/src/assets/images/icons/no-results.svg"
+        alt="No results"
+        onError={(e) => {
+          e.currentTarget.src =
+            'https://res.cloudinary.com/ds82onf5q/image/upload/v1746692204/search_zyzkuj.svg'
+        }}
+      />
+    </NoResultsIcon>
+    <NoResultsTitle>No products found</NoResultsTitle>
+    <NoResultsText>
+      {searchQuery
+        ? 'No products match your search query and applied filters.'
+        : 'No products match your selected filters.'}
+    </NoResultsText>
+    <ResetFiltersAction onReset={onResetFilters} />
+  </NoResultsContainer>
+)
+
+// ============================================================================
+// MAIN COMPONENT
+// ============================================================================
 const CategoryPage = () => {
+  // --------------------------------------------------------------------------
+  // HOOKS & ROUTER
+  // --------------------------------------------------------------------------
   const { categoryPath } = useParams<{ categoryPath: string }>()
   const navigate = useNavigate()
   const location = useLocation()
@@ -244,6 +191,9 @@ const CategoryPage = () => {
   const searchQuery = searchParams.get('search') ?? ''
   const subcategoryParam = searchParams.get('subcategory') ?? ''
 
+  // --------------------------------------------------------------------------
+  // STATE MANAGEMENT
+  // --------------------------------------------------------------------------
   const [viewMode, setViewMode] = useState('grid')
   const [categoryTitle, setCategoryTitle] = useState('')
   const [activeSubcategory, setActiveSubcategory] = useState<string>('')
@@ -255,14 +205,35 @@ const CategoryPage = () => {
     max: 1000,
   })
 
+  // API & Loading States
   const [isLoading, setIsLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [totalProducts, setTotalProducts] = useState(0)
-  const productsPerPage = 5
   const [apiProducts, setApiProducts] = useState<Product[]>([])
+  const [error, setError] = useState<string | null>(null)
+  const [isPending, setIsPending] = useState(false)
 
+  // --------------------------------------------------------------------------
+  // PERFORMANCE OPTIMIZATIONS
+  // --------------------------------------------------------------------------
+  const deferredSelectedBrands = useDeferredValue(selectedBrands)
+  const deferredSelectedRatings = useDeferredValue(selectedRatings)
+  const deferredPriceRange = useDeferredValue(priceRange)
+
+  // --------------------------------------------------------------------------
+  // CONSTANTS & CUSTOM HOOKS
+  // --------------------------------------------------------------------------
+  const productsPerPage = 5
   const useApiData = false
+  const handleResetFilters = useResetFilters(
+    setSelectedBrands,
+    setSelectedRatings,
+    setPriceRange
+  )
 
+  // --------------------------------------------------------------------------
+  // CALLBACK FUNCTIONS
+  // --------------------------------------------------------------------------
   const resetFilters = useCallback(() => {
     setSelectedBrands([])
     setSelectedRatings([])
@@ -271,41 +242,128 @@ const CategoryPage = () => {
     setCurrentPage(1)
   }, [])
 
-  useEffect(() => {
-    const handleSearchAndCategory = () => {
-      if (location.pathname === '/search-results' && searchQuery) {
-        setIsSearchMode(true)
-        setCategoryTitle('Search Results')
-        resetFilters()
-        return
-      }
+  const handleBrandSelect = useCallback(
+    (brandName: string, isSelected: boolean) => {
+      startTransition(() => {
+        setSelectedBrands((prev) => {
+          if (isSelected) {
+            return [...prev, brandName]
+          }
+          return prev.filter((brand) => brand !== brandName)
+        })
+        setCurrentPage(1)
+      })
+    },
+    []
+  )
 
-      if (location.pathname === '/all-products') {
-        setIsSearchMode(true)
-        setCategoryTitle('All Products')
-        return
-      }
+  const handleRatingSelect = useCallback(
+    (rating: number, isSelected: boolean) => {
+      startTransition(() => {
+        setSelectedRatings((prev) => {
+          if (isSelected) {
+            const updatedRatings = [...prev, rating]
+            return updatedRatings.sort((a, b) => b - a)
+          }
+          return prev.filter((r) => r !== rating)
+        })
+        setCurrentPage(1)
+      })
+    },
+    []
+  )
 
-      setIsSearchMode(false)
+  const handlePriceRangeChange = useCallback((min: number, max: number) => {
+    startTransition(() => {
+      setPriceRange({ min, max })
+      setCurrentPage(1)
+    })
+  }, [])
 
-      if (!categoryPath) return
+  const handleCategoryClick = useCallback((categoryName: string) => {
+    setActiveSubcategory(categoryName)
+    setSelectedBrands([])
+    setCurrentPage(1)
+  }, [])
 
-      const category = navbarData.find(
-        (item) => item.label.toLowerCase().replace(/\s+/g, '-') === categoryPath
-      )
+  const handleViewModeChange = (value: string) => {
+    setViewMode(value)
+  }
 
-      if (!category) {
-        navigate('/')
-        return
-      }
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    window.scrollTo(0, 0)
+  }
 
-      setCategoryTitle(category.label)
+  // --------------------------------------------------------------------------
+  // API FUNCTIONS
+  // --------------------------------------------------------------------------
+  const fetchProducts = useCallback(async () => {
+    if (!useApiData) return
+
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const response = await productApi.getProducts({
+        page: currentPage,
+        limit: productsPerPage,
+        category: categoryPath,
+        subcategory: activeSubcategory ?? undefined,
+        brands: deferredSelectedBrands.length
+          ? deferredSelectedBrands
+          : undefined,
+        minPrice: deferredPriceRange.min,
+        maxPrice: deferredPriceRange.max,
+        ratings: deferredSelectedRatings.length
+          ? deferredSelectedRatings
+          : undefined,
+        search: searchQuery ?? undefined,
+      })
+
+      const total =
+        response.total ?? (response.data ? response.data.length * 2 : 0)
+
+      startTransition(() => {
+        setApiProducts(response.data)
+        setTotalProducts(total)
+        setIsLoading(false)
+      })
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Failed to fetch products'
+      console.error('Failed to fetch products:', error)
+
+      startTransition(() => {
+        setError(errorMessage)
+        setIsLoading(false)
+      })
+    } finally {
+      setIsPending(false)
     }
+  }, [
+    currentPage,
+    productsPerPage,
+    categoryPath,
+    activeSubcategory,
+    deferredSelectedBrands,
+    deferredPriceRange,
+    deferredSelectedRatings,
+    searchQuery,
+    useApiData,
+  ])
 
-    handleSearchAndCategory()
-  }, [location.pathname, categoryPath, searchQuery, navigate, resetFilters])
+  // --------------------------------------------------------------------------
+  // COMPUTED VALUES (MEMOIZED)
+  // --------------------------------------------------------------------------
+  const currentCategory = useMemo(
+    () =>
+      navbarData.find(
+        (item) => item.label.toLowerCase().replace(/\s+/g, '-') === categoryPath
+      ),
+    [categoryPath]
+  )
 
-  // Get products in the current category or search results
   const productsInCategory = useMemo(() => {
     if (location.pathname === '/search-results' && searchQuery) {
       return productData.filter((product) => {
@@ -333,32 +391,27 @@ const CategoryPage = () => {
     )
   }, [categoryPath, searchQuery, location.pathname])
 
-  // Filter products based on active subcategory, selected brands, and search query
   const filteredProducts = useMemo(() => {
     let filtered = [...productsInCategory]
 
-    // Apply subcategory filter if not in search mode
     if (activeSubcategory && !isSearchMode) {
       filtered = filtered.filter(
         (product) => product.subcategory === activeSubcategory
       )
     }
 
-    // Apply brand filter
     if (selectedBrands.length > 0) {
       filtered = filtered.filter((product) =>
         selectedBrands.includes(product.brand)
       )
     }
 
-    // Apply rating filter - fix the rating comparison
     if (selectedRatings.length > 0) {
       filtered = filtered.filter((product) =>
         selectedRatings.includes(Math.round(product.rating))
       )
     }
 
-    // Apply price filter - ensure numeric comparison
     filtered = filtered.filter((product) => {
       const price = Number(product.price)
       return price >= priceRange.min && price <= priceRange.max
@@ -373,180 +426,6 @@ const CategoryPage = () => {
     priceRange,
     isSearchMode,
   ])
-
-  // Function to fetch products from API
-  const fetchProducts = useCallback(async () => {
-    if (!useApiData) return
-
-    setIsLoading(true)
-    try {
-      const response = await productApi.getProducts({
-        page: currentPage,
-        limit: productsPerPage,
-        category: categoryPath,
-        subcategory: activeSubcategory ?? undefined,
-        brands: selectedBrands.length ? selectedBrands : undefined,
-        minPrice: priceRange.min,
-        maxPrice: priceRange.max,
-        ratings: selectedRatings.length ? selectedRatings : undefined,
-        search: searchQuery ?? undefined,
-      })
-
-      const total =
-        response.total ?? (response.data ? response.data.length * 2 : 0) // Assume 2 pages if no total
-
-      setApiProducts(response.data)
-      setTotalProducts(total)
-    } catch (error) {
-      console.error('Failed to fetch products:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }, [
-    currentPage,
-    productsPerPage,
-    categoryPath,
-    activeSubcategory,
-    selectedBrands,
-    priceRange,
-    selectedRatings,
-    searchQuery,
-    useApiData,
-  ])
-
-  // Effect to fetch data when parameters change
-  useEffect(() => {
-    fetchProducts()
-  }, [
-    fetchProducts,
-    currentPage,
-    categoryPath,
-    activeSubcategory,
-    selectedBrands,
-    priceRange,
-    selectedRatings,
-    searchQuery,
-  ])
-
-  // Determine which products to display based on data source
-  const displayProducts = useApiData ? apiProducts : filteredProducts
-
-  // Handle page change
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page)
-    window.scrollTo(0, 0) // Scroll to top on page change
-  }
-
-  const handleBrandSelect = useCallback(
-    (brandName: string, isSelected: boolean) => {
-      setSelectedBrands((prev) => {
-        if (isSelected) {
-          return [...prev, brandName]
-        }
-        return prev.filter((brand) => brand !== brandName)
-      })
-      setCurrentPage(1) // Reset pagination when filter changes
-    },
-    []
-  )
-
-  const handleRatingSelect = useCallback(
-    (rating: number, isSelected: boolean) => {
-      setSelectedRatings((prev) => {
-        if (isSelected) {
-          return [...prev, rating].sort((a, b) => b - a) // Sort descending
-        }
-        return prev.filter((r) => r !== rating)
-      })
-      setCurrentPage(1) // Reset pagination when filter changes
-    },
-    []
-  )
-
-  const handlePriceRangeChange = useCallback((min: number, max: number) => {
-    setPriceRange({ min, max })
-    setCurrentPage(1) // Reset pagination when filter changes
-  }, [])
-
-  // Add a reset filters function
-
-  useEffect(() => {
-    // Reset filters when category changes
-    if (categoryPath) {
-      resetFilters()
-    }
-  }, [categoryPath, resetFilters])
-
-  // Get category data based on path
-  const currentCategory = useMemo(
-    () =>
-      navbarData.find(
-        (item) => item.label.toLowerCase().replace(/\s+/g, '-') === categoryPath
-      ),
-    [categoryPath]
-  )
-
-  // When component mounts or URL params change, set the active subcategory
-  useEffect(() => {
-    if (subcategoryParam) {
-      // Convert kebab-case to Title Case for matching with product data
-      const formattedSubcategory = subcategoryParam
-        .split('-')
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ')
-
-      setActiveSubcategory(formattedSubcategory)
-    } else {
-      setActiveSubcategory('')
-    }
-  }, [subcategoryParam])
-
-  // Handle special "search-results" category for global search
-  useEffect(() => {
-    if (location.pathname === '/all-products') {
-      setIsSearchMode(true)
-      setCategoryTitle('All Products')
-      return
-    }
-
-    if (categoryPath === 'all-products') {
-      setIsSearchMode(true)
-      setCategoryTitle('All Products')
-      return
-    }
-
-    if (categoryPath === 'search-results') {
-      setIsSearchMode(true)
-      setCategoryTitle('Search Results')
-      return
-    }
-
-    setIsSearchMode(false)
-
-    if (!categoryPath) return
-
-    const category = navbarData.find(
-      (item) => item.label.toLowerCase().replace(/\s+/g, '-') === categoryPath
-    )
-
-    if (!category) {
-      navigate('/')
-      return
-    }
-
-    setCategoryTitle(category.label)
-    setActiveSubcategory('')
-    setSelectedBrands([])
-    setSelectedRatings([])
-    setPriceRange({ min: 0, max: 1000 })
-    setCurrentPage(1)
-  }, [categoryPath, location.pathname, navigate])
-
-  const handleCategoryClick = useCallback((categoryName: string) => {
-    setActiveSubcategory(categoryName)
-    setSelectedBrands([])
-    setCurrentPage(1)
-  }, [])
 
   const subcategories = useMemo(
     () =>
@@ -595,16 +474,163 @@ const CategoryPage = () => {
     return brandsInCategory
   }, [categoryPath, productsInCategory, activeSubcategory, selectedBrands])
 
-  const handleViewModeChange = (value: string) => {
-    setViewMode(value)
-  }
-
   const paginatedProducts = useMemo(() => {
     const startIndex = (currentPage - 1) * productsPerPage
     const endIndex = startIndex + productsPerPage
     return filteredProducts.slice(startIndex, endIndex)
   }, [currentPage, productsPerPage, filteredProducts])
 
+  const displayProducts = useApiData ? apiProducts : filteredProducts
+
+  // --------------------------------------------------------------------------
+  // SIDE EFFECTS
+  // --------------------------------------------------------------------------
+  useEffect(() => {
+    const handleSearchAndCategory = () => {
+      if (location.pathname === '/search-results' && searchQuery) {
+        setIsSearchMode(true)
+        setCategoryTitle('Search Results')
+        resetFilters()
+        return
+      }
+
+      if (location.pathname === '/all-products') {
+        setIsSearchMode(true)
+        setCategoryTitle('All Products')
+        return
+      }
+
+      setIsSearchMode(false)
+
+      if (!categoryPath) return
+
+      const category = navbarData.find(
+        (item) => item.label.toLowerCase().replace(/\s+/g, '-') === categoryPath
+      )
+
+      if (!category) {
+        navigate('/')
+        return
+      }
+
+      setCategoryTitle(category.label)
+    }
+
+    handleSearchAndCategory()
+  }, [location.pathname, categoryPath, searchQuery, navigate, resetFilters])
+
+  useEffect(() => {
+    if (subcategoryParam) {
+      const formattedSubcategory = subcategoryParam
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+
+      setActiveSubcategory(formattedSubcategory)
+    } else {
+      setActiveSubcategory('')
+    }
+  }, [subcategoryParam])
+
+  useEffect(() => {
+    if (location.pathname === '/all-products') {
+      setIsSearchMode(true)
+      setCategoryTitle('All Products')
+      return
+    }
+
+    if (categoryPath === 'all-products') {
+      setIsSearchMode(true)
+      setCategoryTitle('All Products')
+      return
+    }
+
+    if (categoryPath === 'search-results') {
+      setIsSearchMode(true)
+      setCategoryTitle('Search Results')
+      return
+    }
+
+    setIsSearchMode(false)
+
+    if (!categoryPath) return
+
+    const category = navbarData.find(
+      (item) => item.label.toLowerCase().replace(/\s+/g, '-') === categoryPath
+    )
+
+    if (!category) {
+      navigate('/')
+      return
+    }
+
+    setCategoryTitle(category.label)
+    setActiveSubcategory('')
+    setSelectedBrands([])
+    setSelectedRatings([])
+    setPriceRange({ min: 0, max: 1000 })
+    setCurrentPage(1)
+  }, [categoryPath, location.pathname, navigate])
+
+  useEffect(() => {
+    fetchProducts()
+  }, [
+    fetchProducts,
+    currentPage,
+    categoryPath,
+    activeSubcategory,
+    selectedBrands,
+    priceRange,
+    selectedRatings,
+    searchQuery,
+  ])
+
+  useEffect(() => {
+    if (categoryPath) {
+      resetFilters()
+    }
+  }, [categoryPath, resetFilters])
+
+  // --------------------------------------------------------------------------
+  // RENDER METHODS
+  // --------------------------------------------------------------------------
+  const renderContentArea = () => {
+    if (error) {
+      return <ErrorDisplay error={error} onRetry={() => fetchProducts()} />
+    }
+
+    if (isLoading || isPending) {
+      return (
+        <div style={{ width: '100%', textAlign: 'center', padding: '2rem' }}>
+          <LoadingSpinner />
+        </div>
+      )
+    }
+
+    if (displayProducts.length > 0) {
+      return (
+        <ProductListing
+          products={useApiData ? apiProducts : paginatedProducts}
+          viewMode={viewMode}
+          currentPage={currentPage}
+          totalProducts={useApiData ? totalProducts : filteredProducts.length}
+          productsPerPage={productsPerPage}
+          onPageChange={handlePageChange}
+        />
+      )
+    }
+
+    return (
+      <NoResultsSection
+        searchQuery={searchQuery}
+        onResetFilters={handleResetFilters}
+      />
+    )
+  }
+
+  // --------------------------------------------------------------------------
+  // MAIN RENDER
+  // --------------------------------------------------------------------------
   return (
     <PageContainer>
       <Breadcrumbs style={{ padding: '12px 45px' }} />
@@ -639,48 +665,7 @@ const CategoryPage = () => {
           initialActiveCategory={activeSubcategory}
         />
 
-        {isLoading ? (
-          <div style={{ width: '100%', textAlign: 'center', padding: '2rem' }}>
-            Loading products...
-          </div>
-        ) : displayProducts.length > 0 ? (
-          <ProductListing
-            products={useApiData ? apiProducts : paginatedProducts}
-            viewMode={viewMode}
-            currentPage={currentPage}
-            totalProducts={useApiData ? totalProducts : filteredProducts.length}
-            productsPerPage={productsPerPage}
-            onPageChange={handlePageChange}
-          />
-        ) : (
-          <NoResultsContainer>
-            <NoResultsIcon>
-              <img
-                src="/src/assets/images/icons/no-results.svg"
-                alt="No results"
-                onError={(e) => {
-                  e.currentTarget.src =
-                    'https://res.cloudinary.com/ds82onf5q/image/upload/v1746692204/search_zyzkuj.svg'
-                }}
-              />
-            </NoResultsIcon>
-            <NoResultsTitle>No products found</NoResultsTitle>
-            <NoResultsText>
-              {searchQuery
-                ? 'No products match your search query and applied filters.'
-                : 'No products match your selected filters.'}
-            </NoResultsText>
-            <ResetFiltersButton
-              onClick={() => {
-                setSelectedBrands([])
-                setSelectedRatings([])
-                setPriceRange({ min: 0, max: 1000 })
-              }}
-            >
-              Reset Filters
-            </ResetFiltersButton>
-          </NoResultsContainer>
-        )}
+        {renderContentArea()}
       </ContentContainer>
     </PageContainer>
   )

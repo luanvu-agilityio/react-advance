@@ -3,11 +3,17 @@ import './styles/index.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import CategoryPage from '@pages/Category/CategoryPage'
 import HomePage from '@pages/HomePage/HomePage'
-import ProductDetailsPage from '@pages/ProductDetails/ProductDetails'
 import PageLayout from '@pages/PageLayout/PageLayout'
 import { CartProvider } from '@contexts/CartContext'
 import CartModal from '@components/Cart/CartModal'
 import CheckoutPage from '@pages/Checkout/CheckoutPage'
+import { lazy, Suspense } from 'react'
+import { LoadingSpinner } from '@components/common/LoadingSpinner'
+import ErrorBoundary from '@components/common/ErrorBoundary'
+
+const ProductDetailsPage = lazy(
+  () => import('@pages/ProductDetails/ProductDetails')
+)
 
 function App() {
   return (
@@ -21,7 +27,13 @@ function App() {
             <Route path="/:categoryPath" element={<CategoryPage />} />
             <Route
               path="/:categoryPath/:subcategory/:productId"
-              element={<ProductDetailsPage />}
+              element={
+                <ErrorBoundary>
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <ProductDetailsPage />
+                  </Suspense>
+                </ErrorBoundary>
+              }
             />
             <Route path="/checkout" element={<CheckoutPage />} />
           </Routes>

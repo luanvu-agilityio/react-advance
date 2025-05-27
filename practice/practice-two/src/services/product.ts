@@ -1,5 +1,5 @@
 import type { Product } from 'types/Product'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 const API_BASE_URL = 'https://6830140df504aa3c70f63355.mockapi.io'
 
@@ -20,6 +20,16 @@ export interface ProductApiParams {
   maxPrice?: number
   ratings?: number[]
   search?: string
+}
+
+class ProductApiError extends Error {
+  statusCode?: number
+
+  constructor(message: string, statusCode?: number) {
+    super(message)
+    this.statusCode = statusCode
+    this.name = 'ProductApiError'
+  }
 }
 
 const productApi = {
@@ -49,9 +59,16 @@ const productApi = {
         queryParams.category = formattedCategory
       }
 
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 10000) // 10s timeout
+
       const response = await axios.get(`${API_BASE_URL}/products`, {
         params: queryParams,
+        signal: controller.signal,
+        timeout: 10000,
       })
+
+      clearTimeout(timeoutId)
 
       // Get the total count from headers or make a separate count request
       const totalCount = parseInt(response.headers['x-total-count'] ?? '0', 10)
@@ -63,8 +80,35 @@ const productApi = {
         limit: params.limit ?? 9,
       }
     } catch (error) {
-      console.error('Error fetching products:', error)
-      throw error
+      if (axios.isCancel(error)) {
+        throw new ProductApiError('Request was cancelled due to timeout')
+      }
+
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status
+        const message = error.response?.data?.message ?? error.message
+
+        switch (statusCode) {
+          case 404:
+            throw new ProductApiError('Products not found', 404)
+          case 500:
+            throw new ProductApiError(
+              'Server error. Please try again later.',
+              500
+            )
+          case 429:
+            throw new ProductApiError(
+              'Too many requests. Please wait and try again.',
+              429
+            )
+          default:
+            throw new ProductApiError(`Network error: ${message}`, statusCode)
+        }
+      }
+
+      throw new ProductApiError(
+        'An unexpected error occurred. Please try again.'
+      )
     }
   },
 }
