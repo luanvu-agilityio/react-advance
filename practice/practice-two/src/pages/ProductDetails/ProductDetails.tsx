@@ -222,7 +222,7 @@ const ProductDetailPage = () => {
             <ActionContainer>
               <ActionButton>
                 <img
-                  src="/src/assets/images/icons/wishlist-red.svg"
+                  src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372435/wishlist-red_vhgkuv.svg"
                   alt="Wishlist icon"
                   style={{ width: '16px', height: '16px' }}
                 />
@@ -231,7 +231,7 @@ const ProductDetailPage = () => {
 
               <ActionButton>
                 <img
-                  src="/src/assets/images/icons/compare.svg"
+                  src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/compare_oeiv1m.svg"
                   alt="Compare icon"
                   style={{ width: '16px', height: '16px' }}
                 />

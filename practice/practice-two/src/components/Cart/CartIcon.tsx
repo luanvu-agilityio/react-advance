@@ -31,7 +31,10 @@ const CartIcon = () => {
 
   return (
     <CartButton onClick={openCart}>
-      <img src="/src/assets/images/icons/cart.svg" alt="Shopping Cart" />
+      <img
+        src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372429/cart_ux4d8x.svg"
+        alt="Shopping Cart"
+      />
       {totalItems > 0 && <CartBadge>{totalItems}</CartBadge>}
     </CartButton>
   )

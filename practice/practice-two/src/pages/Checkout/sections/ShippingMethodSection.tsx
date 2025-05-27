@@ -47,7 +47,7 @@ export const ShippingMethodSection = memo(() => {
 
           <ShippingInfo>
             <ShippingLogo
-              src="/src/assets/images/logos/fedex.png"
+              src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372451/fedex_gcko1l.png"
               alt="FedEx"
               style={{ width: '54px', height: '16px' }}
             />
@@ -69,7 +69,7 @@ export const ShippingMethodSection = memo(() => {
           </AdditionalPrice>
           <ShippingInfo>
             <ShippingLogo
-              src="/src/assets/images/logos/dhl.png"
+              src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372450/dhl_it43vr.png"
               alt="DHL"
               style={{ width: '93px', height: '14px' }}
             />

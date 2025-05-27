@@ -71,7 +71,7 @@ export const FeedbackItem = ({ quote, name }: FeedbackItemProps) => {
       </FeedbackAuthor>
       <AuthorAvatar>
         <img
-          src="src/assets/images/avatars/avatar-1.svg"
+          src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372403/avatar-1_l6rb1m.svg"
           alt="Customer Avatar"
         />
       </AuthorAvatar>

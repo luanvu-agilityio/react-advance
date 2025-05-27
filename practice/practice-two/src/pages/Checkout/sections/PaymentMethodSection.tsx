@@ -92,7 +92,7 @@ export const PaymentMethodSection = memo(
               </PaymentDetails>
               <PaymentLogoContainer>
                 <PaymentLogo
-                  src="/src/assets/images/payments/visa.png"
+                  src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372462/visa_tgrif0.png"
                   alt="Visa"
                   style={{ width: '94px', height: '20px' }}
                 />
@@ -219,7 +219,7 @@ export const PaymentMethodSection = memo(
                 <PaymentLabel>PayPal</PaymentLabel>
               </PaymentDetails>
               <PaymentLogo
-                src="/src/assets/images/payments/paypal.png"
+                src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372462/paypal_rzq1bo.png"
                 alt="PayPal"
                 style={{ width: '76px', height: '18px' }}
               />
@@ -247,7 +247,7 @@ export const PaymentMethodSection = memo(
                 <PaymentLabel>Bitcoin</PaymentLabel>
               </PaymentDetails>
               <PaymentLogo
-                src="/src/assets/images/payments/bitcoin.png"
+                src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372461/bitcoin_cjqd4a.png"
                 alt="Bitcoin"
                 style={{ width: '75px', height: '16px' }}
               />

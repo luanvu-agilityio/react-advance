@@ -3,7 +3,10 @@ import { SecurityNotice, SecurityIcon, SecurityText } from '../CheckoutStyle'
 export const SecurityNoticeSection: React.FC = () => (
   <SecurityNotice>
     <SecurityIcon>
-      <img src="/src/assets/images/safety.png" alt="Security icon" />
+      <img
+        src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372477/safety_uf3wdi.png"
+        alt="Security icon"
+      />
     </SecurityIcon>
     <SecurityText>
       All your data are safe

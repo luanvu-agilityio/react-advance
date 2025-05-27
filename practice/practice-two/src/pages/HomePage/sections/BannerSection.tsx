@@ -70,7 +70,7 @@ const Banner = styled.div`
   border-radius: 12px;
   background-size: cover;
   position: relative;
-  background-image: url('/src/assets/images/banners/homepage-banner.png');
+  background-image: url('https://res.cloudinary.com/ds82onf5q/image/upload/v1748372412/homepage-banner_zaaroy.png');
   background-position: center;
   background-repeat: no-repeat;
 

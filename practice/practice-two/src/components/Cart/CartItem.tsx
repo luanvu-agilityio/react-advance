@@ -129,15 +129,24 @@ const CartItem = ({
         </ItemImage>
         <ActionButtons>
           <ActionButton>
-            <img src="/src/assets/images/icons/wishlist.svg" alt="Wishlist" />
+            <img
+              src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372436/wishlist_cltlcf.svg"
+              alt="Wishlist"
+            />
             Wishlist
           </ActionButton>
           <ActionButton>
-            <img src="/src/assets/images/icons/compare.svg" alt="Compare" />
+            <img
+              src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/compare_oeiv1m.svg"
+              alt="Compare"
+            />
             Compare
           </ActionButton>
           <ActionButton onClick={() => onRemove(item.id)}>
-            <img src="/src/assets/images/icons/remove.svg" alt="Remove" />
+            <img
+              src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372432/remove_gbwco0.svg"
+              alt="Remove"
+            />
             Remove
           </ActionButton>
         </ActionButtons>
