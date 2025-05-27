@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import { memo, useState } from 'react'
 import type { CheckedState } from '@radix-ui/react-checkbox'
 import { CheckIcon } from '@radix-ui/react-icons'
 

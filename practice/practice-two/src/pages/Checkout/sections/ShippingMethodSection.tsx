@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import {
