@@ -5,8 +5,6 @@ import ProductSection from '@components/product/Section/ProductSection'
 import BestSellingProducts from '@components/product/Section/BestSellingSection'
 import BannerSection from '@components/product/Section/BannerSection'
 import Breadcrumbs from '@components/layout/Breadcrumb/Breadcrumb'
-import ContentContainer from '@components/common/ContentContainer'
-
 import styled from 'styled-components'
 
 // Responsive container with consistent breakpoints
