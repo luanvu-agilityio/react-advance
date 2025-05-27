@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { Button, Flex } from '@radix-ui/themes'
 import { Heart, Star, ChevronRight } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 import { useCart } from '@contexts/CartContext'
-import type { MouseEvent as ReactMouseEvent } from 'react'
+import { useCallback, useMemo, type MouseEvent as ReactMouseEvent } from 'react'
 import type { Product } from 'types/Product'
+import { useProductNavigation } from '@hooks/useProductNavigation'
 
 interface ProductCardProps {
   product: Product
@@ -185,12 +185,8 @@ export const ProductCard = ({
   onAddToWishlist,
   onClick,
 }: ProductCardProps) => {
-  const navigate = useNavigate()
   const { addItem } = useCart()
-
-  if (!product) {
-    return null
-  }
+  const { navigateToProduct } = useProductNavigation()
 
   const {
     id,
@@ -213,28 +209,95 @@ export const ProductCard = ({
   const maxRating = 5
   const variant = viewMode === 'grid' ? 'grid' : 'list'
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     if (onClick) {
       onClick(product.id)
     } else {
-      const categoryPath = category?.toLowerCase().replace(/ /g, '-')
-      const subcategoryPath = subcategory?.toLowerCase().replace(/ /g, '-')
-      navigate(`/${categoryPath}/${subcategoryPath}/${id}`)
-      window.scrollTo(0, 0)
+      navigateToProduct(product)
     }
-  }
+  }, [onClick, product, navigateToProduct])
 
-  const stars = [...Array(maxRating)].map((_, i) => (
-    <Star
-      key={`star-${title}-${i}`}
-      size={16}
-      fill={i < rating ? 'var(--black-color-default)' : 'none'}
-      color={i < rating ? 'var(--black-color-default)' : '#d1d5db'}
-    />
-  ))
+  const handleBuy = useCallback(
+    (e: ReactMouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      e.preventDefault()
 
-  // Render product information for list view
-  const renderProductInfo = () => {
+      addItem(
+        {
+          id,
+          title,
+          description,
+          price,
+          originalPrice: originalPrice ?? price,
+          category,
+          subcategory,
+          rating: rating,
+          imageUrl,
+          discountPercentage,
+          farm: farm,
+          freshness: freshness,
+          delivery: {
+            time: delivery?.time ?? '1-2 days',
+            location: delivery?.location ?? 'All Countries',
+          },
+          stock: stock,
+          freeShipping: freeShipping ?? false,
+        },
+        1,
+        'pcs'
+      )
+    },
+    [
+      id,
+      title,
+      description,
+      price,
+      originalPrice,
+      category,
+      subcategory,
+      rating,
+      imageUrl,
+      discountPercentage,
+      farm,
+      freshness,
+      delivery,
+      stock,
+      freeShipping,
+      addItem,
+    ]
+  )
+
+  const handleProductDetail = useCallback(
+    (e: ReactMouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      handleClick()
+    },
+    [handleClick]
+  )
+
+  const handleWishlistClick = useCallback(
+    (e: ReactMouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      onAddToWishlist?.()
+    },
+    [onAddToWishlist]
+  )
+
+  const stars = useMemo(
+    () =>
+      [...Array(maxRating)].map((_, i) => (
+        <Star
+          key={`star-${title}-${i}`}
+          size={16}
+          fill={i < rating ? 'var(--black-color-default)' : 'none'}
+          color={i < rating ? 'var(--black-color-default)' : '#d1d5db'}
+        />
+      )),
+    [maxRating, rating, title]
+  )
+
+  // Create memoized components instead of functions
+  const productInfoGrid = useMemo(() => {
     if (variant !== 'list') return null
 
     return (
@@ -273,36 +336,103 @@ export const ProductCard = ({
         )}
       </ProductInfoGrid>
     )
-  }
-  const handleBuy = (e: ReactMouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation()
-    e.preventDefault()
+  }, [variant, delivery, freshness, farm, stock])
 
-    addItem(
-      {
-        id,
-        title,
-        description,
-        price,
-        originalPrice: originalPrice ?? price,
-        category,
-        subcategory,
-        rating: rating,
-        imageUrl,
-        discountPercentage,
-        farm: farm,
-        freshness: freshness,
-        delivery: {
-          time: delivery?.time ?? '1-2 days',
-          location: delivery?.location ?? 'All Countries',
-        },
-        stock: stock,
-        freeShipping: freeShipping ?? false,
-      },
-      1,
-      'pcs'
+  const actionButtons = useMemo(() => {
+    const commonButtonStyles = {
+      backgroundColor: 'var(--green-color-default)',
+      color: 'var(--white-color)',
+      fontSize: '15px',
+      fontWeight: 'var(--font-weight-bold)',
+      padding: '12px 16px',
+      borderRadius: '12px',
+      border: '2px solid var(--green-shade-1)',
+      cursor: 'pointer',
+    }
+
+    if (!product) {
+      return null
+    }
+
+    return (
+      <ButtonsContainer $variant={variant}>
+        {variant === 'list' ? (
+          <Button
+            variant="solid"
+            size="2"
+            onClick={handleProductDetail}
+            style={{
+              ...commonButtonStyles,
+              minWidth: '160px',
+              minHeight: '47px',
+            }}
+          >
+            <Flex align="center">
+              Product Detail
+              <ChevronRight
+                size={15}
+                color="white"
+                style={{ strokeWidth: 5, marginLeft: '8px' }}
+              />
+            </Flex>
+          </Button>
+        ) : (
+          <Button
+            variant="solid"
+            size="2"
+            onClick={handleBuy}
+            style={{
+              ...commonButtonStyles,
+              minHeight: '36px',
+            }}
+          >
+            Buy now
+          </Button>
+        )}
+
+        {variant === 'list' && onAddToWishlist && (
+          <Button
+            variant="outline"
+            size="2"
+            onClick={handleWishlistClick}
+            style={{
+              minWidth: '160px',
+              backgroundColor: 'var(--black-shade-5)',
+              color: 'var(--black-color)',
+              fontWeight: 'var(--font-weight-bold)',
+              fontSize: '15px',
+              padding: '6px 12px',
+              borderRadius: '12px',
+            }}
+          >
+            <Flex align="center" gap="2">
+              <Heart size={15} style={{ strokeWidth: 4, marginRight: '8px' }} />
+              Add to wish list
+            </Flex>
+          </Button>
+        )}
+      </ButtonsContainer>
     )
-  }
+  }, [
+    variant,
+    handleProductDetail,
+    handleBuy,
+    handleWishlistClick,
+    onAddToWishlist,
+  ])
+
+  const shippingInfo = useMemo(() => {
+    if (variant !== 'list' || !freeShipping) return null
+
+    return (
+      <ShippingInfo>
+        <FreeShippingText>Free Shipping</FreeShippingText>
+        {delivery?.time && (
+          <DeliveryTimeText>Delivery in {delivery.time}</DeliveryTimeText>
+        )}
+      </ShippingInfo>
+    )
+  }, [variant, freeShipping, delivery?.time])
 
   return (
     <Card $variant={variant} onClick={handleClick}>
@@ -321,109 +451,28 @@ export const ProductCard = ({
 
       <CardContent $variant={variant}>
         <div>
-          <ProductTitle>{title}</ProductTitle>
+          <ProductTitle $variant={variant}>{title}</ProductTitle>
           {description && (
             <ProductDescription>{description}</ProductDescription>
           )}
           <RatingContainer>{stars}</RatingContainer>
         </div>
 
-        {renderProductInfo()}
+        {productInfoGrid}
       </CardContent>
+
       <PriceContainer $variant={variant}>
         <Price $variant={variant}>
-          <CurrentPrice $variant={variant}>{price.toFixed(2)} USD</CurrentPrice>
-          <OriginalPrice $variant={variant}>
-            {originalPrice.toFixed(2)}
-          </OriginalPrice>
+          <CurrentPrice $variant={variant}>${price.toFixed(2)}</CurrentPrice>
+          {originalPrice && (
+            <OriginalPrice $variant={variant}>
+              ${originalPrice.toFixed(2)}
+            </OriginalPrice>
+          )}
         </Price>
 
-        {variant === 'list' && freeShipping && (
-          <ShippingInfo>
-            <FreeShippingText>Free Shipping</FreeShippingText>
-            {delivery?.time && (
-              <DeliveryTimeText>Delivery in {delivery.time}</DeliveryTimeText>
-            )}
-          </ShippingInfo>
-        )}
-
-        <ButtonsContainer $variant={variant}>
-          {(() => {
-            const commonButtonStyles = {
-              backgroundColor: 'var(--green-color-default)',
-              color: 'var(--white-color)',
-              fontSize: '15px',
-              fontWeight: 'var(--font-weight-bold)',
-              padding: '12px 16px',
-              borderRadius: '12px',
-              border: '2px solid var(--green-shade-1)',
-            }
-
-            return variant === 'list' ? (
-              <Button
-                variant="solid"
-                size="2"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  handleClick()
-                }}
-                style={{
-                  ...commonButtonStyles,
-                  minWidth: '160px',
-                  minHeight: '47px',
-                  cursor: 'pointer',
-                }}
-              >
-                <Flex align="center">
-                  Product Detail
-                  <ChevronRight
-                    size={15}
-                    color="white"
-                    style={{ strokeWidth: 5, marginLeft: '8px' }}
-                  />
-                </Flex>
-              </Button>
-            ) : (
-              <Button
-                variant="solid"
-                size="2"
-                onClick={handleBuy}
-                style={{
-                  ...commonButtonStyles,
-                  minHeight: '36px',
-                  cursor: 'pointer',
-                }}
-              >
-                Buy now
-              </Button>
-            )
-          })()}
-
-          {variant === 'list' && onAddToWishlist && (
-            <Button
-              variant="outline"
-              size="2"
-              onClick={onAddToWishlist}
-              style={{
-                minWidth: '160px',
-                backgroundColor: 'var(--black-shade-5)',
-                color: 'var(--black-color)',
-                fontWeight: 'var(--font-weight-bold)',
-                fontSize: '15px',
-                padding: '6px 12px',
-                borderRadius: '12px',
-              }}
-            >
-              <Flex align="center" gap="2">
-                <Heart
-                  size={15}
-                  style={{ strokeWidth: 4, marginRight: '8px' }}
-                />
-                Add to wish list
-              </Flex>
-            </Button>
-          )}
-        </ButtonsContainer>
+        {shippingInfo}
+        {actionButtons}
       </PriceContainer>
     </Card>
   )

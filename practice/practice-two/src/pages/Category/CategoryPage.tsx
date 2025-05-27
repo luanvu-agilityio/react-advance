@@ -10,9 +10,7 @@ import { Text, RadioGroup } from '@radix-ui/themes'
 
 // Components
 import Breadcrumbs from '@components/layout/Breadcrumb/Breadcrumb'
-import FilterComponents, {
-  type StarRating,
-} from '@components/product/Filter/FilteringComponents'
+import FilterComponents from '@components/product/Filter/FilteringComponents'
 import ProductListing from '@components/product/ProductCard/ProductListing'
 
 // Data
@@ -20,6 +18,7 @@ import { navbarData } from '@dummy-data/navbar'
 import { productData } from '@dummy-data/product-data'
 import productApi from '@services/product'
 import type { Product } from 'types/Product'
+import type { StarRating } from 'types/Filter'
 
 // Types
 interface CategoryPageHeaderProps {
@@ -262,12 +261,13 @@ const CategoryPage = () => {
   const productsPerPage = 5
   const [apiProducts, setApiProducts] = useState<Product[]>([])
 
-  const useApiData = false // Set to true to use MockAPI, false to use local data
+  const useApiData = false
 
   const resetFilters = useCallback(() => {
     setSelectedBrands([])
     setSelectedRatings([])
     setPriceRange({ min: 0, max: 1000 })
+    setActiveSubcategory('')
     setCurrentPage(1)
   }, [])
 
@@ -276,7 +276,6 @@ const CategoryPage = () => {
       if (location.pathname === '/search-results' && searchQuery) {
         setIsSearchMode(true)
         setCategoryTitle('Search Results')
-        // Reset other filters when searching
         resetFilters()
         return
       }
@@ -543,15 +542,11 @@ const CategoryPage = () => {
     setCurrentPage(1)
   }, [categoryPath, location.pathname, navigate])
 
-  const handleCategoryClick = useCallback(
-    (categoryName: string) => {
-      setActiveSubcategory(
-        categoryName === activeSubcategory ? '' : categoryName
-      )
-      setSelectedBrands([])
-    },
-    [activeSubcategory]
-  )
+  const handleCategoryClick = useCallback((categoryName: string) => {
+    setActiveSubcategory(categoryName)
+    setSelectedBrands([])
+    setCurrentPage(1)
+  }, [])
 
   const subcategories = useMemo(
     () =>
@@ -641,7 +636,7 @@ const CategoryPage = () => {
           onBrandSelect={handleBrandSelect}
           onRatingSelect={handleRatingSelect}
           onPriceRangeChange={handlePriceRangeChange}
-          activeCategory={activeSubcategory}
+          initialActiveCategory={activeSubcategory}
         />
 
         {isLoading ? (
