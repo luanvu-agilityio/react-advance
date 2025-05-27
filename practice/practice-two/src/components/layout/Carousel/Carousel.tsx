@@ -118,7 +118,6 @@ const FeedbackSlide = styled.div<{ $isDragging?: boolean }>`
 
   // Large screens
   @media (min-width: 1460px) {
-    width: 90%;
     max-width: 1460px;
     margin: 0 auto;
   }

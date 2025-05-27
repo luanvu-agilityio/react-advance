@@ -45,7 +45,6 @@ const Container = styled.div<{
   }
 
   @media (min-width: 1460px) {
-    width: 90%;
     max-width: 1460px;
   }
 `

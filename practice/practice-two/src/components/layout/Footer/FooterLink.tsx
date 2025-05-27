@@ -219,7 +219,16 @@ const FooterLink = () => {
       <DesktopFooter>
         <Flex gap="6" wrap="wrap">
           {footerSections.map((section) => (
-            <Box key={section.title} style={{ flex: '1 1 200px' }}>
+            <Box
+              key={section.title}
+              style={{
+                flex:
+                  footerSections[footerSections.length - 1].title ===
+                  section.title
+                    ? 'none'
+                    : '1 1 200px',
+              }}
+            >
               <Text
                 text={section.title}
                 as="h3"
