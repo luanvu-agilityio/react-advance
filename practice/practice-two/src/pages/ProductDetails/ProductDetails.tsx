@@ -1,17 +1,17 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, Suspense } from 'react'
 import styled from 'styled-components'
 import { PlusIcon } from 'lucide-react'
-import { productData } from '@dummy-data/product-data'
-import { Button, Theme } from '@radix-ui/themes'
+import { productData } from '@data/product-data'
+import { Button, Spinner, Theme } from '@radix-ui/themes'
 import BuyingUnit from './components/BuyingUnit'
 import RelatedProducts from './components/RelatedProducts'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getTabDataByProductId } from '@dummy-data/tab-data'
+import { getTabDataByProductId } from '@data/tab-data'
 import ProductTabs from './components/Tabs'
 import { renderStars } from '@helpers/renderStar'
 import Breadcrumbs from '@components/layout/Breadcrumb/Breadcrumb'
 import { useCart } from '@contexts/CartContext'
-import { Suspense } from 'react'
+import Text from '@components/common/Text'
 
 // Styled Components
 const Container = styled.div`
@@ -278,10 +278,6 @@ const ProductDetailPage = () => {
     return getTabDataByProductId(Number(productId))
   }, [productId])
 
-  // Add loading effect
-  // Import Suspense at the top of the file if not already imported
-
-  // Replace the loading effect with suspense wrapper
   useEffect(() => {
     if (!productId) {
       throw new Promise((resolve) => {
@@ -294,8 +290,20 @@ const ProductDetailPage = () => {
     return (
       <Suspense
         fallback={
-          <Container>
-            <div>Loading...</div>
+          <Container style={{ textAlign: 'center', padding: '2rem' }}>
+            <Theme>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '8px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Spinner size="3" />
+                <Text as="p" text="Loading product..." />
+              </div>
+            </Theme>
           </Container>
         }
       >

@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import styled from 'styled-components'
 import { ChevronRight } from 'lucide-react'
 import { ProductCard } from '@components/product/ProductCard/ProductCard'
-import { productData } from '@dummy-data/product-data'
+import { productData } from '@data/product-data'
 import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`

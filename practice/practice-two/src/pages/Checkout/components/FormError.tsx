@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react'
 import styled from 'styled-components'
 
 interface FormErrorProps {
   message?: string
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 const ErrorMessage = styled.div`

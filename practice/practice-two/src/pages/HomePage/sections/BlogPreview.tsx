@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { ChevronRight } from 'lucide-react'
-import { blogPosts, type BlogPostType } from '@dummy-data/blog-posts'
+import { blogPosts, type BlogPostType } from '@data/blog-posts'
 import { BadgeComponent } from '@components/common/Badge'
 import Link from '@components/common/Link'
 import type { MouseEvent } from 'react'

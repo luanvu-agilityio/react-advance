@@ -5,7 +5,7 @@ import { useMemo, type MouseEvent } from 'react'
 import { ChevronRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { getRandomItems } from '@helpers/getRandomItems'
-import { navbarData } from '@dummy-data/navbar'
+import { navbarData } from '@data/navbar'
 
 const BannerContainer = styled.div`
   display: flex;

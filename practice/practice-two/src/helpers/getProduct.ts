@@ -1,4 +1,4 @@
-import { productData } from '@dummy-data/product-data'
+import { productData } from 'data/product-data'
 import type { Product } from 'types/Product'
 
 export const getProductsBySection = (

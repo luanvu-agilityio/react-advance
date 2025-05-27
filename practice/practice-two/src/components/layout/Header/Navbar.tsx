@@ -1,11 +1,12 @@
 import * as Menubar from '@radix-ui/react-menubar'
 import { ChevronDown, ChevronRight } from 'lucide-react'
-import { navbarData } from '@dummy-data/navbar'
+
 import { styled } from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import * as Accordion from '@radix-ui/react-accordion'
+import { navbarData } from '@data/navbar'
 
 const NavbarWrapper = styled.div`
   width: 100%;

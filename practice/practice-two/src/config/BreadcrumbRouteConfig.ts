@@ -1,4 +1,4 @@
-import { productData } from '@dummy-data/product-data'
+import { productData } from '@data/product-data'
 
 export interface RouteConfig {
   path: string

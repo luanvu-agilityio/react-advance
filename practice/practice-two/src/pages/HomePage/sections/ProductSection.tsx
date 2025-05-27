@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Link from '@components/common/Link'
 import { useMemo } from 'react'
 import type { MouseEvent } from 'react'
-import { productData } from '@dummy-data/product-data'
+import { productData } from '@data/product-data'
 import ContentContainer from '@components/common/ContentContainer'
 import { ProductCard } from '@components/product/ProductCard/ProductCard'
 

@@ -43,7 +43,7 @@
       "@services/*": ["services/*"],
       "@models/*": ["models/*"],
       "@layouts/*": ["layouts/*"],
-      "@dummy-data/*": ["dummy-data/*"]
+      "@data/*": ["data/*"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx", "jest.config.ts", "jest.setup.ts"]

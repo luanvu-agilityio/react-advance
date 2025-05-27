@@ -3,7 +3,7 @@ import Link from '@components/common/Link'
 import Searchbar from '@components/layout/Header/Searchbar'
 import { useCallback, type MouseEvent } from 'react'
 import ImageIcon from '@components/common/ImageIcon'
-import CartIcon from '@pages/Cart/CartIcon'
+import CartIcon from '@components/Cart/CartIcon'
 import { useNavigate } from 'react-router-dom'
 
 const HeaderContainer = styled.header`

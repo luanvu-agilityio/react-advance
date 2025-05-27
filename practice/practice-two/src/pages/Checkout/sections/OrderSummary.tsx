@@ -1,5 +1,5 @@
 import type { CartItem as CartItemType } from '@contexts/CartContext'
-import CartItem from '@pages/Cart/CartItem'
+import CartItem from '@components/Cart/CartItem'
 
 import {
   OrderSummaryWrapper,

@@ -8,7 +8,7 @@ import { useCallback, useState, type ChangeEvent, type FormEvent } from 'react'
 import type { Product } from 'types/Product'
 
 import { ChevronLeft } from 'lucide-react'
-import { productData } from '@dummy-data/product-data'
+import { productData } from '@data/product-data'
 
 const SearchBarContainer = styled.div`
   position: relative;

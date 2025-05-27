@@ -6,7 +6,7 @@ import HomePage from '@pages/HomePage/HomePage'
 import ProductDetailsPage from '@pages/ProductDetails/ProductDetails'
 import PageLayout from '@pages/PageLayout/PageLayout'
 import { CartProvider } from '@contexts/CartContext'
-import CartModal from '@pages/Cart/CartModal'
+import CartModal from '@components/Cart/CartModal'
 import CheckoutPage from '@pages/Checkout/CheckoutPage'
 
 function App() {

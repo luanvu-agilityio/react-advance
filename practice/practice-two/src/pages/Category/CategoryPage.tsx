@@ -14,8 +14,8 @@ import FilterComponents from '@components/product/Filter/FilteringComponents'
 import ProductListing from '@components/product/ProductCard/ProductListing'
 
 // Data
-import { navbarData } from '@dummy-data/navbar'
-import { productData } from '@dummy-data/product-data'
+import { navbarData } from '@data/navbar'
+import { productData } from '@data/product-data'
 import productApi from '@services/product'
 import type { Product } from 'types/Product'
 import type { StarRating } from 'types/Filter'

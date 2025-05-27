@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useCarousel } from '@hooks/useCarousel'
-import { feedbacks } from '@dummy-data/feedbacks'
+import { feedbacks } from '@constants/feedbacks'
 import { FeedbackItem } from './Feedback'
 import Text from '@components/common/Text'
 import type { MouseEvent } from 'react'
