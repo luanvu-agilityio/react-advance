@@ -169,7 +169,7 @@ const CartItem = ({
               <MetaValue>{item.freshness}</MetaValue>
             </MetaRow>
           </div>
-          {renderStars(item.rating || 4)}
+          {renderStars(item.rating ?? 4)}
         </div>
         <ItemActions>
           <PriceDisplay>

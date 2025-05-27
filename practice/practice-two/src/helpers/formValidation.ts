@@ -14,7 +14,7 @@ export const validateCardNumber = (value: string): ValidationResult => {
   }
 
   const digitsOnly = value.replace(/\s/g, '')
-  if (digitsOnly.length !== 16 || !/^\d+$/.test(digitsOnly)) {
+  if (digitsOnly.length !== 16 ?? !/^\d+$/.test(digitsOnly)) {
     return {
       isValid: false,
       errorMessage: ValidationMessages.payment.cardNumber.invalid,

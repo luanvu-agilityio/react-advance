@@ -1,10 +1,10 @@
 import { type ReactNode } from 'react'
 import styled from 'styled-components'
-import HeaderSection from '@components/product/Section/HeaderSection'
 import { Navbar } from '@components/layout/Header/Navbar'
 import FooterLink from '@components/layout/Footer/FooterLink'
 import FooterTags from '@components/layout/Footer/FooterTags'
 import { useLocation } from 'react-router-dom'
+import HeaderSection from '@pages/HomePage/sections/HeaderSection'
 
 interface PageLayoutProps {
   children: ReactNode

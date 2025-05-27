@@ -28,8 +28,8 @@ export const validateField = (
     case 'expirationDate': {
       const [month, year] = value.split('/')
       const now = new Date()
-      const expYear = 2000 + parseInt(year || '0')
-      const expMonth = parseInt(month || '0') - 1
+      const expYear = 2000 + parseInt(year ?? '0')
+      const expMonth = parseInt(month ?? '0') - 1
       const expDate = new Date(expYear, expMonth)
 
       return !value.match(/^\d{2}\/\d{2}$/) || expDate < now

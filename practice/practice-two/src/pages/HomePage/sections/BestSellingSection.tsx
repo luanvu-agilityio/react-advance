@@ -4,11 +4,12 @@ import styled from 'styled-components'
 import { Button, Flex } from '@radix-ui/themes'
 import Link from '@components/common/Link'
 import { navbarData } from '@dummy-data/navbar'
-import { ProductCard } from '../ProductCard/ProductCard'
+
 import { productData } from '@dummy-data/product-data'
 import ContentContainer from '@components/common/ContentContainer'
 import { useNavigate } from 'react-router-dom'
 import { getRandomItems } from '@helpers/getRandomItems'
+import { ProductCard } from '@components/product/ProductCard/ProductCard'
 
 const Container = styled.div`
   width: 100%;

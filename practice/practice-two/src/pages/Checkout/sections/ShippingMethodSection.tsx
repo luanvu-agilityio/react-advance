@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import {
@@ -11,74 +11,71 @@ import {
   ShippingInfo,
   ShippingLogo,
 } from '../CheckoutStyle'
+import { useCheckout } from '@contexts/CheckoutContext'
 
-export interface ShippingMethodProps {
-  shippingMethod: string
-  setShippingMethod: (value: string) => void
-}
+export const ShippingMethodSection = memo(() => {
+  const { shippingMethod, updateShippingMethod } = useCheckout()
 
-export const ShippingMethodSection: React.FC<ShippingMethodProps> = ({
-  shippingMethod,
-  setShippingMethod,
-}) => (
-  <StepContainer>
-    <RadioGroup.Root
-      value={shippingMethod}
-      onValueChange={setShippingMethod}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-      }}
-    >
-      <ShippingOption
-        htmlFor="fedex"
-        data-state={shippingMethod === 'fedex' ? 'checked' : ''}
+  return (
+    <StepContainer>
+      <RadioGroup.Root
+        value={shippingMethod}
+        onValueChange={updateShippingMethod}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px',
+        }}
       >
-        <ShippingOptionDetails>
-          <RadioGroup.Item
-            value="fedex"
-            id="fedex"
-            style={{ display: 'none' }}
-          />
-          <RadioCircle />
-          <ShippingLabel>FedEx</ShippingLabel>
-        </ShippingOptionDetails>
-        <AdditionalPrice>
-          +32 USD
-          <span>Additional price</span>
-        </AdditionalPrice>
+        <ShippingOption
+          htmlFor="fedex"
+          data-state={shippingMethod === 'fedex' ? 'checked' : ''}
+        >
+          <ShippingOptionDetails>
+            <RadioGroup.Item
+              value="fedex"
+              id="fedex"
+              style={{ display: 'none' }}
+            />
+            <RadioCircle />
+            <ShippingLabel>FedEx</ShippingLabel>
+          </ShippingOptionDetails>
+          <AdditionalPrice>
+            +32 USD
+            <span>Additional price</span>
+          </AdditionalPrice>
 
-        <ShippingInfo>
-          <ShippingLogo
-            src="/src/assets/images/logos/fedex.png"
-            alt="FedEx"
-            style={{ width: '54px', height: '16px' }}
-          />
-        </ShippingInfo>
-      </ShippingOption>
+          <ShippingInfo>
+            <ShippingLogo
+              src="/src/assets/images/logos/fedex.png"
+              alt="FedEx"
+              style={{ width: '54px', height: '16px' }}
+            />
+          </ShippingInfo>
+        </ShippingOption>
 
-      <ShippingOption
-        htmlFor="dhl"
-        data-state={shippingMethod === 'dhl' ? 'checked' : ''}
-      >
-        <ShippingOptionDetails>
-          <RadioGroup.Item value="dhl" id="dhl" style={{ display: 'none' }} />
-          <RadioCircle />
-          <ShippingLabel>DHL</ShippingLabel>
-        </ShippingOptionDetails>
-        <AdditionalPrice>
-          +15 USD
-          <span>Additional price</span>
-        </AdditionalPrice>
-        <ShippingInfo>
-          <ShippingLogo
-            src="/src/assets/images/logos/dhl.png"
-            alt="DHL"
-            style={{ width: '93px', height: '14px' }}
-          />
-        </ShippingInfo>
-      </ShippingOption>
-    </RadioGroup.Root>
-  </StepContainer>
-)
+        <ShippingOption
+          htmlFor="dhl"
+          data-state={shippingMethod === 'dhl' ? 'checked' : ''}
+        >
+          <ShippingOptionDetails>
+            <RadioGroup.Item value="dhl" id="dhl" style={{ display: 'none' }} />
+            <RadioCircle />
+            <ShippingLabel>DHL</ShippingLabel>
+          </ShippingOptionDetails>
+          <AdditionalPrice>
+            +15 USD
+            <span>Additional price</span>
+          </AdditionalPrice>
+          <ShippingInfo>
+            <ShippingLogo
+              src="/src/assets/images/logos/dhl.png"
+              alt="DHL"
+              style={{ width: '93px', height: '14px' }}
+            />
+          </ShippingInfo>
+        </ShippingOption>
+      </RadioGroup.Root>
+    </StepContainer>
+  )
+})

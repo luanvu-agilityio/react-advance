@@ -481,7 +481,7 @@ const ProductDetailPage = () => {
           <ProductTabs
             description={{
               ...productTabData.description,
-              vitamins: productTabData.description.vitamins || [],
+              vitamins: productTabData.description.vitamins ?? [],
             }}
             reviews={productTabData.reviews}
             questions={productTabData.questions}

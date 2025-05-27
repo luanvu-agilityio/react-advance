@@ -169,7 +169,7 @@ const BuyingUnit = ({
 
   const handleInputBlur = () => {
     const value = parseInt(inputValue)
-    if (isNaN(value) || value < 1) {
+    if (isNaN(value) ?? value < 1) {
       setInputValue('1')
       onQuantityChange(1)
     }

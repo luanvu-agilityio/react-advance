@@ -317,8 +317,8 @@ const CategoryPage = () => {
           product.category,
           product.subcategory,
           product.brand,
-          ...(product.tags || []),
-        ].map((field) => (field || '').toLowerCase())
+          ...(product.tags ?? []),
+        ].map((field) => (field ?? '').toLowerCase())
 
         return searchableFields.some((field) => field.includes(query))
       })
@@ -385,16 +385,16 @@ const CategoryPage = () => {
         page: currentPage,
         limit: productsPerPage,
         category: categoryPath,
-        subcategory: activeSubcategory || undefined,
+        subcategory: activeSubcategory ?? undefined,
         brands: selectedBrands.length ? selectedBrands : undefined,
         minPrice: priceRange.min,
         maxPrice: priceRange.max,
         ratings: selectedRatings.length ? selectedRatings : undefined,
-        search: searchQuery || undefined,
+        search: searchQuery ?? undefined,
       })
 
       const total =
-        response.total || (response.data ? response.data.length * 2 : 0) // Assume 2 pages if no total
+        response.total ?? (response.data ? response.data.length * 2 : 0) // Assume 2 pages if no total
 
       setApiProducts(response.data)
       setTotalProducts(total)
@@ -562,7 +562,7 @@ const CategoryPage = () => {
         ).length,
         onClick: () => handleCategoryClick(cat.title),
         isActive: activeSubcategory === cat.title,
-      })) || [],
+      })) ?? [],
     [
       currentCategory,
       productsInCategory,
@@ -604,6 +604,12 @@ const CategoryPage = () => {
     setViewMode(value)
   }
 
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * productsPerPage
+    const endIndex = startIndex + productsPerPage
+    return filteredProducts.slice(startIndex, endIndex)
+  }, [currentPage, productsPerPage, filteredProducts])
+
   return (
     <PageContainer>
       <Breadcrumbs style={{ padding: '12px 45px' }} />
@@ -644,7 +650,7 @@ const CategoryPage = () => {
           </div>
         ) : displayProducts.length > 0 ? (
           <ProductListing
-            products={useApiData ? apiProducts : filteredProducts}
+            products={useApiData ? apiProducts : paginatedProducts}
             viewMode={viewMode}
             currentPage={currentPage}
             totalProducts={useApiData ? totalProducts : filteredProducts.length}

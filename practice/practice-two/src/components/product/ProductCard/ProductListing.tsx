@@ -67,7 +67,8 @@ const PageButton = styled.button<{ $isActive?: boolean }>`
   cursor: pointer;
   font-family: var(--font-family-secondary);
   font-size: 12px;
-  font-weight: var(--font-weight-regular);
+  font-weight: ${(props) =>
+    props.$isActive ? 'var(--font-weight-bold)' : 'var(--font-weight-regular)'};
 
   &:hover {
     background: ${(props) =>
@@ -243,7 +244,7 @@ const ProductListing = ({
         )}
 
         <ProductCountDisplay>
-          {totalProducts || products.length} Products
+          {totalProducts ?? products.length} Products
         </ProductCountDisplay>
       </PaginationContainer>
     </div>

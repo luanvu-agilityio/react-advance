@@ -1,11 +1,11 @@
 import { Box } from '@radix-ui/themes'
 import CustomerFeedbackCarousel from '@components/layout/Carousel/Carousel'
-import BlogPreviewSection from '@components/layout/BlogPreview/BlogPreview'
-import ProductSection from '@components/product/Section/ProductSection'
-import BestSellingProducts from '@components/product/Section/BestSellingSection'
-import BannerSection from '@components/product/Section/BannerSection'
+import BlogPreviewSection from '@pages/HomePage/sections/BlogPreview'
 import Breadcrumbs from '@components/layout/Breadcrumb/Breadcrumb'
 import styled from 'styled-components'
+import BannerSection from './sections/BannerSection'
+import BestSellingProducts from './sections/BestSellingSection'
+import ProductSection from './sections/ProductSection'
 
 // Responsive container with consistent breakpoints
 const ResponsiveContainer = styled(Box)`
@@ -80,7 +80,6 @@ const SectionWrapper = styled.div`
   /* Mobile specific styles */
   @media (max-width: 767px) {
     &.blog-section {
-      background-color: var(--black-shade-6);
       margin: 0 -16px;
       padding: 0 16px;
     }
@@ -98,7 +97,6 @@ const SectionWrapper = styled.div`
   /* Tablet styles */
   @media (min-width: 768px) and (max-width: 1023px) {
     &.blog-section {
-      background-color: var(--black-shade-6);
       margin: 0 -32px;
       padding: 0 32px;
     }
@@ -112,7 +110,6 @@ const SectionWrapper = styled.div`
   /* Desktop styles */
   @media (min-width: 1024px) and (max-width: 1259px) {
     &.blog-section {
-      background-color: var(--black-shade-6);
       margin: 0 -45px;
       padding: 0 45px;
     }

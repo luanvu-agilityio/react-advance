@@ -1,4 +1,4 @@
-import type { ChangeEvent } from 'react'
+import { memo } from 'react'
 import {
   StepContainer,
   FormField,
@@ -6,32 +6,26 @@ import {
   FormTextArea,
 } from '../CheckoutStyle'
 
-interface FormValues {
-  notes?: string
-}
+import { useFormSection } from '@hooks/useForm'
 
-interface AdditionalInfoSectionProps {
-  formValues?: FormValues
-  handleInputChange?: (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => void
-}
+const AdditionalInfoSection = memo(() => {
+  const { formValues, handleInputChange } = useFormSection({
+    notes: '',
+  })
 
-export const AdditionalInfoSection = ({
-  formValues = {},
-  handleInputChange,
-}: AdditionalInfoSectionProps) => (
-  <StepContainer>
-    <FormField name="notes">
-      <FormLabel>Order notes</FormLabel>
-      <FormTextArea
-        name="notes"
-        placeholder="Need a specific delivery day? Sending a gift? Let's say ..."
-        value={formValues.notes || ''}
-        onChange={handleInputChange}
-      />
-    </FormField>
-  </StepContainer>
-)
+  return (
+    <StepContainer>
+      <FormField name="notes">
+        <FormLabel>Order Notes</FormLabel>
+        <FormTextArea
+          name="notes"
+          placeholder="Any special instructions or notes about your order..."
+          value={formValues.notes}
+          onChange={handleInputChange}
+        />
+      </FormField>
+    </StepContainer>
+  )
+})
 
 export default AdditionalInfoSection

@@ -132,7 +132,7 @@ export const Tag = (props: TagProps) => {
         className={className}
         $variant={variant}
         onClick={props.onClick}
-        disabled={props.disabled || variant === 'disabled'}
+        disabled={props.disabled ?? variant === 'disabled'}
         style={style}
       >
         {props.children ?? label}

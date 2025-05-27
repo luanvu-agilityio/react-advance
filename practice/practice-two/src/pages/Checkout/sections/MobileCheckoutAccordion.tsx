@@ -62,7 +62,7 @@ export const MobileCheckoutAccordion = ({
                 </StepMeta>
               </StepInfo>
               <StepDescription>
-                {step.description || 'Please enter your information'}
+                {step.description ?? 'Please enter your information'}
               </StepDescription>
             </StyledTrigger>
           </StyledHeader>

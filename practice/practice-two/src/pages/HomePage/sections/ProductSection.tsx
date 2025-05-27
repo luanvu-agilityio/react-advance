@@ -1,11 +1,12 @@
 import { ChevronRight } from 'lucide-react'
-import { ProductCard } from '../ProductCard/ProductCard'
+
 import styled from 'styled-components'
 import Link from '@components/common/Link'
 import { useMemo } from 'react'
 import type { MouseEvent } from 'react'
 import { productData } from '@dummy-data/product-data'
 import ContentContainer from '@components/common/ContentContainer'
+import { ProductCard } from '@components/product/ProductCard/ProductCard'
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -50,19 +51,19 @@ const ProductSection = ({
   const displayProducts = useMemo(() => {
     // Get products with both "best-selling" and "featured" tags
     const productsWithBothTags = productData.filter((product) => {
-      const sections = product.section || []
+      const sections = product.section ?? []
       return sections.includes('best-selling') && sections.includes('featured')
     })
 
     // Get products with only "best-selling" tag
     const bestSellingProducts = productData.filter((product) => {
-      const sections = product.section || []
+      const sections = product.section ?? []
       return sections.includes('best-selling') && !sections.includes('featured')
     })
 
     // Get products with only "featured" tag
     const featuredProducts = productData.filter((product) => {
-      const sections = product.section || []
+      const sections = product.section ?? []
       return sections.includes('featured') && !sections.includes('best-selling')
     })
 

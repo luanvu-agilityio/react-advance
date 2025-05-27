@@ -29,8 +29,8 @@ const productApi = {
     try {
       // Convert params to the format MockAPI expects
       const queryParams: Record<string, string> = {
-        page: params.page?.toString() || '1',
-        limit: params.limit?.toString() || '9',
+        page: params.page?.toString() ?? '1',
+        limit: params.limit?.toString() ?? '9',
       }
 
       // Add search param if provided (title)
