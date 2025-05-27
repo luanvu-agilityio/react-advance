@@ -21,7 +21,7 @@ const Container = styled.div<{
   $justifyContent?: string
 }>`
   width: 100%;
-  margin: 0 auto;
+
   padding: 0 16px;
   display: flex;
   flex-direction: ${(props) => props.$direction ?? 'row'};

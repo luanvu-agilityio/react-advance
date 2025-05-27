@@ -9,25 +9,118 @@ import ContentContainer from '@components/common/ContentContainer'
 
 import styled from 'styled-components'
 
-// Add these styled components for responsive layout
-const ResponsiveBox = styled(Box)`
-  @media (max-width: 767px) {
-    gap: 32px !important;
+// Responsive container with consistent breakpoints
+const ResponsiveContainer = styled(Box)`
+  width: 100%;
+
+  /* Mobile: Full width with padding */
+  padding: 0 16px;
+
+  /* Tablet: Full width with padding */
+  @media (min-width: 768px) {
+    padding: 0 32px;
+  }
+
+  /* Desktop: Keep current behavior under 1260px */
+  @media (min-width: 1024px) {
+    padding: 0 45px;
+  }
+
+  /* Design width: Fixed 1260px */
+  @media (min-width: 1260px) {
+    width: 1260px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* Large screens: Max 1400px centered */
+  @media (min-width: 1400px) {
+    width: 1400px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+  }
+`
+
+const MainContentWrapper = styled(Box)`
+  display: flex;
+  flex-direction: column;
+
+  /* Mobile spacing */
+  gap: 24px;
+
+  /* Tablet and up spacing */
+  @media (min-width: 768px) {
+    gap: 32px;
+  }
+
+  /* Desktop spacing */
+  @media (min-width: 1024px) {
+    gap: 40px;
+  }
+`
+
+const BreadcrumbWrapper = styled(Box)`
+  border-bottom: 1px solid var(--black-shade-6);
+  padding: 12px 0;
+
+  /* Hide on mobile */
+  display: none;
+
+  /* Show on tablet and up */
+  @media (min-width: 768px) {
+    display: block;
+    margin: 0 auto;
+    width: 1260px;
   }
 `
 
 const SectionWrapper = styled.div`
   width: 100%;
 
+  /* Mobile specific styles */
   @media (max-width: 767px) {
-    padding: 0;
-
     &.blog-section {
       background-color: var(--black-shade-6);
+      margin: 0 -16px;
+      padding: 0 16px;
     }
 
     &.feedback-section {
       background-color: white;
+    }
+
+    &.banner-section {
+      margin: 0 -16px;
+      padding: 0 16px;
+    }
+  }
+
+  /* Tablet styles */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    &.blog-section {
+      background-color: var(--black-shade-6);
+      margin: 0 -32px;
+      padding: 0 32px;
+    }
+
+    &.banner-section {
+      margin: 0 -32px;
+      padding: 0 32px;
+    }
+  }
+
+  /* Desktop styles */
+  @media (min-width: 1024px) and (max-width: 1259px) {
+    &.blog-section {
+      background-color: var(--black-shade-6);
+      margin: 0 -45px;
+      padding: 0 45px;
+    }
+
+    &.banner-section {
+      margin: 0 -45px;
+      padding: 0 45px;
     }
   }
 `
@@ -35,74 +128,52 @@ const SectionWrapper = styled.div`
 const HomePage = () => (
   <Box width="100%">
     {/* Breadcrumb - Hide on mobile */}
-    <Box
-      style={
-        {
-          borderBottom: '1px solid var(--black-shade-6)',
-          padding: '12px 0',
-          display: 'none',
-          '@media screen and (min-width: 768px)': {
-            display: 'block',
-          },
-        } as React.CSSProperties
-      }
-    >
-      <ContentContainer>
+    <BreadcrumbWrapper>
+      <ResponsiveContainer>
         <Breadcrumbs />
-      </ContentContainer>
-    </Box>
+      </ResponsiveContainer>
+    </BreadcrumbWrapper>
 
     {/* Main content */}
-    <ResponsiveBox style={{ display: 'flex', flexDirection: 'column' }}>
-      {/* Banner Section */}
-      <Box py="4">
-        <BannerSection />
-      </Box>
+    <ResponsiveContainer>
+      <MainContentWrapper>
+        {/* Banner Section */}
+        <SectionWrapper className="banner-section">
+          <BannerSection />
+        </SectionWrapper>
 
-      {/* Best selling products section */}
-      <Box py="4">
+        {/* Best selling products section */}
         <BestSellingProducts
           sectionType="best-selling"
           title="Best selling products"
           maxItems={3}
         />
-      </Box>
 
-      {/* Featured products section */}
-      <Box py="4">
+        {/* Featured products section */}
         <BestSellingProducts
           sectionType="featured"
           title="Best from our farmer"
           maxItems={3}
         />
-      </Box>
 
-      {/* Customer Feedback Section */}
-      <Box py="4">
-        <ContentContainer>
+        {/* Customer Feedback Section */}
+        <SectionWrapper className="feedback-section">
           <CustomerFeedbackCarousel />
-        </ContentContainer>
-      </Box>
+        </SectionWrapper>
 
-      {/* Products You May Like Section */}
-
-      <Box py="4">
+        {/* Products You May Like Section */}
         <ProductSection
           title="Products You May Like"
           showRandomProducts={true}
           maxItems={4}
         />
-      </Box>
 
-      {/* Blog Section */}
-      <SectionWrapper className="blog-section">
-        <Box py="4">
-          <ContentContainer>
-            <BlogPreviewSection />
-          </ContentContainer>
-        </Box>
-      </SectionWrapper>
-    </ResponsiveBox>
+        {/* Blog Section */}
+        <SectionWrapper className="blog-section">
+          <BlogPreviewSection />
+        </SectionWrapper>
+      </MainContentWrapper>
+    </ResponsiveContainer>
   </Box>
 )
 

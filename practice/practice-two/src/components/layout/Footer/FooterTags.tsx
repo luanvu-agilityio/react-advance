@@ -10,6 +10,8 @@ const TagContainer = styled.div`
   @media (min-width: 768px) {
     display: block;
     padding: 0 45px;
+    width: 1260px;
+    margin: 0 auto;
   }
 `
 

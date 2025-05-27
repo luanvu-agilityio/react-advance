@@ -6,8 +6,9 @@ import { categories } from '@constants/category'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useCallback, useState, type ChangeEvent, type FormEvent } from 'react'
 import type { Product } from 'types/Product'
-import { productData } from '@dummy-data/product-data'
+
 import { ChevronLeft } from 'lucide-react'
+import { productData } from '@dummy-data/product-data'
 
 const SearchBarContainer = styled.div`
   position: relative;

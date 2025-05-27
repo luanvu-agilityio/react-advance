@@ -9,6 +9,8 @@ import Text from '@components/common/Text'
 
 const StyledContainer = styled(Container)`
   width: 100%;
+  width: 1260px;
+  margin: 0 auto;
   background-color: transparent;
   padding: 24px 16px 32px;
 

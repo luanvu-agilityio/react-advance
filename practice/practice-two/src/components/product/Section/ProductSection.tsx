@@ -31,7 +31,7 @@ const SectionTitle = styled.p`
 
 const ProductFlex = styled.div`
   display: flex;
-  flex-wrap: wrap;
+
   gap: 32px;
 `
 

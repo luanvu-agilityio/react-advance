@@ -20,14 +20,12 @@ const BannerContainer = styled.div`
   // Design width (1260px)
   @media (min-width: 1260px) {
     width: 1260px;
-    margin: 0 auto;
   }
 
   // Large screens
   @media (min-width: 1460px) {
     width: 90%;
     max-width: 1460px;
-    margin: 0 auto;
   }
 `
 
