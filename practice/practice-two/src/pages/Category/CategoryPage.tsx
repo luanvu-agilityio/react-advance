@@ -632,7 +632,7 @@ const CategoryPage = () => {
   // MAIN RENDER
   // --------------------------------------------------------------------------
   return (
-    <PageContainer>
+    <PageContainer className = "section">
       <Breadcrumbs style={{ padding: '12px 45px' }} />
 
       <CategoryPageHeader
