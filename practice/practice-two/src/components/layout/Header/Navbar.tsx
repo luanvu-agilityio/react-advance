@@ -271,7 +271,7 @@ export const Navbar = () => {
   }
 
   return (
-    <NavbarWrapper>
+    <NavbarWrapper className = "section">
       <MobileMenuButton onClick={() => setIsMobileMenuOpen(true)}>
         <Menu size={24} style={{ marginLeft: '16px' }} />
       </MobileMenuButton>
