@@ -130,13 +130,13 @@ const CategoryPageHeader = ({
           <ViewModeOption
             value="grid"
             label="Grid"
-            icon="src/assets/images/icons/grid-view.svg"
+            icon="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372431/grid-view_wvn8gu.svg"
             viewMode={viewMode}
           />
           <ViewModeOption
             value="list"
             label="List"
-            icon="src/assets/images/icons/list-view.svg"
+            icon="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372432/list-view_wqlzwu.svg"
             viewMode={viewMode}
           />
         </div>
