@@ -5,6 +5,7 @@ import { useCallback, type MouseEvent } from 'react'
 import ImageIcon from '@components/common/ImageIcon'
 import CartIcon from '@components/Cart/CartIcon'
 import { useNavigate } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -54,6 +55,7 @@ const MainHeader = styled.div`
 `
 const Logo = styled.img`
   height: 32px;
+  cursor: pointer;
 
   @media (min-width: 768px) {
     height: auto;
@@ -77,6 +79,15 @@ const IconButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+`
+const LogoLink = styled(RouterLink)`
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
 `
 interface HeaderSectionProps {
   onSearch?: (query: string) => void
@@ -104,7 +115,7 @@ const HeaderSection = ({ onSearch }: HeaderSectionProps) => {
   )
 
   return (
-    <HeaderContainer className = "section">
+    <HeaderContainer className="section">
       <TopBar>
         <ContactInfo>
           <Link href="#" onClick={handleClick}>
@@ -127,10 +138,12 @@ const HeaderSection = ({ onSearch }: HeaderSectionProps) => {
       </TopBar>
 
       <MainHeader>
-        <Logo
-          src="https://res.cloudinary.com/ds82onf5q/image/upload/v1747388389/Brand_eequim.png"
-          alt="App logo"
-        />
+        <LogoLink to="/">
+          <Logo
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1747388389/Brand_eequim.png"
+            alt="App logo"
+          />
+        </LogoLink>
 
         <Searchbar onSearch={handleSearch} />
 
