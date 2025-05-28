@@ -52,6 +52,10 @@ const StyledTrigger = styled(Menubar.Trigger)`
   outline: none;
   cursor: pointer;
 
+  &:first-child {
+    padding: 16px 0;
+  }
+
   &:hover {
     background-color: var(--black-shade-5);
   }
