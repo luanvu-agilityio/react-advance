@@ -104,7 +104,7 @@ const HeaderSection = ({ onSearch }: HeaderSectionProps) => {
   )
 
   return (
-    <HeaderContainer>
+    <HeaderContainer className = "section">
       <TopBar>
         <ContactInfo>
           <Link href="#" onClick={handleClick}>
