@@ -285,8 +285,8 @@ export const RadioCircle = styled.div`
     content: '';
     position: absolute;
     display: none;
-    top: 4px;
-    left: 4px;
+    top: 5px;
+    left: 5px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
