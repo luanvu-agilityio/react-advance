@@ -1,212 +1,126 @@
+import { useMediaQuery } from '@chakra-ui/react'
 import { useCheckout } from '@contexts/CheckoutContext'
-import { useCartSummary } from '@hooks/useCartSummary'
-import { useCallback, useRef, type FormEvent } from 'react'
-import * as Form from '@radix-ui/react-form'
+import { BillingInfoSection } from './BillingInfoSection'
+import { PaymentMethodSection } from './PaymentMethodSection'
+import { MobileCheckoutAccordion } from './MobileCheckoutAccordion'
+
 import {
-  StepContainer,
-  StepDescription,
+  CheckoutContainer,
+  CheckoutGrid,
   StepHeader,
   StepIndicator,
   StepTitle,
-  CheckoutGrid,
-  CheckoutContainer,
 } from '../CheckoutStyle'
-import Breadcrumbs from '@components/layout/Breadcrumb/Breadcrumb'
-import ThankYouModalWrapper from './ThankYouModalWrapper'
-import { MobileCheckoutAccordion } from './MobileCheckoutAccordion'
-import SecurityNoticeSection from './SecurityNoticeSection'
 import OrderSummarySection from './OrderSummary'
-import PaymentMethodSection from './PaymentMethodSection'
-import AdditionalInfoSection from './AdditionalInfoSection'
 import { ShippingMethodSection } from './ShippingMethodSection'
+import AdditionalInfoSection from './AdditionalInfoSection'
 import ConfirmationSection from './ConfirmationSection'
-import { BillingInfoSection, type BillingInfoRef } from './BillingInfoSection'
+import ThankYouModal from './ThankyouModal'
+import { useRef, useState, type FormEvent } from 'react'
+import { Form } from '@radix-ui/react-form'
+import SecurityNoticeSection from './SecurityNoticeSection'
+import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
 
-interface CheckoutContentProps {
-  sameAddressChecked: boolean
-  setSameAddressChecked: (checked: boolean) => void
-  promoCode: string
-  setPromoCode: (code: string) => void
-  isMobile: boolean
-}
-
-const CheckoutContent = ({
-  sameAddressChecked,
-  setSameAddressChecked,
-  promoCode,
-  setPromoCode,
-  isMobile,
-}: CheckoutContentProps) => {
-  const billingInfoRef = useRef<BillingInfoRef>(null)
+const CheckoutContent = () => {
+  const [showThankYou, setShowThankYou] = useState(false)
+  const orderDetailsRef = useRef<HTMLDivElement>(null)
+  const [isMobile] = useMediaQuery(['(max-width: 1023px)'])
   const {
-    shippingMethod,
-    paymentMethod,
-    updatePaymentMethod,
     currentStep,
     setCurrentStep,
-    showThankYouModal,
-    setShowThankYouModal,
-    orderDetailsRef,
+    submitForm: submitCheckoutForm,
   } = useCheckout()
 
-  const {
-    items,
-    subtotal,
-    tax,
-    shipping,
-    total,
-    handleQuantityChange,
-    handleUnitChange,
-    handleRemove,
-  } = useCartSummary(shippingMethod)
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault()
+    const success = await submitCheckoutForm()
 
-  const checkoutSteps = useCallback(
-    () => [
-      {
-        id: 'billing',
-        title: 'Billing Info',
-        stepNumber: 'Step 1 of 5',
-        description: 'Please enter your billing info',
-        isComplete: false,
-        content: (
-          <BillingInfoSection
-            ref={billingInfoRef}
-            sameAddressChecked={sameAddressChecked}
-            setSameAddressChecked={setSameAddressChecked}
-          />
-        ),
-      },
-      {
-        id: 'shipping',
-        title: 'Shipping Method',
-        stepNumber: 'Step 2 of 5',
-        description: 'Choose your shipping method',
-        isComplete: false,
-        content: <ShippingMethodSection />,
-      },
-      {
-        id: 'payment',
-        title: 'Payment Method',
-        stepNumber: 'Step 3 of 5',
-        description: 'Please enter your payment method',
-        isComplete: false,
-        content: (
-          <PaymentMethodSection
-            paymentMethod={paymentMethod}
-            setPaymentMethod={updatePaymentMethod}
-          />
-        ),
-      },
-      {
-        id: 'additional',
-        title: 'Additional Info',
-        stepNumber: 'Step 4 of 5',
-        description: 'Need something else? We will make it for you!',
-        isComplete: false,
-        content: <AdditionalInfoSection />,
-      },
-      {
-        id: 'confirmation',
-        title: 'Confirmation',
-        stepNumber: 'Step 5 of 5',
-        description:
-          'We are getting to the end. Just few clicks and your order is ready!',
-        isComplete: false,
-        content: <ConfirmationSection />,
-      },
-    ],
-    [
-      sameAddressChecked,
-      setSameAddressChecked,
-      paymentMethod,
-      updatePaymentMethod,
-    ]
-  )
-
-  const handleApplyPromo = useCallback(() => {
-    if (promoCode) {
-      console.log(`Applied promo code: ${promoCode}`)
+    if (success) {
+      setShowThankYou(true)
     }
-  }, [promoCode])
+  }
 
-  const handleSubmit = useCallback(
-    (event: FormEvent) => {
-      event.preventDefault()
-      setShowThankYouModal(true)
+  const checkoutSteps = [
+    {
+      id: 'billing',
+      title: 'Billing Info',
+      stepNumber: 'Step 1 of 5',
+      description: 'Please enter your billing info',
+      isComplete: false,
+      content: <BillingInfoSection />,
     },
-    [setShowThankYouModal]
-  )
-
-  const DesktopStepContent = ({
-    step,
-  }: {
-    step: ReturnType<typeof checkoutSteps>[0]
-  }) => (
-    <StepContainer>
-      <StepHeader>
-        <div>
-          <StepTitle>{step.title}</StepTitle>
-          <StepDescription>{step.description}</StepDescription>
-        </div>
-        <StepIndicator>{step.stepNumber}</StepIndicator>
-      </StepHeader>
-      {step.content}
-    </StepContainer>
-  )
-
-  const steps = checkoutSteps()
+    {
+      id: 'shipping',
+      title: 'Shipping Method',
+      stepNumber: 'Step 2 of 5',
+      description: 'Choose your shipping method',
+      isComplete: false,
+      content: <ShippingMethodSection />,
+    },
+    {
+      id: 'payment',
+      title: 'Payment Method',
+      stepNumber: 'Step 3 of 5',
+      description: 'Please enter your payment method',
+      isComplete: false,
+      content: <PaymentMethodSection />,
+    },
+    {
+      id: 'additional',
+      title: 'Additional Info',
+      stepNumber: 'Step 4 of 5',
+      description: 'Need something else? We will make it for you!',
+      isComplete: false,
+      content: <AdditionalInfoSection />,
+    },
+    {
+      id: 'confirmation',
+      title: 'Confirmation',
+      stepNumber: 'Step 5 of 5',
+      description:
+        'We are getting to the end. Just few clicks and your order is ready!',
+      isComplete: false,
+      content: <ConfirmationSection />,
+    },
+  ]
 
   return (
     <CheckoutContainer>
-      <Breadcrumbs style={{ marginBottom: '32px' }} />
-      <Form.Root onSubmit={handleSubmit}>
+      <Breadcrumbs />
+
+      <Form onSubmit={handleSubmit}>
         <CheckoutGrid>
-          {/* Left Column - Checkout Steps */}
           <div
             style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}
           >
             {isMobile ? (
               <MobileCheckoutAccordion
-                steps={steps}
+                steps={checkoutSteps}
                 currentStep={currentStep}
                 onStepChange={setCurrentStep}
               />
             ) : (
-              steps.map((step) => (
-                <DesktopStepContent key={step.id} step={step} />
+              checkoutSteps.map((step) => (
+                <div key={step.id}>
+                  <StepHeader>
+                    <StepTitle>{step.title}</StepTitle>
+                    <StepIndicator>{step.stepNumber}</StepIndicator>
+                  </StepHeader>
+                  {step.content}
+                </div>
               ))
             )}
             <SecurityNoticeSection />
           </div>
 
-          {/* Right Column - Order Summary */}
-          <div ref={orderDetailsRef}>
-            <OrderSummarySection
-              items={items}
-              subtotal={subtotal}
-              tax={tax}
-              shipping={shipping}
-              total={total}
-              promoCode={promoCode}
-              setPromoCode={setPromoCode}
-              handleApplyPromo={handleApplyPromo}
-              handleQuantityChange={handleQuantityChange}
-              handleUnitChange={handleUnitChange}
-              handleRemove={handleRemove}
-            />
-          </div>
+          <OrderSummarySection />
         </CheckoutGrid>
-      </Form.Root>
-      <ThankYouModalWrapper
-        open={showThankYouModal}
-        onClose={() => setShowThankYouModal(false)}
+      </Form>
+
+      <ThankYouModal
+        open={showThankYou}
+        onClose={() => setShowThankYou(false)}
         orderDetailsRef={orderDetailsRef}
-        paymentMethod={paymentMethod}
-        items={items}
-        subtotal={subtotal}
-        tax={tax}
-        shipping={shipping}
-        total={total}
       />
     </CheckoutContainer>
   )

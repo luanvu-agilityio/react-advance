@@ -1,267 +1,46 @@
-import { useEffect, useMemo, useState, Suspense } from 'react'
-import styled from 'styled-components'
+import { useEffect, useMemo, useState } from 'react'
+
 import { PlusIcon } from 'lucide-react'
 import { productData } from '@data/product-data'
-import { Button, Spinner, Theme } from '@radix-ui/themes'
-import BuyingUnit from './components/BuyingUnit'
-import RelatedProducts from './components/RelatedProducts'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Spinner, Theme } from '@radix-ui/themes'
+import BuyingUnit from '@components/common/BuyingUnit/BuyingUnit'
+import RelatedProducts from './RelatedProducts/RelatedProducts'
 import { getTabDataByProductId } from '@data/tab-data'
-import ProductTabs from './components/Tabs'
+import ProductTabs from '@components/common/Tabs/Tabs'
 import { renderStars } from '@helpers/renderStar'
-import Breadcrumbs from '@components/layout/Breadcrumb/Breadcrumb'
+import { useParams } from 'react-router-dom'
+import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
 import { useCart } from '@contexts/CartContext'
-import Text from '@components/common/Text'
 
-// Styled Components
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
-
-  @media (min-width: 768px) {
-    padding: 1.6rem 1.5rem;
-  }
-`
-
-const ProductOverview = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-
-  @media (min-width: 992px) {
-    flex-direction: row;
-    gap: 32px;
-  }
-`
-
-const ImageContainer = styled.div`
-  width: 569px;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-`
-
-const DiscountBadge = styled.div`
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  background-color: var(--green-shade-4);
-  color: var(--green-color-default);
-  border-radius: 12px;
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 600;
-`
-
-const ShippingBadge = styled.div`
-  position: absolute;
-  top: 16px;
-  left: 80px;
-  background-color: var(--green-shade-4);
-  color: var(--green-color-default);
-  border-radius: 12px;
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 600;
-`
-const ProductImageContainer = styled.div`
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4/3;
-
-  @media (min-width: 992px) {
-    height: 436px;
-    margin-bottom: 1rem;
-  }
-`
-
-const ProductImage = styled.div`
-  height: 100%;
-  width: 100%;
-
-  img {
-    border-radius: 12px;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-`
-
-const ProductDetails = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-
-  @media (min-width: 992px) {
-    gap: 40px;
-  }
-`
-
-const ProductTitle = styled.h1`
-  font-size: 24px;
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: 0.5rem;
-  margin-top: 0;
-
-  @media (min-width: 768px) {
-    font-size: 32px;
-  }
-`
-
-const RatingContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`
-
-const ReviewCount = styled.span`
-  color: var(--black-shade-2);
-  font-family: var(--font-family-secondary);
-  font-size: 12px;
-  font-weight: var(--font-weight-regular);
-`
-
-const ProductDescription = styled.p`
-  color: var(--black-color-default);
-  font-family: var(--font-family-secondary);
-  font-size: 15px;
-  font-weight: var(--font-weight-regular);
-  line-height: 1.6;
-
-  @media (min-width: 768px) {
-    font-size: 17px;
-  }
-`
-
-const ProductInfoTable = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px 40px;
-
-  @media (max-width: 992px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 576px) {
-    grid-template-columns: 1fr;
-  }
-`
-
-const InfoItem = styled.div`
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  align-items: baseline;
-`
-
-const InfoLabel = styled.div`
-  color: var(--black-shade-2);
-  font-family: var(--font-family-secondary);
-  font-size: 14px;
-  font-weight: var(--font-weight-regular);
-  min-width: 100px;
-`
-
-const InfoValue = styled.div<{ $inStock?: boolean }>`
-  color: ${(props) =>
-    props.$inStock
-      ? 'var(--green-color-default)'
-      : 'var(--black-color-default)'};
-  font-family: var(--font-family-secondary);
-  font-size: 14px;
-  font-weight: var(--font-weight-regular);
-`
-
-const PriceContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 15px;
-  border-radius: 12px;
-  border: 1px solid var(--black-shade-5);
-  width: 100%;
-
-  @media (min-width: 576px) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 534px;
-  }
-`
-
-const PriceInfo = styled.div``
-
-const CurrentPrice = styled.div`
-  font-size: 26px;
-  font-weight: var(--font-weight-semibold);
-  color: var(--green-color-default);
-`
-
-const OriginalPrice = styled.div`
-  font-size: 12px;
-  color: var(--black-shade-2);
-  font-weight: var(--font-weight-semibold);
-  text-decoration: line-through;
-`
-
-const AddToCartContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-
-  @media (min-width: 576px) {
-    flex-direction: row;
-    align-items: center;
-    gap: 24px;
-    width: auto;
-  }
-`
-
-const ActionContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-`
-
-const ActionButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 14px;
-  font-weight: var(--font-weight-bold);
-  color: var(--black-color-default);
-  padding: 8px 12px;
-  border: none;
-  background-color: transparent;
-  width: 100%;
-
-  @media (min-width: 576px) {
-    width: auto;
-    font-size: 15px;
-    justify-content: flex-start;
-  }
-
-  &:hover {
-    color: var(--green-color-default);
-  }
-`
-
-const BuyButton = styled(Button)`
-  width: 100%;
-
-  @media (min-width: 576px) {
-    width: auto;
-  }
-`
+import {
+  ActionButton,
+  ActionContainer,
+  AddToCartContainer,
+  BuyButton,
+  Container,
+  CurrentPrice,
+  DiscountBadge,
+  ImageContainer,
+  InfoItem,
+  InfoLabel,
+  InfoValue,
+  OriginalPrice,
+  PriceContainer,
+  PriceInfo,
+  ProductDescription,
+  ProductDetails,
+  ProductImage,
+  ProductImageContainer,
+  ProductInfoTable,
+  ProductOverview,
+  ProductTitle,
+  RatingContainer,
+  ReviewCount,
+  ShippingBadge,
+} from './ProductDetailStyles'
 
 const ProductDetailPage = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const { addItem } = useCart()
   const [quantity, setQuantity] = useState(1)
   const [buyUnit, setBuyUnit] = useState('pcs')
@@ -286,50 +65,14 @@ const ProductDetailPage = () => {
     }
   }, [productId])
 
-  if (!product) {
-    return (
-      <Suspense
-        fallback={
-          <Container style={{ textAlign: 'center', padding: '2rem' }}>
-            <Theme>
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '8px',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Spinner size="3" />
-                <Text as="p" text="Loading product..." />
-              </div>
-            </Theme>
-          </Container>
-        }
-      >
-        <Container>
-          <div>Product not found</div>
-        </Container>
-      </Suspense>
-    )
-  }
-
-  const handleProductClick = (newProductId: number) => {
-    const newProduct = productData.find((p) => p.id === newProductId)
-    if (newProduct) {
-      const categoryPath = newProduct.category.toLowerCase().replace(/ /g, '-')
-      const subcategoryPath = newProduct.subcategory
-        .toLowerCase()
-        .replace(/ /g, '-')
-      navigate(`${categoryPath}/${subcategoryPath}/${newProductId}`)
-      window.scrollTo(0, 0)
-    }
-  }
-
   const onBuy = () => {
     if (product) {
       addItem(product, quantity, buyUnit)
     }
+  }
+
+  if (!product) {
+    return <Spinner />
   }
 
   return (
@@ -467,7 +210,7 @@ const ProductDetailPage = () => {
             <ActionContainer>
               <ActionButton>
                 <img
-                  src="/src/assets/images/icons/wishlist-red.svg"
+                  src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372435/wishlist-red_vhgkuv.svg"
                   alt="Wishlist icon"
                   style={{ width: '16px', height: '16px' }}
                 />
@@ -476,7 +219,7 @@ const ProductDetailPage = () => {
 
               <ActionButton>
                 <img
-                  src="/src/assets/images/icons/compare.svg"
+                  src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/compare_oeiv1m.svg"
                   alt="Compare icon"
                   style={{ width: '16px', height: '16px' }}
                 />
@@ -502,7 +245,6 @@ const ProductDetailPage = () => {
       <RelatedProducts
         currentProductId={product.id}
         subcategory={product.subcategory}
-        onProductClick={handleProductClick}
       />
     </Container>
   )

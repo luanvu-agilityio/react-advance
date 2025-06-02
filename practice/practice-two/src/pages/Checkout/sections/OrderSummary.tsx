@@ -1,5 +1,7 @@
-import type { CartItem as CartItemType } from '@contexts/CartContext'
-import CartItem from '@components/Cart/CartItem'
+import { useCallback, useMemo } from 'react'
+import CartItem from '@components/Cart/CartItem/CartItem'
+import { useCart } from '@contexts/CartContext'
+import { useCheckout } from '@contexts/CheckoutContext'
 
 import {
   OrderSummaryWrapper,
@@ -13,36 +15,68 @@ import {
   PromoInput,
   PromoButton,
 } from '../CheckoutStyle'
-import { useCheckout } from '@contexts/CheckoutContext'
 
-interface OrderSummarySectionProps {
-  items: CartItemType[]
-  subtotal: number
-  tax: number
-  shipping: number
-  total: number
-  promoCode: string
-  setPromoCode: (value: string) => void
-  handleApplyPromo: () => void
-  handleQuantityChange: (id: number, quantity: number) => void
-  handleUnitChange: (id: number, buyUnit: string) => void
-  handleRemove: (id: number) => void
-}
+export const OrderSummarySection = () => {
+  const { items, updateQuantity, updateUnit, removeFromCart } = useCart()
+  const { formData, promoCode, setPromoCode, orderDetailsRef } = useCheckout()
 
-export const OrderSummarySection = ({
-  items,
-  subtotal,
-  tax,
-  shipping,
-  total,
-  promoCode,
-  setPromoCode,
-  handleApplyPromo,
-  handleQuantityChange,
-  handleUnitChange,
-  handleRemove,
-}: OrderSummarySectionProps) => {
-  const { orderDetailsRef } = useCheckout()
+  // Calculate order totals
+  const orderCalculations = useMemo(() => {
+    const subtotal = items.reduce((sum, item) => {
+      return sum + Number(item.price) * item.quantity
+    }, 0)
+
+    // Calculate tax (17%)
+    const tax = subtotal * 0.17
+
+    // Get shipping cost from form data
+    const shipping = formData.shipping.price || 0
+
+    const total = subtotal + tax + shipping
+
+    return {
+      subtotal,
+      tax,
+      shipping,
+      total,
+    }
+  }, [items, formData.shipping.price])
+
+  // Handle promo code application
+  const handleApplyPromo = useCallback(() => {
+    if (!promoCode.trim()) return
+    // Promo code logic here
+    console.log('Apply promo code:', promoCode)
+  }, [promoCode])
+
+  // Handle quantity changes
+  const handleQuantityChange = useCallback(
+    (id: number, quantity: number) => {
+      if (quantity <= 0) {
+        removeFromCart(id)
+      } else {
+        updateQuantity(id, quantity)
+      }
+    },
+    [updateQuantity, removeFromCart]
+  )
+
+  // Handle unit changes
+  const handleUnitChange = useCallback(
+    (id: number, buyUnit: string) => {
+      updateUnit(id, buyUnit)
+    },
+    [updateUnit]
+  )
+
+  // Handle item removal
+  const handleRemove = useCallback(
+    (id: number) => {
+      removeFromCart(id)
+    },
+    [removeFromCart]
+  )
+
   return (
     <OrderSummaryWrapper ref={orderDetailsRef}>
       <OrderSummary>
@@ -85,17 +119,17 @@ export const OrderSummarySection = ({
           >
             <OrderSummaryRow>
               <span>Subtotal</span>
-              <span>{subtotal.toFixed(2)} USD</span>
+              <span>{orderCalculations.subtotal.toFixed(2)} USD</span>
             </OrderSummaryRow>
 
             <OrderSummaryRow>
               <span>Tax</span>
-              <span>17% {tax.toFixed(2)} USD</span>
+              <span>17% {orderCalculations.tax.toFixed(2)} USD</span>
             </OrderSummaryRow>
 
             <OrderSummaryRow>
               <span>Shipping</span>
-              <span>{shipping.toFixed(2)} USD</span>
+              <span>{orderCalculations.shipping.toFixed(2)} USD</span>
             </OrderSummaryRow>
           </div>
 
@@ -124,12 +158,14 @@ export const OrderSummarySection = ({
               color: 'var(--green-color-default)',
             }}
           >
-            {total.toFixed(2)} USD
+            {orderCalculations.total.toFixed(2)} USD
           </p>
         </OrderSummaryTotal>
       </OrderSummary>
     </OrderSummaryWrapper>
   )
 }
+
+OrderSummarySection.displayName = 'OrderSummarySection'
 
 export default OrderSummarySection

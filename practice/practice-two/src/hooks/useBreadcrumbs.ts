@@ -1,4 +1,7 @@
-import { routeConfig, type RouteConfig } from '../config/BreadcrumbRouteConfig'
+import {
+  routeConfig,
+  type RouteConfig,
+} from '../config/route/BreadcrumbRouteConfig'
 import { useMemo } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 

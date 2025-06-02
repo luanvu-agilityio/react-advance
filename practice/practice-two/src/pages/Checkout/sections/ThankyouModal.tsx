@@ -1,8 +1,9 @@
-import type { RefObject } from 'react'
+import { useMemo, type RefObject } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import styled from 'styled-components'
-import type { OrderSummaryProps } from 'types/Order'
 import { useOrderExport } from '@hooks/useOrderExport'
+import { useCheckout } from '@contexts/CheckoutContext'
+import { useCart } from '@contexts/CartContext'
 
 // Styled components using Radix UI
 const StyledOverlay = styled(Dialog.Overlay)`
@@ -151,24 +152,73 @@ interface ThankYouModalProps {
   open: boolean
   onClose: () => void
   orderDetailsRef: RefObject<HTMLDivElement | null>
-  customerData: OrderSummaryProps
 }
 
 const ThankYouModal = ({
   open,
   onClose,
   orderDetailsRef,
-  customerData = {},
 }: ThankYouModalProps) => {
-  // Use custom hook for order exports
+  // Get all data from contexts - no props needed!
+  const { formData, resetForm } = useCheckout()
+  const { items, clearCart } = useCart()
+
+  // Calculate order totals (same logic as OrderSummary)
+  const orderCalculations = useMemo(() => {
+    const subtotal = items.reduce((sum, item) => {
+      return sum + Number(item.price) * item.quantity
+    }, 0)
+
+    const tax = subtotal * 0.17
+    const shipping = formData.shipping.price || 0
+    const total = subtotal + tax + shipping
+
+    return { subtotal, tax, shipping, total }
+  }, [items, formData.shipping.price])
+
+  // Prepare customer data for export
+  const customerData = useMemo(
+    () => ({
+      firstName: formData.billing.firstName,
+      lastName: formData.billing.lastName,
+      email: formData.billing.email,
+      phone: formData.billing.phone,
+      address: formData.billing.address,
+      city: formData.billing.city,
+      country: formData.billing.country,
+      zip: formData.billing.zip,
+
+      // Shipping and payment info
+      shippingMethod: formData.shipping.method,
+      paymentMethod: formData.payment.method,
+
+      // Items and calculations
+      items: items.map((item) => ({
+        name: item.title,
+        quantity: item.quantity,
+        price: item.price,
+        unit: item.buyUnit,
+        total: Number(item.price) * item.quantity,
+      })),
+      ...orderCalculations,
+    }),
+    [formData, items, orderCalculations]
+  )
+
   const { handlePrint, handleDownloadExcel, handleDownloadText } =
     useOrderExport({
       orderDetailsRef,
       customerData,
     })
 
+  const handleClose = () => {
+    resetForm()
+    clearCart()
+    onClose()
+  }
+
   return (
-    <Dialog.Root open={open} onOpenChange={onClose}>
+    <Dialog.Root open={open} onOpenChange={handleClose}>
       <Dialog.Portal>
         <StyledOverlay />
         <StyledContent>
@@ -187,7 +237,7 @@ const ThankYouModal = ({
             <SecondaryButton onClick={handleDownloadText}>
               Download as Text
             </SecondaryButton>
-            <SecondaryButton onClick={onClose}>Close</SecondaryButton>
+            <SecondaryButton onClick={handleClose}>Close</SecondaryButton>
           </ButtonsContainer>
         </StyledContent>
       </Dialog.Portal>

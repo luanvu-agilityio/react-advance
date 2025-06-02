@@ -10,7 +10,7 @@ export const CheckoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1440px; // Set a max-width for larger screens
+  max-width: 1260px;
   margin: 0 auto;
   padding: 16px;
   font-family: var(--font-family-primary);
@@ -21,7 +21,7 @@ export const CheckoutContainer = styled.div`
   }
 
   @media (min-width: 1024px) {
-    padding: 32px;
+    padding: 0 32px;
   }
 `
 
@@ -196,6 +196,17 @@ export const CheckboxContainer = styled.div`
   border: 1px solid var(--black-shade-3);
   border-radius: 12px;
 
+  &.same-as-billing {
+    width: 250px;
+  }
+
+  &.marketing-consent {
+    width: 580px;
+  }
+
+  &.term-consent {
+    width: 440px;
+  }
   @media (max-width: 768px) {
     padding: 8px 12px;
     height: auto;

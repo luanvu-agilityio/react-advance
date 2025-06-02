@@ -5,6 +5,7 @@ import {
   useEffect,
   type ReactNode,
   useMemo,
+  useCallback,
 } from 'react'
 import type { Product } from '../types/Product'
 
@@ -34,6 +35,9 @@ interface CartContextType {
   ) => void
   removeItem: (id: number) => void
   updateItem: (id: number, updatedItem: Partial<CartItem>) => void
+  updateQuantity: (id: number, quantity: number) => void
+  updateUnit: (id: number, buyUnit: string) => void
+  removeFromCart: (id: number) => void
   clearCart: () => void
   isOpen: boolean
   openCart: () => void
@@ -73,8 +77,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     quantity: number,
     buyUnit: string
   ) => {
-    // Update the last operation timestamp
-
     setItems((prevItems) => {
       // Check if item already exists in cart with same buyUnit
       const existingItemIndex = prevItems.findIndex(
@@ -84,9 +86,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       if (existingItemIndex > -1) {
         // Update quantity if item exists
         const updatedItems = [...prevItems]
-
         updatedItems[existingItemIndex].quantity += quantity
-
         return updatedItems
       } else {
         // Add new item
@@ -114,6 +114,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id))
   }
 
+  // Alias for removeItem to match OrderSummary expectations
+  const removeFromCart = (id: number) => {
+    removeItem(id)
+  }
+
   // New updateItem function to update any property of a cart item
   const updateItem = (id: number, updatedItem: Partial<CartItem>) => {
     setItems((prevItems) =>
@@ -123,9 +128,24 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     )
   }
 
-  const clearCart = () => {
-    setItems([])
+  // Update quantity specifically
+  const updateQuantity = (id: number, quantity: number) => {
+    setItems((prevItems) =>
+      prevItems.map((item) => (item.id === id ? { ...item, quantity } : item))
+    )
   }
+
+  // Update buy unit specifically
+  const updateUnit = (id: number, buyUnit: string) => {
+    setItems((prevItems) =>
+      prevItems.map((item) => (item.id === id ? { ...item, buyUnit } : item))
+    )
+  }
+
+  const clearCart = useCallback(() => {
+    setItems([])
+    localStorage.removeItem('cart')
+  }, [])
 
   const openCart = () => {
     setIsOpen(true)
@@ -150,6 +170,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       addItem,
       removeItem,
       updateItem,
+      updateQuantity,
+      updateUnit,
+      removeFromCart,
       clearCart,
       isOpen,
       openCart,
@@ -157,7 +180,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       totalItems,
       subtotal,
     }),
-    [items, isOpen, totalItems, subtotal]
+    [items, isOpen, totalItems, subtotal, clearCart, removeFromCart]
   )
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

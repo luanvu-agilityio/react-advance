@@ -14,7 +14,8 @@ export const blogPosts: BlogPostType[] = [
     category: 'Dinner tips',
     author: 'Author',
     date: '17. 6. 2020',
-    imageUrl: './src/assets/images/products/blog-dinner.jpg',
+    imageUrl:
+      'https://res.cloudinary.com/ds82onf5q/image/upload/v1748375317/blog-dinner_knct7c.jpg',
   },
   {
     id: 2,
@@ -22,27 +23,31 @@ export const blogPosts: BlogPostType[] = [
     category: 'Vegetable',
     author: 'Author',
     date: '15. 6. 2020',
-    imageUrl: './src/assets/images/products/blog-veggie.jpg',
+    imageUrl:
+      'https://res.cloudinary.com/ds82onf5q/image/upload/v1748375322/blog-veggie_phtrkg.jpg',
   },
   {
     id: 3,
     title: 'Salad is kinda good start to your morning routines',
     author: 'Author',
     date: '14.1.2020',
-    imageUrl: './src/assets/images/products/blog-salad.jpeg',
+    imageUrl:
+      'https://res.cloudinary.com/ds82onf5q/image/upload/v1748375319/blog-salad_zldzdr.jpg',
   },
   {
     id: 4,
     title: 'Our chef tips for a great and healthy breakfast',
     author: 'Author',
     date: '14.1.2020',
-    imageUrl: './src/assets/images/products/blog-breakfast.jpeg',
+    imageUrl:
+      'https://res.cloudinary.com/ds82onf5q/image/upload/v1748375314/blog-breakfast_tiked5.jpg',
   },
   {
     id: 5,
     title: 'Prepare a simple and delicious breads',
     author: 'Author',
     date: '14.1.2020',
-    imageUrl: './src/assets/images/products/blog-breads.jpg',
+    imageUrl:
+      'https://res.cloudinary.com/ds82onf5q/image/upload/v1748375308/blog-breads_sbr3ua.jpg',
   },
 ]

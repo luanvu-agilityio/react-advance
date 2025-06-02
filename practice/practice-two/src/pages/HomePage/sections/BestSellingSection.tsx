@@ -2,69 +2,22 @@ import { type MouseEvent, useMemo } from 'react'
 import { ChevronRight } from 'lucide-react'
 import styled from 'styled-components'
 import { Button, Flex } from '@radix-ui/themes'
-import Link from '@components/common/Link'
+import Link from '@components/common/Link/index'
 import { navbarData } from '@data/navbar'
 
 import { productData } from '@data/product-data'
 import ContentContainer from '@components/common/ContentContainer'
 import { useNavigate } from 'react-router-dom'
 import { getRandomItems } from '@helpers/getRandomItems'
-import { ProductCard } from '@components/product/ProductCard/ProductCard'
-
-const Container = styled.div`
-  width: 100%;
-  background-color: white;
-`
-
-const FlexContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-
-  @media (min-width: 1024px) {
-    flex-direction: row;
-  }
-`
-
-const SectionTitle = styled.h2`
-  font-size: 18px;
-  font-weight: var(--font-weight-bold);
-  margin-bottom: 1rem;
-  color: var(--black-color-default);
-
-  @media (max-width: 1023px) {
-    margin-bottom: 1.5rem;
-  }
-`
-
-const CategoryList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-`
-
-const StyledLink = styled.div`
-  margin-bottom: 0.25rem;
-`
-
-const ProductsGrid = styled.div`
-  width: 100%;
-  display: grid;
-  gap: 32px;
-
-  // Mobile
-  grid-template-columns: 1fr;
-
-  // Tablet
-  @media (min-width: 640px) and (max-width: 1023px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  // Design width (1260px) and above
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, minmax(269px, 1fr));
-  }
-`
+import { ProductCard } from '@components/ProductCard/ProductCard'
+import {
+  CategoryList,
+  Container,
+  FlexContainer,
+  ProductsGrid,
+  SectionTitle,
+  StyledLink,
+} from '../Homepage.styles'
 
 interface BestSellingProductsProps {
   sectionType?: 'best-selling' | 'featured'

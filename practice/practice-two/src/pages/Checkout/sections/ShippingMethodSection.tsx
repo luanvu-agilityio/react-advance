@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { useCallback, useMemo } from 'react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import {
@@ -13,69 +13,116 @@ import {
 } from '../CheckoutStyle'
 import { useCheckout } from '@contexts/CheckoutContext'
 
-export const ShippingMethodSection = memo(() => {
-  const { shippingMethod, updateShippingMethod } = useCheckout()
+// Define shipping method configuration type
+interface ShippingMethodOption {
+  id: string
+  value: string
+  label: string
+  price: number
+  logoSrc: string
+  logoAlt: string
+  logoWidth: string
+  logoHeight: string
+}
+
+export const ShippingMethodSection = () => {
+  const { formData, updateField } = useCheckout()
+  const shippingData = formData.shipping
+
+  // Shipping methods configuration
+  const shippingMethods = useMemo<ShippingMethodOption[]>(
+    () => [
+      {
+        id: 'fedex',
+        value: 'fedex',
+        label: 'FedEx',
+        price: 32,
+        logoSrc:
+          'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372451/fedex_gcko1l.png',
+        logoAlt: 'FedEx',
+        logoWidth: '54px',
+        logoHeight: '16px',
+      },
+      {
+        id: 'dhl',
+        value: 'dhl',
+        label: 'DHL',
+        price: 15,
+        logoSrc:
+          'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372450/dhl_it43vr.png',
+        logoAlt: 'DHL',
+        logoWidth: '93px',
+        logoHeight: '14px',
+      },
+    ],
+    []
+  )
+
+  const handleMethodChange = useCallback(
+    (method: 'fedex' | 'dhl') => {
+      // Find selected shipping method
+      const selectedMethod = shippingMethods.find((m) => m.value === method)
+
+      if (selectedMethod) {
+        updateField('shipping', 'method', method)
+        updateField('shipping', 'price', selectedMethod.price)
+      }
+    },
+    [updateField, shippingMethods]
+  )
+
+  // Render a single shipping option
+  const renderShippingOption = (method: ShippingMethodOption) => (
+    <ShippingOption
+      key={method.id}
+      htmlFor={method.id}
+      data-state={shippingData.method === method.value ? 'checked' : ''}
+    >
+      <ShippingOptionDetails>
+        <RadioGroup.Item
+          value={method.value}
+          id={method.id}
+          style={{ display: 'none' }}
+        />
+        <RadioCircle />
+        <ShippingLabel>{method.label}</ShippingLabel>
+      </ShippingOptionDetails>
+
+      <AdditionalPrice>
+        +{method.price} USD
+        <span>Additional price</span>
+      </AdditionalPrice>
+
+      <ShippingInfo>
+        <ShippingLogo
+          src={method.logoSrc}
+          alt={method.logoAlt}
+          style={{
+            width: method.logoWidth,
+            height: method.logoHeight,
+          }}
+        />
+      </ShippingInfo>
+    </ShippingOption>
+  )
 
   return (
     <StepContainer>
       <RadioGroup.Root
-        value={shippingMethod}
-        onValueChange={updateShippingMethod}
+        value={shippingData.method}
+        onValueChange={handleMethodChange}
         style={{
           display: 'flex',
           flexDirection: 'column',
           gap: '16px',
         }}
       >
-        <ShippingOption
-          htmlFor="fedex"
-          data-state={shippingMethod === 'fedex' ? 'checked' : ''}
-        >
-          <ShippingOptionDetails>
-            <RadioGroup.Item
-              value="fedex"
-              id="fedex"
-              style={{ display: 'none' }}
-            />
-            <RadioCircle />
-            <ShippingLabel>FedEx</ShippingLabel>
-          </ShippingOptionDetails>
-          <AdditionalPrice>
-            +32 USD
-            <span>Additional price</span>
-          </AdditionalPrice>
-
-          <ShippingInfo>
-            <ShippingLogo
-              src="/src/assets/images/logos/fedex.png"
-              alt="FedEx"
-              style={{ width: '54px', height: '16px' }}
-            />
-          </ShippingInfo>
-        </ShippingOption>
-
-        <ShippingOption
-          htmlFor="dhl"
-          data-state={shippingMethod === 'dhl' ? 'checked' : ''}
-        >
-          <ShippingOptionDetails>
-            <RadioGroup.Item value="dhl" id="dhl" style={{ display: 'none' }} />
-            <RadioCircle />
-            <ShippingLabel>DHL</ShippingLabel>
-          </ShippingOptionDetails>
-          <AdditionalPrice>
-            +15 USD
-            <span>Additional price</span>
-          </AdditionalPrice>
-          <ShippingInfo>
-            <ShippingLogo
-              src="/src/assets/images/logos/dhl.png"
-              alt="DHL"
-              style={{ width: '93px', height: '14px' }}
-            />
-          </ShippingInfo>
-        </ShippingOption>
+        {shippingMethods.map(renderShippingOption)}
       </RadioGroup.Root>
     </StepContainer>
   )
-})
+}
+
+ShippingMethodSection.displayName = 'ShippingMethodSection'
+
+export default ShippingMethodSection

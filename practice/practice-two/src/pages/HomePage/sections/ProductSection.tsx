@@ -1,40 +1,15 @@
 import { ChevronRight } from 'lucide-react'
-
-import styled from 'styled-components'
-import Link from '@components/common/Link'
 import { useMemo } from 'react'
 import type { MouseEvent } from 'react'
 import { productData } from '@data/product-data'
 import ContentContainer from '@components/common/ContentContainer'
-import { ProductCard } from '@components/product/ProductCard/ProductCard'
-
-const HeaderContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-`
-
-const StyledLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  font-size: 15px;
-  font-weight: var(--font-weight-bold);
-  color: var(--black-color-default);
-  gap: 6px;
-`
-
-const SectionTitle = styled.p`
-  font-size: 18px;
-  font-weight: var(--font-weight-semibold);
-  color: var(--black-color-default);
-`
-
-const ProductFlex = styled.div`
-  display: flex;
-
-  gap: 32px;
-`
+import { ProductCard } from '@components/ProductCard/ProductCard'
+import {
+  HeaderContainer,
+  ProductFlex,
+  SectionTitle,
+  StyledLinkButton,
+} from '../Homepage.styles'
 
 interface ProductSectionProps {
   title?: string
@@ -96,14 +71,14 @@ const ProductSection = ({
       <ContentContainer direction="column">
         <HeaderContainer>
           <SectionTitle className="section-title">{title}</SectionTitle>
-          <StyledLink href="/products" onClick={handleClick}>
+          <StyledLinkButton href="/products" onClick={handleClick}>
             See more{' '}
             <ChevronRight
               size={14}
               color="var(--green-color-default"
               strokeWidth={4}
             />
-          </StyledLink>
+          </StyledLinkButton>
         </HeaderContainer>
 
         <ProductFlex>
