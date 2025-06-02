@@ -1,6 +1,5 @@
 import type { Product } from 'types/Product'
 import axios, { AxiosError } from 'axios'
-import axios, { AxiosError } from 'axios'
 
 const API_BASE_URL = 'https://6830140df504aa3c70f63355.mockapi.io'
 
