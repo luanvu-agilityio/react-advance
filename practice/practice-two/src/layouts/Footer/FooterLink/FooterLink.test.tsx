@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { Theme as ThemeProvider } from '@radix-ui/themes'
-import FooterLink from '../../PageLayout/Footer/FooterLink'
+import FooterLink from './FooterLink'
 
 // Mock the footer sections data
 const mockFooterSections = [

@@ -4,9 +4,9 @@ import type { BrandProps } from 'types/Filter'
 
 describe('BrandFilter', () => {
   const mockBrands: BrandProps[] = [
-    { name: 'United Farms', selected: false },
-    { name: 'Organic Farms', selected: true },
-    { name: 'Fresh Fields', selected: false },
+    { name: 'United Farms', selected: false, count: 0 },
+    { name: 'Organic Farms', selected: true, count: 0 },
+    { name: 'Fresh Fields', selected: false, count: 0 },
   ]
 
   const mockOnBrandChange = jest.fn()

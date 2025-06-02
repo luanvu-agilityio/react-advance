@@ -136,8 +136,8 @@ describe('MobileFilter', () => {
   ]
 
   const sampleBrands: BrandProps[] = [
-    { name: 'United Farms', selected: false },
-    { name: 'Organic Farms', selected: true },
+    { name: 'United Farms', selected: false, count: 15 },
+    { name: 'Organic Farms', selected: true, count: 20 },
   ]
 
   const sampleRatings: RatingProps[] = [
