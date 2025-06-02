@@ -21,11 +21,11 @@ type Story = StoryObj<typeof BrandFilter>
 export const Default: Story = {
   args: {
     brands: [
-      { name: 'United Farms', selected: false },
-      { name: 'Organic Farms', selected: true },
-      { name: 'Fresh Fields', selected: false },
-      { name: 'Green Gardens', selected: false },
-      { name: "Nature's Best", selected: true },
+      { name: 'United Farms', selected: false, count: 12 },
+      { name: 'Organic Farms', selected: true, count: 8 },
+      { name: 'Fresh Fields', selected: false, count: 5 },
+      { name: 'Green Gardens', selected: false, count: 3 },
+      { name: "Nature's Best", selected: true, count: 7 },
     ],
     onBrandChange: (index) => {
       console.log(`Brand at index ${index} clicked`)
@@ -39,10 +39,10 @@ export const Default: Story = {
 export const NoSelectedBrands: Story = {
   args: {
     brands: [
-      { name: 'United Farms', selected: false },
-      { name: 'Organic Farms', selected: false },
-      { name: 'Fresh Fields', selected: false },
-      { name: 'Green Gardens', selected: false },
+      { name: 'United Farms', selected: false, count: 4 },
+      { name: 'Organic Farms', selected: false, count: 6 },
+      { name: 'Fresh Fields', selected: false, count: 2 },
+      { name: 'Green Gardens', selected: false, count: 9 },
     ],
     onBrandChange: (index) => {
       console.log(`Brand at index ${index} clicked`)
@@ -56,10 +56,10 @@ export const NoSelectedBrands: Story = {
 export const Interactive: Story = {
   render: function InteractiveBrandFilter() {
     const [brands, setBrands] = useState<BrandProps[]>([
-      { name: 'United Farms', selected: false },
-      { name: 'Organic Farms', selected: false },
-      { name: 'Fresh Fields', selected: false },
-      { name: 'Green Gardens', selected: false },
+      { name: 'United Farms', selected: false, count: 5 },
+      { name: 'Organic Farms', selected: false, count: 7 },
+      { name: 'Fresh Fields', selected: false, count: 3 },
+      { name: 'Green Gardens', selected: false, count: 10 },
     ])
 
     const handleBrandChange = (index: number) => {
@@ -82,6 +82,7 @@ export const ManyBrands: Story = {
       .map((_, i) => ({
         name: `Brand ${i + 1}`,
         selected: i % 3 === 0, // Every third brand is selected
+        count: Math.floor(Math.random() * 20) + 1, // Random count between 1-20
       })),
     onBrandChange: (index) => {
       console.log(`Brand at index ${index} clicked`)
@@ -108,12 +109,14 @@ export const LongBrandNames: Story = {
       {
         name: 'Super Long Brand Name That Might Overflow Containers And Cause Layout Issues',
         selected: false,
+        count: 3,
       },
       {
         name: 'Another Really Long Brand Name To Test Text Wrapping',
         selected: true,
+        count: 6,
       },
-      { name: 'Short Name', selected: false },
+      { name: 'Short Name', selected: false, count: 12 },
     ],
     onBrandChange: () => {},
   },

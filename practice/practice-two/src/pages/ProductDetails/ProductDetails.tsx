@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
 
-import { useEffect, useMemo, useState } from 'react'
-
 import { PlusIcon } from 'lucide-react'
 import { productData } from '@data/product-data'
 import { Spinner, Theme } from '@radix-ui/themes'
@@ -13,33 +11,6 @@ import { renderStars } from '@helpers/renderStar'
 import { useParams } from 'react-router-dom'
 import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
 import { useCart } from '@contexts/CartContext'
-
-import {
-  ActionButton,
-  ActionContainer,
-  AddToCartContainer,
-  BuyButton,
-  Container,
-  CurrentPrice,
-  DiscountBadge,
-  ImageContainer,
-  InfoItem,
-  InfoLabel,
-  InfoValue,
-  OriginalPrice,
-  PriceContainer,
-  PriceInfo,
-  ProductDescription,
-  ProductDetails,
-  ProductImage,
-  ProductImageContainer,
-  ProductInfoTable,
-  ProductOverview,
-  ProductTitle,
-  RatingContainer,
-  ReviewCount,
-  ShippingBadge,
-} from './ProductDetailStyles'
 
 import {
   ActionButton,
@@ -244,7 +215,6 @@ const ProductDetailPage = () => {
               <ActionButton>
                 <img
                   src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372435/wishlist-red_vhgkuv.svg"
-                  src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372435/wishlist-red_vhgkuv.svg"
                   alt="Wishlist icon"
                   style={{ width: '16px', height: '16px' }}
                 />
@@ -253,7 +223,6 @@ const ProductDetailPage = () => {
 
               <ActionButton>
                 <img
-                  src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/compare_oeiv1m.svg"
                   src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/compare_oeiv1m.svg"
                   alt="Compare icon"
                   style={{ width: '16px', height: '16px' }}
