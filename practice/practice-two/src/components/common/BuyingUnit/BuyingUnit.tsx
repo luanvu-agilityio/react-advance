@@ -61,17 +61,6 @@ const BuyingUnit = ({
     }
   }
 
-<<<<<<< HEAD
-=======
-  const handleInputBlur = () => {
-    const value = parseInt(inputValue)
-    if (isNaN(value) ?? value < 1) {
-      setInputValue('1')
-      onQuantityChange(1)
-    }
-  }
-
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   return (
     <BuyingUnitContainer size={size}>
       <QuantityInput
@@ -79,10 +68,6 @@ const BuyingUnit = ({
         min="1"
         value={inputValue}
         onChange={handleInputChange}
-<<<<<<< HEAD
-=======
-        onBlur={handleInputBlur}
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
         aria-label="Quantity"
         size={size}
       />
@@ -97,11 +82,7 @@ const BuyingUnit = ({
           {unit}
           <ChevronDown size={12} />
         </SelectButton>
-<<<<<<< HEAD
         <DropdownList $isOpen={isOpen} data-testId="dropdown-list">
-=======
-        <DropdownList $isOpen={isOpen}>
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
           {units.map((option) => (
             <DropdownItem
               key={option}

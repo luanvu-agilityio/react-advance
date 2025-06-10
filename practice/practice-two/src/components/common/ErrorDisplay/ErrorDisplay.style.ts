@@ -6,19 +6,11 @@ export const ErrorContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-<<<<<<< HEAD
   justify-content: flex-start;
   width: 100%;
   padding: 48px 32px;
   text-align: center;
   background-color: transparent;
-=======
-  justify-content: center;
-  width: 100%;
-  padding: 48px 32px;
-  text-align: center;
-  background-color: var(--red-1);
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   border: 1px solid var(--red-4);
   border-radius: 12px;
   margin-top: 24px;

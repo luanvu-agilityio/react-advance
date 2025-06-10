@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { render, screen, fireEvent, within } from '@testing-library/react'
 import Select from './index'
 import type { ReactNode } from 'react'
@@ -31,11 +30,6 @@ jest.mock('@radix-ui/react-select', () => {
     ),
   }
 })
-=======
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import Select from './index'
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
 describe('Select Component', () => {
   const mockOptions = [
@@ -57,7 +51,6 @@ describe('Select Component', () => {
     jest.clearAllMocks()
   })
 
-<<<<<<< HEAD
   // SNAPSHOT TESTS FOR RENDERING
   it('renders different states correctly', () => {
     // Default state
@@ -138,47 +131,5 @@ describe('Select Component', () => {
 
       expect(screen.queryByText('Option 2')).toBeInTheDocument()
     })
-=======
-  test('renders select component with placeholder', () => {
-    render(<Select {...defaultProps} />)
-    expect(screen.getByText('Select an option')).toBeInTheDocument()
-  })
-
-  test('renders with label when provided', () => {
-    render(<Select {...defaultProps} label="Test Label" />)
-    expect(screen.getByText('Test Label')).toBeInTheDocument()
-  })
-
-  test('should be disabled when disabled prop is true', () => {
-    render(<Select {...defaultProps} disabled />)
-    const trigger = screen.getByRole('combobox')
-    expect(trigger).toBeDisabled()
-  })
-
-  test('calls onChange when an option is selected', async () => {
-    render(<Select {...defaultProps} />)
-
-    // Open the select dropdown
-    const trigger = screen.getByRole('combobox')
-    await userEvent.click(trigger)
-
-    // Select an option
-    const option = screen.getByText('Option 1')
-    await userEvent.click(option)
-
-    expect(mockOnChange).toHaveBeenCalledWith('option1')
-  })
-
-  test('renders disabled option as non-interactive', async () => {
-    render(<Select {...defaultProps} />)
-
-    // Open the select dropdown
-    const trigger = screen.getByRole('combobox')
-    await userEvent.click(trigger)
-
-    // Find the disabled option
-    const disabledOption = screen.getByText('Option 3')
-    expect(disabledOption.parentElement).toHaveAttribute('data-disabled')
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   })
 })

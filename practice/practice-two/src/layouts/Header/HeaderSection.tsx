@@ -1,44 +1,28 @@
 import { useCallback, type MouseEvent } from 'react'
 import ImageIcon from '@components/common/ImageIcon'
 import { useNavigate } from 'react-router-dom'
-<<<<<<< HEAD
 import SearchBar from '@components/Searchbar/Searchbar'
 import { useCartStore } from '@stores/cartStore'
-=======
-import { useCart } from '@contexts/CartContext'
-import SearchBar from '@components/Searchbar/Searchbar'
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 import TopBar from '../TopBar/TopBar'
 import {
   CartBadge,
   CartButton,
   HeaderContainer,
-<<<<<<< HEAD
   IconButton,
-=======
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   IconGroup,
   Logo,
   LogoLink,
   MainHeader,
 } from './HeaderSection.styles'
-<<<<<<< HEAD
-=======
-import { IconButton } from '@radix-ui/themes'
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
 interface HeaderSectionProps {
   onSearch?: (query: string) => void
 }
 
 const HeaderSection = ({ onSearch }: HeaderSectionProps) => {
-<<<<<<< HEAD
   const { openCart, items } = useCartStore()
   const totalItems = items.reduce((total, item) => total + item.quantity, 0)
 
-=======
-  const { openCart, totalItems } = useCart()
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
   }

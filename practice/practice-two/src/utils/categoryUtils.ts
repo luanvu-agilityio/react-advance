@@ -44,11 +44,7 @@ export const getCategoryTitle = (
     return 'All Products'
   }
 
-<<<<<<< HEAD
   return categoryLabel ?? categoryPath ?? ''
-=======
-  return categoryLabel ?? ''
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 }
 /**
  * Finds category path for a given subcategory

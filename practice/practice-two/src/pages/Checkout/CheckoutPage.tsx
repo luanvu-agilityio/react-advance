@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-import { CheckoutProvider } from '@contexts/CheckoutContext'
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 import CheckoutContent from './sections/CheckoutContent'
 import { useCheckoutStore } from '@stores/checkoutStore'
 import { useEffect, useRef, useCallback } from 'react'
@@ -12,7 +8,6 @@ import { withErrorBoundary } from '@utils/withErrorBoundary'
 import CheckoutErrorFallback from './CheckoutFallback'
 
 const CheckoutPage = () => {
-<<<<<<< HEAD
   // Create ref for order details export functionality
   const orderDetailsRef = useRef<HTMLDivElement>(null)
 
@@ -102,13 +97,3 @@ const CheckoutPageWithErrorBoundary = withErrorBoundary(CheckoutPage, {
 })
 
 export default CheckoutPageWithErrorBoundary
-=======
-  return (
-    <CheckoutProvider>
-      <CheckoutContent />
-    </CheckoutProvider>
-  )
-}
-
-export default CheckoutPage
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d

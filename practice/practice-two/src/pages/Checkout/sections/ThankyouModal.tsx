@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState, useMemo, type RefObject } from 'react'
 import { useOrderExport } from '@hooks/useOrderExport'
 import { useCheckoutStore } from '@stores/checkoutStore'
@@ -18,14 +17,6 @@ import {
   CloseButton,
 } from '../CheckoutStyle'
 import { withErrorBoundary } from '@utils/withErrorBoundary'
-=======
-import { useMemo, type RefObject } from 'react'
-import * as Dialog from '@radix-ui/react-dialog'
-import styled from 'styled-components'
-import { useOrderExport } from '@hooks/useOrderExport'
-import { useCheckout } from '@contexts/CheckoutContext'
-import { useCart } from '@contexts/CartContext'
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
 // Styled components using Radix UI
 
@@ -40,7 +31,6 @@ const ThankYouModal = ({
   onClose,
   orderDetailsRef,
 }: ThankYouModalProps) => {
-<<<<<<< HEAD
   const [isRedirecting, setIsRedirecting] = useState(false)
   const { formData, resetForm } = useCheckoutStore()
   const { items, clearCart, getSubtotal, getTax } = useCartStore()
@@ -50,37 +40,16 @@ const ThankYouModal = ({
   const orderCalculations = useMemo(() => {
     const subtotal = getSubtotal()
     const tax = getTax()
-=======
-  // Get all data from contexts - no props needed!
-  const { formData, resetForm } = useCheckout()
-  const { items, clearCart } = useCart()
-
-  // Calculate order totals (same logic as OrderSummary)
-  const orderCalculations = useMemo(() => {
-    const subtotal = items.reduce((sum, item) => {
-      return sum + Number(item.price) * item.quantity
-    }, 0)
-
-    const tax = subtotal * 0.17
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
     const shipping = formData.shipping.price || 0
     const total = subtotal + tax + shipping
 
     return { subtotal, tax, shipping, total }
-<<<<<<< HEAD
   }, [items, formData.shipping.price, getSubtotal, getTax])
 
   // Prepare complete customer data for export
   const customerData = useMemo(
     () => ({
       // Billing information
-=======
-  }, [items, formData.shipping.price])
-
-  // Prepare customer data for export
-  const customerData = useMemo(
-    () => ({
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
       firstName: formData.billing.firstName,
       lastName: formData.billing.lastName,
       email: formData.billing.email,
@@ -91,18 +60,11 @@ const ThankYouModal = ({
       zip: formData.billing.zip,
 
       // Shipping and payment info
-<<<<<<< HEAD
       shipping: formData.shipping.price,
       shippingMethod: formData.shipping.method,
       paymentMethod: formData.payment.method,
 
       // Items with accurate calculations
-=======
-      shippingMethod: formData.shipping.method,
-      paymentMethod: formData.payment.method,
-
-      // Items and calculations
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
       items: items.map((item) => ({
         name: item.title,
         quantity: item.quantity,
@@ -110,31 +72,23 @@ const ThankYouModal = ({
         unit: item.buyUnit,
         total: Number(item.price) * item.quantity,
       })),
-<<<<<<< HEAD
 
       // Order totals
       subtotal: orderCalculations.subtotal,
       tax: orderCalculations.tax,
       shippingCost: orderCalculations.shipping,
       total: orderCalculations.total,
-=======
-      ...orderCalculations,
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
     }),
     [formData, items, orderCalculations]
   )
 
-<<<<<<< HEAD
   // Get export functions
-=======
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   const { handlePrint, handleDownloadExcel, handleDownloadText } =
     useOrderExport({
       orderDetailsRef,
       customerData,
     })
 
-<<<<<<< HEAD
   // Custom handlers that mark export as completed
   // Custom handlers for export actions
   const handleExportPrint = () => {
@@ -184,16 +138,6 @@ const ThankYouModal = ({
 
   return (
     <Dialog.Root open={open} modal={true}>
-=======
-  const handleClose = () => {
-    resetForm()
-    clearCart()
-    onClose()
-  }
-
-  return (
-    <Dialog.Root open={open} onOpenChange={handleClose}>
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
       <Dialog.Portal>
         <StyledOverlay />
         <StyledDialog>
@@ -216,11 +160,7 @@ const ThankYouModal = ({
             <SecondaryButton onClick={handleExportText}>
               Download as Text
             </SecondaryButton>
-<<<<<<< HEAD
             <SecondaryButton onClick={handleModalClose}>Close</SecondaryButton>
-=======
-            <SecondaryButton onClick={handleClose}>Close</SecondaryButton>
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
           </ButtonsContainer>
         </StyledDialog>
       </Dialog.Portal>

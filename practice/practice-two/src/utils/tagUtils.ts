@@ -3,11 +3,7 @@ import type { Product } from 'types/Product'
 
 export interface ProductTag {
   label: string
-<<<<<<< HEAD
   type: 'category' | 'subcategory' | 'product' | 'brand'
-=======
-  type: 'category' | 'subcategory' | 'product'
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   value: string
   productId?: number
   categoryPath?: string

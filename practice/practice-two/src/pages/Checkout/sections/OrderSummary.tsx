@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 import { useCallback, useMemo, useState } from 'react'
 import CartItem from '@components/Cart/CartItem/CartItem'
-=======
-import { useCallback, useMemo } from 'react'
-import CartItem from '@components/Cart/CartItem/CartItem'
-import { useCart } from '@contexts/CartContext'
-import { useCheckout } from '@contexts/CheckoutContext'
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
 import {
   OrderSummaryWrapper,
@@ -20,7 +13,6 @@ import {
   PromoInput,
   PromoButton,
 } from '../CheckoutStyle'
-<<<<<<< HEAD
 import { useCartStore } from '@stores/cartStore'
 import { useCheckoutStore } from '@stores/checkoutStore'
 import { withErrorBoundary } from '@utils/withErrorBoundary'
@@ -43,25 +35,6 @@ export const OrderSummarySection = () => {
     const shipping = formData.shipping.price
     const subtotal = getSubtotal()
     const tax = getTax()
-=======
-
-export const OrderSummarySection = () => {
-  const { items, updateQuantity, updateUnit, removeFromCart } = useCart()
-  const { formData, promoCode, setPromoCode, orderDetailsRef } = useCheckout()
-
-  // Calculate order totals
-  const orderCalculations = useMemo(() => {
-    const subtotal = items.reduce((sum, item) => {
-      return sum + Number(item.price) * item.quantity
-    }, 0)
-
-    // Calculate tax (17%)
-    const tax = subtotal * 0.17
-
-    // Get shipping cost from form data
-    const shipping = formData.shipping.price || 0
-
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
     const total = subtotal + tax + shipping
 
     return {
@@ -70,42 +43,25 @@ export const OrderSummarySection = () => {
       shipping,
       total,
     }
-<<<<<<< HEAD
   }, [formData.shipping.price, items, getSubtotal, getTax])
 
   const [promoCode, setPromoCode] = useState('')
-=======
-  }, [items, formData.shipping.price])
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
   // Handle promo code application
   const handleApplyPromo = useCallback(() => {
     if (!promoCode.trim()) return
-<<<<<<< HEAD
-=======
-    // Promo code logic here
-    console.log('Apply promo code:', promoCode)
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   }, [promoCode])
 
   // Handle quantity changes
   const handleQuantityChange = useCallback(
     (id: number, quantity: number) => {
       if (quantity <= 0) {
-<<<<<<< HEAD
         removeItem(id)
-=======
-        removeFromCart(id)
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
       } else {
         updateQuantity(id, quantity)
       }
     },
-<<<<<<< HEAD
     [updateQuantity, removeItem]
-=======
-    [updateQuantity, removeFromCart]
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   )
 
   // Handle unit changes
@@ -119,19 +75,12 @@ export const OrderSummarySection = () => {
   // Handle item removal
   const handleRemove = useCallback(
     (id: number) => {
-<<<<<<< HEAD
       removeItem(id)
     },
     [removeItem]
   )
 
   const isEmpty = items.length === 0
-=======
-      removeFromCart(id)
-    },
-    [removeFromCart]
-  )
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
   return (
     <OrderSummaryWrapper>
@@ -185,13 +134,9 @@ export const OrderSummarySection = () => {
 
             <OrderSummaryRow>
               <span>Shipping</span>
-<<<<<<< HEAD
               <span>
                 {isEmpty ? '0.00' : orderCalculations.shipping.toFixed(2)} USD
               </span>
-=======
-              <span>{orderCalculations.shipping.toFixed(2)} USD</span>
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
             </OrderSummaryRow>
           </div>
 
@@ -230,7 +175,6 @@ export const OrderSummarySection = () => {
 
 OrderSummarySection.displayName = 'OrderSummarySection'
 
-<<<<<<< HEAD
 const OrderSummaryWithErrorBoundary = withErrorBoundary(OrderSummarySection, {
   fallback: (
     <div className="order-summary-error">
@@ -242,6 +186,3 @@ const OrderSummaryWithErrorBoundary = withErrorBoundary(OrderSummarySection, {
 })
 
 export default OrderSummaryWithErrorBoundary
-=======
-export default OrderSummarySection
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d

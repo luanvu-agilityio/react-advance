@@ -2,11 +2,7 @@ import { ChevronRight } from 'lucide-react'
 import { useMemo } from 'react'
 import type { MouseEvent } from 'react'
 import { productData } from '@data/product-data'
-<<<<<<< HEAD:practice/practice-two/src/pages/HomePage/sections/Product.tsx
 import ContentContainer from '@components/common/ContentContainer/ContentContainer'
-=======
-import ContentContainer from '@components/common/ContentContainer'
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d:practice/practice-two/src/pages/HomePage/sections/ProductSection.tsx
 import { ProductCard } from '@components/ProductCard/ProductCard'
 import {
   HeaderContainer,
@@ -14,10 +10,7 @@ import {
   SectionTitle,
   StyledLinkButton,
 } from '../Homepage.styles'
-<<<<<<< HEAD:practice/practice-two/src/pages/HomePage/sections/Product.tsx
 import { useNavigate } from 'react-router-dom'
-=======
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d:practice/practice-two/src/pages/HomePage/sections/ProductSection.tsx
 
 interface ProductSectionProps {
   title?: string

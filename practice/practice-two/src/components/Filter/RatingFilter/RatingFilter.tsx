@@ -8,10 +8,6 @@ import {
   CheckboxIndicator,
   StarsWrapper,
   StarIcon,
-<<<<<<< HEAD
-=======
-  RatingLabel,
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 } from '../FilterStyles'
 import type { RatingProps } from 'types/Filter'
 

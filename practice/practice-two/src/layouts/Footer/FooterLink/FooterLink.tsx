@@ -29,11 +29,7 @@ interface FooterLinkProps {
 
 const FooterLink = ({ sections = footerSections }: FooterLinkProps) => {
   const handleLinkClick = (event: MouseEvent<HTMLAnchorElement>) => {
-<<<<<<< HEAD
     event.preventDefault?.()
-=======
-    console.log('Link clicked:', event.currentTarget.href)
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   }
 
   return (

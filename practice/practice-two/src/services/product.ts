@@ -38,46 +38,23 @@ class ProductApiError extends Error {
   }
 }
 
-<<<<<<< HEAD
 // Simple cache for product counts by filter combination
 const countCache = new Map<string, number>()
-=======
-// Cache for total counts to maintain consistency
-const totalCountCache = new Map<string, number>()
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
 const productApi = {
   getProducts: async (
     params: ProductApiParams = {}
   ): Promise<PaginatedResponse<Product>> => {
     try {
-<<<<<<< HEAD
       const page = params.p ?? 1
       const limit = params.l ?? 10
 
       // Build query parameters
-=======
-      const page = params.page ?? 1
-      const limit = params.limit ?? 10
-
-      // Create cache key for this filter combination
-      const cacheKey = JSON.stringify({
-        category: params.category,
-        subcategory: params.subcategory,
-        search: params.search,
-        brands: params.brands,
-        minPrice: params.minPrice,
-        maxPrice: params.maxPrice,
-      })
-
-      // Build query parameters for MockAPI
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
       const queryParams: Record<string, string> = {
         p: page.toString(),
         l: limit.toString(),
       }
 
-<<<<<<< HEAD
       // Add category filters (converting from kebab-case to Title Case)
       if (params.category) {
         queryParams.category = params.category
@@ -91,31 +68,6 @@ const productApi = {
           .split('-')
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(' ')
-=======
-      // Add filters
-      if (params.search) {
-        queryParams.search = params.search
-      }
-
-      if (params.category) {
-        const formattedCategory = params.category
-          .split('-')
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ')
-        queryParams.category = formattedCategory
-      }
-
-      if (params.subcategory) {
-        const formattedSubcategory = params.subcategory
-          .split('-')
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ')
-        queryParams.subcategory = formattedSubcategory
-      }
-
-      if (params.brands && params.brands.length > 0) {
-        queryParams.brand = params.brands[0]
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
       }
 
       // Add other filters
@@ -129,7 +81,6 @@ const productApi = {
       // Fetch the products
       const response = await axios.get(`${API_BASE_URL}/products`, {
         params: queryParams,
-<<<<<<< HEAD
         timeout: 10000,
       })
 
@@ -142,96 +93,6 @@ const productApi = {
           (product: Product) => product.price >= params.minPrice!
         )
       }
-=======
-        timeout: 15000,
-      })
-
-      const dataLength = response.data.length
-
-      // Try to get total from header first
-      let totalCount = 0
-      const headerTotalCount = response.headers['x-total-count']
-      if (headerTotalCount) {
-        totalCount = parseInt(headerTotalCount, 10)
-        totalCountCache.set(cacheKey, totalCount)
-      } else {
-        // Use cached total if available
-        const cachedTotal = totalCountCache.get(cacheKey)
-        if (cachedTotal !== undefined) {
-          totalCount = cachedTotal
-        } else {
-          // Calculate total based on current data
-          if (dataLength < limit) {
-            // Not a full page - we know exactly how many items
-            totalCount = (page - 1) * limit + dataLength
-          } else if (page === 1) {
-            // First page is full - check next page only if necessary
-            const estimatedTotal = await checkNextPageExists(queryParams, limit)
-            totalCount = estimatedTotal
-          } else {
-            // Later pages and full - we know there are at least this many items
-            totalCount = page * limit
-          }
-
-          // Save to cache for future use
-          totalCountCache.set(cacheKey, totalCount)
-        }
-      }
-
-      // Helper function to check next page
-      async function checkNextPageExists(
-        queryParams: Record<string, string>,
-        limit: number
-      ): Promise<number> {
-        try {
-          const nextPageCheck = await axios.get(`${API_BASE_URL}/products`, {
-            params: { ...queryParams, p: 2, l: 1 },
-            timeout: 5000,
-          })
-
-          return nextPageCheck.data?.length > 0 ? limit + 1 : limit
-        } catch (err) {
-          console.log(
-            'Error checking next page, assuming only current page',
-            err
-          )
-          return limit
-        }
-      }
-
-      const totalPages = Math.max(1, Math.ceil(totalCount / limit))
-
-      const sortData = (data: Product[]) => {
-        if (!params.sortBy || params.sortBy === 'default') return data
-
-        const order = params.sortOrder === 'desc' ? -1 : 1
-
-        return [...data].sort((a, b) => {
-          switch (params.sortBy) {
-            case 'price':
-              return (a.price - b.price) * order
-            case 'name':
-              return a.title.localeCompare(b.title) * order
-            case 'rating':
-              return (a.rating - b.rating) * order
-
-            default:
-              return 0
-          }
-        })
-      }
-
-      response.data = sortData(response.data)
-      return {
-        data: response.data,
-        total: totalCount,
-        page,
-        limit,
-        totalPages,
-      }
-    } catch (error) {
-      console.error('API Error:', error)
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
       if (params.maxPrice !== undefined) {
         filteredData = filteredData.filter(
@@ -272,13 +133,8 @@ const productApi = {
               'Failed to get total count, using filtered data length',
               error
             )
-<<<<<<< HEAD
             totalCount = filteredData.length
           }
-=======
-          default:
-            throw new ProductApiError(`Network error: ${message}`, statusCode)
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
         }
       }
 
@@ -297,7 +153,6 @@ const productApi = {
     }
   },
 
-<<<<<<< HEAD
   getProductById: async (id: number): Promise<Product> => {
     if (!id) throw new Error('Product ID is required')
 
@@ -360,25 +215,11 @@ const productApi = {
         timeout: 5000,
       })
       return fallbackResponse.data.length
-=======
-  // Get first page to determine total count
-  getProductCount: async (
-    params: Omit<ProductApiParams, 'page' | 'limit'>
-  ): Promise<number> => {
-    try {
-      const response = await productApi.getProducts({
-        ...params,
-        page: 1,
-        limit: 1,
-      })
-      return response.total
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
     } catch (error) {
       console.error('Error getting product count:', error)
       return 0
     }
   },
-<<<<<<< HEAD
   clearCache: () => {
     countCache.clear()
   },
@@ -425,13 +266,6 @@ function handleApiError(error: unknown): never {
   }
 
   throw new ProductApiError('An unexpected error occurred. Please try again.')
-=======
-
-  // Clear cache when needed
-  clearCache: () => {
-    totalCountCache.clear()
-  },
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 }
 
 export default productApi

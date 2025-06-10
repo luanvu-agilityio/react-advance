@@ -1,9 +1,5 @@
 import { useCategoryStore } from '@stores/categoryStore'
-<<<<<<< HEAD
 import { ProductCount } from './ProductCount/ProductCount'
-=======
-import { ProductCount } from './ProductCount'
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 import { ChevronsLeft, ChevronsRight } from 'lucide-react'
 import {
   PaginationContainer,
@@ -11,26 +7,19 @@ import {
   PageLabel,
   PageButton,
 } from './PaginationStyles'
-<<<<<<< HEAD
 import { PageNumbers } from './PageNumber'
-=======
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
 interface PaginationProps {
   totalPages: number
   totalProducts: number
   onPageChange: (page: number) => void
-<<<<<<< HEAD
   currentPage?: number
-=======
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 }
 
 export const Pagination = ({
   totalPages,
   onPageChange,
   totalProducts,
-<<<<<<< HEAD
   currentPage: propCurrentPage,
 }: PaginationProps) => {
   const { currentPage: storeCurrentPage } = useCategoryStore()
@@ -70,12 +59,6 @@ export const Pagination = ({
   }
 
   const pageNumbers = getPageRange(currentPage, totalPages)
-=======
-}: PaginationProps) => {
-  const { currentPage } = useCategoryStore()
-
-  const pages = Array.from({ length: Math.max(1, totalPages) }, (_, i) => i + 1)
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
   return (
     <PaginationContainer>
@@ -90,7 +73,6 @@ export const Pagination = ({
           <ChevronsLeft size={14} strokeWidth={3} />
         </PageButton>
 
-<<<<<<< HEAD
         {/*  PageNumbers component */}
         <PageNumbers
           currentPage={currentPage}
@@ -98,29 +80,11 @@ export const Pagination = ({
           totalPages={totalPages}
           onClick={onPageChange}
         />
-=======
-        {/* Page numbers */}
-        {pages.map((page) => (
-          <PageButton
-            key={page}
-            $isActive={page === currentPage}
-            onClick={() => onPageChange(page)}
-            aria-label={`Go to page ${page}`}
-            aria-current={page === currentPage ? 'page' : undefined}
-          >
-            {page}
-          </PageButton>
-        ))}
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
         {/* Next button */}
         <PageButton
           onClick={() => onPageChange(currentPage + 1)}
-<<<<<<< HEAD
           disabled={currentPage === totalPages}
-=======
-          disabled={currentPage === Math.max(1, totalPages)}
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
           aria-label="Go to next page"
         >
           <ChevronsRight size={14} strokeWidth={3} />

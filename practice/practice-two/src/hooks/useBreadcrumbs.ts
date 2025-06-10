@@ -1,11 +1,7 @@
 import {
   routeConfig,
   type RouteConfig,
-<<<<<<< HEAD
 } from '@config/route/BreadcrumbRouteConfig'
-=======
-} from '../config/route/BreadcrumbRouteConfig'
->>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 import { useMemo } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 

@@ -15,9 +15,6 @@
     "test": "pnpm jest",
     "test:watch": "pnpm jest --watch",
     "test:coverage": "pnpm jest --coverage"
-    "test": "pnpm jest",
-    "test:watch": "pnpm jest --watch",
-    "test:coverage": "pnpm jest --coverage"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.19.1",
@@ -44,9 +41,6 @@
     "@radix-ui/react-toast": "^1.2.13",
     "@radix-ui/react-tooltip": "^1.2.6",
     "@radix-ui/themes": "^3.2.1",
-    "@storybook/addon-actions": "^8.6.14",
-    "@tanstack/react-query": "^5.79.0",
-    "@tanstack/react-query-devtools": "^5.79.0",
     "@storybook/addon-actions": "^8.6.14",
     "@tanstack/react-query": "^5.79.0",
     "@tanstack/react-query-devtools": "^5.79.0",

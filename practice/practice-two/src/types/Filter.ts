@@ -7,7 +7,7 @@ export interface CategoryProps {
 export interface BrandProps {
   name: string
   selected: boolean
-  count: number
+  count?: number
 }
 
 export type StarRating = 1 | 2 | 3 | 4 | 5
