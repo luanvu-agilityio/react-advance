@@ -133,12 +133,21 @@ export const InfoLabel = styled.span`
   font-size: 14px;
 `
 
+<<<<<<< HEAD
 export const InfoValue = styled.span<{ $highlight?: boolean }>`
   font-size: 14px;
   color: ${(props) =>
     props.$highlight ? '#65a30d' : 'var(--black-color-default)'};
   font-weight: ${(props) =>
     props.$highlight
+=======
+export const InfoValue = styled.span<{ highlight?: boolean }>`
+  font-size: 14px;
+  color: ${(props) =>
+    props.highlight ? '#65a30d' : 'var(--black-color-default)'};
+  font-weight: ${(props) =>
+    props.highlight
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
       ? 'var(--font-weight-medium)'
       : 'var(--font-weight-regular)'};
 `

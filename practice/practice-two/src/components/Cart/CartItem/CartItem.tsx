@@ -1,5 +1,6 @@
 import { renderStars } from '@helpers/renderStar'
 import BuyingUnit from '@components/common/BuyingUnit/BuyingUnit'
+<<<<<<< HEAD
 import type { CartItem as CartItemType } from 'types/cart-items'
 import {
   ActionButton,
@@ -14,6 +15,9 @@ import {
   MetaValue,
   PriceDisplay,
 } from './CartItem.styles'
+=======
+import type { CartItem as CartItemType } from '@contexts/CartContext'
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
 interface CartItemProps {
   item: CartItemType

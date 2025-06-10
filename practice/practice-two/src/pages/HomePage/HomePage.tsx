@@ -1,9 +1,15 @@
 import { Box } from '@radix-ui/themes'
 import CustomerFeedbackCarousel from '@components/Carousel/Carousel'
 import BlogPreviewSection from '@pages/HomePage/sections/BlogPreview'
+<<<<<<< HEAD
 import BannerSection from './sections/Banner'
 import BestSellingProducts from './sections/BestSelling'
 import ProductSection from './sections/Product'
+=======
+import BannerSection from './sections/BannerSection'
+import BestSellingProducts from './sections/BestSellingSection'
+import ProductSection from './sections/ProductSection'
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
 import {
   BreadcrumbWrapper,

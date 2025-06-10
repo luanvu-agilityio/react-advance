@@ -23,26 +23,36 @@ jest.mock('@radix-ui/react-dialog', () => {
     Portal: ({ children }: { children: ReactNode }) => (
       <div data-testid="dialog-portal">{children}</div>
     ),
+<<<<<<< HEAD
     Overlay: ({ children }: { children: ReactNode }) => (
       <div data-testid="dialog-overlay">{children}</div>
     ),
+=======
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
     Content: ({ children }: { children: ReactNode }) => (
       <div data-testid="dialog-content">{children}</div>
     ),
     Close: ({ children }: { children: ReactNode }) => (
       <button data-testid="dialog-close">{children}</button>
     ),
+<<<<<<< HEAD
     Title: ({ children }: { children: ReactNode }) => (
       <h2 data-testid="dialog-title">{children}</h2>
     ),
     Description: ({ children }: { children: ReactNode }) => (
       <p data-testid="dialog-description">{children}</p>
     ),
+=======
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   }
 })
 
 // Mock child filter components
+<<<<<<< HEAD
 jest.mock('../CategoryFilter/CategoryFilter', () => ({
+=======
+jest.mock('./CategoryFilter/CategoryFilter', () => ({
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   CategoryFilter: ({
     categories,
     activeCategory,
@@ -62,7 +72,11 @@ jest.mock('../CategoryFilter/CategoryFilter', () => ({
   ),
 }))
 
+<<<<<<< HEAD
 jest.mock('../BrandFIlter/BrandFilter', () => ({
+=======
+jest.mock('./BrandFIlter/BrandFilter', () => ({
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   BrandFilter: ({
     brands,
     onBrandChange,
@@ -77,7 +91,11 @@ jest.mock('../BrandFIlter/BrandFilter', () => ({
   ),
 }))
 
+<<<<<<< HEAD
 jest.mock('../RatingFilter/RatingFilter', () => ({
+=======
+jest.mock('./RatingFilter/RatingFilter', () => ({
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   RatingFilter: ({
     ratings,
     onRatingChange,
@@ -92,7 +110,11 @@ jest.mock('../RatingFilter/RatingFilter', () => ({
   ),
 }))
 
+<<<<<<< HEAD
 jest.mock('../PriceFilter/PriceFilter', () => ({
+=======
+jest.mock('./PriceFilter/PriceFilter', () => ({
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   PriceFilter: ({
     priceRange,
     sliderValues,
@@ -134,8 +156,11 @@ jest.mock('../PriceFilter/PriceFilter', () => ({
 jest.mock('lucide-react', () => ({
   Filter: () => <div data-testid="filter-icon">Filter Icon</div>,
   X: () => <div data-testid="close-icon">X Icon</div>,
+<<<<<<< HEAD
   Star: () => <div data-testid="star-icon">Star Icon</div>,
   CheckIcon: () => <div data-testid="check-icon">Check Icon</div>,
+=======
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 }))
 
 describe('MobileFilter', () => {
@@ -147,8 +172,13 @@ describe('MobileFilter', () => {
   ]
 
   const sampleBrands: BrandProps[] = [
+<<<<<<< HEAD
     { name: 'United Farms', selected: false },
     { name: 'Organic Farms', selected: true },
+=======
+    { name: 'United Farms', selected: false, count: 15 },
+    { name: 'Organic Farms', selected: true, count: 20 },
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   ]
 
   const sampleRatings: RatingProps[] = [

@@ -215,8 +215,17 @@ export const CheckboxContainer = styled.div`
     width: 250px;
   }
 
+<<<<<<< HEAD
   &.marketing-consent {
     width: 530px;
+=======
+  &.same-as-billing {
+    width: 250px;
+  }
+
+  &.marketing-consent {
+    width: 580px;
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   }
 
   &.term-consent {

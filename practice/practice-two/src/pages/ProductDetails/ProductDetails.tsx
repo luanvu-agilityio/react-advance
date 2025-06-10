@@ -1,17 +1,29 @@
 import { useState } from 'react'
 import { PlusIcon } from 'lucide-react'
+<<<<<<< HEAD
 import { Spinner } from '@radix-ui/themes'
 import BuyingUnit from '@components/common/BuyingUnit/BuyingUnit'
 import RelatedProducts from './RelatedProducts/RelatedProducts'
+=======
+import { productData } from '@data/product-data'
+import { Spinner, Theme } from '@radix-ui/themes'
+import BuyingUnit from '@components/common/BuyingUnit/BuyingUnit'
+import RelatedProducts from './RelatedProducts/RelatedProducts'
+import { getTabDataByProductId } from '@data/tab-data'
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 import ProductTabs from '@components/common/Tabs/Tabs'
 import { renderStars } from '@helpers/renderStar'
 import { useParams } from 'react-router-dom'
 import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
+<<<<<<< HEAD
 import ErrorDisplay from '@components/common/ErrorDisplay'
 
 // Import our React Query hooks
 import { useProductDetails, useProductTabData } from '@hooks/useProductQuery'
 import { useAddToCart } from '@hooks/useCartMutation'
+=======
+import { useCart } from '@contexts/CartContext'
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
 import {
   ActionButton,
@@ -41,6 +53,11 @@ import {
 } from './ProductDetailStyles'
 
 const ProductDetailPage = () => {
+<<<<<<< HEAD
+=======
+  // const navigate = useNavigate()
+  const { addItem } = useCart()
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   const [quantity, setQuantity] = useState(1)
   const [buyUnit, setBuyUnit] = useState('pcs')
   const { productId } = useParams()
@@ -59,10 +76,21 @@ const ProductDetailPage = () => {
     error: tabError,
   } = useProductTabData(productId ? Number(productId) : undefined)
 
+<<<<<<< HEAD
   // Use cart mutation hook
   const { mutate: addToCart, isPending: isAddingToCart } = useAddToCart()
 
   // Handle adding to cart
+=======
+  useEffect(() => {
+    if (!productId) {
+      throw new Promise((resolve) => {
+        setTimeout(resolve, 500)
+      })
+    }
+  }, [productId])
+
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   const onBuy = () => {
     if (product) {
       addToCart({
@@ -116,6 +144,10 @@ const ProductDetailPage = () => {
         </div>
       </Container>
     )
+  }
+
+  if (!product) {
+    return <Spinner />
   }
 
   return (
@@ -326,12 +358,20 @@ const ProductDetailPage = () => {
       </ProductOverview>
 
       {/* Related Products Section */}
+<<<<<<< HEAD
       {product && (
         <RelatedProducts
           currentProductId={product.id}
           subcategory={product.subcategory}
         />
       )}
+=======
+
+      <RelatedProducts
+        currentProductId={product.id}
+        subcategory={product.subcategory}
+      />
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
     </Container>
   )
 }

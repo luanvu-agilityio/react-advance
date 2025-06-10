@@ -1,5 +1,9 @@
 import type { MouseEvent, ReactNode, CSSProperties } from 'react'
+<<<<<<< HEAD
 import Link from '../Link/index'
+=======
+import Link from '@components/common/Link/index'
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 import { StyledButtonTag, StyledLinkWrapper } from './Tag.style'
 
 // Base props for all tag variants

@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
+<<<<<<< HEAD
 import type { CartItem as CartItemType } from 'types/cart-items'
+=======
+import type { CartItem as CartItemType } from '@contexts/CartContext'
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 import CartItem from './CartItem'
 
 const meta: Meta<typeof CartItem> = {

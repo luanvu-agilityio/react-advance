@@ -40,7 +40,11 @@ export const MobileMenuButton = styled.button`
 `
 
 // Add mobile menu component
+<<<<<<< HEAD
 export const MobileMenu = styled.div<{ $isOpen: boolean }>`
+=======
+export const MobileMenu = styled.div<{ isOpen: boolean }>`
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   position: fixed;
   top: 0;
   left: 0;
@@ -48,7 +52,11 @@ export const MobileMenu = styled.div<{ $isOpen: boolean }>`
   bottom: 0;
   background: white;
   z-index: 1000;
+<<<<<<< HEAD
   transform: translateX(${(props) => (props.$isOpen ? '0' : '-100%')});
+=======
+  transform: translateX(${(props) => (props.isOpen ? '0' : '-100%')});
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   transition: transform 0.3s ease;
   padding: 16px;
   overflow-y: auto;

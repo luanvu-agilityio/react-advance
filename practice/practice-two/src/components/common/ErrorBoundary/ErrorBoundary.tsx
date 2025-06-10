@@ -1,6 +1,13 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react'
+<<<<<<< HEAD
 import {
   ErrorContainer,
+=======
+import { Theme } from '@radix-ui/themes'
+import {
+  ErrorContainer,
+  ThemeWrapper,
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   StyledShieldIcon,
   ErrorTitle,
   ErrorDescription,
@@ -49,6 +56,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       // Default error UI
       return (
         <ErrorContainer>
+<<<<<<< HEAD
           <StyledShieldIcon size={48} />
 
           <ErrorTitle>Something went wrong</ErrorTitle>
@@ -61,6 +69,24 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
           <RetryButton variant="solid" onClick={this.handleRetry}>
             Try Again
           </RetryButton>
+=======
+          <Theme>
+            <ThemeWrapper>
+              <StyledShieldIcon size={48} />
+
+              <ErrorTitle>Something went wrong</ErrorTitle>
+
+              <ErrorDescription>
+                Failed to load the page. This might be due to a network issue or
+                temporary problem.
+              </ErrorDescription>
+
+              <RetryButton variant="solid" onClick={this.handleRetry}>
+                Try Again
+              </RetryButton>
+            </ThemeWrapper>
+          </Theme>
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
         </ErrorContainer>
       )
     }

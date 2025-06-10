@@ -5,9 +5,34 @@ export const BuyingUnitContainer = styled.div<{ size?: string }>`
   align-items: center;
   background: var(--black-shade-6);
   border: 1px solid var(--black-shade-3);
+<<<<<<< HEAD
   padding: 14px 16px;
   border-radius: 12px;
   height: 48px;
+=======
+  padding: ${(prop) => {
+    switch (prop.size) {
+      case 'small':
+        return '6px'
+      case 'large':
+        return '18px 22px'
+
+      default:
+        return '14px 16px'
+    }
+  }};
+  border-radius: 12px;
+  height: ${(props) => {
+    switch (props.size) {
+      case 'small':
+        return '32px'
+      case 'large':
+        return '56px'
+      default:
+        return '48px'
+    }
+  }};
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   max-width: ${(props) => (props.size === 'small' ? '96px' : '111px')};
 `
 
@@ -68,10 +93,16 @@ export const SelectButton = styled.button<{ size?: string }>`
 
 export const DropdownList = styled.ul<{ $isOpen: boolean }>`
   position: absolute;
+<<<<<<< HEAD
   top: calc(100% + 18px);
   left: 0;
   right: 0;
   width: max-content;
+=======
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   background: white;
   border: 1px solid var(--black-shade-4);
   border-radius: 8px;

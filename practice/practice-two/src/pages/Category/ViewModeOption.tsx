@@ -7,6 +7,7 @@ export const ViewModeOption = ({
   icon,
   viewMode,
 }: ViewModeOptionProps) => (
+<<<<<<< HEAD
   <div
     style={{
       display: 'flex',
@@ -15,6 +16,10 @@ export const ViewModeOption = ({
     }}
   >
     <RadioGroup.Item value={value} id={value} style={{ display: 'none' }} />
+=======
+  <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+    <RadioGroup.Item value={value} id={value} />
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
     <Text
       as="label"
       htmlFor={value}

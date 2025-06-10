@@ -43,6 +43,16 @@ describe('FeedbackItem Component', () => {
     expect(screen.getByText('""')).toBeInTheDocument()
   })
 
+<<<<<<< HEAD
+=======
+  it('handles empty name', () => {
+    render(<FeedbackItem quote="Test quote" name="" />)
+
+    const nameElement = screen.getByText('')
+    expect(nameElement).toBeInTheDocument()
+  })
+
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   it('handles long quotes', () => {
     const longQuote =
       'This is a very long quote that should test how the component handles extended content and whether it maintains proper layout and styling with lengthy testimonials'

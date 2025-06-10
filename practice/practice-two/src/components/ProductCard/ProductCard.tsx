@@ -24,12 +24,16 @@ import {
   RatingContainer,
   ShippingInfo,
 } from './ProductCard.styles'
+<<<<<<< HEAD
 import { useCartStore } from '@stores/cartStore'
 import { useToast } from '@contexts/ToastContext'
 const fullBlackStarIcon =
   'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372429/black-star_vfret7.svg'
 const emptyStarIcon =
   'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/empty-star_psseed.svg'
+=======
+
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 interface ProductCardProps {
   product: Product
   viewMode: string
@@ -274,7 +278,18 @@ export const ProductCard = ({
         )}
       </ButtonsContainer>
     )
+<<<<<<< HEAD
   }, [variant, handleProductDetail, handleBuy, handleWishlistClick, product])
+=======
+  }, [
+    variant,
+    handleProductDetail,
+    handleBuy,
+    handleWishlistClick,
+    onAddToWishlist,
+    product,
+  ])
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
   const shippingInfo = useMemo(() => {
     if (variant !== 'list' || !freeShipping) return null

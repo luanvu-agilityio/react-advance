@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import productApi from '@services/product'
+=======
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 import { create } from 'zustand'
 import { devtools, subscribeWithSelector } from 'zustand/middleware'
 
@@ -6,7 +9,10 @@ interface CategoryState {
   // Pagination
   currentPage: number
   limit: number
+<<<<<<< HEAD
   displayLimit: number
+=======
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
   // Filters
   category?: string
@@ -37,13 +43,19 @@ interface CategoryState {
   setViewMode: (mode: string) => void
   resetFilters: () => void
   resetPagination: () => void
+<<<<<<< HEAD
   setDisplayLimit: (limit: number) => void
+=======
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 
   // URL helpers
   getUrlParams: () => URLSearchParams
   setFromUrl: (searchParams: URLSearchParams) => void
   getApiParams: () => Record<string, string | number | string[] | number[]>
+<<<<<<< HEAD
   getProductCountBySubcategory: (subcategory: string) => Promise<number>
+=======
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
 }
 
 const defaultPriceRange = { min: 0, max: 1000 }
@@ -54,7 +66,10 @@ export const useCategoryStore = create<CategoryState>()(
       // Initial state
       currentPage: 1,
       limit: 5,
+<<<<<<< HEAD
       displayLimit: 5,
+=======
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
       selectedBrands: [],
       selectedRatings: [],
       priceRange: defaultPriceRange,
@@ -110,6 +125,7 @@ export const useCategoryStore = create<CategoryState>()(
         set({ viewMode: mode })
       },
 
+<<<<<<< HEAD
       setDisplayLimit: (displayLimit: number) => {
         const newLimit = Math.max(1, displayLimit)
         set({
@@ -118,6 +134,8 @@ export const useCategoryStore = create<CategoryState>()(
           currentPage: 1,
         })
       },
+=======
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
       // Reset functions
       resetFilters: () => {
         set({
@@ -184,9 +202,16 @@ export const useCategoryStore = create<CategoryState>()(
       getApiParams: () => {
         const state = get()
         const params: Record<string, string | number | string[] | number[]> = {
+<<<<<<< HEAD
           p: state.currentPage,
           l: state.limit,
         }
+=======
+          page: state.currentPage,
+          limit: state.limit,
+        }
+
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
         if (state.category) params.category = state.category
         if (state.subcategory) params.subcategory = state.subcategory
         if (state.selectedBrands.length > 0)
@@ -203,6 +228,7 @@ export const useCategoryStore = create<CategoryState>()(
         params.sortOrder = state.sortOrder
         return params
       },
+<<<<<<< HEAD
 
       getProductCountBySubcategory: async (subcategory: string) => {
         try {
@@ -214,6 +240,8 @@ export const useCategoryStore = create<CategoryState>()(
           return 0
         }
       },
+=======
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
     })),
     { name: 'category-store' }
   )

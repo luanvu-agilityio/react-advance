@@ -41,7 +41,11 @@ export const IconGroup = styled.div`
 `
 
 export const IconButton = styled.button`
+<<<<<<< HEAD
   background-color: white;
+=======
+  background: none;
+>>>>>>> 7a35d9791a5da6fe80ff0a8541efaf78233de04d
   border: none;
   cursor: pointer;
   display: flex;
