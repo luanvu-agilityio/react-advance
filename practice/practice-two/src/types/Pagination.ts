@@ -13,7 +13,8 @@ export interface PageNumbersProps {
   currentPage: number
   totalPages: number
   pageNumbers: (number | string)[]
-  onPageClick: (page: number) => void
+  onClick: (page: number) => void
+  disabled?: boolean
 }
 
 export interface ShowMoreProps {

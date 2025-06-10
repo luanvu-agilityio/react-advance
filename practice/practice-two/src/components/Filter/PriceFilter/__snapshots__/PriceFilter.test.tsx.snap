@@ -1,0 +1,353 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PriceFilter Rendering renders different states correctly: default 1`] = `
+<div>
+  <div
+    class="sc-etfXYe lcTFgo"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Price
+    </h2>
+    <div
+      data-max="500"
+      data-min="100"
+      data-testid="slider-root"
+    >
+      <div
+        data-testid="slider-track"
+      >
+        <div
+          data-testid="slider-range"
+        />
+      </div>
+      <div
+        data-testid="slider-thumb"
+      />
+      <div
+        data-testid="slider-thumb"
+      />
+    </div>
+    <div
+      class="sc-dKKIkQ bENJTs"
+    >
+      <div
+        class="sc-fpEFIB dKvHtD"
+      >
+        <label
+          class="sc-gAqISa gDcqMA"
+        >
+          Min
+        </label>
+        <input
+          data-testid="price-input-undefined"
+          min="0"
+          placeholder="0"
+          type="number"
+          value="100"
+        />
+      </div>
+      <span
+        class="sc-fbguzk bkCnXF"
+      >
+        -
+      </span>
+      <div
+        class="sc-fpEFIB dKvHtD"
+      >
+        <label
+          class="sc-gAqISa gDcqMA"
+        >
+          Max
+        </label>
+        <input
+          data-testid="price-input-undefined"
+          min="0"
+          placeholder="1000"
+          type="number"
+          value="500"
+        />
+      </div>
+    </div>
+    <div
+      class="sc-gGarWV bpubAX"
+    >
+      <button
+        class="sc-brzPDJ gUuppX"
+      >
+        Apply
+      </button>
+      <button
+        class="sc-iMGFoU dOufAt"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PriceFilter Rendering renders different states correctly: different-range 1`] = `
+<div>
+  <div
+    class="sc-etfXYe lcTFgo"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Price
+    </h2>
+    <div
+      data-max="700"
+      data-min="50"
+      data-testid="slider-root"
+    >
+      <div
+        data-testid="slider-track"
+      >
+        <div
+          data-testid="slider-range"
+        />
+      </div>
+      <div
+        data-testid="slider-thumb"
+      />
+      <div
+        data-testid="slider-thumb"
+      />
+    </div>
+    <div
+      class="sc-dKKIkQ bENJTs"
+    >
+      <div
+        class="sc-fpEFIB dKvHtD"
+      >
+        <label
+          class="sc-gAqISa gDcqMA"
+        >
+          Min
+        </label>
+        <input
+          data-testid="price-input-undefined"
+          min="0"
+          placeholder="0"
+          type="number"
+          value="50"
+        />
+      </div>
+      <span
+        class="sc-fbguzk bkCnXF"
+      >
+        -
+      </span>
+      <div
+        class="sc-fpEFIB dKvHtD"
+      >
+        <label
+          class="sc-gAqISa gDcqMA"
+        >
+          Max
+        </label>
+        <input
+          data-testid="price-input-undefined"
+          min="0"
+          placeholder="1000"
+          type="number"
+          value="700"
+        />
+      </div>
+    </div>
+    <div
+      class="sc-gGarWV bpubAX"
+    >
+      <button
+        class="sc-brzPDJ gUuppX"
+      >
+        Apply
+      </button>
+      <button
+        class="sc-iMGFoU dOufAt"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PriceFilter Rendering renders different states correctly: equal-values 1`] = `
+<div>
+  <div
+    class="sc-etfXYe lcTFgo"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Price
+    </h2>
+    <div
+      data-max="250"
+      data-min="250"
+      data-testid="slider-root"
+    >
+      <div
+        data-testid="slider-track"
+      >
+        <div
+          data-testid="slider-range"
+        />
+      </div>
+      <div
+        data-testid="slider-thumb"
+      />
+      <div
+        data-testid="slider-thumb"
+      />
+    </div>
+    <div
+      class="sc-dKKIkQ bENJTs"
+    >
+      <div
+        class="sc-fpEFIB dKvHtD"
+      >
+        <label
+          class="sc-gAqISa gDcqMA"
+        >
+          Min
+        </label>
+        <input
+          data-testid="price-input-undefined"
+          min="0"
+          placeholder="0"
+          type="number"
+          value="250"
+        />
+      </div>
+      <span
+        class="sc-fbguzk bkCnXF"
+      >
+        -
+      </span>
+      <div
+        class="sc-fpEFIB dKvHtD"
+      >
+        <label
+          class="sc-gAqISa gDcqMA"
+        >
+          Max
+        </label>
+        <input
+          data-testid="price-input-undefined"
+          min="0"
+          placeholder="1000"
+          type="number"
+          value="250"
+        />
+      </div>
+    </div>
+    <div
+      class="sc-gGarWV bpubAX"
+    >
+      <button
+        class="sc-brzPDJ gUuppX"
+      >
+        Apply
+      </button>
+      <button
+        class="sc-iMGFoU dOufAt"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PriceFilter Rendering renders different states correctly: extreme-values 1`] = `
+<div>
+  <div
+    class="sc-etfXYe lcTFgo"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Price
+    </h2>
+    <div
+      data-max="1000"
+      data-min="0"
+      data-testid="slider-root"
+    >
+      <div
+        data-testid="slider-track"
+      >
+        <div
+          data-testid="slider-range"
+        />
+      </div>
+      <div
+        data-testid="slider-thumb"
+      />
+      <div
+        data-testid="slider-thumb"
+      />
+    </div>
+    <div
+      class="sc-dKKIkQ bENJTs"
+    >
+      <div
+        class="sc-fpEFIB dKvHtD"
+      >
+        <label
+          class="sc-gAqISa gDcqMA"
+        >
+          Min
+        </label>
+        <input
+          data-testid="price-input-undefined"
+          min="0"
+          placeholder="0"
+          type="number"
+          value="0"
+        />
+      </div>
+      <span
+        class="sc-fbguzk bkCnXF"
+      >
+        -
+      </span>
+      <div
+        class="sc-fpEFIB dKvHtD"
+      >
+        <label
+          class="sc-gAqISa gDcqMA"
+        >
+          Max
+        </label>
+        <input
+          data-testid="price-input-undefined"
+          min="0"
+          placeholder="1000"
+          type="number"
+          value="1000"
+        />
+      </div>
+    </div>
+    <div
+      class="sc-gGarWV bpubAX"
+    >
+      <button
+        class="sc-brzPDJ gUuppX"
+      >
+        Apply
+      </button>
+      <button
+        class="sc-iMGFoU dOufAt"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+</div>
+`;

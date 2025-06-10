@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField Component Rendering renders all variants correctly: default 1`] = `
+<div>
+  <div
+    class="sc-Qotzb fnjeBx"
+  >
+    <input
+      class="sc-fYsHOw eRuMEp"
+      placeholder="Enter text..."
+    />
+  </div>
+</div>
+`;
+
+exports[`TextField Component Rendering renders all variants correctly: disabled 1`] = `
+<div>
+  <div
+    class="sc-Qotzb fnjeBx"
+  >
+    <input
+      class="sc-fYsHOw eRuMEp"
+      disabled=""
+      placeholder="Enter text..."
+    />
+  </div>
+</div>
+`;
+
+exports[`TextField Component Rendering renders all variants correctly: left-icon 1`] = `
+<div>
+  <div
+    class="sc-Qotzb fnjeBx"
+  >
+    <div
+      class="sc-dKREkF cMJVcA"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-search"
+        data-testid="search-icon"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m21 21-4.34-4.34"
+        />
+        <circle
+          cx="11"
+          cy="11"
+          r="8"
+        />
+      </svg>
+    </div>
+    <input
+      class="sc-fYsHOw deiwLa"
+      placeholder="Enter text..."
+    />
+  </div>
+</div>
+`;
+
+exports[`TextField Component Rendering renders all variants correctly: required 1`] = `
+<div>
+  <div
+    class="sc-Qotzb fnjeBx"
+  >
+    <input
+      class="sc-fYsHOw eRuMEp"
+      placeholder="Enter text..."
+      required=""
+    />
+  </div>
+</div>
+`;
+
+exports[`TextField Component Rendering renders all variants correctly: right-icon 1`] = `
+<div>
+  <div
+    class="sc-Qotzb fnjeBx"
+  >
+    <input
+      class="sc-fYsHOw hLAbFO"
+      placeholder="Enter text..."
+    />
+    <div
+      class="sc-dKREkF dfvOtJ"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-search"
+        data-testid="search-icon"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m21 21-4.34-4.34"
+        />
+        <circle
+          cx="11"
+          cy="11"
+          r="8"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TextField Component Rendering renders all variants correctly: search-variant 1`] = `
+<div>
+  <div
+    class="sc-Qotzb fBJWKj"
+  >
+    <input
+      class="sc-fYsHOw eRuMEp"
+      placeholder="Enter text..."
+    />
+  </div>
+</div>
+`;
+
+exports[`TextField Component Rendering renders all variants correctly: with-value 1`] = `
+<div>
+  <div
+    class="sc-Qotzb fnjeBx"
+  >
+    <input
+      class="sc-fYsHOw eRuMEp"
+      placeholder="Enter text..."
+      value="Prefilled value"
+    />
+  </div>
+</div>
+`;

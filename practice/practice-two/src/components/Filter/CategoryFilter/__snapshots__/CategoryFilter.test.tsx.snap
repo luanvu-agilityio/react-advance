@@ -1,0 +1,313 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryFilter Rendering States renders different states correctly: empty-categories 1`] = `<div />`;
+
+exports[`CategoryFilter Rendering States renders different states correctly: many-categories 1`] = `
+<div>
+  <div
+    class="sc-dKREkF hFpCMy"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Categories
+    </h2>
+    <div
+      class="sc-fWnslK dhhdnw"
+    >
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Category 1
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          10
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Category 2
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          20
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Category 3
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          30
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Category 4
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          40
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dUnVQj"
+      >
+        <span
+          class="sc-iQQCXo czIniZ"
+        >
+          Category 5
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          50
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Category 6
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          60
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Category 7
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          70
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Category 8
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          80
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Category 9
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          90
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Category 10
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          100
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CategoryFilter Rendering States renders different states correctly: no-active-category 1`] = `
+<div>
+  <div
+    class="sc-dKREkF hFpCMy"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Categories
+    </h2>
+    <div
+      class="sc-fWnslK dhhdnw"
+    >
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Bakery
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          12
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Fruits
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          24
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Vegetables
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          32
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CategoryFilter Rendering States renders different states correctly: single-category 1`] = `
+<div>
+  <div
+    class="sc-dKREkF hFpCMy"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Categories
+    </h2>
+    <div
+      class="sc-fWnslK dhhdnw"
+    >
+      <div
+        class="sc-dIMoHT dUnVQj"
+      >
+        <span
+          class="sc-iQQCXo czIniZ"
+        >
+          Solo Category
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          5
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CategoryFilter Rendering States renders different states correctly: with-active-category 1`] = `
+<div>
+  <div
+    class="sc-dKREkF hFpCMy"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Categories
+    </h2>
+    <div
+      class="sc-fWnslK dhhdnw"
+    >
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Bakery
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          12
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dUnVQj"
+      >
+        <span
+          class="sc-iQQCXo czIniZ"
+        >
+          Fruits
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          24
+        </span>
+      </div>
+      <div
+        class="sc-dIMoHT dMbzyN"
+      >
+        <span
+          class="sc-iQQCXo bKcNPU"
+        >
+          Vegetables
+        </span>
+        <span
+          class="sc-gDpztx llcUei"
+        >
+          32
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

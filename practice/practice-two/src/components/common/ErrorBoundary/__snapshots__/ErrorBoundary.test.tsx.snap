@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorBoundary Rendering States renders correctly when there is no error: no-error 1`] = `
+<div>
+  <div
+    data-testid="working-component"
+  >
+    Working component
+  </div>
+</div>
+`;
+
+exports[`ErrorBoundary Rendering States renders custom fallback correctly: custom-fallback 1`] = `
+<div>
+  <div
+    data-testid="custom-fallback"
+  >
+    Custom Error UI
+  </div>
+</div>
+`;
+
+exports[`ErrorBoundary Rendering States renders error UI correctly when error occurs: with-error 1`] = `
+<div>
+  <div
+    data-testid="error-container"
+  >
+    <div
+      data-size="48"
+      data-testid="shield-icon"
+    >
+      ShieldIcon
+    </div>
+    <h2
+      data-testid="error-title"
+    >
+      Something went wrong
+    </h2>
+    <p
+      data-testid="error-description"
+    >
+      Failed to load the page. This might be due to a network issue or temporary problem.
+    </p>
+    <button
+      data-testid="retry-button"
+      data-variant="solid"
+    >
+      Try Again
+    </button>
+  </div>
+</div>
+`;

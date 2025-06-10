@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag Component Rendering Snapshots renders button tag variants correctly: button-with-children 1`] = `
+<div>
+  <button
+    class="sc-fYsHOw kuAQwy"
+    type="button"
+  >
+    <span>
+      Custom Content
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Tag Component Rendering Snapshots renders button tag variants correctly: default-button 1`] = `
+<div>
+  <button
+    class="sc-fYsHOw kuAQwy"
+    type="button"
+  >
+    Button Tag
+  </button>
+</div>
+`;
+
+exports[`Tag Component Rendering Snapshots renders button tag variants correctly: disabled-button 1`] = `
+<div>
+  <button
+    class="sc-fYsHOw dhNhzg"
+    disabled=""
+    type="button"
+  >
+    Disabled Button
+  </button>
+</div>
+`;
+
+exports[`Tag Component Rendering Snapshots renders button tag variants correctly: selected-button 1`] = `
+<div>
+  <button
+    class="sc-fYsHOw cMHZiV"
+    type="button"
+  >
+    Selected Button
+  </button>
+</div>
+`;
+
+exports[`Tag Component Rendering Snapshots renders link tag variants correctly: default-link 1`] = `
+<div>
+  <span
+    class="sc-dKREkF bRrHLa"
+  >
+    <a
+      class="sc-Qotzb jUyYcI"
+      href="/test"
+      target="_self"
+    >
+      Link Tag
+    </a>
+  </span>
+</div>
+`;
+
+exports[`Tag Component Rendering Snapshots renders link tag variants correctly: disabled-link 1`] = `
+<div>
+  <span
+    class="sc-dKREkF iSTpNP"
+  >
+    <a
+      class="sc-Qotzb kzgBsp"
+      disabled=""
+      href="/test"
+      target="_self"
+    >
+      Disabled Link
+    </a>
+  </span>
+</div>
+`;
+
+exports[`Tag Component Rendering Snapshots renders link tag variants correctly: link-with-target 1`] = `
+<div>
+  <span
+    class="sc-dKREkF bRrHLa"
+  >
+    <a
+      class="sc-Qotzb jUyYcI"
+      href="/test"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      External Link
+    </a>
+  </span>
+</div>
+`;
+
+exports[`Tag Component Rendering Snapshots renders link tag variants correctly: selected-link 1`] = `
+<div>
+  <span
+    class="sc-dKREkF fdeVZx"
+  >
+    <a
+      class="sc-Qotzb jUyYcI"
+      href="/test"
+      target="_self"
+    >
+      Selected Link
+    </a>
+  </span>
+</div>
+`;

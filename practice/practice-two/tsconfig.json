@@ -5,7 +5,13 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+    "baseUrl": "./src",
     "jsx": "react-jsx",
-    "types": ["@testing-library/jest-dom"]
+    "types": ["@testing-library/jest-dom"],
+    "paths": {
+      "@helpers/*": ["./helpers/*"],
+      "@components/*": ["./components/*"],
+      "@data/*": ["data/*"]
+    }
   }
 }

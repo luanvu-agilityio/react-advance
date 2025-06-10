@@ -1,5 +1,5 @@
-import type { CartItem as CartItemType } from '@contexts/CartContext'
-import CartItem from '@components/Cart/CartItem'
+import { useCallback, useMemo, useState } from 'react'
+import CartItem from '@components/Cart/CartItem/CartItem'
 
 import {
   OrderSummaryWrapper,
@@ -13,38 +13,77 @@ import {
   PromoInput,
   PromoButton,
 } from '../CheckoutStyle'
-import { useCheckout } from '@contexts/CheckoutContext'
+import { useCartStore } from '@stores/cartStore'
+import { useCheckoutStore } from '@stores/checkoutStore'
+import { withErrorBoundary } from '@utils/withErrorBoundary'
 
-interface OrderSummarySectionProps {
-  items: CartItemType[]
-  subtotal: number
-  tax: number
-  shipping: number
-  total: number
-  promoCode: string
-  setPromoCode: (value: string) => void
-  handleApplyPromo: () => void
-  handleQuantityChange: (id: number, quantity: number) => void
-  handleUnitChange: (id: number, buyUnit: string) => void
-  handleRemove: (id: number) => void
-}
+export const OrderSummarySection = () => {
+  const {
+    items,
+    removeItem,
+    getSubtotal,
+    getTax,
 
-export const OrderSummarySection = ({
-  items,
-  subtotal,
-  tax,
-  shipping,
-  total,
-  promoCode,
-  setPromoCode,
-  handleApplyPromo,
-  handleQuantityChange,
-  handleUnitChange,
-  handleRemove,
-}: OrderSummarySectionProps) => {
-  const { orderDetailsRef } = useCheckout()
+    updateQuantity,
+    updateUnit,
+  } = useCartStore()
+
+  const { formData } = useCheckoutStore()
+
+  // Calculate order totals
+  const orderCalculations = useMemo(() => {
+    const shipping = formData.shipping.price
+    const subtotal = getSubtotal()
+    const tax = getTax()
+    const total = subtotal + tax + shipping
+
+    return {
+      subtotal,
+      tax,
+      shipping,
+      total,
+    }
+  }, [formData.shipping.price, items, getSubtotal, getTax])
+
+  const [promoCode, setPromoCode] = useState('')
+
+  // Handle promo code application
+  const handleApplyPromo = useCallback(() => {
+    if (!promoCode.trim()) return
+  }, [promoCode])
+
+  // Handle quantity changes
+  const handleQuantityChange = useCallback(
+    (id: number, quantity: number) => {
+      if (quantity <= 0) {
+        removeItem(id)
+      } else {
+        updateQuantity(id, quantity)
+      }
+    },
+    [updateQuantity, removeItem]
+  )
+
+  // Handle unit changes
+  const handleUnitChange = useCallback(
+    (id: number, buyUnit: string) => {
+      updateUnit(id, buyUnit)
+    },
+    [updateUnit]
+  )
+
+  // Handle item removal
+  const handleRemove = useCallback(
+    (id: number) => {
+      removeItem(id)
+    },
+    [removeItem]
+  )
+
+  const isEmpty = items.length === 0
+
   return (
-    <OrderSummaryWrapper ref={orderDetailsRef}>
+    <OrderSummaryWrapper>
       <OrderSummary>
         <div>
           <OrderSummaryTitle>Order Summary</OrderSummaryTitle>
@@ -85,17 +124,19 @@ export const OrderSummarySection = ({
           >
             <OrderSummaryRow>
               <span>Subtotal</span>
-              <span>{subtotal.toFixed(2)} USD</span>
+              <span>{orderCalculations.subtotal.toFixed(2)} USD</span>
             </OrderSummaryRow>
 
             <OrderSummaryRow>
               <span>Tax</span>
-              <span>17% {tax.toFixed(2)} USD</span>
+              <span>17% {orderCalculations.tax.toFixed(2)} USD</span>
             </OrderSummaryRow>
 
             <OrderSummaryRow>
               <span>Shipping</span>
-              <span>{shipping.toFixed(2)} USD</span>
+              <span>
+                {isEmpty ? '0.00' : orderCalculations.shipping.toFixed(2)} USD
+              </span>
             </OrderSummaryRow>
           </div>
 
@@ -124,7 +165,7 @@ export const OrderSummarySection = ({
               color: 'var(--green-color-default)',
             }}
           >
-            {total.toFixed(2)} USD
+            {orderCalculations.total.toFixed(2)} USD
           </p>
         </OrderSummaryTotal>
       </OrderSummary>
@@ -132,4 +173,16 @@ export const OrderSummarySection = ({
   )
 }
 
-export default OrderSummarySection
+OrderSummarySection.displayName = 'OrderSummarySection'
+
+const OrderSummaryWithErrorBoundary = withErrorBoundary(OrderSummarySection, {
+  fallback: (
+    <div className="order-summary-error">
+      <h3>Unable to display order summary</h3>
+      <p>Your checkout can still be completed.</p>
+    </div>
+  ),
+  onError: (error) => console.error('Order Summary Error:', error),
+})
+
+export default OrderSummaryWithErrorBoundary

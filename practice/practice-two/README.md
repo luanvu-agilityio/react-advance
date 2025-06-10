@@ -1,54 +1,159 @@
-# React + TypeScript + Vite
+# React Advance Practice
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+Welcome to my Ecommerce Website - a React and TypeScript-based administrative interface for efficient shopping cart management. This project demonstrates the implementation of CRUD (Create, Read, Update, Delete) operations within a responsive dashboard environment.
+<b>Key Features:<b>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Sorting and search capabilities
+- Intuitive user interface for administrative tasks
 
-## Expanding the ESLint configuration
+This project showcases practical applications of React with TypeScript while delivering essential functionalities for shopping cart management. All necessary resources and documentation links are provided below.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Timeline
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Estimation time: 06 May, 2025 - 19 May, 2025 
+
+## Team size
+
+- 1 Dev ([Luan Vu](luan.vu@asnet.com.vn))
+
+## Technical terms
+
+- REACT v18
+
+- TYPESCRIPT
+
+- REACT HOOK FORM
+
+- MOCKAPI
+
+## Target
+
+- Apply useContext for state management .
+
+- Take a narrow view to check re-rendering and optimize performance of one React application.
+
+- Become better understood and create your own custom hook to reduce redundant code.
+
+- Study and apply uncontrolled components in some cases to avoid needless state management gradually.
+ 
+- Be aware of catching common and specific errors (errors from api, from logic,...) for one React application to prevent crashing issues dramatically.
+
+- Check PageSpeed scores frequently during development time and ensure the scores at minimum 98 points.
+
+- Keep moving with Storybook which will assist to manage components in the development environment.
+
+- Practice shouldn’t consist of additional libraries namely React Query, React Hook Form, Zustand. They might need to get back and update practice with the aforementioned after passing the main concepts (the ideal timeline for this is 7-8 days).
+
+## Prerequisite
+
+- Visual Studio Code version [1.97.2]
+
+- Node.js [v20.18.1]
+
+- ESlint version[9.26.0]
+
+- Prettier version [3.5.3]
+
+- TypeScript version [5.8.3]
+
+- React [19.0.0]
+
+- Vite [6.3.5]
+
+- Storybook [8.6.7]
+
+- Zod [3.25.30]
+
+- React Hook Form [7.56.4]
+
+- Zustand [5.0.5]
+
+- Jest [29.7.0]
+
+- Style component [6.1.17]
+
+- Extensions: editorconfig, Prettier, ESlint
+
+## Folder's structure
+
+```
+|- src/
+    |- assets/
+        |- fonts/
+        |- images/
+        |- icons/
+    |- constants/
+    |- component/
+        |- common/
+    |- configs/
+    |- contexts/
+    |- data/
+    |- styles/
+    |- helpers/
+    |- hooks/
+    |- layouts/
+    |- pages/
+    |- schemas/
+    |- store/
+    |- services/
+    |- route/
+    |- types/
+    |- utils/
+    |- App.tsx
+    |- main.tsx
+    |- vite-env.d.ts
+|- .editorconfig
+|- .eslintignore
+|- .eslintrc.json
+|- .gitignore
+|- .prettierrc
+|- index.html
+|- pnpm-lock.yaml
+|- package-lock.json
+|- package.json
+|- README.md
+|- tsconfig.json
+|- tsconfig.app.json
+|- tsconfig.node.json
+|- vite.config.ts
+|- vite.workspace.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Step by step to run this app in your local
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Command                                                              | Action                           |
+| -------------------------------------------------------------------- | -------------------------------- |
+| git clone git@gitlab.asoft-python.com:luan.vu/react-training.git     | Download the source code         |
+| git checkout feat/practice-two                                       | Checkout to branch feat/practice |
+| cd practice/practice-two                                             | Move to folder                   |
+| pnpm install                                                         | Install dependencies             |
+| pnpm run dev                                                         | Run the application              |
+| Open new terminal for story book                                     |                                  |
+| pnpm run storybook                                                   | Run storybook                    |
+| Implement unit test                                                  |                                  |
+| pnpm run test:coverage src/path-to-the-test-component                | Run the unit test                |                 
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
+<b>Notes:<b>
+
+- See the deployment link on Vercel at the end of this document for more details
+
+## Contributing
+
+I welcome any and all contribution! If you have found or encountered any bugs or issues, please let me know. Any recommendation is also welcomed.
+
+## Helpful links
+
+[Figma](https://www.figma.com/design/0568vJthVllhXAz0V9XpR1/eCommerce---Template---Figma?node-id=2-1713&t=Sit1matEbhZe0B1i-0)
+
+[My training plan](https://docs.google.com/document/d/1Ik4AYABHuI4tjoWYdedQHfjSoxpWGgjkKYRzaobE8Og/edit?tab=t.0#heading=h.ar0k1bmftkqn)
+
+[Practice plan](https://docs.google.com/document/d/1R-yED7FWJEErMRu_o6emU7rXfO1GA6MbOTM58KubMdc/edit?tab=t.0)
+
+[Deployment link](https://react-advance-ruddy.vercel.app/)
+
+###
+
+Special thanks to my mentor Mr. Minh Tran, my supporter Mr. Thinh Nguyen and Mr. Tuan Thai who provide me all the useful help and support throughout my training session. It is my pleasure to work with you guys!

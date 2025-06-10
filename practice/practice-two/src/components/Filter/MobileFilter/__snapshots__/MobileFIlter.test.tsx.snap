@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MobileFilter matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-kiMgGE eQcaTe"
+  >
+    <div
+      data-testid="dialog-root"
+    >
+      <button
+        data-testid="dialog-trigger"
+      />
+      <button
+        class="sc-dTUlgT dbZUsC"
+      >
+        <div
+          data-testid="filter-icon"
+        >
+          Filter Icon
+        </div>
+        Filters
+      </button>
+      <div
+        data-testid="dialog-portal"
+      >
+        <div
+          data-testid="dialog-overlay"
+        />
+        <div
+          data-testid="dialog-content"
+        >
+          <div
+            class="sc-iSqusk ctiGHA"
+          >
+            <h2
+              data-testid="dialog-title"
+            >
+              Filters
+            </h2>
+            <button
+              data-testid="dialog-close"
+            >
+              <div
+                data-testid="close-icon"
+              >
+                X Icon
+              </div>
+            </button>
+          </div>
+          <div
+            class="sc-Qotzb DsboM"
+          >
+            <div
+              data-testid="category-filter"
+            >
+              <span>
+                Categories: 3
+              </span>
+              <span>
+                Active: Fruits
+              </span>
+              <button>
+                Click Category
+              </button>
+            </div>
+            <div
+              data-testid="brand-filter"
+            >
+              <span>
+                Brands: 2
+              </span>
+              <button>
+                Click Brand
+              </button>
+            </div>
+            <div
+              data-testid="rating-filter"
+            >
+              <span>
+                Ratings: 2
+              </span>
+              <button>
+                Click Rating
+              </button>
+            </div>
+            <div
+              data-testid="price-filter"
+            >
+              <span>
+                Price: $100 - $500
+              </span>
+              <span>
+                Slider: $100 - $500
+              </span>
+              <button>
+                Change Slider
+              </button>
+              <button>
+                Change Min
+              </button>
+              <button>
+                Change Max
+              </button>
+              <button>
+                Apply
+              </button>
+              <button>
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -13,13 +13,14 @@ import {
   StepTitle,
   StepIndicator,
 } from '../CheckoutStyle'
+import type { ReactNode } from 'react'
 
 interface CheckoutStep {
   id: string
   title: string
   stepNumber: string
   isComplete: boolean
-  content: React.ReactNode
+  content: ReactNode
   description?: string
 }
 

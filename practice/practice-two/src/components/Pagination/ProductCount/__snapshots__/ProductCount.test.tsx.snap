@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCount Rendering renders correctly for different product counts: large-count 1`] = `
+<div>
+  <span
+    class="sc-icnseD gYnRFY"
+  >
+    <span>
+      1000
+    </span>
+    <span>
+      Products
+    </span>
+  </span>
+</div>
+`;
+
+exports[`ProductCount Rendering renders correctly for different product counts: single-count 1`] = `
+<div>
+  <span
+    class="sc-icnseD gYnRFY"
+  >
+    <span>
+      1
+    </span>
+    <span>
+      Products
+    </span>
+  </span>
+</div>
+`;
+
+exports[`ProductCount Rendering renders correctly for different product counts: standard-count 1`] = `
+<div>
+  <span
+    class="sc-icnseD gYnRFY"
+  >
+    <span>
+      42
+    </span>
+    <span>
+      Products
+    </span>
+  </span>
+</div>
+`;
+
+exports[`ProductCount Rendering renders correctly for different product counts: zero-count 1`] = `
+<div>
+  <span
+    class="sc-icnseD gYnRFY"
+  >
+    <span>
+      0
+    </span>
+    <span>
+      Products
+    </span>
+  </span>
+</div>
+`;

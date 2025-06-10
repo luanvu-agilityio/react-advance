@@ -28,7 +28,7 @@ export const generateTextContent = (
   lines.push(separator)
   lines.push(`${customerData.address ?? 'N/A'}`)
   lines.push(
-    `${customerData.city ?? 'N/A'}, ${customerData.state ?? ''} ${customerData.zipCode ?? ''}`
+    `${customerData.city ?? 'N/A'}, ${customerData.country ?? ''} ${customerData.zip ?? ''}`
   )
   lines.push('')
 

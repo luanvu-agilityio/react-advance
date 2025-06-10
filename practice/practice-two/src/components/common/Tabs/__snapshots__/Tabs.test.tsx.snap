@@ -1,0 +1,860 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductTabs Component Snapshots renders default state correctly: default-state 1`] = `
+<div>
+  <div
+    class="sc-Qotzb OMzYM"
+  >
+    <div
+      data-orientation="horizontal"
+      dir="ltr"
+    >
+      <div
+        aria-orientation="horizontal"
+        class="sc-fYsHOw inrSZO"
+        data-orientation="horizontal"
+        role="tablist"
+        style="outline: none;"
+        tabindex="0"
+      >
+        <button
+          aria-controls="radix-«r0»-content-description"
+          aria-selected="true"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="active"
+          id="radix-«r0»-trigger-description"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Description
+        </button>
+        <button
+          aria-controls="radix-«r0»-content-reviews"
+          aria-selected="false"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="inactive"
+          id="radix-«r0»-trigger-reviews"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Reviews 
+          <span
+            class="sc-fWnslK geqhwY"
+          >
+            2
+          </span>
+        </button>
+        <button
+          aria-controls="radix-«r0»-content-questions"
+          aria-selected="false"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="inactive"
+          id="radix-«r0»-trigger-questions"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Questions 
+          <span
+            class="sc-fWnslK geqhwY"
+          >
+            1
+          </span>
+        </button>
+      </div>
+      <div
+        aria-labelledby="radix-«r0»-trigger-description"
+        data-orientation="horizontal"
+        data-state="active"
+        id="radix-«r0»-content-description"
+        role="tabpanel"
+        style="display: flex; flex-direction: column; gap: 32px; animation-duration: 0s;"
+        tabindex="0"
+      >
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            Origins
+          </h3>
+          <p
+            class="sc-iQQCXo kOtSHc"
+          >
+            Test origins content
+          </p>
+        </div>
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            How to cook
+          </h3>
+          <p
+            class="sc-iQQCXo kOtSHc"
+          >
+            Test cooking information
+          </p>
+        </div>
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            Full of Vitamins!
+          </h3>
+          <div
+            style="overflow-x: auto;"
+          >
+            <table
+              class="sc-gDpztx djuMQI"
+            >
+              <thead
+                class="sc-kpOvIu kvhDdF"
+              >
+                <tr>
+                  <th
+                    class="sc-jMsorb fduaaT"
+                  >
+                    Vitamins
+                  </th>
+                  <th
+                    class="sc-jMsorb fduaaT"
+                  >
+                    Quantity
+                  </th>
+                  <th
+                    class="sc-jMsorb fduaaT"
+                  >
+                    % DV
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="sc-icnseD cjkhCM"
+                >
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    Vitamin C
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    89.2mg
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    99%
+                  </td>
+                </tr>
+                <tr
+                  class="sc-icnseD cjkhCM"
+                >
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    Vitamin K
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    102μg
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    85%
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-labelledby="radix-«r0»-trigger-reviews"
+        data-orientation="horizontal"
+        data-state="inactive"
+        hidden=""
+        id="radix-«r0»-content-reviews"
+        role="tabpanel"
+        tabindex="0"
+      />
+      <div
+        aria-labelledby="radix-«r0»-trigger-questions"
+        data-orientation="horizontal"
+        data-state="inactive"
+        hidden=""
+        id="radix-«r0»-content-questions"
+        role="tabpanel"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProductTabs Component Snapshots renders different content states correctly: empty-content 1`] = `
+<div>
+  <div
+    class="sc-Qotzb OMzYM"
+  >
+    <div
+      data-orientation="horizontal"
+      dir="ltr"
+    >
+      <div
+        aria-orientation="horizontal"
+        class="sc-fYsHOw inrSZO"
+        data-orientation="horizontal"
+        role="tablist"
+        style="outline: none;"
+        tabindex="0"
+      >
+        <button
+          aria-controls="radix-«rg»-content-description"
+          aria-selected="true"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="active"
+          id="radix-«rg»-trigger-description"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Description
+        </button>
+        <button
+          aria-controls="radix-«rg»-content-reviews"
+          aria-selected="false"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="inactive"
+          id="radix-«rg»-trigger-reviews"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Reviews 
+          <span
+            class="sc-fWnslK geqhwY"
+          >
+            0
+          </span>
+        </button>
+        <button
+          aria-controls="radix-«rg»-content-questions"
+          aria-selected="false"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="inactive"
+          id="radix-«rg»-trigger-questions"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Questions 
+          <span
+            class="sc-fWnslK geqhwY"
+          >
+            0
+          </span>
+        </button>
+      </div>
+      <div
+        aria-labelledby="radix-«rg»-trigger-description"
+        data-orientation="horizontal"
+        data-state="active"
+        id="radix-«rg»-content-description"
+        role="tabpanel"
+        style="display: flex; flex-direction: column; gap: 32px; animation-duration: 0s;"
+        tabindex="0"
+      >
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            Origins
+          </h3>
+          <p
+            class="sc-iQQCXo kOtSHc"
+          />
+        </div>
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            How to cook
+          </h3>
+          <p
+            class="sc-iQQCXo kOtSHc"
+          />
+        </div>
+      </div>
+      <div
+        aria-labelledby="radix-«rg»-trigger-reviews"
+        data-orientation="horizontal"
+        data-state="inactive"
+        hidden=""
+        id="radix-«rg»-content-reviews"
+        role="tabpanel"
+        tabindex="0"
+      />
+      <div
+        aria-labelledby="radix-«rg»-trigger-questions"
+        data-orientation="horizontal"
+        data-state="inactive"
+        hidden=""
+        id="radix-«rg»-content-questions"
+        role="tabpanel"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProductTabs Component Snapshots renders different content states correctly: without-questions 1`] = `
+<div>
+  <div
+    class="sc-Qotzb OMzYM"
+  >
+    <div
+      data-orientation="horizontal"
+      dir="ltr"
+    >
+      <div
+        aria-orientation="horizontal"
+        class="sc-fYsHOw inrSZO"
+        data-orientation="horizontal"
+        role="tablist"
+        style="outline: none;"
+        tabindex="0"
+      >
+        <button
+          aria-controls="radix-«rc»-content-description"
+          aria-selected="true"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="active"
+          id="radix-«rc»-trigger-description"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Description
+        </button>
+        <button
+          aria-controls="radix-«rc»-content-reviews"
+          aria-selected="false"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="inactive"
+          id="radix-«rc»-trigger-reviews"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Reviews 
+          <span
+            class="sc-fWnslK geqhwY"
+          >
+            2
+          </span>
+        </button>
+        <button
+          aria-controls="radix-«rc»-content-questions"
+          aria-selected="false"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="inactive"
+          id="radix-«rc»-trigger-questions"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Questions 
+          <span
+            class="sc-fWnslK geqhwY"
+          >
+            0
+          </span>
+        </button>
+      </div>
+      <div
+        aria-labelledby="radix-«rc»-trigger-description"
+        data-orientation="horizontal"
+        data-state="active"
+        id="radix-«rc»-content-description"
+        role="tabpanel"
+        style="display: flex; flex-direction: column; gap: 32px; animation-duration: 0s;"
+        tabindex="0"
+      >
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            Origins
+          </h3>
+          <p
+            class="sc-iQQCXo kOtSHc"
+          >
+            Test origins content
+          </p>
+        </div>
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            How to cook
+          </h3>
+          <p
+            class="sc-iQQCXo kOtSHc"
+          >
+            Test cooking information
+          </p>
+        </div>
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            Full of Vitamins!
+          </h3>
+          <div
+            style="overflow-x: auto;"
+          >
+            <table
+              class="sc-gDpztx djuMQI"
+            >
+              <thead
+                class="sc-kpOvIu kvhDdF"
+              >
+                <tr>
+                  <th
+                    class="sc-jMsorb fduaaT"
+                  >
+                    Vitamins
+                  </th>
+                  <th
+                    class="sc-jMsorb fduaaT"
+                  >
+                    Quantity
+                  </th>
+                  <th
+                    class="sc-jMsorb fduaaT"
+                  >
+                    % DV
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="sc-icnseD cjkhCM"
+                >
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    Vitamin C
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    89.2mg
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    99%
+                  </td>
+                </tr>
+                <tr
+                  class="sc-icnseD cjkhCM"
+                >
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    Vitamin K
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    102μg
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    85%
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-labelledby="radix-«rc»-trigger-reviews"
+        data-orientation="horizontal"
+        data-state="inactive"
+        hidden=""
+        id="radix-«rc»-content-reviews"
+        role="tabpanel"
+        tabindex="0"
+      />
+      <div
+        aria-labelledby="radix-«rc»-trigger-questions"
+        data-orientation="horizontal"
+        data-state="inactive"
+        hidden=""
+        id="radix-«rc»-content-questions"
+        role="tabpanel"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProductTabs Component Snapshots renders different content states correctly: without-reviews 1`] = `
+<div>
+  <div
+    class="sc-Qotzb OMzYM"
+  >
+    <div
+      data-orientation="horizontal"
+      dir="ltr"
+    >
+      <div
+        aria-orientation="horizontal"
+        class="sc-fYsHOw inrSZO"
+        data-orientation="horizontal"
+        role="tablist"
+        style="outline: none;"
+        tabindex="0"
+      >
+        <button
+          aria-controls="radix-«r8»-content-description"
+          aria-selected="true"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="active"
+          id="radix-«r8»-trigger-description"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Description
+        </button>
+        <button
+          aria-controls="radix-«r8»-content-reviews"
+          aria-selected="false"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="inactive"
+          id="radix-«r8»-trigger-reviews"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Reviews 
+          <span
+            class="sc-fWnslK geqhwY"
+          >
+            0
+          </span>
+        </button>
+        <button
+          aria-controls="radix-«r8»-content-questions"
+          aria-selected="false"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="inactive"
+          id="radix-«r8»-trigger-questions"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Questions 
+          <span
+            class="sc-fWnslK geqhwY"
+          >
+            1
+          </span>
+        </button>
+      </div>
+      <div
+        aria-labelledby="radix-«r8»-trigger-description"
+        data-orientation="horizontal"
+        data-state="active"
+        id="radix-«r8»-content-description"
+        role="tabpanel"
+        style="display: flex; flex-direction: column; gap: 32px; animation-duration: 0s;"
+        tabindex="0"
+      >
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            Origins
+          </h3>
+          <p
+            class="sc-iQQCXo kOtSHc"
+          >
+            Test origins content
+          </p>
+        </div>
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            How to cook
+          </h3>
+          <p
+            class="sc-iQQCXo kOtSHc"
+          >
+            Test cooking information
+          </p>
+        </div>
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            Full of Vitamins!
+          </h3>
+          <div
+            style="overflow-x: auto;"
+          >
+            <table
+              class="sc-gDpztx djuMQI"
+            >
+              <thead
+                class="sc-kpOvIu kvhDdF"
+              >
+                <tr>
+                  <th
+                    class="sc-jMsorb fduaaT"
+                  >
+                    Vitamins
+                  </th>
+                  <th
+                    class="sc-jMsorb fduaaT"
+                  >
+                    Quantity
+                  </th>
+                  <th
+                    class="sc-jMsorb fduaaT"
+                  >
+                    % DV
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="sc-icnseD cjkhCM"
+                >
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    Vitamin C
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    89.2mg
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    99%
+                  </td>
+                </tr>
+                <tr
+                  class="sc-icnseD cjkhCM"
+                >
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    Vitamin K
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    102μg
+                  </td>
+                  <td
+                    class="sc-cXawGu kVKrLI"
+                  >
+                    85%
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-labelledby="radix-«r8»-trigger-reviews"
+        data-orientation="horizontal"
+        data-state="inactive"
+        hidden=""
+        id="radix-«r8»-content-reviews"
+        role="tabpanel"
+        tabindex="0"
+      />
+      <div
+        aria-labelledby="radix-«r8»-trigger-questions"
+        data-orientation="horizontal"
+        data-state="inactive"
+        hidden=""
+        id="radix-«r8»-content-questions"
+        role="tabpanel"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProductTabs Component Snapshots renders different content states correctly: without-vitamins 1`] = `
+<div>
+  <div
+    class="sc-Qotzb OMzYM"
+  >
+    <div
+      data-orientation="horizontal"
+      dir="ltr"
+    >
+      <div
+        aria-orientation="horizontal"
+        class="sc-fYsHOw inrSZO"
+        data-orientation="horizontal"
+        role="tablist"
+        style="outline: none;"
+        tabindex="0"
+      >
+        <button
+          aria-controls="radix-«r4»-content-description"
+          aria-selected="true"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="active"
+          id="radix-«r4»-trigger-description"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Description
+        </button>
+        <button
+          aria-controls="radix-«r4»-content-reviews"
+          aria-selected="false"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="inactive"
+          id="radix-«r4»-trigger-reviews"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Reviews 
+          <span
+            class="sc-fWnslK geqhwY"
+          >
+            2
+          </span>
+        </button>
+        <button
+          aria-controls="radix-«r4»-content-questions"
+          aria-selected="false"
+          class="sc-dKREkF eqZWqf"
+          data-orientation="horizontal"
+          data-radix-collection-item=""
+          data-state="inactive"
+          id="radix-«r4»-trigger-questions"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Questions 
+          <span
+            class="sc-fWnslK geqhwY"
+          >
+            1
+          </span>
+        </button>
+      </div>
+      <div
+        aria-labelledby="radix-«r4»-trigger-description"
+        data-orientation="horizontal"
+        data-state="active"
+        id="radix-«r4»-content-description"
+        role="tabpanel"
+        style="display: flex; flex-direction: column; gap: 32px; animation-duration: 0s;"
+        tabindex="0"
+      >
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            Origins
+          </h3>
+          <p
+            class="sc-iQQCXo kOtSHc"
+          >
+            Test origins content
+          </p>
+        </div>
+        <div>
+          <h3
+            class="sc-dIMoHT iMAMLt"
+          >
+            How to cook
+          </h3>
+          <p
+            class="sc-iQQCXo kOtSHc"
+          >
+            Test cooking information
+          </p>
+        </div>
+      </div>
+      <div
+        aria-labelledby="radix-«r4»-trigger-reviews"
+        data-orientation="horizontal"
+        data-state="inactive"
+        hidden=""
+        id="radix-«r4»-content-reviews"
+        role="tabpanel"
+        tabindex="0"
+      />
+      <div
+        aria-labelledby="radix-«r4»-trigger-questions"
+        data-orientation="horizontal"
+        data-state="inactive"
+        hidden=""
+        id="radix-«r4»-content-questions"
+        role="tabpanel"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;

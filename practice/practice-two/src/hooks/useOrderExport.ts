@@ -4,24 +4,19 @@ import { generateTextContent } from '@utils/textExport'
 import type { OrderExportConfig } from 'types/Order'
 import * as XLSX from 'xlsx'
 
-export const useOrderExport = ({
-  orderDetailsRef,
-  customerData,
-}: OrderExportConfig) => {
+export const useOrderExport = ({ customerData }: OrderExportConfig) => {
   const handlePrint = () => {
-    if (orderDetailsRef.current) {
-      const win = window.open('', '', 'height=700,width=700')
+    const win = window.open('', '', 'height=700,width=700')
 
-      if (win) {
-        // Get the HTML content from template
-        const htmlContent = getOrderPrintTemplate(customerData)
+    if (win) {
+      // Get the HTML content from template
+      const htmlContent = getOrderPrintTemplate(customerData)
 
-        win.document.documentElement.innerHTML = htmlContent
-        win.focus()
-        win.print()
+      win.document.documentElement.innerHTML = htmlContent
+      win.focus()
+      win.print()
 
-        win.close()
-      }
+      win.close()
     }
   }
 

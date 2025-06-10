@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingSpinner matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-Qotzb eMIPCM"
+    style="min-height: 400px;"
+  >
+    <div
+      class="sc-fYsHOw cgGqeq"
+    >
+      <div
+        data-size="3"
+        data-testid="spinner"
+      >
+        Spinner
+      </div>
+      <div
+        data-as="p"
+        data-testid="text-component"
+      >
+        Loading product details...
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LoadingSpinner matches snapshot with custom height 1`] = `
+<div>
+  <div
+    class="sc-Qotzb eMIPCM"
+    style="min-height: 200px;"
+  >
+    <div
+      class="sc-fYsHOw cgGqeq"
+    >
+      <div
+        data-size="3"
+        data-testid="spinner"
+      >
+        Spinner
+      </div>
+      <div
+        data-as="p"
+        data-testid="text-component"
+      >
+        Loading product details...
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LoadingSpinner matches snapshot with custom message 1`] = `
+<div>
+  <div
+    class="sc-Qotzb eMIPCM"
+    style="min-height: 400px;"
+  >
+    <div
+      class="sc-fYsHOw cgGqeq"
+    >
+      <div
+        data-size="3"
+        data-testid="spinner"
+      >
+        Spinner
+      </div>
+      <div
+        data-as="p"
+        data-testid="text-component"
+      >
+        Custom loading message
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LoadingSpinner matches snapshot with different size 1`] = `
+<div>
+  <div
+    class="sc-Qotzb eMIPCM"
+    style="min-height: 400px;"
+  >
+    <div
+      class="sc-fYsHOw cgGqeq"
+    >
+      <div
+        data-size="2"
+        data-testid="spinner"
+      >
+        Spinner
+      </div>
+      <div
+        data-as="p"
+        data-testid="text-component"
+      >
+        Loading product details...
+      </div>
+    </div>
+  </div>
+</div>
+`;

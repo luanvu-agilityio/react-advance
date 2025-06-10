@@ -1,6 +1,7 @@
 export interface CategoryProps {
   name: string
   count: number
+  isActive?: boolean
 }
 
 export interface BrandProps {

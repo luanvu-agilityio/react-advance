@@ -1,3 +1,5 @@
+import type { RefObject } from 'react'
+
 export interface OrderItem {
   name: string
   quantity: number
@@ -11,8 +13,8 @@ export interface OrderSummaryProps {
   address?: string
   phone?: string
   city?: string
-  state?: string
-  zipCode?: string
+  country?: string
+  zip?: string
   shippingMethod?: string
   paymentMethod?: string
   items?: OrderItem[]
@@ -23,6 +25,6 @@ export interface OrderSummaryProps {
 }
 
 export interface OrderExportConfig {
-  orderDetailsRef: React.RefObject<HTMLDivElement | null>
+  orderDetailsRef: RefObject<HTMLDivElement | null>
   customerData: OrderSummaryProps
 }

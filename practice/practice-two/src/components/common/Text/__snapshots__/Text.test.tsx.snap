@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text Component Rendering renders basic text variants correctly: default-paragraph 1`] = `
+<div>
+  <p>
+    Default paragraph
+  </p>
+</div>
+`;
+
+exports[`Text Component Rendering renders basic text variants correctly: with-children 1`] = `
+<div>
+  <p />
+</div>
+`;
+
+exports[`Text Component Rendering renders basic text variants correctly: with-class 1`] = `
+<div>
+  <p
+    class="custom-class"
+  >
+    With class
+  </p>
+</div>
+`;
+
+exports[`Text Component Rendering renders with custom styles and attributes: with-attributes 1`] = `
+<div>
+  <p
+    aria-label="text label"
+    data-testid="custom-text"
+  >
+    With attributes
+  </p>
+</div>
+`;
+
+exports[`Text Component Rendering renders with custom styles and attributes: with-custom-style 1`] = `
+<div>
+  <p
+    style="color: red; font-size: 16px;"
+  >
+    Styled text
+  </p>
+</div>
+`;
+
+exports[`Text Component Rendering renders with custom styles and attributes: with-long-text 1`] = `
+<div>
+  <p>
+    This is a very long text that should test how the component handles wrapping and display of lengthy content when it potentially spans multiple lines.
+  </p>
+</div>
+`;
+
+exports[`Text Component Rendering renders with different HTML elements: as-div 1`] = `
+<div>
+  <div>
+    div text
+  </div>
+</div>
+`;
+
+exports[`Text Component Rendering renders with different HTML elements: as-h1 1`] = `
+<div>
+  <h1>
+    h1 text
+  </h1>
+</div>
+`;
+
+exports[`Text Component Rendering renders with different HTML elements: as-h2 1`] = `
+<div>
+  <h2>
+    h2 text
+  </h2>
+</div>
+`;
+
+exports[`Text Component Rendering renders with different HTML elements: as-h3 1`] = `
+<div>
+  <h3>
+    h3 text
+  </h3>
+</div>
+`;
+
+exports[`Text Component Rendering renders with different HTML elements: as-h4 1`] = `
+<div>
+  <h4>
+    h4 text
+  </h4>
+</div>
+`;
+
+exports[`Text Component Rendering renders with different HTML elements: as-h5 1`] = `
+<div>
+  <h5>
+    h5 text
+  </h5>
+</div>
+`;
+
+exports[`Text Component Rendering renders with different HTML elements: as-h6 1`] = `
+<div>
+  <h6>
+    h6 text
+  </h6>
+</div>
+`;
+
+exports[`Text Component Rendering renders with different HTML elements: as-span 1`] = `
+<div>
+  <span>
+    span text
+  </span>
+</div>
+`;

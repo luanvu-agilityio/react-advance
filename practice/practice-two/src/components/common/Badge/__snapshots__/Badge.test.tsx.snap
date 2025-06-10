@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge handles edge cases correctly: long-text 1`] = `
+<div>
+  <span
+    class="sc-Qotzb iVVyXB"
+  >
+    This is a very long badge text that should still render properly
+  </span>
+</div>
+`;
+
+exports[`Badge handles edge cases correctly: multiple-badges 1`] = `
+<div>
+  <div>
+    <span
+      class="sc-Qotzb iVVyXB"
+    >
+      Badge 1
+    </span>
+    <span
+      class="sc-Qotzb iVVyXB"
+    >
+      Badge 2
+    </span>
+    <span
+      class="sc-Qotzb iVVyXB"
+    >
+      Badge 3
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Badge renders basic content correctly: numeric-content 1`] = `
+<div>
+  <span
+    class="sc-Qotzb iVVyXB"
+  >
+    42
+  </span>
+</div>
+`;
+
+exports[`Badge renders basic content correctly: string-content 1`] = `
+<div>
+  <span
+    class="sc-Qotzb iVVyXB"
+  >
+    Test Badge
+  </span>
+</div>
+`;
+
+exports[`Badge renders basic content correctly: zero-content 1`] = `
+<div>
+  <span
+    class="sc-Qotzb iVVyXB"
+  >
+    0
+  </span>
+</div>
+`;
+
+exports[`Badge renders different content types correctly: html-content 1`] = `
+<div>
+  <span
+    class="sc-Qotzb iVVyXB"
+  >
+    <strong>
+      Bold
+    </strong>
+     Text
+  </span>
+</div>
+`;
+
+exports[`Badge renders different content types correctly: special-characters 1`] = `
+<div>
+  <span
+    class="sc-Qotzb iVVyXB"
+  >
+    ★★★★★
+  </span>
+</div>
+`;

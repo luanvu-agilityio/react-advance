@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import * as Form from '@radix-ui/react-form'
 import * as Checkbox from '@radix-ui/react-checkbox'
 import * as Accordion from '@radix-ui/react-accordion'
-
+import * as Dialog from '@radix-ui/react-dialog'
 // --------------------------
 // Layout Styled Components
 // --------------------------
@@ -10,7 +10,7 @@ export const CheckoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1440px; // Set a max-width for larger screens
+  max-width: 1260px;
   margin: 0 auto;
   padding: 16px;
   font-family: var(--font-family-primary);
@@ -21,7 +21,7 @@ export const CheckoutContainer = styled.div`
   }
 
   @media (min-width: 1024px) {
-    padding: 32px;
+    padding: 0 32px;
   }
 `
 
@@ -51,8 +51,9 @@ export const StepContainer = styled.div`
 // --------------------------
 export const StepHeader = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 32px;
 `
 
 export const StepTitle = styled.h2`
@@ -98,10 +99,12 @@ export const FormLabel = styled(Form.Label)`
   font-weight: var(--font-weight-semibold);
 `
 
-export const FormInput = styled(Form.Control)`
+export const FormInput = styled(Form.Control)<{ $hasError?: boolean }>`
   width: 100%;
   padding: 11.5px 18.5px;
-  border: 1px solid var(--black-shade-3);
+  border: 1px solid
+    ${(props) =>
+      props.$hasError ? 'var(--error-color, #e53935)' : 'var(--black-shade-3)'};
   border-radius: 12px;
   background-color: var(--black-shade-6);
   font-size: 14px;
@@ -111,7 +114,10 @@ export const FormInput = styled(Form.Control)`
   height: 42px;
 
   &:focus {
-    border-color: var(--green-color-default);
+    border-color: ${(props) =>
+      props.$hasError
+        ? 'var(--error-color, #e53935)'
+        : 'var(--green-color-default)'};
   }
 
   &::placeholder {
@@ -119,15 +125,16 @@ export const FormInput = styled(Form.Control)`
   }
 
   @media (max-width: 768px) {
-    font-size: 16px; // Better for mobile typing
+    font-size: 16px;
     padding: 10px 16px;
   }
 `
 
-export const FormSelect = styled.select`
+export const FormSelect = styled.select<{ $hasError?: boolean }>`
   width: 100%;
   padding: 11.5px 18.5px;
-  border: 1px solid #dedee0;
+  border: 1px solid
+    ${(props) => (props.$hasError ? 'var(--error-color, #e53935)' : '#dedee0')};
   border-radius: 12px;
   outline: none;
   appearance: none;
@@ -142,7 +149,10 @@ export const FormSelect = styled.select`
   color: var(--black-shade-2);
 
   &:focus {
-    border-color: var(--green-color-default);
+    border-color: ${(props) =>
+      props.$hasError
+        ? 'var(--error-color, #e53935)'
+        : 'var(--green-color-default)'};
   }
 
   &::placeholder {
@@ -161,10 +171,12 @@ export const FormMessage = styled(Form.Message)`
   margin-top: 4px;
 `
 
-export const FormTextArea = styled.textarea`
+export const FormTextArea = styled.textarea<{ $hasError?: boolean }>`
   width: 100%;
   padding: 11px 21px;
-  border: 1px solid var(--black-shade-3);
+  border: 1px solid
+    ${(props) =>
+      props.$hasError ? 'var(--error-color, #e53935)' : 'var(--black-shade-3)'};
   border-radius: 12px;
   font-size: 14px;
   font-weight: var(--font-weight-regular);
@@ -175,7 +187,10 @@ export const FormTextArea = styled.textarea`
   background-color: var(--black-shade-6);
 
   &:focus {
-    border-color: var(--green-color-default);
+    border-color: ${(props) =>
+      props.$hasError
+        ? 'var(--error-color, #e53935)'
+        : 'var(--green-color-default)'};
   }
 
   &::placeholder {
@@ -195,7 +210,18 @@ export const CheckboxContainer = styled.div`
   background-color: var(--black-shade-6);
   border: 1px solid var(--black-shade-3);
   border-radius: 12px;
+  width: 440px;
+  &.same-as-billing {
+    width: 250px;
+  }
 
+  &.marketing-consent {
+    width: 530px;
+  }
+
+  &.term-consent {
+    width: 440px;
+  }
   @media (max-width: 768px) {
     padding: 8px 12px;
     height: auto;
@@ -274,8 +300,8 @@ export const RadioCircle = styled.div`
     content: '';
     position: absolute;
     display: none;
-    top: 5px;
-    left: 5px;
+    top: 4px;
+    left: 4px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -535,19 +561,33 @@ export const PromoButton = styled.button`
 // Misc Components
 // --------------------------
 export const SubmitButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
   background-color: var(--green-color-default);
   color: white;
-  border: 2px solid var(--green-shade-1);
+  border: none;
   border-radius: 12px;
-  padding: 12px 48px;
   font-size: 15px;
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   width: 222px;
   height: 56px;
+  transition:
+    background-color 0.2s,
+    opacity 0.2s;
+  font-family: var(--font-family-primary);
 
-  &:hover {
-    background-color: #3d7449;
+  &:hover:not(:disabled) {
+    background-color: var(--green-shade-1);
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    color: #888888;
+    cursor: not-allowed;
+    opacity: 0.7;
   }
 `
 
@@ -690,5 +730,257 @@ export const ChevronIcon = styled.span`
 
   [data-state='open'] & {
     transform: rotate(180deg);
+  }
+`
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`
+
+export const BackButton = styled.button`
+  padding: 12px 24px;
+  background-color: transparent;
+  color: var(--green-color-default);
+  border: 1px solid var(--green-color-default);
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--green-shade-5);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--green-shade-4);
+  }
+`
+
+export const NextButton = styled.button`
+  padding: 12px 24px;
+  background-color: var(--green-color-default);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--green-shade-2);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--green-shade-4);
+  }
+
+  &:disabled {
+    background-color: var(--gray-shade-3);
+    cursor: not-allowed;
+  }
+`
+// Error Summary section
+export const ErrorSummaryContainer = styled.div`
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid var(--error-color, #e53935);
+  border-radius: 8px;
+  background-color: rgba(229, 57, 53, 0.05);
+`
+
+export const ErrorTitle = styled.h4`
+  color: var(--error-color, #e53935);
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 14px;
+`
+
+export const ErrorList = styled.ul`
+  margin: 0;
+  padding-left: 20px;
+`
+
+export const ErrorItem = styled.li`
+  color: var(--error-color, #e53935);
+  margin-bottom: 5px;
+  font-size: 12px;
+`
+// THANK YOU MODAL
+export const StyledOverlay = styled(Dialog.Overlay)`
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0;
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+`
+
+export const StyledDialog = styled(Dialog.Content)`
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  padding: 32px;
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    width: 95%;
+    padding: 24px 16px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  @keyframes contentShow {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  @keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`
+
+export const StyledTitle = styled(Dialog.Title)`
+  font-size: 24px;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 16px;
+  color: var(--text-color-heading);
+  text-align: center;
+`
+
+export const StyledDescription = styled(Dialog.Description)`
+  font-size: 16px;
+  color: var(--text-color-body);
+  margin-bottom: 32px;
+  text-align: center;
+  line-height: 1.5;
+`
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+
+    button {
+      width: 100%;
+    }
+  }
+`
+
+export const CloseButton = styled('button')`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: var(--black-shade-5);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--black-shade-1);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--black-shade-4);
+    color: var(--black-color-default);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--green-color-default);
+  }
+`
+
+// Custom styled buttons
+export const ButtonBase = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 500;
+  height: 44px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: var(--font-family-primary);
+
+  &:focus-visible {
+    outline: 2px solid var(--green-color-default);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`
+
+export const PrimaryButton = styled(ButtonBase)`
+  background-color: var(--green-color-default);
+  border: 1px solid var(--green-color-default);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: var(--green-color-dark);
+    border-color: var(--green-color-dark);
+  }
+
+  &:active:not(:disabled) {
+    background-color: hsl(157, 65%, 28%);
+    transform: translateY(1px);
+  }
+`
+
+export const SecondaryButton = styled(ButtonBase)`
+  background-color: transparent;
+  border: 1px solid #d1d5db;
+  color: var(--text-color-body);
+
+  &:hover:not(:disabled) {
+    background-color: #f3f4f6;
+    border-color: #b0b5bd;
+  }
+
+  &:active:not(:disabled) {
+    background-color: #e5e7eb;
+    transform: translateY(1px);
   }
 `

@@ -44,7 +44,8 @@
       "@models/*": ["models/*"],
       "@layouts/*": ["layouts/*"],
       "@data/*": ["data/*"],
-      "@schemas/*": ["schemas/*"]
+      "@schemas/*": ["schemas/*"],
+      "@stores/*": ["stores/*"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx", "jest.config.ts", "jest.setup.ts"]

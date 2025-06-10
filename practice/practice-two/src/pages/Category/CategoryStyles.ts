@@ -14,13 +14,26 @@ export const PageHeader = styled.div`
   flex-direction: column;
   gap: 16px;
   padding: 0 16px;
-  margin-bottom: 24px;
 
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 45px;
+    padding: 0;
+  }
+`
+
+export const FilterControlsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  @media (min-width: 768px) {
+    padding: 0;
+    gap: 16px;
   }
 `
 
@@ -64,7 +77,7 @@ export const ContentContainer = styled.div`
   @media (min-width: 768px) {
     flex-direction: row;
     gap: 32px;
-    padding: 0 45px 64px;
+    padding: 64px 0;
   }
 `
 

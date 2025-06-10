@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select Component renders different states correctly: default 1`] = `
+<div>
+  <div
+    class="sc-Qotzb fDwOxq"
+  >
+    <button
+      aria-autocomplete="none"
+      aria-controls="radix-«r0»"
+      aria-expanded="false"
+      class="sc-dKREkF jkuJWC"
+      data-placeholder=""
+      data-state="closed"
+      dir="ltr"
+      role="combobox"
+      type="button"
+      variant="default"
+    >
+      <span
+        style="pointer-events: none;"
+      >
+        Select an option
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-down sc-icnseD hKzWei"
+          fill="none"
+          height="16"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          style="stroke-width: 4;"
+          variant="default"
+          viewBox="0 0 24 24"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m6 9 6 6 6-6"
+          />
+        </svg>
+      </span>
+    </button>
+    <div
+      data-testid="select-portal"
+    />
+  </div>
+</div>
+`;
+
+exports[`Select Component renders different states correctly: disabled 1`] = `
+<div>
+  <div
+    class="sc-Qotzb fDwOxq"
+  >
+    <button
+      aria-autocomplete="none"
+      aria-controls="radix-«r8»"
+      aria-expanded="false"
+      class="sc-dKREkF jkuJWC"
+      data-disabled=""
+      data-placeholder=""
+      data-state="closed"
+      dir="ltr"
+      disabled=""
+      role="combobox"
+      type="button"
+      variant="default"
+    >
+      <span
+        style="pointer-events: none;"
+      >
+        Select an option
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-down sc-icnseD hKzWei"
+          fill="none"
+          height="16"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          style="stroke-width: 4;"
+          variant="default"
+          viewBox="0 0 24 24"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m6 9 6 6 6-6"
+          />
+        </svg>
+      </span>
+    </button>
+    <div
+      data-testid="select-portal"
+    />
+  </div>
+</div>
+`;
+
+exports[`Select Component renders different states correctly: with-label 1`] = `
+<div>
+  <div
+    class="sc-Qotzb fDwOxq"
+  >
+    <label
+      data-testid="radix-label"
+    >
+      Test Label
+    </label>
+    <button
+      aria-autocomplete="none"
+      aria-controls="radix-«r4»"
+      aria-expanded="false"
+      class="sc-dKREkF jkuJWC"
+      data-placeholder=""
+      data-state="closed"
+      dir="ltr"
+      role="combobox"
+      type="button"
+      variant="default"
+    >
+      <span
+        style="pointer-events: none;"
+      >
+        Select an option
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-down sc-icnseD hKzWei"
+          fill="none"
+          height="16"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          style="stroke-width: 4;"
+          variant="default"
+          viewBox="0 0 24 24"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m6 9 6 6 6-6"
+          />
+        </svg>
+      </span>
+    </button>
+    <div
+      data-testid="select-portal"
+    />
+  </div>
+</div>
+`;

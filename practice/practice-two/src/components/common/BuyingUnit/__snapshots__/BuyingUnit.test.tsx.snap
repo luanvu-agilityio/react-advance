@@ -1,0 +1,305 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BuyingUnit Component matches snapshots for different states: custom-values 1`] = `
+<div>
+  <div
+    class="sc-Qotzb kIlQEZ"
+  >
+    <input
+      aria-label="Quantity"
+      class="sc-fYsHOw eIEOpm"
+      min="1"
+      type="number"
+      value="5"
+    />
+    <div
+      class="sc-dKREkF llQWUV"
+    />
+    <div
+      class="sc-fWnslK jEoszk"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="sc-dIMoHT ceyjfN"
+      >
+        kgs
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-down"
+          fill="none"
+          height="12"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="12"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m6 9 6 6 6-6"
+          />
+        </svg>
+      </button>
+      <ul
+        class="sc-iQQCXo kMmmIP"
+        data-testid="dropdown-list"
+      >
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          pcs
+        </li>
+        <li
+          aria-selected="true"
+          class="sc-gDpztx hmkFAg"
+        >
+          kgs
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          box
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          pack
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BuyingUnit Component matches snapshots for different states: default 1`] = `
+<div>
+  <div
+    class="sc-Qotzb kIlQEZ"
+  >
+    <input
+      aria-label="Quantity"
+      class="sc-fYsHOw eIEOpm"
+      min="1"
+      type="number"
+      value="1"
+    />
+    <div
+      class="sc-dKREkF llQWUV"
+    />
+    <div
+      class="sc-fWnslK jEoszk"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="sc-dIMoHT ceyjfN"
+      >
+        pcs
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-down"
+          fill="none"
+          height="12"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="12"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m6 9 6 6 6-6"
+          />
+        </svg>
+      </button>
+      <ul
+        class="sc-iQQCXo kMmmIP"
+        data-testid="dropdown-list"
+      >
+        <li
+          aria-selected="true"
+          class="sc-gDpztx hmkFAg"
+        >
+          pcs
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          kgs
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          box
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          pack
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BuyingUnit Component matches snapshots for different states: large-size 1`] = `
+<div>
+  <div
+    class="sc-Qotzb kIlQEZ"
+  >
+    <input
+      aria-label="Quantity"
+      class="sc-fYsHOw eIEOpm"
+      min="1"
+      type="number"
+      value="1"
+    />
+    <div
+      class="sc-dKREkF llQWUV"
+    />
+    <div
+      class="sc-fWnslK jEoszk"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="sc-dIMoHT ceyjfN"
+      >
+        pcs
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-down"
+          fill="none"
+          height="12"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="12"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m6 9 6 6 6-6"
+          />
+        </svg>
+      </button>
+      <ul
+        class="sc-iQQCXo kMmmIP"
+        data-testid="dropdown-list"
+      >
+        <li
+          aria-selected="true"
+          class="sc-gDpztx hmkFAg"
+        >
+          pcs
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          kgs
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          box
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          pack
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BuyingUnit Component matches snapshots for different states: small-size 1`] = `
+<div>
+  <div
+    class="sc-Qotzb ghwjbr"
+  >
+    <input
+      aria-label="Quantity"
+      class="sc-fYsHOw eQyTyc"
+      min="1"
+      type="number"
+      value="1"
+    />
+    <div
+      class="sc-dKREkF hrrFRx"
+    />
+    <div
+      class="sc-fWnslK jEoszk"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="sc-dIMoHT iodpGc"
+      >
+        pcs
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-down"
+          fill="none"
+          height="12"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="12"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m6 9 6 6 6-6"
+          />
+        </svg>
+      </button>
+      <ul
+        class="sc-iQQCXo kMmmIP"
+        data-testid="dropdown-list"
+      >
+        <li
+          aria-selected="true"
+          class="sc-gDpztx hmkFAg"
+        >
+          pcs
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          kgs
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          box
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-gDpztx hmkFAg"
+        >
+          pack
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;

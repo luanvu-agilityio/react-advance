@@ -75,7 +75,7 @@ export const getOrderPrintTemplate = (
           <div>
             <h2>Billing Address</h2>
             <p>${customerData.address ?? ''}</p>
-            <p>${customerData.city ?? ''}, ${customerData.state ?? ''} ${customerData.zipCode ?? ''}</p>
+            <p>${customerData.city ?? ''}, ${customerData.country ?? ''} ${customerData.zip ?? ''}</p>
           </div>
         </div>
         

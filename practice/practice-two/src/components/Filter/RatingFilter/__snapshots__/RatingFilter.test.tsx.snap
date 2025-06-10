@@ -1,0 +1,926 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RatingFilter Rendering renders different component states correctly: all-selected 1`] = `
+<div>
+  <div
+    class="sc-jScdur lcnHry"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Rating
+    </h2>
+    <div
+      class="sc-dcKlJK hqQole"
+    >
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="true"
+          class="sc-cXawGu VtGFV"
+          data-state="checked"
+          id="rating-0"
+          role="checkbox"
+          type="button"
+          value="on"
+        >
+          <span
+            class="sc-jJAtPt dVvwCd"
+            data-state="checked"
+            style="pointer-events: none;"
+          >
+            <div
+              data-testid="check-icon"
+            >
+              ✓
+            </div>
+          </span>
+        </button>
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="true"
+          class="sc-cXawGu VtGFV"
+          data-state="checked"
+          id="rating-1"
+          role="checkbox"
+          type="button"
+          value="on"
+        >
+          <span
+            class="sc-jJAtPt dVvwCd"
+            data-state="checked"
+            style="pointer-events: none;"
+          >
+            <div
+              data-testid="check-icon"
+            >
+              ✓
+            </div>
+          </span>
+        </button>
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="true"
+          class="sc-cXawGu VtGFV"
+          data-state="checked"
+          id="rating-2"
+          role="checkbox"
+          type="button"
+          value="on"
+        >
+          <span
+            class="sc-jJAtPt dVvwCd"
+            data-state="checked"
+            style="pointer-events: none;"
+          >
+            <div
+              data-testid="check-icon"
+            >
+              ✓
+            </div>
+          </span>
+        </button>
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="true"
+          class="sc-cXawGu VtGFV"
+          data-state="checked"
+          id="rating-3"
+          role="checkbox"
+          type="button"
+          value="on"
+        >
+          <span
+            class="sc-jJAtPt dVvwCd"
+            data-state="checked"
+            style="pointer-events: none;"
+          >
+            <div
+              data-testid="check-icon"
+            >
+              ✓
+            </div>
+          </span>
+        </button>
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="true"
+          class="sc-cXawGu VtGFV"
+          data-state="checked"
+          id="rating-4"
+          role="checkbox"
+          type="button"
+          value="on"
+        >
+          <span
+            class="sc-jJAtPt dVvwCd"
+            data-state="checked"
+            style="pointer-events: none;"
+          >
+            <div
+              data-testid="check-icon"
+            >
+              ✓
+            </div>
+          </span>
+        </button>
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RatingFilter Rendering renders different component states correctly: default-state 1`] = `
+<div>
+  <div
+    class="sc-jScdur lcnHry"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Rating
+    </h2>
+    <div
+      class="sc-dcKlJK hqQole"
+    >
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="false"
+          class="sc-cXawGu VtGFV"
+          data-state="unchecked"
+          id="rating-0"
+          role="checkbox"
+          type="button"
+          value="on"
+        />
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="true"
+          class="sc-cXawGu VtGFV"
+          data-state="checked"
+          id="rating-1"
+          role="checkbox"
+          type="button"
+          value="on"
+        >
+          <span
+            class="sc-jJAtPt dVvwCd"
+            data-state="checked"
+            style="pointer-events: none;"
+          >
+            <div
+              data-testid="check-icon"
+            >
+              ✓
+            </div>
+          </span>
+        </button>
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="false"
+          class="sc-cXawGu VtGFV"
+          data-state="unchecked"
+          id="rating-2"
+          role="checkbox"
+          type="button"
+          value="on"
+        />
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="false"
+          class="sc-cXawGu VtGFV"
+          data-state="unchecked"
+          id="rating-3"
+          role="checkbox"
+          type="button"
+          value="on"
+        />
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="false"
+          class="sc-cXawGu VtGFV"
+          data-state="unchecked"
+          id="rating-4"
+          role="checkbox"
+          type="button"
+          value="on"
+        />
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RatingFilter Rendering renders different component states correctly: empty-ratings 1`] = `
+<div>
+  <div
+    class="sc-jScdur lcnHry"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Rating
+    </h2>
+    <div
+      class="sc-dcKlJK hqQole"
+    />
+  </div>
+</div>
+`;
+
+exports[`RatingFilter Rendering renders different component states correctly: none-selected 1`] = `
+<div>
+  <div
+    class="sc-jScdur lcnHry"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Rating
+    </h2>
+    <div
+      class="sc-dcKlJK hqQole"
+    >
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="false"
+          class="sc-cXawGu VtGFV"
+          data-state="unchecked"
+          id="rating-0"
+          role="checkbox"
+          type="button"
+          value="on"
+        />
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="false"
+          class="sc-cXawGu VtGFV"
+          data-state="unchecked"
+          id="rating-1"
+          role="checkbox"
+          type="button"
+          value="on"
+        />
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="false"
+          class="sc-cXawGu VtGFV"
+          data-state="unchecked"
+          id="rating-2"
+          role="checkbox"
+          type="button"
+          value="on"
+        />
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="false"
+          class="sc-cXawGu VtGFV"
+          data-state="unchecked"
+          id="rating-3"
+          role="checkbox"
+          type="button"
+          value="on"
+        />
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="false"
+          class="sc-cXawGu VtGFV"
+          data-state="unchecked"
+          id="rating-4"
+          role="checkbox"
+          type="button"
+          value="on"
+        />
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RatingFilter Rendering renders different component states correctly: single-rating 1`] = `
+<div>
+  <div
+    class="sc-jScdur lcnHry"
+  >
+    <h2
+      class="sc-fYsHOw gpnbOD"
+    >
+      Rating
+    </h2>
+    <div
+      class="sc-dcKlJK hqQole"
+    >
+      <div
+        class="sc-jMsorb cyLRQD"
+      >
+        <button
+          aria-checked="true"
+          class="sc-cXawGu VtGFV"
+          data-state="checked"
+          id="rating-0"
+          role="checkbox"
+          type="button"
+          value="on"
+        >
+          <span
+            class="sc-jJAtPt dVvwCd"
+            data-state="checked"
+            style="pointer-events: none;"
+          >
+            <div
+              data-testid="check-icon"
+            >
+              ✓
+            </div>
+          </span>
+        </button>
+        <div
+          class="sc-jPkiSJ hHndaL"
+        >
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="true"
+            data-testid="star-icon"
+          >
+            ★
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+          <div
+            data-filled="false"
+            data-testid="star-icon"
+          >
+            ☆
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

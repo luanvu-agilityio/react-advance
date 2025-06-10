@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link Component Rendering matches snapshots for various configurations: custom-styled-link 1`] = `
+<div>
+  <a
+    class="sc-Qotzb jUyYcI"
+    href="https://example.com"
+    style="color: red; font-size: 16px;"
+    target="_self"
+  >
+    Click me
+  </a>
+</div>
+`;
+
+exports[`Link Component Rendering matches snapshots for various configurations: default-link 1`] = `
+<div>
+  <a
+    class="sc-Qotzb jUyYcI"
+    href="https://example.com"
+    target="_self"
+  >
+    Click me
+  </a>
+</div>
+`;
+
+exports[`Link Component Rendering matches snapshots for various configurations: disabled-link 1`] = `
+<div>
+  <a
+    class="sc-Qotzb kzgBsp"
+    disabled=""
+    href="https://example.com"
+    target="_self"
+  >
+    Click me
+  </a>
+</div>
+`;
+
+exports[`Link Component Rendering matches snapshots for various configurations: external-link 1`] = `
+<div>
+  <a
+    class="sc-Qotzb jUyYcI"
+    href="https://example.com"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    External Link
+  </a>
+</div>
+`;
+
+exports[`Link Component Rendering matches snapshots for various configurations: link-with-class 1`] = `
+<div>
+  <a
+    class="sc-Qotzb jUyYcI custom-class"
+    href="https://example.com"
+    target="_self"
+  >
+    Classy Link
+  </a>
+</div>
+`;

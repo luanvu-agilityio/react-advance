@@ -40,8 +40,8 @@ export const prepareExcelData = (customerData: OrderSummaryProps) => {
     ],
     ['Address', customerData.address ?? 'N/A'],
     ['City', customerData.city ?? 'N/A'],
-    ['State', customerData.state ?? 'N/A'],
-    ['Zip Code', customerData.zipCode ?? 'N/A'],
+    ['State', customerData.country ?? 'N/A'],
+    ['Zip Code', customerData.zip ?? 'N/A'],
     [
       {
         v: 'ORDER DETAILS',

@@ -1,0 +1,635 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartItem Component matches snapshot with different unit 1`] = `
+<div>
+  <div
+    class="sc-Qotzb kCEAoD"
+  >
+    <div
+      style="display: flex; flex-direction: column; gap: 12px;"
+    >
+      <div
+        class="sc-fYsHOw eooCtm"
+      >
+        <img
+          alt="Test Product"
+          src="https://test-image.jpg"
+        />
+      </div>
+      <div
+        class="sc-jMsorb loeJqH"
+      >
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Wishlist"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372436/wishlist_cltlcf.svg"
+          />
+          Wishlist
+        </button>
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Compare"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/compare_oeiv1m.svg"
+          />
+          Compare
+        </button>
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Remove"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372432/remove_gbwco0.svg"
+          />
+          Remove
+        </button>
+      </div>
+    </div>
+    <div
+      class="sc-dKREkF hyvUmY"
+    >
+      <div
+        style="display: flex; flex-direction: column; gap: 4px;"
+      >
+        <h3
+          class="sc-fWnslK hLsXWl"
+        >
+          Test Product
+        </h3>
+        <div
+          style="display: flex; flex-direction: column; gap: 4px;"
+        >
+          <div
+            class="sc-dIMoHT gqZOSq"
+          >
+            <span
+              class="sc-iQQCXo hELsaQ"
+            >
+              Farm:
+            </span>
+            <span
+              class="sc-gDpztx ioyOiP"
+            >
+              Test Farm
+            </span>
+          </div>
+          <div
+            class="sc-dIMoHT gqZOSq"
+          >
+            <span
+              class="sc-iQQCXo hELsaQ"
+            >
+              Freshness:
+            </span>
+            <span
+              class="sc-gDpztx ioyOiP"
+            >
+              Fresh (1 day)
+            </span>
+          </div>
+        </div>
+        <div
+          data-testid="star-rating"
+        >
+          4
+           stars
+        </div>
+      </div>
+      <div
+        class="sc-icnseD dRzQnJ"
+      >
+        <div
+          class="sc-kpOvIu brXGTR"
+        >
+          9.99
+           USD
+          <span
+            class="original-price"
+          >
+            12.99
+             USD
+          </span>
+        </div>
+        <div
+          data-size="small"
+          data-testid="buying-unit"
+        >
+          <button
+            data-testid="decrease-quantity"
+          >
+            -
+          </button>
+          <span
+            data-testid="quantity-display"
+          >
+            2
+             
+            pcs
+          </span>
+          <button
+            data-testid="increase-quantity"
+          >
+            +
+          </button>
+          <select
+            data-testid="unit-selector"
+          >
+            <option
+              value="pcs"
+            >
+              pcs
+            </option>
+            <option
+              value="kg"
+            >
+              kg
+            </option>
+            <option
+              value="lb"
+            >
+              lb
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CartItem Component matches snapshot with high quantity 1`] = `
+<div>
+  <div
+    class="sc-Qotzb kCEAoD"
+  >
+    <div
+      style="display: flex; flex-direction: column; gap: 12px;"
+    >
+      <div
+        class="sc-fYsHOw eooCtm"
+      >
+        <img
+          alt="Test Product"
+          src="https://test-image.jpg"
+        />
+      </div>
+      <div
+        class="sc-jMsorb loeJqH"
+      >
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Wishlist"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372436/wishlist_cltlcf.svg"
+          />
+          Wishlist
+        </button>
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Compare"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/compare_oeiv1m.svg"
+          />
+          Compare
+        </button>
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Remove"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372432/remove_gbwco0.svg"
+          />
+          Remove
+        </button>
+      </div>
+    </div>
+    <div
+      class="sc-dKREkF hyvUmY"
+    >
+      <div
+        style="display: flex; flex-direction: column; gap: 4px;"
+      >
+        <h3
+          class="sc-fWnslK hLsXWl"
+        >
+          Test Product
+        </h3>
+        <div
+          style="display: flex; flex-direction: column; gap: 4px;"
+        >
+          <div
+            class="sc-dIMoHT gqZOSq"
+          >
+            <span
+              class="sc-iQQCXo hELsaQ"
+            >
+              Farm:
+            </span>
+            <span
+              class="sc-gDpztx ioyOiP"
+            >
+              Test Farm
+            </span>
+          </div>
+          <div
+            class="sc-dIMoHT gqZOSq"
+          >
+            <span
+              class="sc-iQQCXo hELsaQ"
+            >
+              Freshness:
+            </span>
+            <span
+              class="sc-gDpztx ioyOiP"
+            >
+              Fresh (1 day)
+            </span>
+          </div>
+        </div>
+        <div
+          data-testid="star-rating"
+        >
+          4
+           stars
+        </div>
+      </div>
+      <div
+        class="sc-icnseD dRzQnJ"
+      >
+        <div
+          class="sc-kpOvIu brXGTR"
+        >
+          9.99
+           USD
+          <span
+            class="original-price"
+          >
+            12.99
+             USD
+          </span>
+        </div>
+        <div
+          data-size="small"
+          data-testid="buying-unit"
+        >
+          <button
+            data-testid="decrease-quantity"
+          >
+            -
+          </button>
+          <span
+            data-testid="quantity-display"
+          >
+            999
+             
+            kg
+          </span>
+          <button
+            data-testid="increase-quantity"
+          >
+            +
+          </button>
+          <select
+            data-testid="unit-selector"
+          >
+            <option
+              value="pcs"
+            >
+              pcs
+            </option>
+            <option
+              value="kg"
+            >
+              kg
+            </option>
+            <option
+              value="lb"
+            >
+              lb
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CartItem Component matches snapshot without original price 1`] = `
+<div>
+  <div
+    class="sc-Qotzb kCEAoD"
+  >
+    <div
+      style="display: flex; flex-direction: column; gap: 12px;"
+    >
+      <div
+        class="sc-fYsHOw eooCtm"
+      >
+        <img
+          alt="Test Product"
+          src="https://test-image.jpg"
+        />
+      </div>
+      <div
+        class="sc-jMsorb loeJqH"
+      >
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Wishlist"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372436/wishlist_cltlcf.svg"
+          />
+          Wishlist
+        </button>
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Compare"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/compare_oeiv1m.svg"
+          />
+          Compare
+        </button>
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Remove"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372432/remove_gbwco0.svg"
+          />
+          Remove
+        </button>
+      </div>
+    </div>
+    <div
+      class="sc-dKREkF hyvUmY"
+    >
+      <div
+        style="display: flex; flex-direction: column; gap: 4px;"
+      >
+        <h3
+          class="sc-fWnslK hLsXWl"
+        >
+          Test Product
+        </h3>
+        <div
+          style="display: flex; flex-direction: column; gap: 4px;"
+        >
+          <div
+            class="sc-dIMoHT gqZOSq"
+          >
+            <span
+              class="sc-iQQCXo hELsaQ"
+            >
+              Farm:
+            </span>
+            <span
+              class="sc-gDpztx ioyOiP"
+            >
+              Test Farm
+            </span>
+          </div>
+          <div
+            class="sc-dIMoHT gqZOSq"
+          >
+            <span
+              class="sc-iQQCXo hELsaQ"
+            >
+              Freshness:
+            </span>
+            <span
+              class="sc-gDpztx ioyOiP"
+            >
+              Fresh (1 day)
+            </span>
+          </div>
+        </div>
+        <div
+          data-testid="star-rating"
+        >
+          4
+           stars
+        </div>
+      </div>
+      <div
+        class="sc-icnseD dRzQnJ"
+      >
+        <div
+          class="sc-kpOvIu brXGTR"
+        >
+          9.99
+           USD
+        </div>
+        <div
+          data-size="small"
+          data-testid="buying-unit"
+        >
+          <button
+            data-testid="decrease-quantity"
+          >
+            -
+          </button>
+          <span
+            data-testid="quantity-display"
+          >
+            2
+             
+            kg
+          </span>
+          <button
+            data-testid="increase-quantity"
+          >
+            +
+          </button>
+          <select
+            data-testid="unit-selector"
+          >
+            <option
+              value="pcs"
+            >
+              pcs
+            </option>
+            <option
+              value="kg"
+            >
+              kg
+            </option>
+            <option
+              value="lb"
+            >
+              lb
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CartItem Component matches the snapshot for basic rendering 1`] = `
+<div>
+  <div
+    class="sc-Qotzb kCEAoD"
+  >
+    <div
+      style="display: flex; flex-direction: column; gap: 12px;"
+    >
+      <div
+        class="sc-fYsHOw eooCtm"
+      >
+        <img
+          alt="Test Product"
+          src="https://test-image.jpg"
+        />
+      </div>
+      <div
+        class="sc-jMsorb loeJqH"
+      >
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Wishlist"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372436/wishlist_cltlcf.svg"
+          />
+          Wishlist
+        </button>
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Compare"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/compare_oeiv1m.svg"
+          />
+          Compare
+        </button>
+        <button
+          class="sc-cXawGu gGzVVD"
+        >
+          <img
+            alt="Remove"
+            src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372432/remove_gbwco0.svg"
+          />
+          Remove
+        </button>
+      </div>
+    </div>
+    <div
+      class="sc-dKREkF hyvUmY"
+    >
+      <div
+        style="display: flex; flex-direction: column; gap: 4px;"
+      >
+        <h3
+          class="sc-fWnslK hLsXWl"
+        >
+          Test Product
+        </h3>
+        <div
+          style="display: flex; flex-direction: column; gap: 4px;"
+        >
+          <div
+            class="sc-dIMoHT gqZOSq"
+          >
+            <span
+              class="sc-iQQCXo hELsaQ"
+            >
+              Farm:
+            </span>
+            <span
+              class="sc-gDpztx ioyOiP"
+            >
+              Test Farm
+            </span>
+          </div>
+          <div
+            class="sc-dIMoHT gqZOSq"
+          >
+            <span
+              class="sc-iQQCXo hELsaQ"
+            >
+              Freshness:
+            </span>
+            <span
+              class="sc-gDpztx ioyOiP"
+            >
+              Fresh (1 day)
+            </span>
+          </div>
+        </div>
+        <div
+          data-testid="star-rating"
+        >
+          4
+           stars
+        </div>
+      </div>
+      <div
+        class="sc-icnseD dRzQnJ"
+      >
+        <div
+          class="sc-kpOvIu brXGTR"
+        >
+          9.99
+           USD
+          <span
+            class="original-price"
+          >
+            12.99
+             USD
+          </span>
+        </div>
+        <div
+          data-size="small"
+          data-testid="buying-unit"
+        >
+          <button
+            data-testid="decrease-quantity"
+          >
+            -
+          </button>
+          <span
+            data-testid="quantity-display"
+          >
+            2
+             
+            kg
+          </span>
+          <button
+            data-testid="increase-quantity"
+          >
+            +
+          </button>
+          <select
+            data-testid="unit-selector"
+          >
+            <option
+              value="pcs"
+            >
+              pcs
+            </option>
+            <option
+              value="kg"
+            >
+              kg
+            </option>
+            <option
+              value="lb"
+            >
+              lb
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

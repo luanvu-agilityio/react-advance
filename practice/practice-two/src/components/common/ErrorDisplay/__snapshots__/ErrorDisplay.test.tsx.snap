@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorDisplay Rendering renders all variants correctly: custom-retry-text 1`] = `
+<div>
+  <div
+    class="sc-Qotzb eirdyb"
+  >
+    <div
+      data-size="48"
+      data-testid="alert-triangle-icon"
+    >
+      AlertTriangle
+    </div>
+    <h3
+      class="sc-dKREkF hCKzTR"
+    >
+      Failed to Load Products
+    </h3>
+    <p
+      class="sc-fWnslK imQEhB"
+    >
+      Test error message
+    </p>
+    <button
+      data-testid="retry-button"
+      data-variant="solid"
+    >
+      <div
+        data-size="16"
+        data-testid="refresh-icon"
+      >
+        RefreshCw
+      </div>
+      Custom Retry
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ErrorDisplay Rendering renders all variants correctly: custom-title 1`] = `
+<div>
+  <div
+    class="sc-Qotzb eirdyb"
+  >
+    <div
+      data-size="48"
+      data-testid="alert-triangle-icon"
+    >
+      AlertTriangle
+    </div>
+    <h3
+      class="sc-dKREkF hCKzTR"
+    >
+      Custom Error Title
+    </h3>
+    <p
+      class="sc-fWnslK imQEhB"
+    >
+      Test error message
+    </p>
+  </div>
+</div>
+`;
+
+exports[`ErrorDisplay Rendering renders all variants correctly: default-error-display 1`] = `
+<div>
+  <div
+    class="sc-Qotzb eirdyb"
+  >
+    <div
+      data-size="48"
+      data-testid="alert-triangle-icon"
+    >
+      AlertTriangle
+    </div>
+    <h3
+      class="sc-dKREkF hCKzTR"
+    >
+      Failed to Load Products
+    </h3>
+    <p
+      class="sc-fWnslK imQEhB"
+    >
+      Test error message
+    </p>
+  </div>
+</div>
+`;
+
+exports[`ErrorDisplay Rendering renders all variants correctly: long-error-message 1`] = `
+<div>
+  <div
+    class="sc-Qotzb eirdyb"
+  >
+    <div
+      data-size="48"
+      data-testid="alert-triangle-icon"
+    >
+      AlertTriangle
+    </div>
+    <h3
+      class="sc-dKREkF hCKzTR"
+    >
+      Failed to Load Products
+    </h3>
+    <p
+      class="sc-fWnslK imQEhB"
+    >
+      This is a very long error message that should be displayed properly without breaking the layout. It includes many words to ensure that text wrapping and other layout considerations are properly tested in the snapshot.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`ErrorDisplay Rendering renders all variants correctly: with-retry-button 1`] = `
+<div>
+  <div
+    class="sc-Qotzb eirdyb"
+  >
+    <div
+      data-size="48"
+      data-testid="alert-triangle-icon"
+    >
+      AlertTriangle
+    </div>
+    <h3
+      class="sc-dKREkF hCKzTR"
+    >
+      Failed to Load Products
+    </h3>
+    <p
+      class="sc-fWnslK imQEhB"
+    >
+      Test error message
+    </p>
+    <button
+      data-testid="retry-button"
+      data-variant="solid"
+    >
+      <div
+        data-size="16"
+        data-testid="refresh-icon"
+      >
+        RefreshCw
+      </div>
+      Try Again
+    </button>
+  </div>
+</div>
+`;

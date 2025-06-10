@@ -1,16 +1,17 @@
-import { useEffect, useMemo, useState } from 'react'
-
+import { useState } from 'react'
 import { PlusIcon } from 'lucide-react'
-import { productData } from '@data/product-data'
-import { Spinner, Theme } from '@radix-ui/themes'
-import BuyingUnit from './components/BuyingUnit'
-import RelatedProducts from './components/RelatedProducts'
-import { useNavigate, useParams } from 'react-router-dom'
-import { getTabDataByProductId } from '@data/tab-data'
-import ProductTabs from './components/Tabs'
+import { Spinner } from '@radix-ui/themes'
+import BuyingUnit from '@components/common/BuyingUnit/BuyingUnit'
+import RelatedProducts from './RelatedProducts/RelatedProducts'
+import ProductTabs from '@components/common/Tabs/Tabs'
 import { renderStars } from '@helpers/renderStar'
-import Breadcrumbs from '@components/layout/Breadcrumb/Breadcrumb'
-import { useCart } from '@contexts/CartContext'
+import { useParams } from 'react-router-dom'
+import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
+import ErrorDisplay from '@components/common/ErrorDisplay'
+
+// Import our React Query hooks
+import { useProductDetails, useProductTabData } from '@hooks/useProductQuery'
+import { useAddToCart } from '@hooks/useCartMutation'
 
 import {
   ActionButton,
@@ -40,56 +41,87 @@ import {
 } from './ProductDetailStyles'
 
 const ProductDetailPage = () => {
-  const navigate = useNavigate()
-  const { addItem } = useCart()
   const [quantity, setQuantity] = useState(1)
   const [buyUnit, setBuyUnit] = useState('pcs')
   const { productId } = useParams()
 
-  const product = useMemo(
-    () => productData.find((p) => p.id === Number(productId)),
-    [productId]
-  )
+  // Use Tanstack Query to fetch product data
+  const {
+    data: product,
+    isLoading: isLoadingProduct,
+    error: productError,
+  } = useProductDetails(productId)
 
-  // Get tab data based on product ID
-  const productTabData = useMemo(() => {
-    if (!productId) return getTabDataByProductId(0)
-    return getTabDataByProductId(Number(productId))
-  }, [productId])
+  // Use Tanstack Query to fetch tab data
+  const {
+    data: productTabData,
+    isLoading: isLoadingTabs,
+    error: tabError,
+  } = useProductTabData(productId ? Number(productId) : undefined)
 
-  useEffect(() => {
-    if (!productId) {
-      throw new Promise((resolve) => {
-        setTimeout(resolve, 500)
-      })
-    }
-  }, [productId])
+  // Use cart mutation hook
+  const { mutate: addToCart, isPending: isAddingToCart } = useAddToCart()
 
-  const handleProductClick = (newProductId: number) => {
-    const newProduct = productData.find((p) => p.id === newProductId)
-    if (newProduct) {
-      const categoryPath = newProduct.category.toLowerCase().replace(/ /g, '-')
-      const subcategoryPath = newProduct.subcategory
-        .toLowerCase()
-        .replace(/ /g, '-')
-      navigate(`${categoryPath}/${subcategoryPath}/${newProductId}`)
-      window.scrollTo(0, 0)
-    }
-  }
-
+  // Handle adding to cart
   const onBuy = () => {
     if (product) {
-      addItem(product, quantity, buyUnit)
+      addToCart({
+        product,
+        quantity,
+        unit: buyUnit,
+      })
     }
   }
 
+  // Handle loading states
+  if (isLoadingProduct) {
+    return (
+      <Container>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '300px',
+          }}
+        >
+          <Spinner size="3" />
+        </div>
+      </Container>
+    )
+  }
+
+  // Handle error states
+  if (productError) {
+    return (
+      <Container>
+        <ErrorDisplay
+          title={productError.message}
+          error="Unable to load product details"
+          onRetry={() => window.location.reload()}
+        />
+      </Container>
+    )
+  }
+
+  // If no product found
   if (!product) {
-    return <Spinner />
+    return (
+      <Container>
+        <div style={{ padding: '2rem', textAlign: 'center' }}>
+          <h2>Product not found</h2>
+          <p>
+            The product you're looking for doesn't exist or has been removed.
+          </p>
+        </div>
+      </Container>
+    )
   }
 
   return (
     <Container>
       <Breadcrumbs style={{ padding: '12px 0' }} />
+
       {/* Product Overview Section */}
       <ProductOverview>
         {/* Product Image Gallery */}
@@ -102,17 +134,20 @@ const ProductDetailPage = () => {
               <ShippingBadge>Free shipping</ShippingBadge>
             )}
             <ProductImage>
-              <img src={product.images.main} alt={product.title} />
+              <img src={product.imageUrl} alt={product.title} />
             </ProductImage>
           </ProductImageContainer>
 
-          {product.images.gallery.slice(1, 3).map((image, index) => (
-            <ProductImageContainer key={index}>
+          {product.imageUrl && (
+            <ProductImageContainer>
               <ProductImage>
-                <img src={image} alt={`${product.title} view ${index + 2}`} />
+                <img
+                  src={product.imageUrl}
+                  alt={`${product.title} additional view`}
+                />
               </ProductImage>
             </ProductImageContainer>
-          ))}
+          )}
         </ImageContainer>
 
         {/* Product Details */}
@@ -186,19 +221,21 @@ const ProductDetailPage = () => {
               </PriceInfo>
 
               <AddToCartContainer>
-                <Theme style={{ minHeight: '48px' }}>
+                <div style={{ minHeight: '48px' }}>
                   <BuyingUnit
                     quantity={quantity}
                     unit={buyUnit}
                     onQuantityChange={setQuantity}
                     onUnitChange={setBuyUnit}
                   />
-                </Theme>
+                </div>
 
                 <BuyButton
                   variant="solid"
                   onClick={onBuy}
+                  disabled={isAddingToCart}
                   style={{
+                    height: '100%',
                     backgroundColor: 'var(--green-color-default)',
                     color: 'var(--white-color)',
                     fontSize: '15px',
@@ -206,14 +243,22 @@ const ProductDetailPage = () => {
                     padding: '10px 16px',
                     borderRadius: '12px',
                     border: '2px solid var(--green-shade-1)',
+                    cursor: isAddingToCart ? 'not-allowed' : 'pointer',
+                    opacity: isAddingToCart ? 0.7 : 1,
                   }}
                 >
-                  <PlusIcon
-                    size={15}
-                    color="white"
-                    style={{ strokeWidth: 5, marginRight: '8px' }}
-                  />
-                  Add to cart
+                  {isAddingToCart ? (
+                    <Spinner size="1" />
+                  ) : (
+                    <>
+                      <PlusIcon
+                        size={15}
+                        color="white"
+                        style={{ strokeWidth: 5, marginRight: '8px' }}
+                      />
+                      Add to cart
+                    </>
+                  )}
                 </BuyButton>
               </AddToCartContainer>
             </PriceContainer>
@@ -241,24 +286,52 @@ const ProductDetailPage = () => {
           </div>
 
           {/* Tabs Section */}
-          <ProductTabs
-            description={{
-              ...productTabData.description,
-              vitamins: productTabData.description.vitamins ?? [],
-            }}
-            reviews={productTabData.reviews}
-            questions={productTabData.questions}
-          />
+          {(() => {
+            if (isLoadingTabs) {
+              return (
+                <div style={{ padding: '20px 0', textAlign: 'center' }}>
+                  <Spinner />
+                </div>
+              )
+            }
+
+            if (tabError) {
+              return (
+                <div style={{ padding: '20px 0', color: 'var(--red-500)' }}>
+                  Unable to load product details
+                </div>
+              )
+            }
+
+            if (productTabData) {
+              return (
+                <ProductTabs
+                  description={{
+                    ...productTabData.description,
+                    origins: productTabData.description?.origins ?? '',
+                    cookingInfo: productTabData.description?.cookingInfo ?? '',
+                    vitamins: productTabData.description?.vitamins ?? [],
+                  }}
+                  reviews={productTabData.reviews ?? { count: 0, items: [] }}
+                  questions={
+                    productTabData.questions ?? { count: 0, items: [] }
+                  }
+                />
+              )
+            }
+
+            return null
+          })()}
         </ProductDetails>
       </ProductOverview>
 
       {/* Related Products Section */}
-
-      <RelatedProducts
-        currentProductId={product.id}
-        subcategory={product.subcategory}
-        onProductClick={handleProductClick}
-      />
+      {product && (
+        <RelatedProducts
+          currentProductId={product.id}
+          subcategory={product.subcategory}
+        />
+      )}
     </Container>
   )
 }

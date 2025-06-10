@@ -1,0 +1,524 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartModal matches snapshot when modal is closed 1`] = `
+<div>
+  <div
+    data-testid="memory-router"
+  />
+</div>
+`;
+
+exports[`CartModal matches snapshot with empty cart 1`] = `
+<div>
+  <div
+    data-testid="memory-router"
+  >
+    <div
+      class="sc-Qotzb dwvnow"
+      data-testid="modal-overlay"
+    >
+      <div
+        class="sc-fYsHOw cvEzIP"
+      >
+        <div
+          class="sc-dKREkF fFaeCn"
+        >
+          <h2
+            class="sc-fWnslK bGMzDG"
+          >
+            Shopping cart
+          </h2>
+          <button
+            class="sc-dIMoHT feVYAI"
+          >
+            <span>
+              Close
+            </span>
+            ×
+          </button>
+        </div>
+        <div
+          class="sc-iQQCXo kXdUuw"
+        >
+          <div
+            class="sc-cUiCeM fWYrCO"
+          >
+            <p>
+              Your cart is empty
+            </p>
+            <button
+              class="sc-jMsorb sc-jJAtPt WgKhT cMNUkD"
+            >
+              Continue shopping
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CartModal matches snapshot with items in cart 1`] = `
+<div>
+  <div
+    data-testid="memory-router"
+  >
+    <div
+      class="sc-Qotzb dwvnow"
+      data-testid="modal-overlay"
+    >
+      <div
+        class="sc-fYsHOw cvEzIP"
+      >
+        <div
+          class="sc-dKREkF fFaeCn"
+        >
+          <h2
+            class="sc-fWnslK bGMzDG"
+          >
+            Shopping cart
+          </h2>
+          <button
+            class="sc-dIMoHT feVYAI"
+          >
+            <span>
+              Close
+            </span>
+            ×
+          </button>
+        </div>
+        <div
+          class="sc-iQQCXo kXdUuw"
+        >
+          <div
+            class="sc-hZARmv fzhCVr"
+          >
+            <div
+              style="display: flex; flex-direction: column; gap: 12px;"
+            >
+              <div
+                class="sc-dKKIkQ dVouZ"
+              >
+                <img
+                  alt="Test Product 1"
+                />
+              </div>
+              <div
+                class="sc-dTUlgT ieKzsO"
+              >
+                <button
+                  class="sc-lpbaSe OOHEh"
+                >
+                  <img
+                    alt="Wishlist"
+                    src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372436/wishlist_cltlcf.svg"
+                  />
+                  Wishlist
+                </button>
+                <button
+                  class="sc-lpbaSe OOHEh"
+                >
+                  <img
+                    alt="Compare"
+                    src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/compare_oeiv1m.svg"
+                  />
+                  Compare
+                </button>
+                <button
+                  class="sc-lpbaSe OOHEh"
+                >
+                  <img
+                    alt="Remove"
+                    src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372432/remove_gbwco0.svg"
+                  />
+                  Remove
+                </button>
+              </div>
+            </div>
+            <div
+              class="sc-fpEFIB jMmMzv"
+            >
+              <div
+                style="display: flex; flex-direction: column; gap: 4px;"
+              >
+                <h3
+                  class="sc-gAqISa biTVvO"
+                >
+                  Test Product 1
+                </h3>
+                <div
+                  style="display: flex; flex-direction: column; gap: 4px;"
+                >
+                  <div
+                    class="sc-ifkGpL gUALku"
+                  >
+                    <span
+                      class="sc-fbguzk bHFfeq"
+                    >
+                      Farm:
+                    </span>
+                    <span
+                      class="sc-gGarWV JklKE"
+                    />
+                  </div>
+                  <div
+                    class="sc-ifkGpL gUALku"
+                  >
+                    <span
+                      class="sc-fbguzk bHFfeq"
+                    >
+                      Freshness:
+                    </span>
+                    <span
+                      class="sc-gGarWV JklKE"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="sc-jScdur fJqVSR"
+                >
+                  <span
+                    class="sc-dcKlJK hQsebu"
+                  >
+                    ★
+                  </span>
+                  <span
+                    class="sc-dcKlJK hQsebu"
+                  >
+                    ★
+                  </span>
+                  <span
+                    class="sc-dcKlJK hQsebu"
+                  >
+                    ★
+                  </span>
+                  <span
+                    class="sc-dcKlJK hQsebu"
+                  >
+                    ★
+                  </span>
+                  <span
+                    class="sc-dcKlJK hQsebu"
+                  >
+                    ★
+                  </span>
+                </div>
+              </div>
+              <div
+                class="sc-iMGFoU iZTZWE"
+              >
+                <div
+                  class="sc-brzPDJ gNHAnb"
+                >
+                  12.99
+                   USD
+                </div>
+                <div
+                  class="sc-jPkiSJ jOnGdk"
+                >
+                  <input
+                    aria-label="Quantity"
+                    class="sc-cZSric oprim"
+                    min="1"
+                    type="number"
+                    value="2"
+                  />
+                  <div
+                    class="sc-lixPIL TAkWE"
+                  />
+                  <div
+                    class="sc-etfXYe bcploE"
+                  >
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="listbox"
+                      class="sc-dFaThA loFeXR"
+                    >
+                      kg
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-chevron-down"
+                        fill="none"
+                        height="12"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="12"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="m6 9 6 6 6-6"
+                        />
+                      </svg>
+                    </button>
+                    <ul
+                      class="sc-fjUQFl bcVLGE"
+                      data-testid="dropdown-list"
+                    >
+                      <li
+                        aria-selected="false"
+                        class="sc-guGTOK ghdwCo"
+                      >
+                        pcs
+                      </li>
+                      <li
+                        aria-selected="false"
+                        class="sc-guGTOK ghdwCo"
+                      >
+                        kgs
+                      </li>
+                      <li
+                        aria-selected="false"
+                        class="sc-guGTOK ghdwCo"
+                      >
+                        box
+                      </li>
+                      <li
+                        aria-selected="false"
+                        class="sc-guGTOK ghdwCo"
+                      >
+                        pack
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-hZARmv fzhCVr"
+          >
+            <div
+              style="display: flex; flex-direction: column; gap: 12px;"
+            >
+              <div
+                class="sc-dKKIkQ dVouZ"
+              >
+                <img
+                  alt="Test Product 2"
+                />
+              </div>
+              <div
+                class="sc-dTUlgT ieKzsO"
+              >
+                <button
+                  class="sc-lpbaSe OOHEh"
+                >
+                  <img
+                    alt="Wishlist"
+                    src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372436/wishlist_cltlcf.svg"
+                  />
+                  Wishlist
+                </button>
+                <button
+                  class="sc-lpbaSe OOHEh"
+                >
+                  <img
+                    alt="Compare"
+                    src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372430/compare_oeiv1m.svg"
+                  />
+                  Compare
+                </button>
+                <button
+                  class="sc-lpbaSe OOHEh"
+                >
+                  <img
+                    alt="Remove"
+                    src="https://res.cloudinary.com/ds82onf5q/image/upload/v1748372432/remove_gbwco0.svg"
+                  />
+                  Remove
+                </button>
+              </div>
+            </div>
+            <div
+              class="sc-fpEFIB jMmMzv"
+            >
+              <div
+                style="display: flex; flex-direction: column; gap: 4px;"
+              >
+                <h3
+                  class="sc-gAqISa biTVvO"
+                >
+                  Test Product 2
+                </h3>
+                <div
+                  style="display: flex; flex-direction: column; gap: 4px;"
+                >
+                  <div
+                    class="sc-ifkGpL gUALku"
+                  >
+                    <span
+                      class="sc-fbguzk bHFfeq"
+                    >
+                      Farm:
+                    </span>
+                    <span
+                      class="sc-gGarWV JklKE"
+                    />
+                  </div>
+                  <div
+                    class="sc-ifkGpL gUALku"
+                  >
+                    <span
+                      class="sc-fbguzk bHFfeq"
+                    >
+                      Freshness:
+                    </span>
+                    <span
+                      class="sc-gGarWV JklKE"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="sc-jScdur fJqVSR"
+                >
+                  <span
+                    class="sc-dcKlJK hQsebu"
+                  >
+                    ★
+                  </span>
+                  <span
+                    class="sc-dcKlJK hQsebu"
+                  >
+                    ★
+                  </span>
+                  <span
+                    class="sc-dcKlJK hQsebu"
+                  >
+                    ★
+                  </span>
+                  <span
+                    class="sc-dcKlJK hQsebu"
+                  >
+                    ★
+                  </span>
+                  <span
+                    class="sc-dcKlJK hQsebu"
+                  >
+                    ★
+                  </span>
+                </div>
+              </div>
+              <div
+                class="sc-iMGFoU iZTZWE"
+              >
+                <div
+                  class="sc-brzPDJ gNHAnb"
+                >
+                  17.01
+                   USD
+                </div>
+                <div
+                  class="sc-jPkiSJ jOnGdk"
+                >
+                  <input
+                    aria-label="Quantity"
+                    class="sc-cZSric oprim"
+                    min="1"
+                    type="number"
+                    value="1"
+                  />
+                  <div
+                    class="sc-lixPIL TAkWE"
+                  />
+                  <div
+                    class="sc-etfXYe bcploE"
+                  >
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="listbox"
+                      class="sc-dFaThA loFeXR"
+                    >
+                      box
+                      <svg
+                        aria-hidden="true"
+                        class="lucide lucide-chevron-down"
+                        fill="none"
+                        height="12"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="12"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="m6 9 6 6 6-6"
+                        />
+                      </svg>
+                    </button>
+                    <ul
+                      class="sc-fjUQFl bcVLGE"
+                      data-testid="dropdown-list"
+                    >
+                      <li
+                        aria-selected="false"
+                        class="sc-guGTOK ghdwCo"
+                      >
+                        pcs
+                      </li>
+                      <li
+                        aria-selected="false"
+                        class="sc-guGTOK ghdwCo"
+                      >
+                        kgs
+                      </li>
+                      <li
+                        aria-selected="true"
+                        class="sc-guGTOK ghdwCo"
+                      >
+                        box
+                      </li>
+                      <li
+                        aria-selected="false"
+                        class="sc-guGTOK ghdwCo"
+                      >
+                        pack
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-gDpztx eYGFlE"
+        >
+          <div
+            class="sc-kpOvIu ckGWBO"
+          >
+            <span
+              style="font-size: 12px;"
+            >
+              Subtotal
+            </span>
+            <span>
+              42.99
+               USD
+            </span>
+          </div>
+          <div
+            class="sc-icnseD ga-Dmrh"
+          >
+            <button
+              class="sc-jMsorb sc-jJAtPt WgKhT cMNUkD"
+            >
+              Continue shopping
+            </button>
+            <button
+              class="sc-jMsorb sc-cXawGu WgKhT fLYDmz"
+            >
+              Go to Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,231 +1,167 @@
-import { useCheckout } from '@contexts/CheckoutContext'
-import { useCartSummary } from '@hooks/useCartSummary'
-import { useCallback, useMemo, useRef, type FormEvent } from 'react'
-import * as Form from '@radix-ui/react-form'
+import { useMediaQuery } from '@chakra-ui/react'
+import { BillingInfoSection } from './BillingInfo'
+import PaymentMethodWithErrorBoundary from './PaymentMethod'
+import { MobileCheckoutAccordion } from './MobileCheckoutAccordion'
+import { useCheckoutStore } from '@stores/checkoutStore'
+import { useFormContext } from 'react-hook-form'
 import {
-  StepContainer,
+  CheckoutContainer,
+  CheckoutGrid,
   StepDescription,
   StepHeader,
   StepIndicator,
   StepTitle,
-  CheckoutGrid,
-  CheckoutContainer,
 } from '../CheckoutStyle'
-import Breadcrumbs from '@components/layout/Breadcrumb/Breadcrumb'
-import ThankYouModalWrapper from './ThankYouModalWrapper'
-import { MobileCheckoutAccordion } from './MobileCheckoutAccordion'
-import SecurityNoticeSection from './SecurityNoticeSection'
-import OrderSummarySection from './OrderSummary'
-import PaymentMethodSection from './PaymentMethodSection'
-import AdditionalInfoSection from './AdditionalInfoSection'
-import { ShippingMethodSection } from './ShippingMethodSection'
-import ConfirmationSection from './ConfirmationSection'
-import { BillingInfoSection, type BillingInfoRef } from './BillingInfoSection'
-
-interface CheckoutContentProps {
-  sameAddressChecked: boolean
-  setSameAddressChecked: (checked: boolean) => void
-  promoCode: string
-  setPromoCode: (code: string) => void
-  isMobile: boolean
-}
-
+import { ShippingMethodSection } from './ShippingMethod'
+import AdditionalInfoSection from './AdditionalInfo'
+import ConfirmationSection from './Confirmation'
+import { useEffect, useState, type FormEvent, type RefObject } from 'react'
+import { Form } from '@radix-ui/react-form'
+import SecurityNoticeSection from './SecurityNotice'
+import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
+import FormErrorSummary from './FormErrorSummary'
+import OrderSummaryWithErrorBoundary from './OrderSummary'
+import ThankYouModalWithErrorBoundary from './ThankyouModal'
 const CheckoutContent = ({
-  sameAddressChecked,
-  setSameAddressChecked,
-  promoCode,
-  setPromoCode,
-  isMobile,
-}: CheckoutContentProps) => {
-  const billingInfoRef = useRef<BillingInfoRef>(null)
-  const {
-    shippingMethod,
-    paymentMethod,
-    updatePaymentMethod,
-    currentStep,
-    setCurrentStep,
-    showThankYouModal,
-    setShowThankYouModal,
-    orderDetailsRef,
-  } = useCheckout()
+  orderDetailsRef,
+  onSubmit,
+  onCheckoutSuccess,
+}: {
+  orderDetailsRef: RefObject<HTMLDivElement | null>
+  onSubmit: (e: FormEvent) => void
+  onCheckoutSuccess?: () => void
+}) => {
+  const [showThankYou, setShowThankYou] = useState(false)
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
+  const [isMobile] = useMediaQuery(['(max-width: 1023px)'])
+  const { currentStep, setCurrentStep } = useCheckoutStore()
 
-  const {
-    items,
-    subtotal,
-    tax,
-    shipping,
-    total,
-    handleQuantityChange,
-    handleUnitChange,
-    handleRemove,
-  } = useCartSummary(shippingMethod)
+  const { formState } = useFormContext()
+  const { isSubmitted: formIsSubmitted, errors } = formState
 
-  const billingStep = useMemo(
-    () => (
-      <BillingInfoSection
-        ref={billingInfoRef}
-        sameAddressChecked={sameAddressChecked}
-        setSameAddressChecked={setSameAddressChecked}
-      />
-    ),
-    [sameAddressChecked, setSameAddressChecked]
-  )
-
-  const shippingStep = useMemo(() => <ShippingMethodSection />, [])
-
-  const paymentStep = useMemo(
-    () => (
-      <PaymentMethodSection
-        paymentMethod={paymentMethod}
-        setPaymentMethod={updatePaymentMethod}
-      />
-    ),
-    [paymentMethod, updatePaymentMethod]
-  )
-
-  const additionalStep = useMemo(() => <AdditionalInfoSection />, [])
-
-  const confirmationStep = useMemo(() => <ConfirmationSection />, [])
-
-  const checkoutSteps = useMemo(
-    () => [
-      {
-        id: 'billing',
-        title: 'Billing Info',
-        stepNumber: 'Step 1 of 5',
-        description: 'Please enter your billing info',
-        isComplete: false,
-        content: billingStep,
-      },
-      {
-        id: 'shipping',
-        title: 'Shipping Method',
-        stepNumber: 'Step 2 of 5',
-        description: 'Choose your shipping method',
-        isComplete: false,
-        content: shippingStep,
-      },
-      {
-        id: 'payment',
-        title: 'Payment Method',
-        stepNumber: 'Step 3 of 5',
-        description: 'Please enter your payment method',
-        isComplete: false,
-        content: paymentStep,
-      },
-      {
-        id: 'additional',
-        title: 'Additional Info',
-        stepNumber: 'Step 4 of 5',
-        description: 'Need something else? We will make it for you!',
-        isComplete: false,
-        content: additionalStep,
-      },
-      {
-        id: 'confirmation',
-        title: 'Confirmation',
-        stepNumber: 'Step 5 of 5',
-        description:
-          'We are getting to the end. Just few clicks and your order is ready!',
-        isComplete: false,
-        content: confirmationStep,
-      },
-    ],
-    [billingStep, shippingStep, paymentStep, additionalStep, confirmationStep]
-  )
-
-  const handleApplyPromo = useCallback(() => {
-    if (promoCode) {
-      console.log(`Applied promo code: ${promoCode}`)
+  useEffect(() => {
+    if (formIsSubmitted) {
+      setIsFormSubmitted(true)
     }
-  }, [promoCode])
+  }, [formIsSubmitted])
 
-  const handleSubmit = useCallback(
-    (event: FormEvent) => {
-      event.preventDefault()
+  const handleSubmit = (e: FormEvent) => {
+    setIsFormSubmitted(true) // Mark form as submitted
+    onSubmit(e) // Call the original submit handler
+  }
 
-      if (billingInfoRef.current) {
-        billingInfoRef.current.getFormData()
-      }
+  const handleCheckoutSuccess = () => {
+    console.log('handleCheckoutSuccess called')
+    setShowThankYou(true)
+    console.log('showThankYou set to true:', true)
 
-      setShowThankYouModal(true)
+    if (onCheckoutSuccess) {
+      onCheckoutSuccess()
+    }
+  }
+
+  const checkoutSteps = [
+    {
+      id: 'billing',
+      title: 'Billing Info',
+      stepNumber: 'Step 1 of 5',
+      description: 'Please enter your billing info',
+      isComplete: formState.dirtyFields?.billing,
+      content: <BillingInfoSection />,
     },
-    [setShowThankYouModal]
-  )
-
-  const DesktopStepContent = ({
-    step,
-  }: {
-    step: (typeof checkoutSteps)[number]
-  }) => (
-    <StepContainer>
-      <StepHeader>
-        <div>
-          <StepTitle>{step.title}</StepTitle>
-          <StepDescription>{step.description}</StepDescription>
-        </div>
-        <StepIndicator>{step.stepNumber}</StepIndicator>
-      </StepHeader>
-      {step.content}
-    </StepContainer>
-  )
-
-  const steps = checkoutSteps
+    {
+      id: 'shipping',
+      title: 'Shipping Method',
+      stepNumber: 'Step 2 of 5',
+      description: 'Choose your shipping method',
+      isComplete: formState.dirtyFields?.shipping,
+      content: <ShippingMethodSection />,
+    },
+    {
+      id: 'payment',
+      title: 'Payment Method',
+      stepNumber: 'Step 3 of 5',
+      description: 'Please enter your payment method',
+      isComplete: formState.dirtyFields?.payment,
+      content: <PaymentMethodWithErrorBoundary />,
+    },
+    {
+      id: 'additional',
+      title: 'Additional Info',
+      stepNumber: 'Step 4 of 5',
+      description: 'Need something else? We will make it for you!',
+      isComplete: formState.dirtyFields?.additional,
+      content: <AdditionalInfoSection />,
+    },
+    {
+      id: 'confirmation',
+      title: 'Confirmation',
+      stepNumber: 'Step 5 of 5',
+      description:
+        'We are getting to the end. Just few clicks and your order is ready!',
+      isComplete: formState.dirtyFields?.confirmation,
+      content: <ConfirmationSection onSuccess={handleCheckoutSuccess} />,
+    },
+  ]
 
   return (
     <CheckoutContainer>
-      <Breadcrumbs style={{ marginBottom: '32px' }} />
-      <Form.Root onSubmit={handleSubmit}>
+      <Breadcrumbs />
+
+      <Form onSubmit={handleSubmit}>
         <CheckoutGrid>
-          {/* Left Column - Checkout Steps */}
           <div
             style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}
           >
+            {isFormSubmitted && Object.keys(errors).length > 0 && (
+              <FormErrorSummary />
+            )}
+
             {isMobile ? (
               <MobileCheckoutAccordion
-                steps={steps}
+                steps={checkoutSteps}
                 currentStep={currentStep}
                 onStepChange={setCurrentStep}
               />
             ) : (
-              steps.map((step) => (
-                <DesktopStepContent key={step.id} step={step} />
+              checkoutSteps.map((step) => (
+                <div key={step.id}>
+                  <StepHeader>
+                    <StepTitle>{step.title}</StepTitle>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        width: '100%',
+                      }}
+                    >
+                      <StepDescription>{step.description}</StepDescription>
+                      <StepIndicator>{step.stepNumber}</StepIndicator>
+                    </div>
+                  </StepHeader>
+                  {step.content}
+                </div>
               ))
             )}
             <SecurityNoticeSection />
           </div>
 
-          {/* Right Column - Order Summary */}
-          <div ref={orderDetailsRef}>
-            <OrderSummarySection
-              items={items}
-              subtotal={subtotal}
-              tax={tax}
-              shipping={shipping}
-              total={total}
-              promoCode={promoCode}
-              setPromoCode={setPromoCode}
-              handleApplyPromo={handleApplyPromo}
-              handleQuantityChange={handleQuantityChange}
-              handleUnitChange={handleUnitChange}
-              handleRemove={handleRemove}
-            />
-          </div>
+          <OrderSummaryWithErrorBoundary />
         </CheckoutGrid>
-      </Form.Root>
-      <ThankYouModalWrapper
-        open={showThankYouModal}
-        onClose={() => setShowThankYouModal(false)}
-        orderDetailsRef={orderDetailsRef}
-        paymentMethod={paymentMethod}
-        items={items}
-        subtotal={subtotal}
-        tax={tax}
-        shipping={shipping}
-        total={total}
-      />
+      </Form>
+
+      {showThankYou && (
+        <ThankYouModalWithErrorBoundary
+          open={showThankYou}
+          onClose={() => {
+            console.log('Modal onClose called')
+            setShowThankYou(false)
+          }}
+          orderDetailsRef={orderDetailsRef}
+        />
+      )}
     </CheckoutContainer>
   )
 }
-
 export default CheckoutContent
