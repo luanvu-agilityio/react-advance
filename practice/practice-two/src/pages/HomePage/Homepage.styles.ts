@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box } from '@radix-ui/themes'
+import { Box, Button } from '@radix-ui/themes'
 import Link from '@components/common/Link'
 // Responsive container with consistent breakpoints
 export const ResponsiveContainer = styled(Box)`
@@ -196,7 +196,7 @@ export const Banner = styled.div`
   border-radius: 12px;
   background-size: cover;
   position: relative;
-  background-image: url('https://res.cloudinary.com/ds82onf5q/image/upload/v1748372412/homepage-banner_zaaroy.png');
+  background-image: url('https://res.cloudinary.com/ds82onf5q/image/upload/f_auto,q_auto,w_500/v1748372412/homepage-banner_zaaroy.png');
   background-position: center;
   background-repeat: no-repeat;
   height: auto;
@@ -230,6 +230,17 @@ export const BannerHeading = styled.h2`
 
 export const ButtonContainer = styled.div`
   margin-top: auto;
+`
+
+export const BannerButton = styled(Button)`
+  font-size: 15px;
+  font-weight: var(--font-weight-bold);
+  color: var(--black-color-default);
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px solid var(--green-shade-2);
+  height: auto;
+  cursor: pointer;
 `
 
 export const MoreCategoriesButton = styled.div`

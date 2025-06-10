@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { navbarData } from '@data/navbar'
 import {
   Banner,
+  BannerButton,
   BannerContainer,
   BannerHeading,
   BannerSubtitle,
@@ -51,19 +52,7 @@ const BannerComponent = memo(
       <BannerSubtitle>{subtitle}</BannerSubtitle>
       <BannerHeading>{heading}</BannerHeading>
       <ButtonContainer>
-        <Button
-          variant="outline"
-          style={{
-            fontSize: '15px',
-            fontWeight: 'var(--font-weight-bold)',
-            color: 'var(--black-color-default)',
-            padding: '12px 16px',
-            borderRadius: '12px',
-            border: '2px solid var(--green-shade-2)',
-            height: 'auto',
-            cursor: 'pointer',
-          }}
-        >
+        <BannerButton variant="outline">
           Read recipes{' '}
           <ChevronRight
             size={16}
@@ -71,7 +60,7 @@ const BannerComponent = memo(
             color="var(--green-color-default)"
             style={{ marginLeft: 2 }}
           />
-        </Button>
+        </BannerButton>
       </ButtonContainer>
     </Banner>
   )
