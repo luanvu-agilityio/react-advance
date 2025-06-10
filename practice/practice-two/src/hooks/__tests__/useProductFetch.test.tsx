@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useProductFetch } from '../useProductFetch'
 import { useCategoryStore } from '@stores/categoryStore'
 import productApi from '@services/product'
-import React, { type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 // Mock dependencies
 jest.mock('@stores/categoryStore', () => ({
