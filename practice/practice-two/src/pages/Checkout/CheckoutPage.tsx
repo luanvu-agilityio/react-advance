@@ -4,9 +4,6 @@ import { withErrorBoundary } from '@utils/withErrorBoundary'
 
 // Components
 import CheckoutContent from './sections/CheckoutContent'
-
-// Components
-import CheckoutContent from './sections/CheckoutContent'
 import CheckoutErrorFallback from './CheckoutFallback'
 
 // Stores & Types
@@ -22,28 +19,21 @@ const useCheckoutForm = () => {
   const { toast } = useToast()
 
   // Initialize form with react-hook-form
-  // Initialize form with react-hook-form
   const methods = useForm<CheckoutFormData>({
     defaultValues: formData,
     mode: 'onBlur',
   })
 
   // Initialize form only once on mount
-  // Initialize form only once on mount
   useEffect(() => {
-    methods.reset(formData)
-  }, []) // Empty dependency array - only runs on mount
     methods.reset(formData)
   }, []) // Empty dependency array - only runs on mount
 
   // Sync specific form fields when they change in store
-  // Sync specific form fields when they change in store
   useEffect(() => {
-    // Update payment method without triggering validation
     // Update payment method without triggering validation
     methods.setValue('payment.method', formData.payment.method)
 
-    // Update shipping information
     // Update shipping information
     methods.setValue('shipping.method', formData.shipping.method)
     methods.setValue('shipping.price', formData.shipping.price)
@@ -54,10 +44,6 @@ const useCheckoutForm = () => {
     methods,
   ])
 
-  // Form submission handler
-  const handleSubmit = useCallback(
-    async (data: CheckoutFormData): Promise<boolean> => {
-      // Validate cart has items
   // Form submission handler
   const handleSubmit = useCallback(
     async (data: CheckoutFormData): Promise<boolean> => {
@@ -76,8 +62,6 @@ const useCheckoutForm = () => {
       try {
         // Save form data to store
         setFormData(data)
-
-        await new Promise<void>((resolve) => setTimeout(resolve, 1000))
 
         await new Promise<void>((resolve) => setTimeout(resolve, 1000))
         return true
@@ -112,23 +96,6 @@ const CheckoutPage = () => {
   const { methods, handleSubmit } = useCheckoutForm()
 
   // Success callback when checkout completes
-  return {
-    methods,
-    handleSubmit,
-  }
-}
-
-/**
- * Checkout page component with form management
- */
-const CheckoutPage = () => {
-  // Reference for order details export functionality
-  const orderDetailsRef = useRef<HTMLDivElement>(null)
-
-  // Get form handling logic
-  const { methods, handleSubmit } = useCheckoutForm()
-
-  // Success callback when checkout completes
   const handleCheckoutSuccess = useCallback(() => {
     console.log('Order completed successfully!')
   }, [])
@@ -137,7 +104,6 @@ const CheckoutPage = () => {
     <FormProvider {...methods}>
       <CheckoutContent
         orderDetailsRef={orderDetailsRef}
-        onSubmit={methods.handleSubmit(handleSubmit)}
         onSubmit={methods.handleSubmit(handleSubmit)}
         onCheckoutSuccess={handleCheckoutSuccess}
       />
@@ -150,18 +116,10 @@ const CheckoutPage = () => {
  */
 const handleRetry = () => window.location.reload()
 
-/**
- * Error handling functions
- */
-const handleRetry = () => window.location.reload()
-
 const handleCheckoutError = (error: Error) => {
   console.error('Checkout Error:', error)
 }
 
-/**
- * Wrap the component with error boundary
- */
 /**
  * Wrap the component with error boundary
  */

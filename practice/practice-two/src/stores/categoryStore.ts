@@ -58,23 +58,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
   viewMode: 'grid',
   sortBy: 'name',
   sortOrder: 'asc',
-export const useCategoryStore = create<CategoryState>()((set, get) => ({
-  // Initial state
-  currentPage: 1,
-  limit: 5,
-  displayLimit: 5,
-  selectedBrands: [],
-  selectedRatings: [],
-  priceRange: defaultPriceRange,
-  viewMode: 'grid',
-  sortBy: 'name',
-  sortOrder: 'asc',
 
-  // Sorting actions
-  // Sort actions
-  setSortBy: (field: string) => {
-    set({ sortBy: field, currentPage: 1 })
-  },
   // Sorting actions
   // Sort actions
   setSortBy: (field: string) => {
@@ -84,14 +68,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
   setSortOrder: (order: 'asc' | 'desc') => {
     set({ sortOrder: order, currentPage: 1 })
   },
-  setSortOrder: (order: 'asc' | 'desc') => {
-    set({ sortOrder: order, currentPage: 1 })
-  },
 
-  // Pagination actions
-  setPage: (page: number) => {
-    set({ currentPage: Math.max(1, page) })
-  },
   // Pagination actions
   setPage: (page: number) => {
     set({ currentPage: Math.max(1, page) })
@@ -100,14 +77,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
   setLimit: (limit: number) => {
     set({ limit: Math.max(1, limit), currentPage: 1 })
   },
-  setLimit: (limit: number) => {
-    set({ limit: Math.max(1, limit), currentPage: 1 })
-  },
 
-  // Filter actions
-  setCategory: (category) => {
-    set({ category, currentPage: 1 }) // Reset page when category changes
-  },
   // Filter actions
   setCategory: (category) => {
     set({ category, currentPage: 1 }) // Reset page when category changes
@@ -116,13 +86,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
   setSubcategory: (subcategory) => {
     set({ subcategory, currentPage: 1 })
   },
-  setSubcategory: (subcategory) => {
-    set({ subcategory, currentPage: 1 })
-  },
 
-  setBrands: (brands) => {
-    set({ selectedBrands: brands, currentPage: 1 })
-  },
   setBrands: (brands) => {
     set({ selectedBrands: brands, currentPage: 1 })
   },
@@ -130,13 +94,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
   setRatings: (ratings) => {
     set({ selectedRatings: ratings, currentPage: 1 })
   },
-  setRatings: (ratings) => {
-    set({ selectedRatings: ratings, currentPage: 1 })
-  },
 
-  setPriceRange: (range) => {
-    set({ priceRange: range, currentPage: 1 })
-  },
   setPriceRange: (range) => {
     set({ priceRange: range, currentPage: 1 })
   },
@@ -144,13 +102,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
   setSearchQuery: (query) => {
     set({ searchQuery: query, currentPage: 1 })
   },
-  setSearchQuery: (query) => {
-    set({ searchQuery: query, currentPage: 1 })
-  },
 
-  setViewMode: (mode) => {
-    set({ viewMode: mode })
-  },
   setViewMode: (mode) => {
     set({ viewMode: mode })
   },
@@ -173,28 +125,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
       currentPage: 1,
     })
   },
-  setDisplayLimit: (displayLimit: number) => {
-    const newLimit = Math.max(1, displayLimit)
-    set({
-      displayLimit: newLimit,
-      limit: newLimit,
-      currentPage: 1,
-    })
-  },
-  // Reset functions
-  resetFilters: () => {
-    set({
-      selectedBrands: [],
-      selectedRatings: [],
-      priceRange: defaultPriceRange,
-      subcategory: undefined,
-      currentPage: 1,
-    })
-  },
 
-  resetPagination: () => {
-    set({ currentPage: 1 })
-  },
   resetPagination: () => {
     set({ currentPage: 1 })
   },
@@ -203,29 +134,14 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
   getUrlParams: () => {
     const state = get()
     const params = new URLSearchParams()
-  // URL management
-  getUrlParams: () => {
-    const state = get()
-    const params = new URLSearchParams()
 
-    if (state.currentPage > 1) {
-      params.set('page', state.currentPage.toString())
-    }
     if (state.currentPage > 1) {
       params.set('page', state.currentPage.toString())
     }
 
     // Always include limit in URL params
     params.set('limit', state.limit.toString())
-    // Always include limit in URL params
-    params.set('limit', state.limit.toString())
 
-    if (state.subcategory) {
-      params.set(
-        'subcategory',
-        state.subcategory.toLowerCase().replace(/\s+/g, '-')
-      )
-    }
     if (state.subcategory) {
       params.set(
         'subcategory',
@@ -236,17 +152,10 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
     if (state.searchQuery) {
       params.set('search', state.searchQuery)
     }
-    if (state.searchQuery) {
-      params.set('search', state.searchQuery)
-    }
 
     params.set('sort', state.sortBy)
     params.set('order', state.sortOrder)
-    params.set('sort', state.sortBy)
-    params.set('order', state.sortOrder)
 
-    return params
-  },
     return params
   },
 
@@ -257,23 +166,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
     const search = searchParams.get('search')
     const sort = searchParams.get('sort') || 'name'
     const order = searchParams.get('order') === 'desc' ? 'desc' : 'asc'
-  setFromUrl: (searchParams) => {
-    const page = parseInt(searchParams.get('page') || '1', 10)
-    const limit = parseInt(searchParams.get('limit') || '5', 10)
-    const subcategory = searchParams.get('subcategory')
-    const search = searchParams.get('search')
-    const sort = searchParams.get('sort') || 'name'
-    const order = searchParams.get('order') === 'desc' ? 'desc' : 'asc'
 
-    set({
-      currentPage: Math.max(1, page),
-      limit: Math.max(1, limit),
-      subcategory: subcategory || undefined,
-      searchQuery: search || undefined,
-      sortBy: sort,
-      sortOrder: order as 'asc' | 'desc',
-    })
-  },
     set({
       currentPage: Math.max(1, page),
       limit: Math.max(1, limit),
@@ -300,27 +193,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
       params.maxPrice = state.priceRange.max
     if (state.searchQuery) params.search = state.searchQuery
     if (state.selectedRatings.length > 0) params.ratings = state.selectedRatings
-  // API params
-  getApiParams: () => {
-    const state = get()
-    const params: Record<string, string | number | string[] | number[]> = {
-      p: state.currentPage,
-      l: state.limit,
-    }
-    if (state.category) params.category = state.category
-    if (state.subcategory) params.subcategory = state.subcategory
-    if (state.selectedBrands.length > 0) params.brands = state.selectedBrands
-    if (state.priceRange.min > defaultPriceRange.min)
-      params.minPrice = state.priceRange.min
-    if (state.priceRange.max < defaultPriceRange.max)
-      params.maxPrice = state.priceRange.max
-    if (state.searchQuery) params.search = state.searchQuery
-    if (state.selectedRatings.length > 0) params.ratings = state.selectedRatings
 
-    params.sortBy = state.sortBy
-    params.sortOrder = state.sortOrder
-    return params
-  },
     params.sortBy = state.sortBy
     params.sortOrder = state.sortOrder
     return params
