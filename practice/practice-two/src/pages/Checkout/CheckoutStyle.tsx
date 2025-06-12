@@ -517,10 +517,10 @@ export const OrderSummaryTotal = styled(OrderSummaryRow)`
 export const PromoForm = styled.div`
   display: flex;
   border: 1px solid var(--black-shade-3);
-  background-color: var(--black-shade-6);
+  background-color: var(--black-shade-5);
   border-radius: 12px;
-  height: 42px;
-  padding: 11px 21px;
+  height: 44px;
+  padding: 0 21px;
 
   @media (max-width: 768px) {
     flex-direction: row;

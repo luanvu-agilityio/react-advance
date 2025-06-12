@@ -18,8 +18,7 @@ export const Container = styled.div<{
   justify-content: ${(props) => props.$justifyContent ?? 'flex-start'};
 
   @media (max-width: 768px) {
-    flex-direction: ${(props) =>
-      props.$direction === 'row' ? 'column' : props.$direction};
+    flex-direction: column;
     padding: ${(props) => props.$padding ?? '0 16px'};
     gap: ${(props) => (props.$gap ? `calc(${props.$gap} * 0.75)` : '0')};
   }

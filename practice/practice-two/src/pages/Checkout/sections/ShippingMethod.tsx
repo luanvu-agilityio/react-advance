@@ -18,8 +18,7 @@ import {
 } from '../CheckoutStyle'
 import FormError from '@components/common/FormError/FormError'
 import type { CheckoutFormData } from 'types/checkout'
-import { useCheckoutStore } from '@stores/checkoutStore'
-
+import { useShippingMethodMutation } from '@hooks/useCheckoutQuery'
 // Define shipping method configuration type
 interface ShippingMethodOption {
   id: string
@@ -41,8 +40,8 @@ export const ShippingMethodSection = () => {
     clearErrors,
     formState: { errors },
   } = useFormContext<CheckoutFormData>()
-  // Access checkout store for updating fields outside form
-  const { updateField } = useCheckoutStore()
+
+  const shippingMethodMutation = useShippingMethodMutation()
   const shippingMethod = watch('shipping.method')
   // Watch for changes to same-as-billing checkbox
   const sameAsBilling = watch('shipping.sameAsBilling')
@@ -83,19 +82,13 @@ export const ShippingMethodSection = () => {
   const handleMethodChange = useCallback(
     (method: 'fedex' | 'dhl') => {
       // Find shipping method info by value
-      const selectedMethod = shippingMethods.find((m) => m.value === method)
+      shippingMethodMutation.mutate(method)
 
-      if (selectedMethod) {
-        // Update React Hook Form state
-        setValue('shipping.method', method)
-        setValue('shipping.price', selectedMethod.price)
-
-        // CRITICAL: Also update checkout store state for OrderSummary
-        updateField('shipping', 'method', method)
-        updateField('shipping', 'price', selectedMethod.price)
-      }
+      // Update form state (React Hook Form)
+      setValue('shipping.method', method)
+      setValue('shipping.price', method === 'fedex' ? 32 : 15)
     },
-    [setValue, updateField, shippingMethods]
+    [setValue, shippingMethodMutation]
   )
 
   /**

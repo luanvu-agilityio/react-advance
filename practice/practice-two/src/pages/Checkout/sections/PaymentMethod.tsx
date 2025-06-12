@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useEffect, type CSSProperties } from 'react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { useFormContext, Controller } from 'react-hook-form'
-
+import { usePaymentMethodMutation } from '@hooks/useCheckoutQuery'
 import {
   StepContainer,
   FormField,
@@ -20,7 +20,6 @@ import {
 import FormError from '@components/common/FormError/FormError'
 import { formatCardField } from '@utils/validateField'
 import type { CheckoutFormData } from 'types/checkout'
-import { useCheckoutStore } from '@stores/checkoutStore'
 import { ValidationMessage } from '@config/validation/validation-message'
 import { withErrorBoundary } from '@utils/withErrorBoundary'
 
@@ -52,7 +51,7 @@ export const PaymentMethodSection = () => {
     formState: { errors },
     clearErrors,
   } = useFormContext<CheckoutFormData>()
-  const { updateField } = useCheckoutStore()
+  const paymentMethodMutation = usePaymentMethodMutation()
 
   const paymentMethod = watch('payment.method')
 
@@ -136,8 +135,11 @@ export const PaymentMethodSection = () => {
   // Handle payment method selection
   const handleMethodChange = useCallback(
     (method: 'credit-card' | 'paypal' | 'bitcoin') => {
+      // Call mutation - it handles state updates and notifications
+      paymentMethodMutation.mutate(method)
+
+      // Update React Hook Form state
       setValue('payment.method', method)
-      updateField('payment', 'method', method)
 
       if (method === 'credit-card') {
         // Initialize empty values
@@ -165,7 +167,7 @@ export const PaymentMethodSection = () => {
         ])
       }
     },
-    [setValue, updateField, watch, trigger, clearErrors]
+    [setValue, paymentMethodMutation, watch, trigger, clearErrors]
   )
 
   // Render a card field based on its configuration

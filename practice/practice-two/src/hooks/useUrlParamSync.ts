@@ -2,6 +2,22 @@ import { useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useCategoryStore } from '@stores/categoryStore'
 
+/**
+ * useUrlParamSync - A custom hook for bidirectional synchronization between URL parameters and  state
+ *
+ * This hook manages the synchronization between URL search parameters and the application's category store state.
+ * It provides two-way data binding:
+ * 1. When URL parameters change (e.g., through navigation or manual URL changes), it updates the category store
+ * 2. When category store state changes, it updates the URL parameters to match
+ *
+ * @returns {Object} An object containing utility functions
+ * @returns {Function} syncToUrl - Force synchronize current state to URL parameters
+ *
+ * @notes
+ * - This hook depends on useCategoryStore which must expose getUrlParams, setFromUrl and related state
+ * - The hook automatically monitors currentPage and limit for changes
+ */
+
 export const useUrlParamSync = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const { getUrlParams, setFromUrl, currentPage, limit } = useCategoryStore()

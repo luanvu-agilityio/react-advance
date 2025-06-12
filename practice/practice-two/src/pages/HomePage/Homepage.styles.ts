@@ -1,12 +1,9 @@
 import styled from 'styled-components'
-import { Box, Button } from '@radix-ui/themes'
+import { Box } from '@radix-ui/themes'
 import Link from '@components/common/Link'
 // Responsive container with consistent breakpoints
 export const ResponsiveContainer = styled(Box)`
   width: 100%;
-
-  /* Mobile: Full width with padding */
-  padding: 0 16px;
 
   /* Tablet: Full width with padding */
   @media (min-width: 768px) {
@@ -75,17 +72,11 @@ export const SectionWrapper = styled.div`
   /* Mobile specific styles */
   @media (max-width: 767px) {
     &.blog-section {
-      margin: 0 -16px;
       padding: 0 16px;
     }
 
     &.feedback-section {
       background-color: white;
-    }
-
-    &.banner-section {
-      margin: 0 -16px;
-      padding: 0 16px;
     }
   }
 
@@ -196,11 +187,15 @@ export const Banner = styled.div`
   border-radius: 12px;
   background-size: cover;
   position: relative;
-  background-image: url('https://res.cloudinary.com/ds82onf5q/image/upload/f_auto,q_auto,w_500/v1748372412/homepage-banner_zaaroy.png');
+  background-image: url('https://res.cloudinary.com/ds82onf5q/image/upload/v1748372412/homepage-banner_zaaroy.png');
   background-position: center;
   background-repeat: no-repeat;
   height: auto;
   width: 100%;
+
+  @media (max-width: 767px) {
+    padding: 32px;
+  }
 
   @media (min-width: 1024px) {
     width: 419px;
@@ -226,21 +221,14 @@ export const BannerHeading = styled.h2`
   margin-bottom: 68px;
   font-weight: var(--font-weight-semibold);
   font-family: var(--font-family-primary);
+
+  @media (max-width: 768px) {
+    margin-bottom: 36px;
+  }
 `
 
 export const ButtonContainer = styled.div`
   margin-top: auto;
-`
-
-export const BannerButton = styled(Button)`
-  font-size: 15px;
-  font-weight: var(--font-weight-bold);
-  color: var(--black-color-default);
-  padding: 12px 16px;
-  border-radius: 12px;
-  border: 2px solid var(--green-shade-2);
-  height: auto;
-  cursor: pointer;
 `
 
 export const MoreCategoriesButton = styled.div`
@@ -541,4 +529,8 @@ export const ProductFlex = styled.div`
   display: flex;
 
   gap: 32px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `

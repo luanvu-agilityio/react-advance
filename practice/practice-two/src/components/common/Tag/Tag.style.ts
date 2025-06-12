@@ -35,7 +35,7 @@ export const StyledButtonTag = styled.button<{
         `
       default:
         return `
-          background-color: var(--black-shade-6);
+          background-color: var(--black-shade-5);
           color: var(--black-color-default);
           &:hover {
             background-color: var(--black-shade-5);

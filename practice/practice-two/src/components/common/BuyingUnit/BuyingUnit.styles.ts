@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const BuyingUnitContainer = styled.div<{ size?: string }>`
   display: inline-flex;
   align-items: center;
-  background: var(--black-shade-6);
+  background: var(--black-shade-5);
   border: 1px solid var(--black-shade-3);
   padding: 14px 16px;
   border-radius: 12px;

@@ -3,11 +3,11 @@
 exports[`Sorting rendering renders correctly with default values 1`] = `
 <DocumentFragment>
   <div
-    class="sc-gAqISa kfHEly"
+    class="sc-fpEFIB ksmUmw"
     style="min-width: 180px;"
   >
     <span
-      class="sc-ifkGpL bSueRD"
+      class="sc-gAqISa kDWsLg"
     >
       Sort By :
     </span>
@@ -47,12 +47,12 @@ exports[`Sorting rendering renders correctly with default values 1`] = `
       >
         <input
           checked=""
-          class="sc-gGarWV gkkFWB"
+          class="sc-fbguzk biTuMg"
           name="sortOrder"
           type="radio"
         />
         <span
-          class="sc-iMGFoU dZbUil"
+          class="sc-brzPDJ cNZMBK"
         >
           <span>
             Ascending
@@ -63,12 +63,12 @@ exports[`Sorting rendering renders correctly with default values 1`] = `
         style="display: flex; align-items: center; gap: 4px; cursor: pointer;"
       >
         <input
-          class="sc-gGarWV gkkFWB"
+          class="sc-fbguzk biTuMg"
           name="sortOrder"
           type="radio"
         />
         <span
-          class="sc-iMGFoU jAtfQB"
+          class="sc-brzPDJ jRwoUa"
         >
           <span>
             Descending
@@ -83,11 +83,11 @@ exports[`Sorting rendering renders correctly with default values 1`] = `
 exports[`Sorting rendering renders correctly with descending order 1`] = `
 <DocumentFragment>
   <div
-    class="sc-gAqISa kfHEly"
+    class="sc-fpEFIB ksmUmw"
     style="min-width: 180px;"
   >
     <span
-      class="sc-ifkGpL bSueRD"
+      class="sc-gAqISa kDWsLg"
     >
       Sort By :
     </span>
@@ -126,12 +126,12 @@ exports[`Sorting rendering renders correctly with descending order 1`] = `
         style="display: flex; align-items: center; gap: 4px; cursor: pointer;"
       >
         <input
-          class="sc-gGarWV gkkFWB"
+          class="sc-fbguzk biTuMg"
           name="sortOrder"
           type="radio"
         />
         <span
-          class="sc-iMGFoU jAtfQB"
+          class="sc-brzPDJ jRwoUa"
         >
           <span>
             Ascending
@@ -143,12 +143,12 @@ exports[`Sorting rendering renders correctly with descending order 1`] = `
       >
         <input
           checked=""
-          class="sc-gGarWV gkkFWB"
+          class="sc-fbguzk biTuMg"
           name="sortOrder"
           type="radio"
         />
         <span
-          class="sc-iMGFoU dZbUil"
+          class="sc-brzPDJ cNZMBK"
         >
           <span>
             Descending
@@ -163,11 +163,11 @@ exports[`Sorting rendering renders correctly with descending order 1`] = `
 exports[`Sorting rendering renders correctly with price sorting 1`] = `
 <DocumentFragment>
   <div
-    class="sc-gAqISa kfHEly"
+    class="sc-fpEFIB ksmUmw"
     style="min-width: 180px;"
   >
     <span
-      class="sc-ifkGpL bSueRD"
+      class="sc-gAqISa kDWsLg"
     >
       Sort By :
     </span>
@@ -207,12 +207,12 @@ exports[`Sorting rendering renders correctly with price sorting 1`] = `
       >
         <input
           checked=""
-          class="sc-gGarWV gkkFWB"
+          class="sc-fbguzk biTuMg"
           name="sortOrder"
           type="radio"
         />
         <span
-          class="sc-iMGFoU dZbUil"
+          class="sc-brzPDJ cNZMBK"
         >
           <span>
             Ascending
@@ -223,12 +223,12 @@ exports[`Sorting rendering renders correctly with price sorting 1`] = `
         style="display: flex; align-items: center; gap: 4px; cursor: pointer;"
       >
         <input
-          class="sc-gGarWV gkkFWB"
+          class="sc-fbguzk biTuMg"
           name="sortOrder"
           type="radio"
         />
         <span
-          class="sc-iMGFoU jAtfQB"
+          class="sc-brzPDJ jRwoUa"
         >
           <span>
             Descending

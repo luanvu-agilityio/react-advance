@@ -1,8 +1,9 @@
 import { useFormContext, Controller } from 'react-hook-form'
 import { CheckIcon } from '@radix-ui/react-icons'
 import { useEffect, type CSSProperties, type FormEvent } from 'react'
-
+import { useToast } from '@stores/toastStore'
 import { useCartStore } from '@stores/cartStore'
+import { useOrderSubmitMutation } from '@hooks/useCheckoutQuery'
 
 import {
   StepContainer,
@@ -43,9 +44,10 @@ const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
   } = useFormContext()
 
   const { setFormData } = useCheckoutStore()
-
+  const { toast } = useToast()
   const { items } = useCartStore()
   const isEmpty = items.length === 0
+  const orderSubmitMutation = useOrderSubmitMutation()
 
   // Watch consent value to trigger validation when changed
   const termsConsent = watch('additional.termsConsent')
@@ -152,6 +154,13 @@ const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
     const isFormValid = await trigger(requiredFields, { shouldFocus: true })
 
     if (!isFormValid) {
+      toast({
+        title: 'Form Validation Error',
+        description: 'Please check the form for errors and try again',
+        variant: 'error',
+        duration: 3000,
+      })
+
       // Find first error and scroll to it
       const firstError = document.querySelector('.error')
       if (firstError) {
@@ -160,17 +169,37 @@ const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
       return
     }
 
+    // Save form data
     setFormData(formValues)
 
-    if (onSuccess) {
-      onSuccess()
-      console.log('Form submitted successfully, modal should open')
-      console.log('Submit conditions:', {
-        isEmpty,
-        hasCompletedRequiredSections,
-        isValid,
-        termsConsent,
+    if (isEmpty) {
+      toast({
+        title: 'Empty Cart',
+        description: 'You cannot proceed with an empty cart',
+        variant: 'error',
+        duration: 2500,
       })
+      return
+    }
+
+    // Submit order
+    try {
+      const result = await orderSubmitMutation.mutateAsync()
+
+      if (result?.success && onSuccess) {
+        setTimeout(() => {
+          console.log('Submit conditions:', {
+            isEmpty,
+            hasCompletedRequiredSections,
+            isValid,
+            termsConsent,
+          })
+          onSuccess()
+        }, 1000)
+      }
+    } catch (error) {
+      // Error handling is done in the mutation hook
+      console.error('Order submission error:', error)
     }
   }
 
@@ -220,7 +249,6 @@ const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
         onClick={(e) => {
           e.stopPropagation()
           e.preventDefault()
-          console.log('Button clicked')
           handleSubmitSuccess(e)
         }}
       >

@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectedTags - Rendering renders tags correctly when tags are present 1`] = `
+<div>
+  <div
+    class="sc-Qotzb dGhYAe"
+  >
+    <div
+      class="sc-fYsHOw kkBnGR"
+    >
+      Applied filters:
+    </div>
+    <div
+      class="sc-dIMoHT haFOUc"
+    >
+      <div
+        class="sc-dKREkF dtLIgC"
+      >
+        Apple
+        <button
+          class="sc-fWnslK dpwZYk"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="sc-dKREkF dtLIgC"
+      >
+        $100-$200
+        <button
+          class="sc-fWnslK dpwZYk"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

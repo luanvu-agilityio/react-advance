@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import CartItem from '@components/Cart/CartItem/CartItem'
-
+import { useToast } from '@stores/toastStore'
 import {
   OrderSummaryWrapper,
   OrderSummary,
@@ -18,18 +18,12 @@ import { useCheckoutStore } from '@stores/checkoutStore'
 import { withErrorBoundary } from '@utils/withErrorBoundary'
 
 export const OrderSummarySection = () => {
-  const {
-    items,
-    removeItem,
-    getSubtotal,
-    getTax,
-
-    updateQuantity,
-    updateUnit,
-  } = useCartStore()
+  const { items, removeItem, getSubtotal, getTax, updateQuantity, updateUnit } =
+    useCartStore()
 
   const { formData } = useCheckoutStore()
-
+  const { toast } = useToast()
+  const [promoCode, setPromoCode] = useState('')
   // Calculate order totals
   const orderCalculations = useMemo(() => {
     const shipping = formData.shipping.price
@@ -45,12 +39,35 @@ export const OrderSummarySection = () => {
     }
   }, [formData.shipping.price, items, getSubtotal, getTax])
 
-  const [promoCode, setPromoCode] = useState('')
-
   // Handle promo code application
   const handleApplyPromo = useCallback(() => {
-    if (!promoCode.trim()) return
-  }, [promoCode])
+    if (!promoCode.trim()) {
+      toast({
+        title: 'Empty Promo Code',
+        description: 'Please enter a promo code',
+        variant: 'warning',
+        duration: 3000,
+      })
+      return
+    }
+
+    // Mock promo code validation - in a real app, you'd check against valid codes
+    if (promoCode.toLowerCase() === 'discount10') {
+      toast({
+        title: 'Promo Code Applied',
+        description: 'Your 10% discount has been applied to the order',
+        variant: 'success',
+        duration: 4000,
+      })
+    } else {
+      toast({
+        title: 'Invalid Promo Code',
+        description: 'The promo code you entered is not valid',
+        variant: 'error',
+        duration: 4000,
+      })
+    }
+  }, [promoCode, toast])
 
   // Handle quantity changes
   const handleQuantityChange = useCallback(
@@ -75,9 +92,18 @@ export const OrderSummarySection = () => {
   // Handle item removal
   const handleRemove = useCallback(
     (id: number) => {
-      removeItem(id)
+      const itemToRemove = items.find((item) => item.id === id)
+      if (itemToRemove) {
+        removeItem(id)
+        toast({
+          title: 'Item Removed',
+          description: `${itemToRemove.title} has been removed from your cart`,
+          variant: 'info',
+          duration: 3000,
+        })
+      }
     },
-    [removeItem]
+    [removeItem, items, toast]
   )
 
   const isEmpty = items.length === 0

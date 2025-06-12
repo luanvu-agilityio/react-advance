@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useEffect, useState, useMemo, useCallback } from 'react'
+import { useParams, useLocation } from 'react-router-dom'
 
 // Stores and Hooks
-import { useCategoryStore } from '@stores/categoryStore'
+import { useCategoryStore, type CategoryState } from '@stores/categoryStore'
 import { useProductFetch } from '@hooks/useProductFetch'
 import { useUrlParamSync } from '@hooks/useUrlParamSync'
 import { useProductsByCategory } from '@hooks/useProductsByCategory'
 import { useFilterOptions } from '@hooks/useFilterOptions'
+import { useProductTagStore } from '@stores/tagStore'
 
 // Components
 import FilterComponents from '@components/Filter/FilteringComponents'
@@ -16,29 +17,37 @@ import ErrorDisplay from '@components/common/ErrorDisplay'
 import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
 import { CategoryPageHeader } from './CategoryPageHeader'
 import { NoResultsSection } from './NoResultSection'
+import ErrorBoundary from '@components/common/ErrorBoundary/ErrorBoundary'
+import SelectedTags from '@components/SelectedTag/SelectedTag'
+import { ProductsPerPage } from '@components/Pagination/ProductPerPage/ProductsPerPage'
+import { Sorting } from '@components/Sorting/Sorting'
+
+// Utils & Types
 import { getCategoryTitle } from '@utils/categoryUtils'
+import type { StarRating } from 'types/Filter'
+import { debounce } from 'lodash'
+import type { ProductTag } from '@utils/tagUtils'
 // Styles
 import {
   ContentContainer,
   PageContainer,
   FilterControlsWrapper,
 } from './CategoryStyles'
-import type { StarRating } from 'types/Filter'
-import { ProductsPerPage } from '@components/Pagination/ProductPerPage/ProductsPerPage'
-import { Sorting } from '@components/Sorting/Sorting'
-import ErrorBoundary from '@components/common/ErrorBoundary/ErrorBoundary'
-import SelectedTags from '@components/SelectedTag/SelectedTag'
-import { useProductTagStore } from '@stores/tagStore'
+
+/**
+ * CategoryPage component displaying product listings with filtering capabilities
+ */
 const CategoryPage = () => {
+  // --------- STATE & STORE ACCESS ---------
+  const location = useLocation()
   const { categoryPath } = useParams()
-  const [accurateProductCount, setAccurateProductCount] = useState<
-    number | null
-  >(null)
-  // Get legacy data for filters (until we fully migrate)
+  const [productCount, setProductCount] = useState<number | null>(null)
+
+  // Get category data from URL and hook
   const { currentCategory, productsInCategory, searchQuery } =
     useProductsByCategory()
 
-  // Store state and actions
+  // Get store state and actions
   const {
     currentPage,
     displayLimit,
@@ -47,6 +56,7 @@ const CategoryPage = () => {
     priceRange,
     subcategory,
     viewMode,
+    updateFilters,
     getProductCountBySubcategory,
     setPage,
     setCategory,
@@ -61,6 +71,7 @@ const CategoryPage = () => {
 
   const { selectedTags, clearTags } = useProductTagStore()
 
+  // --------- DATA FETCHING ---------
   // URL synchronization
   useUrlParamSync()
 
@@ -71,53 +82,111 @@ const CategoryPage = () => {
   const { subcategories, categoryBrands } = useFilterOptions({
     currentCategory: currentCategory || null,
     productsInCategory,
-    activeSubcategory: subcategory || '',
+    activeSubcategory: subcategory ?? '',
     selectedBrands,
     categoryPath,
     isSearchMode: false,
   })
 
+  // --------- DERIVED STATE ---------
+  const totalProductCount = productCount ?? data?.total ?? 0
+  const totalPages = Math.max(1, Math.ceil(totalProductCount / displayLimit))
+
+  const displayTitle = useMemo(
+    () =>
+      getCategoryTitle(
+        location.pathname,
+        searchQuery,
+        categoryPath,
+        currentCategory?.label
+      ),
+    [location.pathname, searchQuery, categoryPath, currentCategory?.label]
+  )
+
+  // --------- SIDE EFFECTS ---------
+  // Effect: Apply tag filters when tags change
+  const updateFiltersFromTags = useCallback(
+    (tags: ProductTag[]) => {
+      const debouncedUpdate = debounce((tagsToProcess: ProductTag[]) => {
+        if (tagsToProcess.length === 0) return
+
+        const updates = {} as Partial<CategoryState>
+
+        const categoryTags = tagsToProcess.filter(
+          (tag) => tag.type === 'category'
+        )
+        const subcategoryTags = tagsToProcess.filter(
+          (tag) => tag.type === 'subcategory'
+        )
+        const brandTags = tagsToProcess.filter((tag) => tag.type === 'brand')
+
+        if (brandTags.length > 0) {
+          updates.selectedBrands = brandTags.map((tag) => tag.value)
+        }
+
+        if (categoryTags.length > 0) {
+          updates.category = categoryTags[0].value
+        }
+
+        if (subcategoryTags.length > 0) {
+          updates.subcategory = subcategoryTags[0].value
+        }
+
+        // Batch update all changes together
+        updateFilters(updates)
+      }, 200)
+
+      debouncedUpdate(tags)
+    },
+    [updateFilters]
+  )
+
+  // Use effect with the coordinating function
   useEffect(() => {
-    // If tags have changed, apply appropriate filters
-    if (selectedTags.length > 0) {
-      // Apply filters based on tag types
-      const categoryTags = selectedTags.filter((tag) => tag.type === 'category')
-      const subcategoryTags = selectedTags.filter(
-        (tag) => tag.type === 'subcategory'
-      )
-      const brandTags = selectedTags.filter((tag) => tag.type === 'brand')
+    updateFiltersFromTags(selectedTags)
+  }, [selectedTags, updateFiltersFromTags])
 
-      // Set brands if there are brand tags
-      if (brandTags.length > 0) {
-        setBrands(brandTags.map((tag) => tag.value))
-      }
-
-      // Set category/subcategory if applicable
-      if (categoryTags.length > 0) {
-        setCategory(categoryTags[0].value)
-      }
-
-      if (subcategoryTags.length > 0) {
-        setSubcategory(subcategoryTags[0].value)
-      }
-    }
-  }, [selectedTags, setBrands, setCategory, setSubcategory])
-
-  // Set category when route changes
+  // Single effect for URL and route-based changes
   useEffect(() => {
+    // Handle category from route params
     if (categoryPath) {
       setCategory(categoryPath)
     }
-  }, [categoryPath, setCategory])
 
-  // Set search query when it changes
-  useEffect(() => {
+    // Handle search query changes
     if (searchQuery) {
       setSearchQuery(searchQuery)
     }
-  }, [searchQuery, setSearchQuery])
 
-  // Handlers
+    // Handle all-products route
+    if (location.pathname === '/all-products') {
+      resetFilters()
+      setCategory(undefined)
+    }
+  }, [
+    categoryPath,
+    searchQuery,
+    location.pathname,
+    setCategory,
+    setSearchQuery,
+    resetFilters,
+  ])
+
+  // Effect: Get accurate product count by subcategory
+  useEffect(() => {
+    const fetchAccurateCount = async () => {
+      if (subcategory) {
+        const count = await getProductCountBySubcategory(subcategory)
+        setProductCount(count)
+      } else {
+        setProductCount(null)
+      }
+    }
+
+    fetchAccurateCount()
+  }, [subcategory, getProductCountBySubcategory])
+
+  // --------- EVENT HANDLERS ---------
   const handlePageChange = (page: number) => {
     setPage(page)
     window.scrollTo(0, 0)
@@ -126,7 +195,6 @@ const CategoryPage = () => {
   const handleSubcategoryClick = (subcategoryName: string) => {
     const newSubcategory =
       subcategoryName === subcategory ? '' : subcategoryName
-
     setSubcategory(newSubcategory || undefined)
   }
 
@@ -153,29 +221,7 @@ const CategoryPage = () => {
     clearTags()
   }
 
-  useEffect(() => {
-    const fetchAccurateCount = async () => {
-      if (subcategory) {
-        const count = await getProductCountBySubcategory(subcategory)
-
-        setAccurateProductCount(count)
-      } else {
-        setAccurateProductCount(null)
-      }
-    }
-
-    fetchAccurateCount()
-  }, [subcategory, getProductCountBySubcategory])
-
-  const totalProductCount = accurateProductCount ?? data?.total ?? 0
-  const totalPages = Math.max(1, Math.ceil(totalProductCount / displayLimit))
-
-  useEffect(() => {
-    // Refetch when limit changes
-    refetch()
-  }, [displayLimit, refetch])
-
-  // Render content
+  // --------- RENDER METHODS ---------
   const renderContent = () => {
     if (error) {
       return <ErrorDisplay error={error.message} onRetry={refetch} />
@@ -216,20 +262,7 @@ const CategoryPage = () => {
     )
   }
 
-  const displayTitle = getCategoryTitle(
-    location.pathname,
-    searchQuery,
-    categoryPath,
-    currentCategory?.label
-  )
-
-  // Add this effect to reset filters on all-products route:
-  useEffect(() => {
-    if (location.pathname === '/all-products') {
-      resetFilters()
-      setCategory(undefined) // Clear any category filter
-    }
-  }, [location.pathname, resetFilters, setCategory])
+  // --------- COMPONENT RENDER ---------
   return (
     <PageContainer className="section">
       <Breadcrumbs style={{ padding: '12px 0' }} />
@@ -269,6 +302,7 @@ const CategoryPage = () => {
             initialActiveCategory={subcategory ?? ''}
           />
         </ErrorBoundary>
+
         <ErrorBoundary fallback={<div>Products couldn't be loaded</div>}>
           {renderContent()}
         </ErrorBoundary>

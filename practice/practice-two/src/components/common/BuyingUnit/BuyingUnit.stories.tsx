@@ -4,7 +4,7 @@ import { within, userEvent, expect } from '@storybook/test'
 import BuyingUnit from './BuyingUnit'
 
 const meta: Meta<typeof BuyingUnit> = {
-  title: 'Components/ProductDetails/BuyingUnit',
+  title: 'Components/BuyingUnit',
   component: BuyingUnit,
   parameters: {
     layout: 'centered',

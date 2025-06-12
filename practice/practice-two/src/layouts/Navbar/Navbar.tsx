@@ -39,7 +39,10 @@ const MemoizedDesktopMenu = memo(
     <MenubarRoot>
       {navbarData.map((item, index) => (
         <MenuWrapper key={`menu-${item.label}-${index}`}>
-          <StyledTriggerButton onClick={() => onCategoryClick(item.label)}>
+          <StyledTriggerButton
+            data-testid="category-button"
+            onClick={() => onCategoryClick(item.label)}
+          >
             {item.label}{' '}
             <ChevronDown
               size={12}
@@ -94,10 +97,10 @@ const MemoizedMobileMenu = memo(
     onClose: () => void
     onNavigate: (href: string) => void
   }) => (
-    <MobileMenu $isOpen={isOpen}>
+    <MobileMenu $isOpen={isOpen} data-state={isOpen ? 'open' : 'closed'}>
       <MobileMenuHeader>
         <MenuTitle>Menu</MenuTitle>
-        <MobileMenuButton onClick={onClose}>
+        <MobileMenuButton onClick={onClose} aria-label="Close menu">
           <X size={24} />
         </MobileMenuButton>
       </MobileMenuHeader>

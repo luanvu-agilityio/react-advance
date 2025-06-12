@@ -81,8 +81,7 @@ export const StyledItem = styled(SelectPrimitive.Item)`
   line-height: 1;
   color: #1f2937;
   border-radius: 3px;
-  display: flex;
-  align-items: center;
+
   padding: 10px 35px 10px 10px;
   position: relative;
   user-select: none;

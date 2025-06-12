@@ -3,7 +3,7 @@
 exports[`ProductCount Rendering renders correctly for different product counts: large-count 1`] = `
 <div>
   <span
-    class="sc-icnseD gYnRFY"
+    class="sc-kpOvIu bGasPY"
   >
     <span>
       1000
@@ -18,7 +18,7 @@ exports[`ProductCount Rendering renders correctly for different product counts: 
 exports[`ProductCount Rendering renders correctly for different product counts: single-count 1`] = `
 <div>
   <span
-    class="sc-icnseD gYnRFY"
+    class="sc-kpOvIu bGasPY"
   >
     <span>
       1
@@ -33,7 +33,7 @@ exports[`ProductCount Rendering renders correctly for different product counts: 
 exports[`ProductCount Rendering renders correctly for different product counts: standard-count 1`] = `
 <div>
   <span
-    class="sc-icnseD gYnRFY"
+    class="sc-kpOvIu bGasPY"
   >
     <span>
       42
@@ -48,7 +48,7 @@ exports[`ProductCount Rendering renders correctly for different product counts: 
 exports[`ProductCount Rendering renders correctly for different product counts: zero-count 1`] = `
 <div>
   <span
-    class="sc-icnseD gYnRFY"
+    class="sc-kpOvIu bGasPY"
   >
     <span>
       0

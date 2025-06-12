@@ -215,7 +215,7 @@ exports[`CartModal matches snapshot with items in cart 1`] = `
                    USD
                 </div>
                 <div
-                  class="sc-jPkiSJ jOnGdk"
+                  class="sc-jPkiSJ dLeMBP"
                 >
                   <input
                     aria-label="Quantity"
@@ -412,7 +412,7 @@ exports[`CartModal matches snapshot with items in cart 1`] = `
                    USD
                 </div>
                 <div
-                  class="sc-jPkiSJ jOnGdk"
+                  class="sc-jPkiSJ dLeMBP"
                 >
                   <input
                     aria-label="Quantity"

@@ -25,7 +25,7 @@ import {
   ShippingInfo,
 } from './ProductCard.styles'
 import { useCartStore } from '@stores/cartStore'
-import { useToast } from '@contexts/ToastContext'
+import { useToast } from '@stores/toastStore'
 const fullBlackStarIcon =
   'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372429/black-star_vfret7.svg'
 const emptyStarIcon =

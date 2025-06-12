@@ -1,12 +1,12 @@
 import Tag from '@components/common/Tag/index'
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import { TagContainer, TagsContainer, Title } from './FooterTags.styles'
 import { generateProductTags } from '@utils/tagUtils'
 import type { ProductTag } from '@utils/tagUtils'
 import { useTagNavigation } from '@hooks/useTagNavigation'
 import { useProductTagStore } from '@stores/tagStore'
 
-const FooterTags = () => {
+const FooterTags = memo(() => {
   const { navigateToTag } = useTagNavigation()
   const { addTag, isTagSelected } = useProductTagStore()
 
@@ -37,12 +37,12 @@ const FooterTags = () => {
             onClick={() => toggleTag(tag)}
             data-tag-type={tag.type}
             style={{
-              borderColor:
-                tag.type === 'category'
-                  ? 'var(--green-color-default)'
-                  : tag.type === 'subcategory'
-                    ? 'var(--blue-color-default)'
-                    : 'var(--gray-300)',
+              borderColor: (() => {
+                if (tag.type === 'category') return 'var(--green-color-default)'
+                if (tag.type === 'subcategory')
+                  return 'var(--coral-color-default)'
+                return 'var(--gray-300)'
+              })(),
               borderWidth: tag.type === 'product' ? '1px' : '2px',
             }}
           />
@@ -50,5 +50,5 @@ const FooterTags = () => {
       </TagsContainer>
     </TagContainer>
   )
-}
+})
 export default FooterTags

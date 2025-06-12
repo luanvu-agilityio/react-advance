@@ -3,7 +3,7 @@ import { within, userEvent, expect } from '@storybook/test'
 import ProductTabs from './Tabs'
 
 const meta: Meta<typeof ProductTabs> = {
-  title: 'Components/ProductDetails/ProductTabs',
+  title: 'Components/ProductTabs',
   component: ProductTabs,
   parameters: {
     layout: 'padded',

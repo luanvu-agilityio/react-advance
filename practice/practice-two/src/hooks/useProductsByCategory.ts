@@ -4,13 +4,29 @@ import { navbarData } from '@data/navbar'
 import { productData } from '@data/product-data'
 
 /**
- * Main hook function that orchestrates URL data extraction and product filtering
- * @returns Object containing all category-related data and filtered products
+ * useProductsByCategory - A custom hook for filtering products based on URL parameters and page context
+ *
+ * This hook extracts category and search information from the current URL and returns
+ * filtered product data based on the application's current navigation context. It handles
+ * different filtering scenarios:
+ *
+ * - Search results: Filters products matching the search query across multiple fields
+ * - Category view: Filters products belonging to the specified category
+ * - All products view: Returns all products without category filtering
+ *
+ * The hook automatically handles URL parameter extraction and product filtering logic,
+ * providing a clean interface for components to access context-aware product data.
+ *
+ * @returns {Object} An object containing filtered data and context information
+ * @returns {string|undefined} categoryPath - The current category path extracted from URL parameters
+ * @returns {Object|undefined} currentCategory - The current category object from navigation data
+ * @returns {Array} productsInCategory - Array of products filtered by current page context
+ * @returns {string} searchQuery - Current search query from URL parameters
+ * @returns {string} subcategoryParam - Current subcategory filter from URL parameters
+ *
  */
 export const useProductsByCategory = () => {
-  /**
-   * Extracts category path from URL parameters
-   */
+  // Extracts category path from URL parameters
   const { categoryPath } = useParams<{ categoryPath: string }>()
   const location = useLocation()
   const [searchParams] = useSearchParams()

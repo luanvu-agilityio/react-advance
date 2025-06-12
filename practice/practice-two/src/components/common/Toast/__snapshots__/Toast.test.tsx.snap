@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toast Component - Rendering matches snapshot for error toast 1`] = `
+<div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style=""
+    tabindex="-1"
+  >
+    <span
+      aria-hidden="true"
+      style="position: fixed; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; word-wrap: normal;"
+      tabindex="0"
+    />
+    <ol
+      class="toast-viewport"
+      tabindex="-1"
+    >
+      <li
+        aria-atomic="true"
+        aria-live="off"
+        class="toast-root toast-error"
+        data-radix-collection-item=""
+        data-state="open"
+        data-swipe-direction="right"
+        role="status"
+        style="user-select: none;"
+        tabindex="0"
+      >
+        <div>
+          <div
+            class="toast-title"
+            style="color: rgb(208, 0, 0);"
+          >
+            Error Toast
+          </div>
+          <div
+            class="toast-description"
+          >
+            This is an error message
+          </div>
+        </div>
+        <button
+          class="toast-close"
+          data-radix-toast-announce-exclude=""
+          type="button"
+        >
+          ×
+        </button>
+      </li>
+    </ol>
+    <span
+      aria-hidden="true"
+      style="position: fixed; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; word-wrap: normal;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Toast Component - Rendering matches snapshot for info toast 1`] = `
+<div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style=""
+    tabindex="-1"
+  >
+    <span
+      aria-hidden="true"
+      style="position: fixed; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; word-wrap: normal;"
+      tabindex="0"
+    />
+    <ol
+      class="toast-viewport"
+      tabindex="-1"
+    >
+      <li
+        aria-atomic="true"
+        aria-live="off"
+        class="toast-root toast-info"
+        data-radix-collection-item=""
+        data-state="open"
+        data-swipe-direction="right"
+        role="status"
+        style="user-select: none;"
+        tabindex="0"
+      >
+        <div>
+          <div
+            class="toast-title"
+            style="color: rgb(30, 136, 229);"
+          >
+            Info Toast
+          </div>
+        </div>
+        <button
+          class="toast-close"
+          data-radix-toast-announce-exclude=""
+          type="button"
+        >
+          ×
+        </button>
+      </li>
+    </ol>
+    <span
+      aria-hidden="true"
+      style="position: fixed; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; word-wrap: normal;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Toast Component - Rendering matches snapshot for success toast 1`] = `
+<div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style=""
+    tabindex="-1"
+  >
+    <span
+      aria-hidden="true"
+      style="position: fixed; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; word-wrap: normal;"
+      tabindex="0"
+    />
+    <ol
+      class="toast-viewport"
+      tabindex="-1"
+    >
+      <li
+        aria-atomic="true"
+        aria-live="off"
+        class="toast-root toast-success"
+        data-radix-collection-item=""
+        data-state="open"
+        data-swipe-direction="right"
+        role="status"
+        style="user-select: none;"
+        tabindex="0"
+      >
+        <div>
+          <div
+            class="toast-title"
+            style="color: rgb(43, 147, 72);"
+          >
+            Success Toast
+          </div>
+          <div
+            class="toast-description"
+          >
+            This is a success message
+          </div>
+        </div>
+        <button
+          class="toast-close"
+          data-radix-toast-announce-exclude=""
+          type="button"
+        >
+          ×
+        </button>
+      </li>
+    </ol>
+    <span
+      aria-hidden="true"
+      style="position: fixed; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; word-wrap: normal;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Toast Component - Rendering matches snapshot for warning toast 1`] = `
+<div>
+  <div
+    aria-label="Notifications (F8)"
+    role="region"
+    style=""
+    tabindex="-1"
+  >
+    <span
+      aria-hidden="true"
+      style="position: fixed; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; word-wrap: normal;"
+      tabindex="0"
+    />
+    <ol
+      class="toast-viewport"
+      tabindex="-1"
+    >
+      <li
+        aria-atomic="true"
+        aria-live="off"
+        class="toast-root toast-warning"
+        data-radix-collection-item=""
+        data-state="open"
+        data-swipe-direction="right"
+        role="status"
+        style="user-select: none;"
+        tabindex="0"
+      >
+        <div>
+          <div
+            class="toast-title"
+            style="color: rgb(232, 93, 4);"
+          >
+            Warning Toast
+          </div>
+        </div>
+        <button
+          class="toast-close"
+          data-radix-toast-announce-exclude=""
+          type="button"
+        >
+          ×
+        </button>
+      </li>
+    </ol>
+    <span
+      aria-hidden="true"
+      style="position: fixed; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; word-wrap: normal;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;

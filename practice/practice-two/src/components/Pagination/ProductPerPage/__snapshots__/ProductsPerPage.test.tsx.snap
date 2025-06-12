@@ -3,11 +3,11 @@
 exports[`ProductsPerPage Rendering renders different component states correctly: default-5-per-page 1`] = `
 <div>
   <div
-    class="sc-gAqISa kfHEly"
-    style="min-width: 180px;"
+    class="sc-fpEFIB ksmUmw"
+    style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-ifkGpL bSueRD"
+      class="sc-gAqISa kDWsLg"
     >
       Product per page
     </span>
@@ -52,11 +52,11 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
 exports[`ProductsPerPage Rendering renders different component states correctly: with-10-per-page 1`] = `
 <div>
   <div
-    class="sc-gAqISa kfHEly"
-    style="min-width: 180px;"
+    class="sc-fpEFIB ksmUmw"
+    style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-ifkGpL bSueRD"
+      class="sc-gAqISa kDWsLg"
     >
       Product per page
     </span>
@@ -101,11 +101,11 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
 exports[`ProductsPerPage Rendering renders different component states correctly: with-15-per-page 1`] = `
 <div>
   <div
-    class="sc-gAqISa kfHEly"
-    style="min-width: 180px;"
+    class="sc-fpEFIB ksmUmw"
+    style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-ifkGpL bSueRD"
+      class="sc-gAqISa kDWsLg"
     >
       Product per page
     </span>
@@ -150,11 +150,11 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
 exports[`ProductsPerPage Rendering renders different component states correctly: with-20-per-page 1`] = `
 <div>
   <div
-    class="sc-gAqISa kfHEly"
-    style="min-width: 180px;"
+    class="sc-fpEFIB ksmUmw"
+    style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-ifkGpL bSueRD"
+      class="sc-gAqISa kDWsLg"
     >
       Product per page
     </span>
@@ -199,11 +199,11 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
 exports[`ProductsPerPage Rendering renders different component states correctly: with-invalid-value 1`] = `
 <div>
   <div
-    class="sc-gAqISa kfHEly"
-    style="min-width: 180px;"
+    class="sc-fpEFIB ksmUmw"
+    style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-ifkGpL bSueRD"
+      class="sc-gAqISa kDWsLg"
     >
       Product per page
     </span>

@@ -3,7 +3,7 @@
 exports[`Tag Component Rendering Snapshots renders button tag variants correctly: button-with-children 1`] = `
 <div>
   <button
-    class="sc-fYsHOw kuAQwy"
+    class="sc-fYsHOw iGnnHV"
     type="button"
   >
     <span>
@@ -16,7 +16,7 @@ exports[`Tag Component Rendering Snapshots renders button tag variants correctly
 exports[`Tag Component Rendering Snapshots renders button tag variants correctly: default-button 1`] = `
 <div>
   <button
-    class="sc-fYsHOw kuAQwy"
+    class="sc-fYsHOw iGnnHV"
     type="button"
   >
     Button Tag

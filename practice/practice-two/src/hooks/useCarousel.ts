@@ -1,6 +1,36 @@
 import { useState, useEffect, useRef } from 'react'
 import type { MouseEvent, RefObject, TouchEvent } from 'react'
 
+/**
+ * useCarousel - A custom hook for creating interactive, draggable carousel components
+ *
+ * This hook provides the core functionality for a carousel/slider UI component with:
+ * - Button-based navigation (previous/next)
+ * - Mouse and touch drag support with sliding
+ * - Slide snapping after drag
+ * - Configurable slide width and gap
+ *
+ * The hook handles all state management, drag interactions, and animation calculations
+ * needed for a smooth carousel experience.
+ *
+ * @param {Object} options - Configuration options
+ * @param {number} options.itemsCount - Total number of items in the carousel
+ * @param {number} [options.itemsPerSlide=3] - Number of items visible per slide
+ * @param {number} options.itemWidth - Width of each individual item in pixels
+ * @param {number} [options.gap=20] - Gap between items in pixels
+ *
+ * @returns {Object} Carousel state and handlers
+ * @returns {number} currentIndex - Current slide index (0-based)
+ * @returns {RefObject<HTMLDivElement>} slideRef - Ref to attach to the sliding container
+ * @returns {boolean} isDragging - Whether the carousel is currently being dragged
+ * @returns {Function} handlePrev - Function to navigate to previous slide
+ * @returns {Function} handleNext - Function to navigate to next slide
+ * @returns {Function} handleDragStart - Event handler for drag/touch start
+ * @returns {Function} handleDragMove - Event handler for drag/touch move
+ * @returns {Function} handleDragEnd - Event handler for drag/touch end
+ * @returns {number} maxIndex - Maximum possible slide index
+ */
+
 interface UseCarouselProps {
   itemsCount: number
   itemsPerSlide?: number

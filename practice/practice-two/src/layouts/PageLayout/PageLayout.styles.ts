@@ -15,11 +15,14 @@ export const Footer = styled.footer`
 `
 
 export const Copyright = styled.div`
-  width: 1260px;
   padding: 0 45px;
   color: var(--black-color-default);
   font-family: var(--font-family-secondary);
   font-size: 14px;
   font-weight: var(--font-weight-regular);
   margin: 48px auto 0;
+
+  @media (min-width: 768px) {
+    width: 1260px;
+  }
 `

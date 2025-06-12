@@ -98,50 +98,6 @@ export const Ellipsis = styled.span`
   padding: 0 4px;
 `
 
-export const ShowMoreButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background-color: var(--green-color-default);
-  color: var(--white-color);
-  border: 2px solid var(--green-shade-1);
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 15px;
-  font-weight: var(--font-weight-bold);
-  cursor: pointer;
-  order: 1;
-  transition: all 0.2s ease;
-  min-width: 160px;
-
-  svg {
-    transition: transform 0.2s ease;
-  }
-
-  &:hover {
-    background-color: var(--green-shade-1);
-
-    svg {
-      transform: translateY(2px);
-    }
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-
-    &:hover svg {
-      transform: none;
-    }
-  }
-
-  @media (min-width: 768px) {
-    width: auto;
-    order: 2;
-  }
-`
-
 export const ProductCountDisplay = styled.span`
   font-size: 14px;
   font-weight: var(--font-weight-medium);

@@ -3,7 +3,7 @@
 exports[`BuyingUnit Component matches snapshots for different states: custom-values 1`] = `
 <div>
   <div
-    class="sc-Qotzb kIlQEZ"
+    class="sc-Qotzb ceHMBm"
   >
     <input
       aria-label="Quantity"
@@ -79,7 +79,7 @@ exports[`BuyingUnit Component matches snapshots for different states: custom-val
 exports[`BuyingUnit Component matches snapshots for different states: default 1`] = `
 <div>
   <div
-    class="sc-Qotzb kIlQEZ"
+    class="sc-Qotzb ceHMBm"
   >
     <input
       aria-label="Quantity"
@@ -155,7 +155,7 @@ exports[`BuyingUnit Component matches snapshots for different states: default 1`
 exports[`BuyingUnit Component matches snapshots for different states: large-size 1`] = `
 <div>
   <div
-    class="sc-Qotzb kIlQEZ"
+    class="sc-Qotzb ceHMBm"
   >
     <input
       aria-label="Quantity"
@@ -231,7 +231,7 @@ exports[`BuyingUnit Component matches snapshots for different states: large-size
 exports[`BuyingUnit Component matches snapshots for different states: small-size 1`] = `
 <div>
   <div
-    class="sc-Qotzb ghwjbr"
+    class="sc-Qotzb fCfYFk"
   >
     <input
       aria-label="Quantity"

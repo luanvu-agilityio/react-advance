@@ -128,7 +128,7 @@ const ThankYouModal = ({
             <LoadingSpinner
               message="Redirecting to homepage..."
               size="3"
-              minHeight="200px"
+              minHeight="400px"
             />
           </StyledDialog>
         </Dialog.Portal>
