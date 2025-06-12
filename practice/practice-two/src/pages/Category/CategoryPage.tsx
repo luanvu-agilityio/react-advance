@@ -8,6 +8,7 @@ import { useUrlParamSync } from '@hooks/useUrlParamSync'
 import { useProductsByCategory } from '@hooks/useProductsByCategory'
 import { useFilterOptions } from '@hooks/useFilterOptions'
 import { useProductTagStore } from '@stores/tagStore'
+import { useProductTagStore } from '@stores/tagStore'
 
 // Components
 import FilterComponents from '@components/Filter/FilteringComponents'
@@ -17,6 +18,12 @@ import ErrorDisplay from '@components/common/ErrorDisplay'
 import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
 import { CategoryPageHeader } from './CategoryPageHeader'
 import { NoResultsSection } from './NoResultSection'
+import ErrorBoundary from '@components/common/ErrorBoundary/ErrorBoundary'
+import SelectedTags from '@components/SelectedTag/SelectedTag'
+import { ProductsPerPage } from '@components/Pagination/ProductPerPage/ProductsPerPage'
+import { Sorting } from '@components/Sorting/Sorting'
+
+// Utils & Types
 import ErrorBoundary from '@components/common/ErrorBoundary/ErrorBoundary'
 import SelectedTags from '@components/SelectedTag/SelectedTag'
 import { ProductsPerPage } from '@components/Pagination/ProductPerPage/ProductsPerPage'
@@ -37,16 +44,26 @@ import {
 /**
  * CategoryPage component displaying product listings with filtering capabilities
  */
+
+/**
+ * CategoryPage component displaying product listings with filtering capabilities
+ */
 const CategoryPage = () => {
+  // --------- STATE & STORE ACCESS ---------
+  const location = useLocation()
   // --------- STATE & STORE ACCESS ---------
   const location = useLocation()
   const { categoryPath } = useParams()
   const [productCount, setProductCount] = useState<number | null>(null)
 
   // Get category data from URL and hook
+  const [productCount, setProductCount] = useState<number | null>(null)
+
+  // Get category data from URL and hook
   const { currentCategory, productsInCategory, searchQuery } =
     useProductsByCategory()
 
+  // Get store state and actions
   // Get store state and actions
   const {
     currentPage,
@@ -72,6 +89,7 @@ const CategoryPage = () => {
   const { selectedTags, clearTags } = useProductTagStore()
 
   // --------- DATA FETCHING ---------
+  // --------- DATA FETCHING ---------
   // URL synchronization
   useUrlParamSync()
 
@@ -82,6 +100,7 @@ const CategoryPage = () => {
   const { subcategories, categoryBrands } = useFilterOptions({
     currentCategory: currentCategory || null,
     productsInCategory,
+    activeSubcategory: subcategory ?? '',
     activeSubcategory: subcategory ?? '',
     selectedBrands,
     categoryPath,
@@ -222,6 +241,7 @@ const CategoryPage = () => {
   }
 
   // --------- RENDER METHODS ---------
+  // --------- RENDER METHODS ---------
   const renderContent = () => {
     if (error) {
       return <ErrorDisplay error={error.message} onRetry={refetch} />
@@ -263,6 +283,7 @@ const CategoryPage = () => {
   }
 
   // --------- COMPONENT RENDER ---------
+  // --------- COMPONENT RENDER ---------
   return (
     <PageContainer className="section">
       <Breadcrumbs style={{ padding: '12px 0' }} />
@@ -302,6 +323,7 @@ const CategoryPage = () => {
             initialActiveCategory={subcategory ?? ''}
           />
         </ErrorBoundary>
+
 
         <ErrorBoundary fallback={<div>Products couldn't be loaded</div>}>
           {renderContent()}
