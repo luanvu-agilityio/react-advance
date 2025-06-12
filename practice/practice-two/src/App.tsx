@@ -36,7 +36,7 @@ function App() {
         <Router>
           <Theme
             appearance="light"
-            accentColor="indigo"
+            accentColor="gray"
             grayColor="slate"
             scaling="100%"
             style={{ background: 'transparent' }}

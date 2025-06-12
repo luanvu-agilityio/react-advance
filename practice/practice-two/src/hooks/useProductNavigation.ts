@@ -2,6 +2,19 @@ import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { Product } from 'types/Product'
 
+/**
+ * useProductNavigation - A custom hook for product-related navigation functionality
+ *
+ * This hook provides utilities for navigating to product detail pages throughout the application.
+ * It handles the creation of proper URL paths based on product category hierarchies and
+ * scrolls to the top of the page after navigation.
+ *
+ * @returns {Object} Navigation utilities object
+ * @returns {Function} navigateToProduct - Function to navigate to a product detail page given a product object
+ * @returns {Function} createProductClickHandler - Factory function to create click handlers that navigate to products by ID
+ *
+ */
+
 export const useProductNavigation = () => {
   const navigate = useNavigate()
 

@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-
 import type { ProductTag } from '@utils/tagUtils'
 
 interface TagState {

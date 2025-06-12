@@ -220,7 +220,6 @@ const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
         onClick={(e) => {
           e.stopPropagation()
           e.preventDefault()
-          console.log('Button clicked')
           handleSubmitSuccess(e)
         }}
       >

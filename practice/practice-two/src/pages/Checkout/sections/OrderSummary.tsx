@@ -18,15 +18,8 @@ import { useCheckoutStore } from '@stores/checkoutStore'
 import { withErrorBoundary } from '@utils/withErrorBoundary'
 
 export const OrderSummarySection = () => {
-  const {
-    items,
-    removeItem,
-    getSubtotal,
-    getTax,
-
-    updateQuantity,
-    updateUnit,
-  } = useCartStore()
+  const { items, removeItem, getSubtotal, getTax, updateQuantity, updateUnit } =
+    useCartStore()
 
   const { formData } = useCheckoutStore()
 

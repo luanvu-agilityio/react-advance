@@ -1,4 +1,4 @@
-import { useCallback, type MouseEvent } from 'react'
+import { memo, useCallback, type MouseEvent } from 'react'
 import ImageIcon from '@components/common/ImageIcon'
 import { useNavigate } from 'react-router-dom'
 import SearchBar from '@components/Searchbar/Searchbar'
@@ -19,7 +19,7 @@ interface HeaderSectionProps {
   onSearch?: (query: string) => void
 }
 
-const HeaderSection = ({ onSearch }: HeaderSectionProps) => {
+const HeaderSection = memo(({ onSearch }: HeaderSectionProps) => {
   const { openCart, items } = useCartStore()
   const totalItems = items.reduce((total, item) => total + item.quantity, 0)
 
@@ -77,6 +77,6 @@ const HeaderSection = ({ onSearch }: HeaderSectionProps) => {
       </MainHeader>
     </HeaderContainer>
   )
-}
+})
 
 export default HeaderSection

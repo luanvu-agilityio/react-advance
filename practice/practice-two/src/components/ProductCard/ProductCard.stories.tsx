@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions'
 import { MemoryRouter } from 'react-router-dom'
 import { CartProvider } from '@contexts/CartContext'
 import { useState, type ComponentType } from 'react'
-
+import { ToastProvider } from '@contexts/ToastContext'
 // Sample products for display
 const productBase = {
   id: 1,
@@ -50,11 +50,13 @@ const productWithExtras = {
 const withProviders = (Story: ComponentType) => {
   return (
     <MemoryRouter>
-      <CartProvider>
-        <div style={{ maxWidth: '800px', padding: '20px' }}>
-          <Story />
-        </div>
-      </CartProvider>
+      <ToastProvider>
+        <CartProvider>
+          <div style={{ maxWidth: '800px', padding: '20px' }}>
+            <Story />
+          </div>
+        </CartProvider>
+      </ToastProvider>
     </MemoryRouter>
   )
 }

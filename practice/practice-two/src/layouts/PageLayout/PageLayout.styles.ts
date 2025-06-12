@@ -15,7 +15,6 @@ export const Footer = styled.footer`
 `
 
 export const Copyright = styled.div`
-  width: 1260px;
   padding: 0 45px;
   color: var(--black-color-default);
   font-family: var(--font-family-secondary);

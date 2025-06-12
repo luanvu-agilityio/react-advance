@@ -1,4 +1,4 @@
-import { useMediaQuery } from '@chakra-ui/react'
+import { useMediaQuery } from '@hooks/useMediaQuery'
 import { BillingInfoSection } from './BillingInfo'
 import PaymentMethodWithErrorBoundary from './PaymentMethod'
 import { MobileCheckoutAccordion } from './MobileCheckoutAccordion'
@@ -33,7 +33,7 @@ const CheckoutContent = ({
 }) => {
   const [showThankYou, setShowThankYou] = useState(false)
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
-  const [isMobile] = useMediaQuery(['(max-width: 1023px)'])
+  const isMobile = useMediaQuery('(max-width: 1023px)')
   const { currentStep, setCurrentStep } = useCheckoutStore()
 
   const { formState } = useFormContext()
@@ -51,9 +51,7 @@ const CheckoutContent = ({
   }
 
   const handleCheckoutSuccess = () => {
-    console.log('handleCheckoutSuccess called')
     setShowThankYou(true)
-    console.log('showThankYou set to true:', true)
 
     if (onCheckoutSuccess) {
       onCheckoutSuccess()
@@ -155,7 +153,6 @@ const CheckoutContent = ({
         <ThankYouModalWithErrorBoundary
           open={showThankYou}
           onClose={() => {
-            console.log('Modal onClose called')
             setShowThankYou(false)
           }}
           orderDetailsRef={orderDetailsRef}

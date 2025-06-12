@@ -1,6 +1,8 @@
+import { TextEncoder } from 'util'
+global.TextEncoder = TextEncoder
+
 import { render, screen, fireEvent } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-
 import type { BreadcrumbItem } from '@hooks/useBreadcrumbs'
 import Breadcrumbs from './Breadcrumb'
 import type { ReactElement } from 'react'

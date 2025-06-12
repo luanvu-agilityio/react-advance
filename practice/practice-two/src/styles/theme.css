@@ -1,0 +1,36 @@
+.freshnesecom-theme {
+  /* Global theme styles */
+}
+
+/* Button customizations */
+.freshnesecom-theme .rt-Button[data-variant='accent'] {
+  background-color: var(--button-accent-bg);
+  color: var(--button-accent-text);
+}
+
+.freshnesecom-theme .rt-Button[data-variant='outline'] {
+  background-color: var(--button-outline-bg);
+  color: var(--button-outline-text);
+  border-color: var(--button-border-color);
+  border-width: var(--button-border-width);
+}
+
+.freshnesecom-theme .rt-Button[data-size='1'] {
+  height: var(--button-height-1);
+  padding: var(--button-padding-1);
+}
+
+/* Card customizations */
+.freshnesecom-theme .rt-Card {
+  background-color: var(--card-bg-default);
+  border-color: var(--card-border-color);
+  border-width: var(--card-border-width);
+  box-shadow: var(--card-shadow);
+}
+
+/* Dialog customizations */
+.freshnesecom-theme .rt-DialogContent {
+  background-color: var(--dialog-bg);
+  border-radius: var(--dialog-border-radius);
+  box-shadow: var(--dialog-shadow);
+}

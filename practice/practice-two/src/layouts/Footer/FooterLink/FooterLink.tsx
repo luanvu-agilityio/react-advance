@@ -2,7 +2,7 @@ import { Box, Flex } from '@radix-ui/themes'
 import Link from '@components/common/Link'
 import { footerSections } from '@constants/footer-link'
 import { ChevronDown } from 'lucide-react'
-import type { MouseEvent } from 'react'
+import { memo, type MouseEvent } from 'react'
 import Text from '@components/common/Text/index'
 import {
   AccordionHeader,
@@ -27,7 +27,7 @@ interface FooterLinkProps {
   }[]
 }
 
-const FooterLink = ({ sections = footerSections }: FooterLinkProps) => {
+const FooterLink = memo(({ sections = footerSections }: FooterLinkProps) => {
   const handleLinkClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault?.()
   }
@@ -120,6 +120,6 @@ const FooterLink = ({ sections = footerSections }: FooterLinkProps) => {
       </DesktopFooter>
     </StyledContainer>
   )
-}
+})
 
 export default FooterLink

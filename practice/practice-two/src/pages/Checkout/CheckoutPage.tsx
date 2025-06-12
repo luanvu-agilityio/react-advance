@@ -1,39 +1,39 @@
-import CheckoutContent from './sections/CheckoutContent'
-import { useCheckoutStore } from '@stores/checkoutStore'
 import { useEffect, useRef, useCallback } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useCartStore } from '@stores/cartStore'
-import type { CheckoutFormData } from 'types/checkout' // Import the type directly
 import { withErrorBoundary } from '@utils/withErrorBoundary'
+
+// Components
+import CheckoutContent from './sections/CheckoutContent'
 import CheckoutErrorFallback from './CheckoutFallback'
 
-const CheckoutPage = () => {
-  // Create ref for order details export functionality
-  const orderDetailsRef = useRef<HTMLDivElement>(null)
+// Stores & Types
+import { useCheckoutStore } from '@stores/checkoutStore'
+import { useCartStore } from '@stores/cartStore'
+import type { CheckoutFormData } from 'types/checkout'
 
-  // Get form data and setter from checkout store
+/**
+ * Custom hook to manage checkout form logic
+ */
+const useCheckoutForm = () => {
   const { formData, setFormData } = useCheckoutStore()
 
-  // Initialize React Hook Form with Zod validation
+  // Initialize form with react-hook-form
   const methods = useForm<CheckoutFormData>({
     defaultValues: formData,
     mode: 'onBlur',
   })
 
+  // Initialize form only once on mount
   useEffect(() => {
-    // Only reset on initial mount, not on every formData change
-    const initialReset = () => {
-      methods.reset(formData)
-    }
-    initialReset()
-    // Empty dependency array - only runs on mount
-  }, [])
+    methods.reset(formData)
+  }, []) // Empty dependency array - only runs on mount
 
+  // Sync specific form fields when they change in store
   useEffect(() => {
-    // Update specific payment fields without resetting the entire form
+    // Update payment method without triggering validation
     methods.setValue('payment.method', formData.payment.method)
 
-    // Only sync shipping method data
+    // Update shipping information
     methods.setValue('shipping.method', formData.shipping.method)
     methods.setValue('shipping.price', formData.shipping.price)
   }, [
@@ -43,28 +43,44 @@ const CheckoutPage = () => {
     methods,
   ])
 
-  // Handle form submission
-  const onSubmit = useCallback(
-    async (data: CheckoutFormData) => {
-      // Check if cart has items
+  // Form submission handler
+  const handleSubmit = useCallback(
+    async (data: CheckoutFormData): Promise<boolean> => {
+      // Validate cart has items
       const { items } = useCartStore.getState()
       if (items.length === 0) return false
 
       try {
         // Save form data to store
         setFormData(data)
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1000))
+
+        await new Promise<void>((resolve) => setTimeout(resolve, 1000))
         return true
       } catch (error) {
-        console.error('Error submitting form:', error)
+        console.error('Error submitting checkout form:', error)
         return false
       }
     },
     [setFormData]
   )
 
-  // Handle successful checkout
+  return {
+    methods,
+    handleSubmit,
+  }
+}
+
+/**
+ * Checkout page component with form management
+ */
+const CheckoutPage = () => {
+  // Reference for order details export functionality
+  const orderDetailsRef = useRef<HTMLDivElement>(null)
+
+  // Get form handling logic
+  const { methods, handleSubmit } = useCheckoutForm()
+
+  // Success callback when checkout completes
   const handleCheckoutSuccess = useCallback(() => {
     console.log('Order completed successfully!')
   }, [])
@@ -73,24 +89,25 @@ const CheckoutPage = () => {
     <FormProvider {...methods}>
       <CheckoutContent
         orderDetailsRef={orderDetailsRef}
-        onSubmit={methods.handleSubmit(onSubmit)}
+        onSubmit={methods.handleSubmit(handleSubmit)}
         onCheckoutSuccess={handleCheckoutSuccess}
       />
     </FormProvider>
   )
 }
 
-// Handle checkout page reload
-const handleRetry = () => {
-  window.location.reload()
-}
+/**
+ * Error handling functions
+ */
+const handleRetry = () => window.location.reload()
 
-// Log checkout errors to monitoring service
 const handleCheckoutError = (error: Error) => {
   console.error('Checkout Error:', error)
 }
 
-// Export the enhanced component
+/**
+ * Wrap the component with error boundary
+ */
 const CheckoutPageWithErrorBoundary = withErrorBoundary(CheckoutPage, {
   fallback: <CheckoutErrorFallback onRetry={handleRetry} />,
   onError: handleCheckoutError,

@@ -110,6 +110,10 @@ const FeedbackSlide = styled.div<{ $isDragging?: boolean }>`
   transition: ${(props) =>
     props.$isDragging ? 'none' : 'transform 0.5s ease'};
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
   // Design width (1260px)
   @media (min-width: 1260px) {
     width: 1260px;

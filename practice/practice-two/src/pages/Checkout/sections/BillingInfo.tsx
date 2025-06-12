@@ -19,13 +19,7 @@ import type { CheckoutFormData } from 'types/checkout'
 import { ValidationMessage } from '@config/validation/validation-message'
 
 export const BillingInfoSection = () => {
-  const {
-    register,
-    formState: { errors },
-    control,
-    watch,
-    setValue,
-  } = useFormContext<CheckoutFormData>()
+  const { control, watch, setValue } = useFormContext<CheckoutFormData>()
 
   // Watch values from the form
   const sameAsBilling = watch('shipping.sameAsBilling')
@@ -48,28 +42,46 @@ export const BillingInfoSection = () => {
         {fields.map((field) => (
           <FormField name={field.name} key={field.name}>
             <FormLabel>{field.label}</FormLabel>
+
             {field.type === 'select' ? (
-              <FormSelect
-                {...register(`billing.${field.name}`)}
-                $hasError={!!errors?.billing?.[field.name]}
-              >
-                {field.options?.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </FormSelect>
+              <Controller
+                name={`billing.${field.name}`}
+                control={control}
+                rules={{ required: ValidationMessage.REQUIRED }}
+                render={({ field: controllerField, fieldState }) => (
+                  <>
+                    <FormSelect
+                      value={controllerField.value}
+                      onChange={controllerField.onChange}
+                      onBlur={controllerField.onBlur}
+                      name={controllerField.name}
+                      ref={controllerField.ref}
+                      $hasError={!!fieldState.error}
+                    >
+                      {field.options?.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </FormSelect>
+                    {fieldState.error && (
+                      <FormError
+                        message={fieldState.error?.message || 'Invalid value'}
+                      />
+                    )}
+                  </>
+                )}
+              />
             ) : (
-              <FormInput
-                type={field.type}
-                placeholder={field.placeholder}
-                {...register(`billing.${field.name}`, {
+              <Controller
+                name={`billing.${field.name}`}
+                control={control}
+                rules={{
                   required: ValidationMessage.REQUIRED,
                   minLength: {
                     value: 2,
                     message: ValidationMessage.MIN_LENGTH(field.name, 2),
                   },
-
                   ...(field.name === 'email' && {
                     pattern: {
                       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -88,18 +100,28 @@ export const BillingInfoSection = () => {
                       message: ValidationMessage.ZIP,
                     },
                   }),
-                })}
-                $hasError={!!errors?.billing?.[field.name]}
+                }}
+                render={({ field: controllerField, fieldState }) => (
+                  <>
+                    <FormInput
+                      type={field.type}
+                      placeholder={field.placeholder}
+                      value={controllerField.value || ''}
+                      onChange={controllerField.onChange}
+                      onBlur={controllerField.onBlur}
+                      name={controllerField.name}
+                      ref={controllerField.ref}
+                      $hasError={!!fieldState.error}
+                    />
+                    {fieldState.error && (
+                      <FormError
+                        message={fieldState.error?.message || 'Invalid value'}
+                      />
+                    )}
+                  </>
+                )}
               />
             )}
-            {errors?.billing?.[field.name] ? (
-              <FormError
-                message={
-                  (errors.billing[field.name]?.message as string) ||
-                  'Invalid value'
-                }
-              />
-            ) : null}
           </FormField>
         ))}
       </FormGrid>

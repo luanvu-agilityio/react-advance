@@ -3,7 +3,13 @@ import TextField from '@components/common/TextField/index'
 import ImageIcon from '@components/common/ImageIcon'
 import { categories } from '@constants/category'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useCallback, useState, type ChangeEvent, type FormEvent } from 'react'
+import {
+  memo,
+  useCallback,
+  useState,
+  type ChangeEvent,
+  type FormEvent,
+} from 'react'
 import type { Product } from 'types/Product'
 import { ChevronLeft } from 'lucide-react'
 import { productData } from '@data/product-data'
@@ -28,7 +34,7 @@ interface SearchBarProps {
   onSearch?: (query: string) => void
 }
 
-const SearchBar = ({ onSearch }: SearchBarProps) => {
+const SearchBar = memo(({ onSearch }: SearchBarProps) => {
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
   const [showResults, setShowResults] = useState(false)
@@ -37,9 +43,9 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const handleSelectCategory = (categoryValue: string) => {
+  const handleSelectCategory = useCallback((categoryValue: string) => {
     setCategory(categoryValue)
-  }
+  }, [])
 
   const handleMobileSearchOpen = () => {
     setIsMobileSearchActive(true)
@@ -88,25 +94,28 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
       })
     : []
 
-  const handleProductClick = (product: Product) => {
-    setShowResults(false)
-    setQuery('')
+  const handleProductClick = useCallback(
+    (product: Product) => {
+      setShowResults(false)
+      setQuery('')
 
-    // Construct the URL path
-    const categoryPath = product.category.toLowerCase().replace(/\s+/g, '-')
-    const subcategoryPath = product.subcategory
-      .toLowerCase()
-      .replace(/\s+/g, '-')
+      // Construct the URL path
+      const categoryPath = product.category.toLowerCase().replace(/\s+/g, '-')
+      const subcategoryPath = product.subcategory
+        .toLowerCase()
+        .replace(/\s+/g, '-')
 
-    setTimeout(() => {
-      navigate(`/${categoryPath}/${subcategoryPath}/${product.id}`)
-    }, 0)
-  }
+      setTimeout(() => {
+        navigate(`/${categoryPath}/${subcategoryPath}/${product.id}`)
+      }, 0)
+    },
+    [navigate]
+  )
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value)
     setShowResults(true)
-  }
+  }, [])
   return (
     <>
       {/* Mobile Search Header */}
@@ -229,6 +238,6 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
       </SearchBarContainer>
     </>
   )
-}
+})
 
 export default SearchBar

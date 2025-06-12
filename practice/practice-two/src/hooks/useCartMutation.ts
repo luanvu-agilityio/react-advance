@@ -4,6 +4,28 @@ import { useCartStore } from '@stores/cartStore'
 import type { Product } from 'types/Product'
 import { useToast } from '@contexts/ToastContext'
 
+/**
+ * Cart Mutation Hooks
+ *
+ * This module provides React Query mutation hooks for cart operations with integrated
+ * toast notifications. These hooks handle the data mutations,
+ * and user feedback for cart-related actions.
+ */
+
+/**
+ * useAddToCart - Hook for adding products to the shopping cart
+ *
+ * This hook provides a mutation function that adds products to the cart and
+ * displays appropriate success/error notifications using toast messages.
+ * It also invalidates relevant queries to ensure data consistency.
+ *
+ * @returns {UseMutationResult} A React Query mutation result object containing:
+ *   - mutate: Function to call when adding an item to cart
+ *   - isPending: Boolean indicating if the operation is in progress
+ *   - isError: Boolean indicating if the operation failed
+ *   - error: Error information if the operation failed
+ */
+
 export const useAddToCart = () => {
   const queryClient = useQueryClient()
   const { addItem } = useCartStore()
@@ -47,6 +69,18 @@ export const useAddToCart = () => {
   })
 }
 
+/**
+ * useRemoveFromCart - Hook for removing items from the shopping cart
+ *
+ * This hook provides a mutation function that removes products from the cart and
+ * displays appropriate success/error notifications using toast messages.
+ *
+ * @returns {UseMutationResult} A React Query mutation result object containing:
+ *   - mutate: Function to call when removing an item from cart
+ *   - isPending: Boolean indicating if the operation is in progress
+ *   - isError: Boolean indicating if the operation failed
+ *   - error: Error information if the operation failed
+ */
 export const useRemoveFromCart = () => {
   const queryClient = useQueryClient()
   const { removeItem } = useCartStore()
