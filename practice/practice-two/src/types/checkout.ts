@@ -15,6 +15,7 @@ export interface CheckoutFormData {
     cardHolder?: string
     expirationDate?: string
     cvc?: string
+    processingFee?: number
   }
   shipping: {
     method: 'fedex' | 'dhl'

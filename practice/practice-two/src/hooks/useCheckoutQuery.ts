@@ -123,6 +123,9 @@ export const usePaymentMethodMutation = () => {
       // Update checkout store
       updateField('payment', 'method', method)
 
+      // Add this line to save the processing fee
+      updateField('payment', 'processingFee', data.processingFee)
+
       // Format method name for display
       let methodName = 'Credit Card'
       if (method === 'paypal') methodName = 'PayPal'
