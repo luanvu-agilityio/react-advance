@@ -165,9 +165,6 @@ export const MobileSearchHeader = styled.div`
   display: none;
 
   @media (max-width: 767px) {
-    display: flex;
-    align-items: center;
-    gap: 12px;
     padding: 8px 16px;
     background: white;
     position: fixed;

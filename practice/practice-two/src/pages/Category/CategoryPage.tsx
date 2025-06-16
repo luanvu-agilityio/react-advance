@@ -25,7 +25,7 @@ import { Sorting } from '@components/Sorting/Sorting'
 // Utils & Types
 import { getCategoryTitle } from '@utils/categoryUtils'
 import type { StarRating } from 'types/Filter'
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 import type { ProductTag } from '@utils/tagUtils'
 // Styles
 import {

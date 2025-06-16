@@ -1,4 +1,4 @@
-import { memo, useCallback, type MouseEvent } from 'react'
+import { memo, useCallback, useMemo, type MouseEvent } from 'react'
 import ImageIcon from '@components/common/ImageIcon'
 import { useNavigate } from 'react-router-dom'
 import SearchBar from '@components/Searchbar/Searchbar'
@@ -43,6 +43,10 @@ const HeaderSection = memo(({ onSearch }: HeaderSectionProps) => {
     [navigate, onSearch]
   )
 
+  const MemoizedSearchBar = useMemo(() => {
+    return <SearchBar onSearch={handleSearch} />
+  }, [handleSearch])
+
   return (
     <HeaderContainer className="section">
       <TopBar handleClick={handleClick} />
@@ -55,7 +59,7 @@ const HeaderSection = memo(({ onSearch }: HeaderSectionProps) => {
           />
         </LogoLink>
 
-        <SearchBar onSearch={handleSearch} />
+        {MemoizedSearchBar}
 
         <IconGroup>
           <IconButton aria-label="Account">

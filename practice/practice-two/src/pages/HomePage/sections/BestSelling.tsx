@@ -1,4 +1,4 @@
-import { type MouseEvent, useMemo } from 'react'
+import { type MouseEvent, useCallback, useMemo } from 'react'
 import { ChevronRight } from 'lucide-react'
 import styled from 'styled-components'
 import { Button, Flex } from '@radix-ui/themes'
@@ -49,12 +49,14 @@ const BestSellingProducts = ({
       .slice(0, maxItems)
   }, [sectionType, maxItems])
 
-  const handleCategoryClick =
-    (category: string) => (e: MouseEvent<HTMLAnchorElement>) => {
+  const handleCategoryClick = useCallback(
+    (e: MouseEvent<HTMLAnchorElement>, category: string) => {
       e.preventDefault()
       const categoryPath = category.toLowerCase().replace(/\s+/g, '-')
       navigate(`/${categoryPath}`)
-    }
+    },
+    [navigate]
+  )
 
   return (
     <Container className="section">
@@ -68,7 +70,7 @@ const BestSellingProducts = ({
                 <StyledLink key={category.toLowerCase().replace(/\s+/g, '-')}>
                   <Link
                     href={`/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                    onClick={handleCategoryClick(category)}
+                    onClick={(e) => handleCategoryClick(e, category)}
                     style={{
                       color: 'var(--green-color-default)',
                       fontFamily: 'var(--font-family-secondary)',
@@ -82,18 +84,11 @@ const BestSellingProducts = ({
               ))}
             </CategoryList>
             <Button
-              variant="ghost"
+              variant="soft"
               onClick={() => navigate('/all-products')}
               style={{
                 marginTop: '3rem',
-                fontWeight: 'var(--font-weight-bold)',
-                padding: '12.5px 16px',
-                color: 'var(--black-color-default)',
                 justifyContent: 'flex-start',
-                fontSize: '15px',
-                borderRadius: '12px',
-                backgroundColor: 'var(--black-shade-5)',
-                cursor: 'pointer',
               }}
             >
               <Flex align="center" gap="1">

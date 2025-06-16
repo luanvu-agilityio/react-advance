@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import * as Menubar from '@radix-ui/react-menubar'
 import * as Accordion from '@radix-ui/react-accordion'
+import { ChevronDown, ChevronRight, Menu } from 'lucide-react'
 
 export const NavbarWrapper = styled.div`
   width: 100%;
@@ -244,4 +245,15 @@ export const StyledTriggerButton = styled.button`
   ${MenuWrapper}:first-child & {
     padding-left: 0;
   }
+`
+export const ChevronDownIcon = styled(ChevronDown)`
+  color: var(--green-color-default);
+  stroke-width: 4;
+`
+export const ChevronRightIcon = styled(ChevronRight)`
+  color: var(--green-color-default);
+  stroke-width: 4;
+`
+export const MenuIcon = styled(Menu)`
+  margin-left: 16px;
 `

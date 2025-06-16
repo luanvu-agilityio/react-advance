@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useCarousel } from '@hooks/useCarousel'
 import { feedbacks } from '@constants/feedbacks'
 import Text from '@components/common/Text/index'
-import type { MouseEvent } from 'react'
+import { memo, type MouseEvent } from 'react'
 import { FeedbackItem } from '@components/common/FeedbackItem/Feedback'
 import {
   CarouselContainer,
@@ -14,6 +14,9 @@ import {
   PrevButton,
   StyledLink,
 } from './Carousel.styles'
+
+const MemoizedFeedbackItem = memo(FeedbackItem)
+MemoizedFeedbackItem.displayName = 'MemoizedFeedbackItem'
 
 const CustomerFeedbackCarousel = () => {
   const {
@@ -71,7 +74,7 @@ const CustomerFeedbackCarousel = () => {
           onTouchEnd={handleDragEnd}
         >
           {feedbacks.map((feedback) => (
-            <FeedbackItem
+            <MemoizedFeedbackItem
               key={feedback.id}
               quote={feedback.quote}
               name={feedback.name}

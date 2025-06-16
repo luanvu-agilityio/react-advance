@@ -5,13 +5,12 @@ import { useCheckoutStore } from '@stores/checkoutStore'
 import type { CheckoutFormData } from 'types/checkout'
 import type { CartItem } from 'types/cart-items'
 
-// Mock API functions (would be replaced with actual API calls in production)
+// Mock API functions
 const checkoutApi = {
   validateShippingMethod: async (method: string) => {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 300))
 
-    // Mock response - in real app, this would validate against available shipping methods
     return {
       valid: true,
       price: method === 'fedex' ? 32 : 15,
@@ -122,9 +121,10 @@ export const usePaymentMethodMutation = () => {
     onSuccess: (data, method) => {
       // Update checkout store
       updateField('payment', 'method', method)
-
-      // Add this line to save the processing fee
-      updateField('payment', 'processingFee', data.processingFee)
+      // Add processing fee from data if it exists
+      if (data.processingFee) {
+        updateField('payment', 'processingFee', data.processingFee)
+      }
 
       // Format method name for display
       let methodName = 'Credit Card'

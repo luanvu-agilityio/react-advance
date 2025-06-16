@@ -1,35 +1,35 @@
+import { memo, lazy, Suspense } from 'react'
 import { Box } from '@radix-ui/themes'
-import CustomerFeedbackCarousel from '@components/Carousel/Carousel'
-import BlogPreviewSection from '@pages/HomePage/sections/BlogPreview'
 import BannerSection from './sections/Banner'
 import BestSellingProducts from './sections/BestSelling'
-import ProductSection from './sections/Product'
-import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
+import { LoadingSpinner } from '@components/common/LoadingSpinner'
 import {
   BreadcrumbWrapper,
   MainContentWrapper,
   ResponsiveContainer,
   SectionWrapper,
 } from './Homepage.styles'
+import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
+// Lazy load components that are lower in the page
+const LazyProductSection = lazy(() => import('./sections/Product'))
+const LazyBlogPreviewSection = lazy(() => import('./sections/BlogPreview'))
+const LazyFeedbackCarousel = lazy(() => import('@components/Carousel/Carousel'))
 
 const HomePage = () => (
   <Box width="100%">
-    {/* Breadcrumb - Hide on mobile */}
+    {/* Top content loads immediately */}
     <BreadcrumbWrapper>
       <ResponsiveContainer>
         <Breadcrumbs />
       </ResponsiveContainer>
     </BreadcrumbWrapper>
 
-    {/* Main content */}
     <ResponsiveContainer>
       <MainContentWrapper>
-        {/* Banner Section */}
         <SectionWrapper className="banner-section">
           <BannerSection />
         </SectionWrapper>
 
-        {/* Best selling products section */}
         <SectionWrapper>
           <BestSellingProducts
             sectionType="best-selling"
@@ -38,7 +38,6 @@ const HomePage = () => (
           />
         </SectionWrapper>
 
-        {/* Featured products section */}
         <SectionWrapper>
           <BestSellingProducts
             sectionType="featured"
@@ -47,27 +46,31 @@ const HomePage = () => (
           />
         </SectionWrapper>
 
-        {/* Customer Feedback Section */}
-        <SectionWrapper className="feedback-section">
-          <CustomerFeedbackCarousel />
-        </SectionWrapper>
+        {/* Lazy load below-the-fold content */}
+        <Suspense fallback={<LoadingSpinner minHeight="200px" />}>
+          <SectionWrapper className="feedback-section">
+            <LazyFeedbackCarousel />
+          </SectionWrapper>
+        </Suspense>
 
-        {/* Products You May Like Section */}
-        <SectionWrapper>
-          <ProductSection
-            title="Products You May Like"
-            showRandomProducts={true}
-            maxItems={4}
-          />
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSpinner minHeight="200px" />}>
+          <SectionWrapper>
+            <LazyProductSection
+              title="Products You May Like"
+              showRandomProducts={true}
+              maxItems={4}
+            />
+          </SectionWrapper>
+        </Suspense>
 
-        {/* Blog Section */}
-        <SectionWrapper className="blog-section">
-          <BlogPreviewSection />
-        </SectionWrapper>
+        <Suspense fallback={<LoadingSpinner minHeight="200px" />}>
+          <SectionWrapper className="blog-section">
+            <LazyBlogPreviewSection />
+          </SectionWrapper>
+        </Suspense>
       </MainContentWrapper>
     </ResponsiveContainer>
   </Box>
 )
 
-export default HomePage
+export default memo(HomePage)

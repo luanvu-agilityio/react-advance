@@ -7,12 +7,13 @@ import {
   memo,
   useCallback,
   useState,
+  useRef,
   type ChangeEvent,
   type FormEvent,
+  useEffect,
 } from 'react'
 import type { Product } from 'types/Product'
 import { ChevronLeft } from 'lucide-react'
-import { productData } from '@data/product-data'
 import {
   CategorySelectContainer,
   MobileSearchHeader,
@@ -29,10 +30,19 @@ import {
   SearchResultsDropdown,
   SelectWrapper,
 } from './Searchbar.styles'
+import { useProductSearch } from '@hooks/useProductSearch'
 
 interface SearchBarProps {
   onSearch?: (query: string) => void
 }
+
+// Memoized search button icon
+const MemoizedSearchIcon = memo(() => (
+  <ImageIcon
+    src="https://res.cloudinary.com/ds82onf5q/image/upload/v1746692204/search_zyzkuj.svg"
+    alt="Search icon"
+  />
+))
 
 const SearchBar = memo(({ onSearch }: SearchBarProps) => {
   const [category, setCategory] = useState('all')
@@ -41,21 +51,27 @@ const SearchBar = memo(({ onSearch }: SearchBarProps) => {
   const [isMobileSearchActive, setIsMobileSearchActive] = useState(false)
 
   const navigate = useNavigate()
+  const navigateRef = useRef(navigate)
   const location = useLocation()
+
+  // Update ref when navigate changes
+  useEffect(() => {
+    navigateRef.current = navigate
+  }, [navigate])
 
   const handleSelectCategory = useCallback((categoryValue: string) => {
     setCategory(categoryValue)
   }, [])
 
-  const handleMobileSearchOpen = () => {
+  const handleMobileSearchOpen = useCallback(() => {
     setIsMobileSearchActive(true)
     setShowResults(true)
-  }
+  }, [])
 
-  const handleMobileSearchClose = () => {
+  const handleMobileSearchClose = useCallback(() => {
     setIsMobileSearchActive(false)
     setShowResults(false)
-  }
+  }, [])
 
   const performSearch = useCallback(() => {
     if (!query.trim()) return
@@ -67,55 +83,107 @@ const SearchBar = memo(({ onSearch }: SearchBarProps) => {
       const searchParams = new URLSearchParams()
       searchParams.set('search', query.trim())
       searchParams.set('category', category)
-      navigate(`${searchPath}?${searchParams.toString()}`)
+      navigateRef.current(`${searchPath}?${searchParams.toString()}`)
 
       if (onSearch) {
         onSearch(query.trim())
       }
     }
-  }, [query, category, navigate, onSearch, location.pathname])
+  }, [query, category, location.pathname, onSearch])
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    performSearch()
-  }
-
-  const searchResults = query
-    ? productData.filter((product: Product) => {
-        const matchesQuery = product.title
-          .toLowerCase()
-          .includes(query.toLowerCase())
-
-        const matchesCategory =
-          category === 'all' ||
-          product.category.toLowerCase().replace(/\s+/g, '-') === category
-
-        return matchesQuery && matchesCategory
-      })
-    : []
-
-  const handleProductClick = useCallback(
-    (product: Product) => {
-      setShowResults(false)
-      setQuery('')
-
-      // Construct the URL path
-      const categoryPath = product.category.toLowerCase().replace(/\s+/g, '-')
-      const subcategoryPath = product.subcategory
-        .toLowerCase()
-        .replace(/\s+/g, '-')
-
-      setTimeout(() => {
-        navigate(`/${categoryPath}/${subcategoryPath}/${product.id}`)
-      }, 0)
+  const handleSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault()
+      performSearch()
     },
-    [navigate]
+    [performSearch]
   )
+
+  const handleSearchButtonClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault()
+      performSearch()
+    },
+    [performSearch]
+  )
+
+  // Memoize expensive filtering operation
+  const searchResults = useProductSearch(query, category)
+
+  const handleProductClick = useCallback((product: Product) => {
+    setShowResults(false)
+    setQuery('')
+
+    // Construct the URL path
+    const categoryPath = product.category.toLowerCase().replace(/\s+/g, '-')
+    const subcategoryPath = product.subcategory
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+
+    setTimeout(() => {
+      navigateRef.current(`/${categoryPath}/${subcategoryPath}/${product.id}`)
+    }, 0)
+  }, [])
 
   const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value)
     setShowResults(true)
   }, [])
+
+  // Memoize search form content to avoid duplication
+  const renderSearchForm = useCallback(
+    (hideBorder = false) => (
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchBarWrapper>
+          {/* Select */}
+          <CategorySelectContainer>
+            <SelectWrapper>
+              <Select
+                options={categories}
+                value={category}
+                onChange={handleSelectCategory}
+                placeholder="All categories"
+                variant="search"
+              />
+            </SelectWrapper>
+          </CategorySelectContainer>
+
+          {/* Search Input */}
+          <SearchContainer>
+            <TextField
+              type="text"
+              value={query}
+              onChange={handleInputChange}
+              onFocus={handleMobileSearchOpen}
+              placeholder="Search Products, categories ..."
+              style={hideBorder ? { border: 'none' } : undefined}
+              icon={
+                <SearchButton
+                  type="submit"
+                  onClick={handleSearchButtonClick}
+                  aria-label="Search"
+                >
+                  <MemoizedSearchIcon />
+                </SearchButton>
+              }
+              iconPosition="right"
+              variant="search"
+            />
+          </SearchContainer>
+        </SearchBarWrapper>
+      </SearchForm>
+    ),
+    [
+      category,
+      query,
+      handleSelectCategory,
+      handleInputChange,
+      handleMobileSearchOpen,
+      handleSubmit,
+      handleSearchButtonClick,
+    ]
+  )
+
   return (
     <>
       {/* Mobile Search Header */}
@@ -124,101 +192,12 @@ const SearchBar = memo(({ onSearch }: SearchBarProps) => {
           <button onClick={handleMobileSearchClose}>
             <ChevronLeft size={20} color="var(--black-color-default)" />
           </button>
-          <SearchBarContainer>
-            <SearchForm onSubmit={handleSubmit}>
-              <SearchBarWrapper>
-                {/* Select */}
-                <CategorySelectContainer>
-                  <SelectWrapper>
-                    <Select
-                      options={categories}
-                      value={category}
-                      onChange={handleSelectCategory}
-                      placeholder="All categories"
-                      variant="search"
-                    />
-                  </SelectWrapper>
-                </CategorySelectContainer>
-
-                {/* Search Input  */}
-                <SearchContainer>
-                  <TextField
-                    type="text"
-                    value={query}
-                    onChange={handleInputChange}
-                    onFocus={handleMobileSearchOpen}
-                    placeholder="Search Products, categories ..."
-                    style={{ border: 'none' }}
-                    icon={
-                      <SearchButton
-                        type="submit"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          performSearch()
-                        }}
-                        aria-label="Search"
-                      >
-                        <ImageIcon
-                          src="https://res.cloudinary.com/ds82onf5q/image/upload/v1746692204/search_zyzkuj.svg"
-                          alt="Search icon"
-                        />
-                      </SearchButton>
-                    }
-                    iconPosition="right"
-                    variant="search"
-                  />
-                </SearchContainer>
-              </SearchBarWrapper>
-            </SearchForm>
-          </SearchBarContainer>
+          <SearchBarContainer>{renderSearchForm(true)}</SearchBarContainer>
         </MobileSearchHeader>
       )}
 
       <SearchBarContainer>
-        <SearchForm onSubmit={handleSubmit}>
-          <SearchBarWrapper>
-            {/* Select */}
-            <CategorySelectContainer>
-              <SelectWrapper>
-                <Select
-                  options={categories}
-                  value={category}
-                  onChange={handleSelectCategory}
-                  placeholder="All categories"
-                  variant="search"
-                />
-              </SelectWrapper>
-            </CategorySelectContainer>
-
-            {/* Search Input  */}
-            <SearchContainer>
-              <TextField
-                type="text"
-                value={query}
-                onChange={handleInputChange}
-                onFocus={handleMobileSearchOpen}
-                placeholder="Search Products, categories ..."
-                icon={
-                  <SearchButton
-                    type="submit"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      performSearch()
-                    }}
-                    aria-label="Search"
-                  >
-                    <ImageIcon
-                      src="https://res.cloudinary.com/ds82onf5q/image/upload/v1746692204/search_zyzkuj.svg"
-                      alt="Search icon"
-                    />
-                  </SearchButton>
-                }
-                iconPosition="right"
-                variant="search"
-              />
-            </SearchContainer>
-          </SearchBarWrapper>
-        </SearchForm>
+        {renderSearchForm()}
 
         {showResults && searchResults.length > 0 && (
           <SearchResultsDropdown>
@@ -240,5 +219,7 @@ const SearchBar = memo(({ onSearch }: SearchBarProps) => {
     </>
   )
 })
+
+SearchBar.displayName = 'SearchBar'
 
 export default SearchBar

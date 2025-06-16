@@ -10,14 +10,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="lucide lucide-menu"
+        class="lucide lucide-menu sc-dFaThA kZjXbD"
         fill="none"
         height="24"
         stroke="currentColor"
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="2"
-        style="margin-left: 16px;"
         viewBox="0 0 24 24"
         width="24"
         xmlns="http://www.w3.org/2000/svg"
@@ -51,14 +50,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide lucide-chevron-down"
+            class="lucide lucide-chevron-down sc-lixPIL ecxPpi"
             fill="none"
             height="12"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            style="stroke-width: 4;"
             viewBox="0 0 24 24"
             width="12"
             xmlns="http://www.w3.org/2000/svg"
@@ -79,14 +77,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -133,14 +130,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -177,14 +173,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -221,14 +216,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide lucide-chevron-down"
+            class="lucide lucide-chevron-down sc-lixPIL ecxPpi"
             fill="none"
             height="12"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            style="stroke-width: 4;"
             viewBox="0 0 24 24"
             width="12"
             xmlns="http://www.w3.org/2000/svg"
@@ -249,14 +243,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -288,14 +281,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -322,14 +314,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -361,14 +352,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide lucide-chevron-down"
+            class="lucide lucide-chevron-down sc-lixPIL ecxPpi"
             fill="none"
             height="12"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            style="stroke-width: 4;"
             viewBox="0 0 24 24"
             width="12"
             xmlns="http://www.w3.org/2000/svg"
@@ -389,14 +379,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -428,14 +417,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -462,14 +450,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -506,14 +493,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide lucide-chevron-down"
+            class="lucide lucide-chevron-down sc-lixPIL ecxPpi"
             fill="none"
             height="12"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            style="stroke-width: 4;"
             viewBox="0 0 24 24"
             width="12"
             xmlns="http://www.w3.org/2000/svg"
@@ -534,14 +520,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -573,14 +558,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -612,14 +596,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -651,14 +634,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide lucide-chevron-down"
+            class="lucide lucide-chevron-down sc-lixPIL ecxPpi"
             fill="none"
             height="12"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            style="stroke-width: 4;"
             viewBox="0 0 24 24"
             width="12"
             xmlns="http://www.w3.org/2000/svg"
@@ -679,14 +661,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -713,14 +694,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -747,14 +727,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -786,14 +765,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide lucide-chevron-down"
+            class="lucide lucide-chevron-down sc-lixPIL ecxPpi"
             fill="none"
             height="12"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            style="stroke-width: 4;"
             viewBox="0 0 24 24"
             width="12"
             xmlns="http://www.w3.org/2000/svg"
@@ -814,14 +792,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -848,14 +825,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -882,14 +858,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -921,14 +896,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide lucide-chevron-down"
+            class="lucide lucide-chevron-down sc-lixPIL ecxPpi"
             fill="none"
             height="12"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            style="stroke-width: 4;"
             viewBox="0 0 24 24"
             width="12"
             xmlns="http://www.w3.org/2000/svg"
@@ -949,14 +923,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -983,14 +956,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -1017,14 +989,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -1056,14 +1027,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
            
           <svg
             aria-hidden="true"
-            class="lucide lucide-chevron-down"
+            class="lucide lucide-chevron-down sc-lixPIL ecxPpi"
             fill="none"
             height="12"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            style="stroke-width: 4;"
             viewBox="0 0 24 24"
             width="12"
             xmlns="http://www.w3.org/2000/svg"
@@ -1084,14 +1054,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -1118,14 +1087,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -1152,14 +1120,13 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
             </span>
             <svg
               aria-hidden="true"
-              class="lucide lucide-chevron-right"
+              class="lucide lucide-chevron-right sc-etfXYe dGDdFJ"
               fill="none"
               height="12"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              style="stroke-width: 4;"
               viewBox="0 0 24 24"
               width="12"
               xmlns="http://www.w3.org/2000/svg"
@@ -1178,434 +1145,6 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="sc-fWnslK efsRqh"
-      data-state="closed"
-    >
-      <div
-        class="sc-iQQCXo edJzKx"
-      >
-        <p
-          class="sc-dIMoHT eAOjAW"
-        >
-          Menu
-        </p>
-        <button
-          aria-label="Close menu"
-          class="sc-dKREkF iYShG"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-x"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M18 6 6 18"
-            />
-            <path
-              d="m6 6 12 12"
-            />
-          </svg>
-        </button>
-      </div>
-      <div
-        class="sc-gDpztx ZlgJZ"
-        data-orientation="vertical"
-      >
-        <div
-          class="sc-kpOvIu gaCFeK"
-          data-orientation="vertical"
-          data-state="closed"
-        >
-          <button
-            aria-controls="radix-«r1»"
-            aria-expanded="false"
-            class="sc-icnseD bcQHXF"
-            data-orientation="vertical"
-            data-radix-collection-item=""
-            data-state="closed"
-            id="radix-«r0»"
-            type="button"
-          >
-            <span>
-              Fruit and vegetables
-            </span>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down"
-              fill="none"
-              height="16"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="stroke-width: 4;"
-              viewBox="0 0 24 24"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-          <div
-            aria-labelledby="radix-«r0»"
-            class="sc-jMsorb gEEjGZ"
-            data-orientation="vertical"
-            data-state="closed"
-            hidden=""
-            id="radix-«r1»"
-            role="region"
-            style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-          />
-        </div>
-        <div
-          class="sc-kpOvIu gaCFeK"
-          data-orientation="vertical"
-          data-state="closed"
-        >
-          <button
-            aria-controls="radix-«r3»"
-            aria-expanded="false"
-            class="sc-icnseD bcQHXF"
-            data-orientation="vertical"
-            data-radix-collection-item=""
-            data-state="closed"
-            id="radix-«r2»"
-            type="button"
-          >
-            <span>
-              Bakery
-            </span>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down"
-              fill="none"
-              height="16"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="stroke-width: 4;"
-              viewBox="0 0 24 24"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-          <div
-            aria-labelledby="radix-«r2»"
-            class="sc-jMsorb gEEjGZ"
-            data-orientation="vertical"
-            data-state="closed"
-            hidden=""
-            id="radix-«r3»"
-            role="region"
-            style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-          />
-        </div>
-        <div
-          class="sc-kpOvIu gaCFeK"
-          data-orientation="vertical"
-          data-state="closed"
-        >
-          <button
-            aria-controls="radix-«r5»"
-            aria-expanded="false"
-            class="sc-icnseD bcQHXF"
-            data-orientation="vertical"
-            data-radix-collection-item=""
-            data-state="closed"
-            id="radix-«r4»"
-            type="button"
-          >
-            <span>
-              Meat and fish
-            </span>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down"
-              fill="none"
-              height="16"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="stroke-width: 4;"
-              viewBox="0 0 24 24"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-          <div
-            aria-labelledby="radix-«r4»"
-            class="sc-jMsorb gEEjGZ"
-            data-orientation="vertical"
-            data-state="closed"
-            hidden=""
-            id="radix-«r5»"
-            role="region"
-            style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-          />
-        </div>
-        <div
-          class="sc-kpOvIu gaCFeK"
-          data-orientation="vertical"
-          data-state="closed"
-        >
-          <button
-            aria-controls="radix-«r7»"
-            aria-expanded="false"
-            class="sc-icnseD bcQHXF"
-            data-orientation="vertical"
-            data-radix-collection-item=""
-            data-state="closed"
-            id="radix-«r6»"
-            type="button"
-          >
-            <span>
-              Drinks
-            </span>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down"
-              fill="none"
-              height="16"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="stroke-width: 4;"
-              viewBox="0 0 24 24"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-          <div
-            aria-labelledby="radix-«r6»"
-            class="sc-jMsorb gEEjGZ"
-            data-orientation="vertical"
-            data-state="closed"
-            hidden=""
-            id="radix-«r7»"
-            role="region"
-            style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-          />
-        </div>
-        <div
-          class="sc-kpOvIu gaCFeK"
-          data-orientation="vertical"
-          data-state="closed"
-        >
-          <button
-            aria-controls="radix-«r9»"
-            aria-expanded="false"
-            class="sc-icnseD bcQHXF"
-            data-orientation="vertical"
-            data-radix-collection-item=""
-            data-state="closed"
-            id="radix-«r8»"
-            type="button"
-          >
-            <span>
-              Kitchen
-            </span>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down"
-              fill="none"
-              height="16"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="stroke-width: 4;"
-              viewBox="0 0 24 24"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-          <div
-            aria-labelledby="radix-«r8»"
-            class="sc-jMsorb gEEjGZ"
-            data-orientation="vertical"
-            data-state="closed"
-            hidden=""
-            id="radix-«r9»"
-            role="region"
-            style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-          />
-        </div>
-        <div
-          class="sc-kpOvIu gaCFeK"
-          data-orientation="vertical"
-          data-state="closed"
-        >
-          <button
-            aria-controls="radix-«rb»"
-            aria-expanded="false"
-            class="sc-icnseD bcQHXF"
-            data-orientation="vertical"
-            data-radix-collection-item=""
-            data-state="closed"
-            id="radix-«ra»"
-            type="button"
-          >
-            <span>
-              Special nutrition
-            </span>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down"
-              fill="none"
-              height="16"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="stroke-width: 4;"
-              viewBox="0 0 24 24"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-          <div
-            aria-labelledby="radix-«ra»"
-            class="sc-jMsorb gEEjGZ"
-            data-orientation="vertical"
-            data-state="closed"
-            hidden=""
-            id="radix-«rb»"
-            role="region"
-            style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-          />
-        </div>
-        <div
-          class="sc-kpOvIu gaCFeK"
-          data-orientation="vertical"
-          data-state="closed"
-        >
-          <button
-            aria-controls="radix-«rd»"
-            aria-expanded="false"
-            class="sc-icnseD bcQHXF"
-            data-orientation="vertical"
-            data-radix-collection-item=""
-            data-state="closed"
-            id="radix-«rc»"
-            type="button"
-          >
-            <span>
-              Baby
-            </span>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down"
-              fill="none"
-              height="16"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="stroke-width: 4;"
-              viewBox="0 0 24 24"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-          <div
-            aria-labelledby="radix-«rc»"
-            class="sc-jMsorb gEEjGZ"
-            data-orientation="vertical"
-            data-state="closed"
-            hidden=""
-            id="radix-«rd»"
-            role="region"
-            style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-          />
-        </div>
-        <div
-          class="sc-kpOvIu gaCFeK"
-          data-orientation="vertical"
-          data-state="closed"
-        >
-          <button
-            aria-controls="radix-«rf»"
-            aria-expanded="false"
-            class="sc-icnseD bcQHXF"
-            data-orientation="vertical"
-            data-radix-collection-item=""
-            data-state="closed"
-            id="radix-«re»"
-            type="button"
-          >
-            <span>
-              Pharmacy
-            </span>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down"
-              fill="none"
-              height="16"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="stroke-width: 4;"
-              viewBox="0 0 24 24"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-          <div
-            aria-labelledby="radix-«re»"
-            class="sc-jMsorb gEEjGZ"
-            data-orientation="vertical"
-            data-state="closed"
-            hidden=""
-            id="radix-«rf»"
-            role="region"
-            style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-          />
         </div>
       </div>
     </div>

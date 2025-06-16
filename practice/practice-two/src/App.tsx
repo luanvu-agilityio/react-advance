@@ -12,8 +12,8 @@ import ErrorBoundary from '@components/common/ErrorBoundary/ErrorBoundary'
 import CartModal from '@components/Cart/CartModal/CartModal'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { ThemeWrapper } from './styles/theme-config'
 import { ToastRoot } from '@components/common/Toast/ToastRoot'
+import { Theme } from '@radix-ui/themes'
 
 const ProductDetailsPage = lazy(
   () => import('@pages/ProductDetails/ProductDetails')
@@ -35,7 +35,12 @@ function App() {
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <Router>
-          <ThemeWrapper>
+          <Theme
+            appearance="light"
+            accentColor="green"
+            radius="medium"
+            scaling="100%"
+          >
             <PageLayout>
               <Routes>
                 <Route
@@ -92,7 +97,7 @@ function App() {
               <CartModal />
               <ToastRoot />
             </PageLayout>
-          </ThemeWrapper>
+          </Theme>
         </Router>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

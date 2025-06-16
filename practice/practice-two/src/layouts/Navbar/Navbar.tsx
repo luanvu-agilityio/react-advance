@@ -1,13 +1,23 @@
-import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { useCallback, useState, memo } from 'react'
+import {
+  useCallback,
+  useState,
+  memo,
+  Suspense,
+  lazy,
+  useRef,
+  useEffect,
+} from 'react'
 import { navbarData } from '@data/navbar'
 import {
+  ChevronDownIcon,
+  ChevronRightIcon,
   HoverContent,
   HoverMenuItem,
   HoverSubContent,
   HoverSubTrigger,
   MenubarRoot,
+  MenuIcon,
   MenuTitle,
   MenuWrapper,
   MobileMenu,
@@ -21,6 +31,7 @@ import {
   StyledAccordionTrigger,
   StyledTriggerButton,
 } from './Navbar.styles'
+import { X } from 'lucide-react'
 
 // Helper function to convert label to URL path
 const labelToPath = (label: string): string => {
@@ -43,27 +54,14 @@ const MemoizedDesktopMenu = memo(
             data-testid="category-button"
             onClick={() => onCategoryClick(item.label)}
           >
-            {item.label}{' '}
-            <ChevronDown
-              size={12}
-              style={{
-                color: 'var(--green-color-default)',
-                strokeWidth: 4,
-              }}
-            />
+            {item.label} <ChevronDownIcon size={12} />
           </StyledTriggerButton>
 
           <HoverContent className="dropdown-content">
             {item.categories?.map((category, catIndex) => (
               <HoverSubTrigger key={`category-${category.title}-${catIndex}`}>
                 <span>{category.title}</span>
-                <ChevronRight
-                  size={12}
-                  style={{
-                    color: 'var(--green-color-default)',
-                    strokeWidth: 4,
-                  }}
-                />
+                <ChevronRightIcon size={12} />
 
                 <HoverSubContent className="sub-dropdown">
                   {category.items.map((subItem, itemIndex) => (
@@ -113,13 +111,7 @@ const MemoizedMobileMenu = memo(
           >
             <StyledAccordionTrigger>
               <span>{item.label}</span>
-              <ChevronDown
-                size={16}
-                style={{
-                  color: 'var(--green-color-default)',
-                  strokeWidth: 4,
-                }}
-              />
+              <ChevronDownIcon size={16} />
             </StyledAccordionTrigger>
             <StyledAccordionContent>
               {item.categories?.map((category, catIndex) => (
@@ -129,13 +121,7 @@ const MemoizedMobileMenu = memo(
                 >
                   <StyledAccordionTrigger>
                     <span>{category.title}</span>
-                    <ChevronDown
-                      size={16}
-                      style={{
-                        color: 'var(--green-color-default)',
-                        strokeWidth: 4,
-                      }}
-                    />
+                    <ChevronDownIcon size={16} />
                   </StyledAccordionTrigger>
                   <StyledAccordionContent>
                     {category.items.map((subItem, itemIndex) => (
@@ -162,25 +148,30 @@ const MemoizedMobileMenu = memo(
 
 MemoizedMobileMenu.displayName = 'MemoizedMobileMenu'
 
+const LazyMobileMenu = lazy(() =>
+  Promise.resolve({
+    default: MemoizedMobileMenu,
+  })
+)
+
 // Main component wrapped with memo
 export const Navbar = memo(() => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const navigate = useNavigate()
+  const navigateRef = useRef(navigate)
 
-  const handleCategoryClick = useCallback(
-    (label: string) => {
-      const path = labelToPath(label)
-      navigate(`/${path}`)
-    },
-    [navigate]
-  )
+  useEffect(() => {
+    navigateRef.current = navigate
+  }, [navigate])
 
-  const handleSubItemClick = useCallback(
-    (href: string) => {
-      navigate(href)
-    },
-    [navigate]
-  )
+  const handleCategoryClick = useCallback((label: string) => {
+    const path = labelToPath(label)
+    navigateRef.current(`/${path}`)
+  }, [])
+
+  const handleSubItemClick = useCallback((href: string) => {
+    navigateRef.current(href)
+  }, [])
 
   const handleCloseMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false)
@@ -193,7 +184,7 @@ export const Navbar = memo(() => {
   return (
     <NavbarWrapper className="section">
       <MobileMenuButton onClick={handleOpenMobileMenu}>
-        <Menu size={24} style={{ marginLeft: '16px' }} />
+        <MenuIcon size={24} />
       </MobileMenuButton>
 
       {/* Desktop Menu with Hover */}
@@ -203,11 +194,15 @@ export const Navbar = memo(() => {
       />
 
       {/* Mobile Menu */}
-      <MemoizedMobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={handleCloseMobileMenu}
-        onNavigate={handleSubItemClick}
-      />
+      {isMobileMenuOpen && (
+        <Suspense fallback={null}>
+          <LazyMobileMenu
+            isOpen={isMobileMenuOpen}
+            onClose={handleCloseMobileMenu}
+            onNavigate={handleSubItemClick}
+          />
+        </Suspense>
+      )}
     </NavbarWrapper>
   )
 })
