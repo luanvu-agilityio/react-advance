@@ -92,19 +92,28 @@ describe('Navbar - Interactive', () => {
     // Click to open mobile menu
     fireEvent.click(mobileMenuButton)
 
+    let closeButton: HTMLElement | null = null
+
     // WAIT for lazy-loaded component to appear
-    let closeButton
+
     await waitFor(() => {
-      closeButton = screen.getByTestId('close-button')
-      expect(closeButton).toBeInTheDocument()
+      closeButton =
+        screen.queryByRole('button', { name: /close/i }) ||
+        screen.queryByTestId('close-button') ||
+        container.querySelector('.close-button')
+
+      expect(closeButton).not.toBeNull()
     })
 
     // Click to close mobile menu
-    fireEvent.click(closeButton as HTMLElement)
+    if (closeButton) {
+      fireEvent.click(closeButton)
+    }
 
     // Verify the menu is closed
     await waitFor(() => {
-      expect(screen.queryByText('Menu')).not.toBeInTheDocument()
+      const mobileMenu = screen.queryByText('Menu')
+      expect(mobileMenu).not.toBeInTheDocument()
     })
   })
 })
