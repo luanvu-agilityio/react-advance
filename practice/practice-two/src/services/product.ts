@@ -18,8 +18,8 @@ import { getTabDataByProductId } from '@data/tab-data'
 import type { TabData } from 'types/tab-data'
 
 // Base URL for the product API
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
-
+// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+const API_BASE_URL = 'https://6830140df504aa3c70f63355.mockapi.io'
 /**
  * Standard response format for paginated data
  */
