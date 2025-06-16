@@ -40,7 +40,6 @@ function App() {
             scaling="100%"
             style={{
               fontFamily: 'var(--font-family-primary)',
-              ttt,
             }}
           >
             <PageLayout>
