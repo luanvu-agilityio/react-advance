@@ -7,7 +7,7 @@ exports[`Sorting rendering renders correctly with default values 1`] = `
     style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-gAqISa kDWsLg"
+      class="sc-gAqISa bdMoJO"
     >
       Sort By :
     </span>
@@ -87,7 +87,7 @@ exports[`Sorting rendering renders correctly with descending order 1`] = `
     style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-gAqISa kDWsLg"
+      class="sc-gAqISa bdMoJO"
     >
       Sort By :
     </span>
@@ -167,7 +167,7 @@ exports[`Sorting rendering renders correctly with price sorting 1`] = `
     style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-gAqISa kDWsLg"
+      class="sc-gAqISa bdMoJO"
     >
       Sort By :
     </span>

@@ -7,7 +7,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
     style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-gAqISa kDWsLg"
+      class="sc-gAqISa bdMoJO"
     >
       Product per page
     </span>
@@ -56,7 +56,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
     style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-gAqISa kDWsLg"
+      class="sc-gAqISa bdMoJO"
     >
       Product per page
     </span>
@@ -105,7 +105,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
     style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-gAqISa kDWsLg"
+      class="sc-gAqISa bdMoJO"
     >
       Product per page
     </span>
@@ -154,7 +154,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
     style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-gAqISa kDWsLg"
+      class="sc-gAqISa bdMoJO"
     >
       Product per page
     </span>
@@ -203,7 +203,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
     style="min-width: 180px; height: 60px;"
   >
     <span
-      class="sc-gAqISa kDWsLg"
+      class="sc-gAqISa bdMoJO"
     >
       Product per page
     </span>

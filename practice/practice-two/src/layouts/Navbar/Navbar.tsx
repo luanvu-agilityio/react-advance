@@ -98,7 +98,11 @@ const MemoizedMobileMenu = memo(
     <MobileMenu $isOpen={isOpen} data-state={isOpen ? 'open' : 'closed'}>
       <MobileMenuHeader>
         <MenuTitle>Menu</MenuTitle>
-        <MobileMenuButton onClick={onClose} aria-label="Close menu">
+        <MobileMenuButton
+          onClick={onClose}
+          aria-label="Close menu"
+          data-testid="close-button"
+        >
           <X size={24} />
         </MobileMenuButton>
       </MobileMenuHeader>
@@ -168,13 +172,6 @@ export const Navbar = memo(() => {
     const path = labelToPath(label)
 
     navigateRef.current(`/${path}`)
-
-    setTimeout(() => {
-      console.log('Navigation complete check:', {
-        currentUrl: window.location.href,
-        pathname: window.location.pathname,
-      })
-    }, 100)
   }, [])
 
   const handleSubItemClick = useCallback((href: string) => {

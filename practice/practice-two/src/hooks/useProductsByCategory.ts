@@ -32,13 +32,6 @@ export const useProductsByCategory = () => {
   const [searchParams] = useSearchParams()
   const searchQuery = searchParams.get('search') ?? ''
 
-  console.log('useProductsByCategory hook:', {
-    categoryPath,
-    pathname: location.pathname,
-    fullUrl: window.location.href,
-    params: useParams(),
-  })
-
   // Find the current category object from navigation data
   const currentCategory = useMemo(
     () =>

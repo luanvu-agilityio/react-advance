@@ -74,12 +74,14 @@ exports[`PriceFilter Rendering renders different states correctly: default 1`] =
       class="sc-gGarWV bpubAX"
     >
       <button
-        class="sc-brzPDJ gUuppX"
+        class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-solid rt-Button"
+        data-accent-color=""
       >
         Apply
       </button>
       <button
-        class="sc-iMGFoU dOufAt"
+        class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-soft rt-Button"
+        data-accent-color=""
       >
         Reset
       </button>
@@ -162,12 +164,14 @@ exports[`PriceFilter Rendering renders different states correctly: different-ran
       class="sc-gGarWV bpubAX"
     >
       <button
-        class="sc-brzPDJ gUuppX"
+        class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-solid rt-Button"
+        data-accent-color=""
       >
         Apply
       </button>
       <button
-        class="sc-iMGFoU dOufAt"
+        class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-soft rt-Button"
+        data-accent-color=""
       >
         Reset
       </button>
@@ -250,12 +254,14 @@ exports[`PriceFilter Rendering renders different states correctly: equal-values 
       class="sc-gGarWV bpubAX"
     >
       <button
-        class="sc-brzPDJ gUuppX"
+        class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-solid rt-Button"
+        data-accent-color=""
       >
         Apply
       </button>
       <button
-        class="sc-iMGFoU dOufAt"
+        class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-soft rt-Button"
+        data-accent-color=""
       >
         Reset
       </button>
@@ -338,12 +344,14 @@ exports[`PriceFilter Rendering renders different states correctly: extreme-value
       class="sc-gGarWV bpubAX"
     >
       <button
-        class="sc-brzPDJ gUuppX"
+        class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-solid rt-Button"
+        data-accent-color=""
       >
         Apply
       </button>
       <button
-        class="sc-iMGFoU dOufAt"
+        class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-soft rt-Button"
+        data-accent-color=""
       >
         Reset
       </button>

@@ -1,6 +1,6 @@
 import { TextEncoder } from 'util'
 global.TextEncoder = TextEncoder
-
+import { waitFor } from '@testing-library/react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { Navbar } from './Navbar'
@@ -77,7 +77,7 @@ describe('Navbar - Interactive', () => {
     }
   })
 
-  test('opens and closes mobile menu', () => {
+  test('opens and closes mobile menu', async () => {
     const { container } = render(
       <MemoryRouter>
         <Navbar />
@@ -86,40 +86,24 @@ describe('Navbar - Interactive', () => {
 
     // Find mobile menu button
     const mobileMenuButton = container.querySelector('button')
-
-    if (!mobileMenuButton) {
-      throw new Error('Mobile menu button not found')
-    }
+    expect(mobileMenuButton).toBeInTheDocument()
 
     // Click to open mobile menu
     fireEvent.click(mobileMenuButton)
 
-    // Check menu is open by looking for the title
-    expect(screen.getByText('Menu')).toBeInTheDocument()
-
-    // Find close button (using different methods to be more reliable)
-    const closeButton =
-      screen.getByRole('button', { name: /close/i }) ||
-      screen
-        .getAllByRole('button')
-        .find(
-          (btn) =>
-            btn.getAttribute('aria-label') === 'Close menu' ||
-            btn.textContent?.includes('Close')
-        ) ||
-      container.querySelector('[data-testid="close-button"]')
-
-    if (!closeButton) {
-      throw new Error('Close button not found in mobile menu')
-    }
+    // WAIT for lazy-loaded component to appear
+    let closeButton
+    await waitFor(() => {
+      closeButton = screen.getByTestId('close-button')
+      expect(closeButton).toBeInTheDocument()
+    })
 
     // Click to close mobile menu
     fireEvent.click(closeButton)
 
-    // Verify the menu is closed (the Menu title should no longer be visible)
-    expect(screen.queryByText('Menu')?.closest('[data-state]')).toHaveAttribute(
-      'data-state',
-      'closed'
-    )
+    // Verify the menu is closed
+    await waitFor(() => {
+      expect(screen.queryByText('Menu')).not.toBeInTheDocument()
+    })
   })
 })
