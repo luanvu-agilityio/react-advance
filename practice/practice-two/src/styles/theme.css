@@ -1,62 +1,80 @@
 /* ========================================
    BUTTON STYLES
 ======================================== */
+.rt-BaseButton {
+  /* Reset all styles */
+  all: unset;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+}
 .rt-Button {
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-bold);
   font-size: 15px;
   border-radius: 12px;
   cursor: pointer;
-  padding: 12px 16px;
+  box-sizing: border-box;
+  box-shadow: none;
 }
 
 /* Button variants */
-.rt-Button[data-variant='solid'] {
+.rt-variant-solid {
   background-color: var(--green-color-default);
-  border: 2px solid var(--green-shade-1);
+  border: 2px solid var(--black-shade-1);
   color: var(--white-color);
+  padding: 6px 12px;
   min-height: 36px;
 }
 
-.rt-Button[data-variant='solid']:hover {
+.rt-variant-solid:hover {
   background-color: var(--green-shade-1);
 }
 
-.rt-Button[data-variant='soft'] {
-  background-color: var(--black-shade-5);
+.rt-variant-soft {
   color: var(--black-color-default);
   border: none;
 }
 
-.rt-Button[data-variant='soft']:hover {
-  background-color: var(--black-shade-4);
+.rt-variant-soft:hover {
+  color: var(--green-color-default);
 }
 
-.rt-Button[data-variant='outline'] {
+.rt-variant-outline {
   background-color: transparent;
   color: var(--black-color-default);
   border: 2px solid var(--green-shade-2);
+  padding: 12px 16px;
 }
 
-.rt-Button[data-variant='outline']:hover {
-  background-color: var(--green-shade-2);
+.rt-variant-outline:hover {
+  background-color: var(--green-shade-1);
   color: var(--white-color);
 }
 
+.rt-variant-ghost {
+  background-color: var(--black-shade-5);
+  color: var(--black-color-default);
+  border: none;
+  padding: 12px 16px;
+}
+
+.rt-variant-ghost:hover {
+  background-color: var(--black-shade-3);
+}
 /* Button sizes */
-.rt-Button[data-size='1'] {
-  padding: var(--space-xs) var(--space-sm);
-  font-size: 14px;
+.rt-r-size-1 {
+  padding: 6px 12px;
 }
 
-.rt-Button[data-size='2'] {
-  padding: var(--space-sm) var(--space-md);
-  font-size: 15px;
+.rt-r-size-2 {
+  padding: 12px 16px;
 }
 
-.rt-Button[data-size='3'] {
-  padding: var(--space-sm) var(--space-lg);
-  font-size: 16px;
+.rt-r-size-3 {
+  padding: 12px 24px;
 }
 
 /* ========================================
@@ -114,7 +132,7 @@
   background-color: var(--background);
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
-  font-family: var(--font-secondary);
+  font-family: var(--font-family-primary);
   color: var(--text);
   cursor: pointer;
   transition: border-color var(--transition);
@@ -217,6 +235,7 @@
   border-radius: 50%;
   background-color: var(--background);
   transition: border-color var(--transition);
+  font-family: var(--font-family-primary);
 }
 
 .rt-RadioGroupItem[data-state='checked'] {

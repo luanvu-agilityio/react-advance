@@ -11,12 +11,11 @@ import {
   ModalHeader,
   ModalOverlay,
   ModalTitle,
-  PrimaryButton,
-  SecondaryButton,
   Subtotal,
 } from './CartModal.styles'
 import CartItem from '../CartItem/CartItem'
 import { useRemoveFromCart } from '@hooks/useCartMutation'
+import { Button } from '@radix-ui/themes'
 
 const CartModal = () => {
   const { items, updateItem, isOpen, closeCart, getSubtotal } = useCartStore()
@@ -90,9 +89,9 @@ const CartModal = () => {
           {items.length === 0 ? (
             <EmptyCartMessage>
               <p>Your cart is empty</p>
-              <SecondaryButton onClick={closeCart}>
+              <Button variant="soft" onClick={closeCart}>
                 Continue shopping
-              </SecondaryButton>
+              </Button>
             </EmptyCartMessage>
           ) : (
             items.map((item) => (
@@ -114,12 +113,16 @@ const CartModal = () => {
               <span>{getSubtotal().toFixed(2)} USD</span>
             </Subtotal>
             <ButtonsContainer>
-              <SecondaryButton onClick={closeCart}>
+              <Button variant="soft" onClick={closeCart}>
                 Continue shopping
-              </SecondaryButton>
-              <PrimaryButton onClick={handleCheckout}>
+              </Button>
+              <Button
+                variant="solid"
+                onClick={handleCheckout}
+                style={{ padding: '12px 16px' }}
+              >
                 Go to Checkout
-              </PrimaryButton>
+              </Button>
             </ButtonsContainer>
           </CartFooter>
         )}

@@ -12,10 +12,9 @@ import {
   PriceInput,
   Separator,
   ButtonsContainer,
-  ApplyButton,
-  ResetButton,
 } from '../FilterStyles'
 import type { PriceRangeProps } from 'types/Filter'
+import { Button } from '@radix-ui/themes'
 
 interface PriceFilterProps {
   priceRange: PriceRangeProps
@@ -78,8 +77,16 @@ export const PriceFilter = ({
       </PriceInputsContainer>
 
       <ButtonsContainer>
-        <ApplyButton onClick={onApplyFilters}>Apply</ApplyButton>
-        <ResetButton onClick={onResetFilters}>Reset</ResetButton>
+        <Button variant="solid" onClick={onApplyFilters} size={'2'}>
+          Apply
+        </Button>
+        <Button
+          variant="soft"
+          onClick={onResetFilters}
+          style={{ color: 'var(--black-shade-2' }}
+        >
+          Reset
+        </Button>
       </ButtonsContainer>
     </PriceSection>
   )

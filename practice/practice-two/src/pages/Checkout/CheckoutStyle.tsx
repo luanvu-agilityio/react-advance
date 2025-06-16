@@ -539,24 +539,6 @@ export const PromoInput = styled.input`
   outline: none;
 `
 
-export const PromoButton = styled.button`
-  color: var(--black-color-default);
-  border: none;
-  font-size: 15px;
-  font-weight: var(--font-weight-bold);
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--black-shade-1);
-  }
-
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 8px;
-    text-align: right;
-  }
-`
-
 // --------------------------
 // Misc Components
 // --------------------------

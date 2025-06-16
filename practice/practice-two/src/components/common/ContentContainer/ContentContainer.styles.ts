@@ -10,7 +10,6 @@ export const Container = styled.div<{
 }>`
   width: 100%;
 
-  padding: 0 16px;
   display: flex;
   flex-direction: ${(props) => props.$direction ?? 'row'};
   gap: ${(props) => props.$gap ?? '0'};

@@ -11,11 +11,11 @@ import {
   OrderSummaryTotal,
   PromoForm,
   PromoInput,
-  PromoButton,
 } from '../CheckoutStyle'
 import { useCartStore } from '@stores/cartStore'
 import { useCheckoutStore } from '@stores/checkoutStore'
 import { withErrorBoundary } from '@utils/withErrorBoundary'
+import { Button } from '@radix-ui/themes'
 
 export const OrderSummarySection = () => {
   const { items, removeItem, getSubtotal, getTax, updateQuantity, updateUnit } =
@@ -173,9 +173,9 @@ export const OrderSummarySection = () => {
               value={promoCode}
               onChange={(e) => setPromoCode(e.target.value)}
             />
-            <PromoButton type="button" onClick={handleApplyPromo}>
+            <Button variant="soft" onClick={handleApplyPromo}>
               Apply now
-            </PromoButton>
+            </Button>
           </PromoForm>
         </div>
 

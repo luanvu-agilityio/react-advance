@@ -231,11 +231,6 @@ export const ButtonContainer = styled.div`
   margin-top: auto;
 `
 
-export const MoreCategoriesButton = styled.div`
-  @media (max-width: 1023px) {
-    display: none;
-  }
-`
 // Bestselling section styles
 export const Container = styled.div`
   width: 100%;
@@ -532,5 +527,19 @@ export const ProductFlex = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
+  }
+`
+export const CategoryColumn = styled.div`
+  width: 100%;
+
+  @media (max-width: 1023px) {
+    ${CategoryList}, button {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    width: 268px;
+    flex-shrink: 0;
   }
 `

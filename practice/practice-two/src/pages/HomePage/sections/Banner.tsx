@@ -14,7 +14,6 @@ import {
   CategoryList,
   CategoryMenu,
   CategoryTitle,
-  MoreCategoriesButton,
 } from '../Homepage.styles'
 
 // Memoized category link component to prevent re-renders
@@ -50,26 +49,15 @@ const BannerComponent = memo(
     <Banner>
       <BannerSubtitle>{subtitle}</BannerSubtitle>
       <BannerHeading>{heading}</BannerHeading>
+
       <ButtonContainer>
-        <Button
-          variant="outline"
-          style={{
-            fontSize: '15px',
-            fontWeight: 'var(--font-weight-bold)',
-            color: 'var(--black-color-default)',
-            padding: '12px 16px',
-            borderRadius: '12px',
-            border: '2px solid var(--green-shade-2)',
-            height: 'auto',
-            cursor: 'pointer',
-          }}
-        >
+        <Button variant="outline">
           Read recipes{' '}
           <ChevronRight
             size={16}
             strokeWidth={4}
             color="var(--green-color-default)"
-            style={{ marginLeft: 2 }}
+            style={{ marginLeft: '2px' }}
           />
         </Button>
       </ButtonContainer>
@@ -127,32 +115,20 @@ function BannerSection() {
           ))}
         </CategoryList>
         {hasMoreCategories && (
-          <MoreCategoriesButton>
-            <Button
-              variant="ghost"
-              onClick={handleToggleCategories}
-              style={{
-                marginTop: '3rem',
-                fontWeight: 'var(--font-weight-bold)',
-                padding: '12.5px 16px',
-                color: 'var(--black-color-default)',
-                justifyContent: 'flex-start',
-                fontSize: '15px',
-                borderRadius: '12px',
-                backgroundColor: 'var(--black-shade-5)',
-                cursor: 'pointer',
-              }}
-            >
-              <Flex align="center" gap="1">
-                {showAllCategories ? 'Show less' : 'More Categories'}
-                {showAllCategories ? (
-                  <ChevronUp size={16} strokeWidth={4} />
-                ) : (
-                  <ChevronRight size={16} strokeWidth={4} />
-                )}
-              </Flex>
-            </Button>
-          </MoreCategoriesButton>
+          <Button
+            variant="ghost"
+            onClick={handleToggleCategories}
+            style={{ marginTop: '24px' }}
+          >
+            <Flex align="center" gap="1">
+              {showAllCategories ? 'Show less' : 'More Categories'}
+              {showAllCategories ? (
+                <ChevronUp size={16} strokeWidth={4} />
+              ) : (
+                <ChevronRight size={16} strokeWidth={4} />
+              )}
+            </Flex>
+          </Button>
         )}
       </CategoryMenu>
 

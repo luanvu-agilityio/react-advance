@@ -13,7 +13,6 @@ import {
   Card,
   CardContent,
   CardImage,
-  commonButtonStyles,
   CurrentPrice,
   DeliveryTimeText,
   DiscountBadge,
@@ -31,6 +30,7 @@ import {
 } from './ProductCard.styles'
 import { useCartStore } from '@stores/cartStore'
 import { useToast } from '@stores/toastStore'
+import BaseButton from '@components/common/Button/Button'
 const fullBlackStarIcon =
   'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372429/black-star_vfret7.svg'
 const emptyStarIcon =
@@ -219,16 +219,7 @@ export const ProductCard = memo(
       return (
         <ButtonsContainer $variant={variant}>
           {variant === 'list' ? (
-            <Button
-              variant="solid"
-              size="2"
-              onClick={handleProductDetail}
-              style={{
-                ...commonButtonStyles,
-                minWidth: '160px',
-                minHeight: '47px',
-              }}
-            >
+            <BaseButton variant="solid" size="2" onClick={handleProductDetail}>
               <Flex align="center">
                 Product Detail
                 <ChevronRight
@@ -237,36 +228,15 @@ export const ProductCard = memo(
                   style={{ strokeWidth: 5, marginLeft: '8px' }}
                 />
               </Flex>
-            </Button>
+            </BaseButton>
           ) : (
-            <Button
-              variant="solid"
-              size="2"
-              onClick={handleBuy}
-              style={{
-                ...commonButtonStyles,
-                minHeight: '36px',
-              }}
-            >
+            <Button variant="solid" size="1" onClick={handleBuy}>
               Buy now
             </Button>
           )}
 
           {variant === 'list' && (
-            <Button
-              variant="outline"
-              size="2"
-              onClick={handleWishlistClick}
-              style={{
-                minWidth: '160px',
-                backgroundColor: 'var(--black-shade-5)',
-                color: 'var(--black-color)',
-                fontWeight: 'var(--font-weight-bold)',
-                fontSize: '15px',
-                padding: '6px 12px',
-                borderRadius: '12px',
-              }}
-            >
+            <Button variant="ghost" size="1" onClick={handleWishlistClick}>
               <Flex align="center" gap="2">
                 <Heart
                   size={15}

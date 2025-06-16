@@ -153,6 +153,7 @@ export const FilterLabel = styled.span`
   font-size: 14px;
   font-weight: 500;
   margin-right: 8px;
+  font-family: var(--font-family-primary);
 `
 
 export const FilterCheckbox = styled.input.attrs({ type: 'checkbox' })`

@@ -146,8 +146,9 @@ export const InfoValue = styled.span<{ $highlight?: boolean }>`
 export const ButtonsContainer = styled.div<{ $variant?: 'grid' | 'list' }>`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 8px;
-  ${(props) => (props.$variant === 'list' ? 'align-items: flex-end;' : '')}
 `
 export const ShippingInfo = styled.div`
   display: flex;
@@ -174,8 +175,7 @@ export const commonButtonStyles = {
   borderRadius: '12px',
   border: '2px solid var(--green-shade-1)',
   cursor: 'pointer',
-  '&:hover:not(:disabled)': {
-    backgroundColor: 'var(--green-color-dark)',
-    borderColor: 'var(--green-color-dark)',
+  '&:hover': {
+    backgroundColor: 'var(--green-shade-1)',
   },
 }

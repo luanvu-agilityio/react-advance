@@ -235,14 +235,8 @@ const ProductDetailPage = () => {
                   onClick={onBuy}
                   disabled={isAddingToCart}
                   style={{
-                    height: '100%',
-                    backgroundColor: 'var(--green-color-default)',
-                    color: 'var(--white-color)',
-                    fontSize: '15px',
-                    fontWeight: 'var(--font-weight-bold)',
                     padding: '10px 16px',
-                    borderRadius: '12px',
-                    border: '2px solid var(--green-shade-1)',
+                    minHeight: '47px',
                     cursor: isAddingToCart ? 'not-allowed' : 'pointer',
                     opacity: isAddingToCart ? 0.7 : 1,
                   }}

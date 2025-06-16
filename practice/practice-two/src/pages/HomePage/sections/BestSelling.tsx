@@ -1,17 +1,17 @@
 import { type MouseEvent, useCallback, useMemo } from 'react'
 import { ChevronRight } from 'lucide-react'
-import styled from 'styled-components'
 import { Button, Flex } from '@radix-ui/themes'
 import Link from '@components/common/Link/index'
 import { navbarData } from '@data/navbar'
-
 import { productData } from '@data/product-data'
 import ContentContainer from '@components/common/ContentContainer/ContentContainer'
 import { useNavigate } from 'react-router-dom'
 import { getRandomItems } from '@helpers/getRandomItems'
 import { ProductCard } from '@components/ProductCard/ProductCard'
+
 import {
   CategoryList,
+  CategoryColumn,
   Container,
   FlexContainer,
   ProductsGrid,
@@ -84,20 +84,9 @@ const BestSellingProducts = ({
               ))}
             </CategoryList>
             <Button
-              variant="soft"
+              variant="ghost"
               onClick={() => navigate('/all-products')}
-              style={{
-                marginTop: '3rem',
-                fontWeight: 'var(--font-weight-bold)',
-                padding: '12.5px 16px',
-                color: 'var(--black-color-default)',
-                justifyContent: 'flex-start',
-                fontSize: '15px',
-                borderRadius: '12px',
-                backgroundColor: 'var(--black-shade-5)',
-                cursor: 'pointer',
-                minHeight: '45px',
-              }}
+              style={{ marginTop: '24px' }}
             >
               <Flex align="center" gap="1">
                 More products
@@ -128,20 +117,5 @@ const BestSellingProducts = ({
     </Container>
   )
 }
-
-const CategoryColumn = styled.div`
-  width: 100%;
-
-  @media (max-width: 1023px) {
-    ${CategoryList}, button {
-      display: none;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    width: 268px;
-    flex-shrink: 0;
-  }
-`
 
 export default BestSellingProducts

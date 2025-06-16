@@ -90,29 +90,6 @@ export const Button = styled.button`
   text-align: center;
 `
 
-export const PrimaryButton = styled(Button)`
-  background-color: var(--green-color-default);
-  color: white;
-  border: none;
-  padding: 12px 16px;
-  font-size: 15px;
-  height: 48px;
-  font-weight: var(--font-weight-bold);
-
-  &:hover:not(:disabled) {
-    background-color: var(--green-color-dark);
-    border-color: var(--green-color-dark);
-  }
-`
-
-export const SecondaryButton = styled(Button)`
-  background-color: white;
-  color: var(--black-color-default);
-  border: none;
-  font-size: 15px;
-  font-weight: var(--font-weight-bold);
-`
-
 export const EmptyCartMessage = styled.div`
   text-align: center;
   padding: 48px 0;
