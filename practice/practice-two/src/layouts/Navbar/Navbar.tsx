@@ -166,7 +166,20 @@ export const Navbar = memo(() => {
 
   const handleCategoryClick = useCallback((label: string) => {
     const path = labelToPath(label)
+
+    console.log('Navigation triggered:', {
+      label,
+      path,
+      targetUrl: `/${path}`,
+    })
     navigateRef.current(`/${path}`)
+
+    setTimeout(() => {
+      console.log('Navigation complete check:', {
+        currentUrl: window.location.href,
+        pathname: window.location.pathname,
+      })
+    }, 100)
   }, [])
 
   const handleSubItemClick = useCallback((href: string) => {

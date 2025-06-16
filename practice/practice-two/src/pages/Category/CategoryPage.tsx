@@ -43,6 +43,13 @@ const CategoryPage = () => {
   const { categoryPath } = useParams()
   const [productCount, setProductCount] = useState<number | null>(null)
 
+  console.log('CategoryPage rendered with:', {
+    categoryPath,
+    location: location.pathname,
+    fullUrl: window.location.href,
+    params: useParams(),
+  })
+
   // Get category data from URL and hook
   const { currentCategory, productsInCategory, searchQuery } =
     useProductsByCategory()
