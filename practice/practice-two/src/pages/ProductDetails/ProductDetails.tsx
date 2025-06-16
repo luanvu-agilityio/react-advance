@@ -134,20 +134,20 @@ const ProductDetailPage = () => {
               <ShippingBadge>Free shipping</ShippingBadge>
             )}
             <ProductImage>
-              <img src={product.imageUrl} alt={product.title} />
+              <img src={product.images.main} alt={product.title} />
             </ProductImage>
           </ProductImageContainer>
 
-          {product.imageUrl && (
-            <ProductImageContainer>
-              <ProductImage>
-                <img
-                  src={product.imageUrl}
-                  alt={`${product.title} additional view`}
-                />
-              </ProductImage>
-            </ProductImageContainer>
-          )}
+          {/* Display all gallery images */}
+          {product.images.gallery &&
+            product.images.gallery.length > 1 &&
+            product.images.gallery.slice(1).map((image, index) => (
+              <ProductImageContainer key={index}>
+                <ProductImage>
+                  <img src={image} alt={`${product.title} view ${index + 2}`} />
+                </ProductImage>
+              </ProductImageContainer>
+            ))}
         </ImageContainer>
 
         {/* Product Details */}

@@ -1,3 +1,8 @@
+export interface ProductImage {
+  main: string
+  gallery: string[]
+}
+
 export interface Product {
   id: number
   title: string
@@ -19,4 +24,7 @@ export interface Product {
   category: string
   subcategory: string
   tags: string[]
+  variant?: string
+  images: ProductImage
+  section?: string[]
 }
