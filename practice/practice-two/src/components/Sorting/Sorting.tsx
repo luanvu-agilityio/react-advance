@@ -18,7 +18,7 @@ export const Sorting = () => {
   const { sortBy, sortOrder, setSortBy, setSortOrder } = useCategoryStore()
 
   return (
-    <FilterControlContainer style={{ minWidth: '180px' }}>
+    <FilterControlContainer style={{ minWidth: '180px', height: '60px' }}>
       <FilterLabel>Sort By :</FilterLabel>
       <SelectWrapper
         style={{ width: 'auto', minWidth: '100px', margin: '0', padding: 0 }}

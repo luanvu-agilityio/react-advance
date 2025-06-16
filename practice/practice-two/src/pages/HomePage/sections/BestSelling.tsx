@@ -88,7 +88,15 @@ const BestSellingProducts = ({
               onClick={() => navigate('/all-products')}
               style={{
                 marginTop: '3rem',
+                fontWeight: 'var(--font-weight-bold)',
+                padding: '12.5px 16px',
+                color: 'var(--black-color-default)',
                 justifyContent: 'flex-start',
+                fontSize: '15px',
+                borderRadius: '12px',
+                backgroundColor: 'var(--black-shade-5)',
+                cursor: 'pointer',
+                minHeight: '45px',
               }}
             >
               <Flex align="center" gap="1">

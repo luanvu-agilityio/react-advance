@@ -43,6 +43,7 @@ export const fields: FieldConfig[] = [
     type: 'select',
     placeholder: 'Choose a state or Country',
     options: [
+      { value: 'VN', label: 'Vietnam' },
       { value: '', label: 'Choose a state or Country' },
       { value: 'US', label: 'United States' },
       { value: 'CA', label: 'Canada' },
