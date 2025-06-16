@@ -10,6 +10,7 @@ export const ModalOverlay = styled.div`
   z-index: 1000;
   display: flex;
   justify-content: flex-end;
+  backdrop-filter: blur(5px);
 `
 
 export const ModalContent = styled.div`

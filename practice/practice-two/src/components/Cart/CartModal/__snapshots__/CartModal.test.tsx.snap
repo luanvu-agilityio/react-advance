@@ -14,7 +14,7 @@ exports[`CartModal matches snapshot with empty cart 1`] = `
     data-testid="memory-router"
   >
     <div
-      class="sc-Qotzb dwvnow"
+      class="sc-Qotzb docwpJ"
       data-testid="modal-overlay"
     >
       <div
@@ -65,7 +65,7 @@ exports[`CartModal matches snapshot with items in cart 1`] = `
     data-testid="memory-router"
   >
     <div
-      class="sc-Qotzb dwvnow"
+      class="sc-Qotzb docwpJ"
       data-testid="modal-overlay"
     >
       <div

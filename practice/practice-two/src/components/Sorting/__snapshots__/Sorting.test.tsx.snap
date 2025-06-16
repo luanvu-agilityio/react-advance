@@ -4,7 +4,7 @@ exports[`Sorting rendering renders correctly with default values 1`] = `
 <DocumentFragment>
   <div
     class="sc-fpEFIB ksmUmw"
-    style="min-width: 180px;"
+    style="min-width: 180px; height: 60px;"
   >
     <span
       class="sc-gAqISa kDWsLg"
@@ -84,7 +84,7 @@ exports[`Sorting rendering renders correctly with descending order 1`] = `
 <DocumentFragment>
   <div
     class="sc-fpEFIB ksmUmw"
-    style="min-width: 180px;"
+    style="min-width: 180px; height: 60px;"
   >
     <span
       class="sc-gAqISa kDWsLg"
@@ -164,7 +164,7 @@ exports[`Sorting rendering renders correctly with price sorting 1`] = `
 <DocumentFragment>
   <div
     class="sc-fpEFIB ksmUmw"
-    style="min-width: 180px;"
+    style="min-width: 180px; height: 60px;"
   >
     <span
       class="sc-gAqISa kDWsLg"
