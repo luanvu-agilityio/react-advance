@@ -64,7 +64,7 @@ const Select = ({
         disabled={disabled}
         name={name}
       >
-        <StyledTrigger variant={variant} className="rt-SelectTrigger">
+        <StyledTrigger variant={variant}>
           <SelectPrimitive.Value placeholder={placeholder} />
           <SelectPrimitive.Icon>
             <StyledIcon
@@ -76,30 +76,27 @@ const Select = ({
         </StyledTrigger>
 
         <SelectPrimitive.Portal>
-          <StyledContent position="popper" className="rt-SelectContent">
-            <StyledScrollUpButton className="rt-SelectScrollUpButton">
+          <StyledContent position="popper">
+            <StyledScrollUpButton>
               <ChevronDown size={16} style={{ transform: 'rotate(180deg)' }} />
             </StyledScrollUpButton>
 
-            <StyledViewport className="rt-SelectViewport">
+            <StyledViewport>
               {options.map((option) => (
                 <StyledItem
                   key={option.value}
                   value={option.value}
                   disabled={option.disabled}
-                  className="rt-SelectItem"
                 >
-                  <StyledItemIndicator className="rt-SelectItemIndicator">
+                  <StyledItemIndicator>
                     <Check size={16} />
                   </StyledItemIndicator>
-                  <StyledItemText className="rt-SelectItemText">
-                    {option.label}
-                  </StyledItemText>
+                  <StyledItemText>{option.label}</StyledItemText>
                 </StyledItem>
               ))}
             </StyledViewport>
 
-            <StyledScrollDownButton className="rt-SelectScrollDownButton">
+            <StyledScrollDownButton>
               <ChevronDown size={16} />
             </StyledScrollDownButton>
           </StyledContent>
@@ -108,4 +105,5 @@ const Select = ({
     </SelectContainer>
   )
 }
+
 export default Select

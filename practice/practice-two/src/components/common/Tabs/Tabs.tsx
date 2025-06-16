@@ -1,8 +1,6 @@
-import { Tabs, TabsContent } from '@radix-ui/react-tabs'
+import { Tabs as RadixTabs } from '@radix-ui/themes'
 import { renderStars } from '@helpers/renderStar'
 import {
-  CustomTabsList,
-  CustomTabsTrigger,
   QuestionAnswer,
   QuestionItem,
   QuestionMeta,
@@ -21,6 +19,7 @@ import {
   TableRow,
   TabsContainer,
 } from './Tabs.styles'
+
 interface ProductTabsProps {
   description: {
     origins: string
@@ -54,26 +53,22 @@ interface ProductTabsProps {
 const ProductTabs = ({ description, reviews, questions }: ProductTabsProps) => {
   return (
     <TabsContainer>
-      <Tabs defaultValue="description">
-        <CustomTabsList>
-          <CustomTabsTrigger value="description">Description</CustomTabsTrigger>
-          <CustomTabsTrigger value="reviews">
+      {/* Use default Radix components - CSS targets their default class names */}
+      <RadixTabs.Root defaultValue="description">
+        <RadixTabs.List>
+          <RadixTabs.Trigger value="description">Description</RadixTabs.Trigger>
+          <RadixTabs.Trigger value="reviews">
             Reviews <TabCount>{reviews.count}</TabCount>
-          </CustomTabsTrigger>
-          <CustomTabsTrigger value="questions">
+          </RadixTabs.Trigger>
+          <RadixTabs.Trigger value="questions">
             Questions <TabCount>{questions.count}</TabCount>
-          </CustomTabsTrigger>
-        </CustomTabsList>
+          </RadixTabs.Trigger>
+        </RadixTabs.List>
 
-        <TabsContent
+        <RadixTabs.Content
           value="description"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '32px',
-          }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}
         >
-          {/* Description content */}
           <div>
             <SectionTitle>Origins</SectionTitle>
             <SectionText>{description.origins}</SectionText>
@@ -84,15 +79,10 @@ const ProductTabs = ({ description, reviews, questions }: ProductTabsProps) => {
             <SectionText>{description.cookingInfo}</SectionText>
           </div>
 
-          {/* Only show vitamins if they exist */}
           {description.vitamins && description.vitamins.length > 0 && (
             <div>
               <SectionTitle>Full of Vitamins!</SectionTitle>
-              <div
-                style={{
-                  overflowX: 'auto',
-                }}
-              >
+              <div style={{ overflowX: 'auto' }}>
                 <Table>
                   <TableHead>
                     <tr>
@@ -102,8 +92,8 @@ const ProductTabs = ({ description, reviews, questions }: ProductTabsProps) => {
                     </tr>
                   </TableHead>
                   <tbody>
-                    {description.vitamins.map((vitamin) => (
-                      <TableRow key={`${vitamin.name}-${vitamin.quantity}`}>
+                    {description.vitamins.map((vitamin, index) => (
+                      <TableRow key={index}>
                         <TableCell>{vitamin.name}</TableCell>
                         <TableCell>{vitamin.quantity}</TableCell>
                         <TableCell>{vitamin.dv}</TableCell>
@@ -114,10 +104,9 @@ const ProductTabs = ({ description, reviews, questions }: ProductTabsProps) => {
               </div>
             </div>
           )}
-        </TabsContent>
+        </RadixTabs.Content>
 
-        <TabsContent value="reviews">
-          {/* Reviews content */}
+        <RadixTabs.Content value="reviews">
           <SectionTitle>Customer Reviews</SectionTitle>
           {reviews.items.length > 0 ? (
             <div>
@@ -145,10 +134,9 @@ const ProductTabs = ({ description, reviews, questions }: ProductTabsProps) => {
               No reviews yet. Be the first to review this product!
             </SectionText>
           )}
-        </TabsContent>
+        </RadixTabs.Content>
 
-        <TabsContent value="questions">
-          {/* Questions content */}
+        <RadixTabs.Content value="questions">
           <SectionTitle>Frequently Asked Questions</SectionTitle>
           {questions.items.length > 0 ? (
             <div>
@@ -167,10 +155,9 @@ const ProductTabs = ({ description, reviews, questions }: ProductTabsProps) => {
               No questions yet. Ask the first question about this product!
             </SectionText>
           )}
-        </TabsContent>
-      </Tabs>
+        </RadixTabs.Content>
+      </RadixTabs.Root>
     </TabsContainer>
   )
 }
-
 export default ProductTabs

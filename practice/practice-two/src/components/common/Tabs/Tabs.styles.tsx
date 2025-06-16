@@ -1,51 +1,7 @@
 import styled from 'styled-components'
-import { TabsList, TabsTrigger } from '@radix-ui/react-tabs'
+
 export const TabsContainer = styled.div`
   margin-bottom: 2rem;
-`
-
-export const CustomTabsList = styled(TabsList)`
-  display: flex;
-  overflow-x: auto;
-  border-bottom: 1px solid #eee;
-  background-color: transparent;
-  margin-bottom: 1.5rem;
-  width: 100%;
-  justify-content: flex-start;
-  padding-bottom: 1px;
-  -webkit-overflow-scrolling: touch;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  @media (max-width: 768px) {
-    gap: 16px;
-  }
-`
-
-export const CustomTabsTrigger = styled(TabsTrigger)`
-  padding: 0 63px 16px 0;
-  font-weight: var(--font-weight-semibold);
-  font-size: 18px;
-  border: none;
-  background-color: transparent;
-  color: var(--black-color-default);
-  border-radius: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  &[data-state='active'] {
-    border-bottom: 1px solid var(--green-color-default);
-    background-color: transparent;
-    box-shadow: none;
-  }
-
-  @media (max-width: 768px) {
-    padding: 0 0 16px 0;
-    font-size: 16px;
-  }
 `
 
 export const TabCount = styled.span`
@@ -104,6 +60,7 @@ export const TableCell = styled.td`
   font-family: var(--font-family-secondary);
   font-weight: var(--font-weight-regular);
 `
+
 export const ReviewItem = styled.div`
   border-bottom: 1px solid #eee;
   padding-bottom: 1rem;
