@@ -98,6 +98,11 @@ export const PrimaryButton = styled(Button)`
   font-size: 15px;
   height: 48px;
   font-weight: var(--font-weight-bold);
+
+  &:hover:not(:disabled) {
+    background-color: var(--green-color-dark);
+    border-color: var(--green-color-dark);
+  }
 `
 
 export const SecondaryButton = styled(Button)`

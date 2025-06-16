@@ -174,4 +174,8 @@ export const commonButtonStyles = {
   borderRadius: '12px',
   border: '2px solid var(--green-shade-1)',
   cursor: 'pointer',
+  '&:hover:not(:disabled)': {
+    backgroundColor: 'var(--green-color-dark)',
+    borderColor: 'var(--green-color-dark)',
+  },
 }
