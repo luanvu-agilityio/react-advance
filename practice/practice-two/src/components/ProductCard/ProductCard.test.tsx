@@ -53,6 +53,13 @@ const sampleProduct = {
   freeShipping: true,
   tags: ['organic', 'fresh'],
   brand: "Nature's Best",
+  images: {
+    main: 'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372433/product_opkufp.png',
+    gallery: [
+      'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372433/product_opkufp.png',
+      'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372433/product_opkufp.png',
+    ],
+  },
 }
 
 // Helper function to render the component with required providers
