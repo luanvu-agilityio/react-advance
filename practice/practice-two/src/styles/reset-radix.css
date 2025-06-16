@@ -1,25 +1,29 @@
-.rt-BaseButton,
+:root {
+  --default-font-family: var(--font-family-primary) !important;
+  --font-family: var(--font-family-primary) !important;
+}
+
+[class^='rt-'],
+[class*=' rt-'] {
+  font-family: var(--font-family-primary) !important;
+}
+
+.rt-Text,
+.rt-Heading,
+.rt-Label,
 .rt-Button,
-.rt-DialogOverlay,
+.rt-DialogTitle,
 .rt-DialogContent,
 .rt-SelectTrigger,
 .rt-SelectContent,
-.rt-TextFieldInput,
-.rt-CheckboxRoot,
-.rt-RadioGroupItem,
-.rt-TabsList,
-.rt-ToastRoot,
-.rt-MenubarRoot,
-.rt-AccordionRoot {
-  all: revert !important;
+.rt-SelectItem,
+.rt-TabsTrigger,
+.rt-ToastTitle,
+.rt-ToastDescription {
+  font-family: var(--font-family-primary) !important;
 }
 
-.rt-variant-solid,
-.rt-variant-soft,
-.rt-variant-outline,
-.rt-variant-ghost {
-  background-color: revert !important;
-  color: revert !important;
-  border: revert !important;
-  padding: revert !important;
+.rt-DialogContent *,
+.rt-SelectContent * {
+  font-family: var(--font-family-primary) !important;
 }

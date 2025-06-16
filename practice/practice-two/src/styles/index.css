@@ -1,6 +1,6 @@
 @import '@radix-ui/themes/styles.css';
-
 @import './theme.css';
+@import 'reset-radix.css';
 @import url('./global.css');
 @import url('./typography.css');
 @import url('./variables.css');

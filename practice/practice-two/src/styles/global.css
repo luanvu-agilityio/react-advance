@@ -11,6 +11,7 @@ body {
 
 html {
   scrollbar-gutter: stable;
+  font-family: var(--font-family-primary);
 }
 
 body[style*='overflow: hidden'] {
@@ -35,61 +36,3 @@ body[style*='overflow: hidden'] {
 }
 
 /* 1. General reset for all Radix components */
-[class^='rt-'],
-[class*=' rt-'] {
-  all: revert;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: inherit;
-  color: inherit;
-  background: transparent;
-  border: none;
-}
-
-/* 2. Specific resets for commonly problematic components */
-.rt-Button {
-  all: unset;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.rt-DialogOverlay,
-.rt-DialogContent {
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-
-.rt-MenubarRoot,
-.rt-MenubarContent,
-.rt-MenubarItem {
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-
-/* 3. Reset Radix variants */
-.rt-variant-solid,
-.rt-variant-soft,
-.rt-variant-outline,
-.rt-variant-ghost {
-  background: transparent !important;
-  color: inherit !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-/* 4. Reset transitions and animations */
-[class^='rt-'],
-[class*=' rt-'] {
-  transition: none !important;
-  animation: none !important;
-}
