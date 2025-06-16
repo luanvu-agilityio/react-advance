@@ -39,6 +39,10 @@ describe('useProductNavigation', () => {
       freeShipping: true,
       imageUrl: 'iphone.jpg',
       tags: ['phone', 'apple', 'smartphone'],
+      images: {
+        main: 'iphone_main.jpg',
+        gallery: ['iphone1.jpg', 'iphone2.jpg', 'iphone3.jpg'],
+      },
     },
     {
       id: 2,
@@ -61,6 +65,10 @@ describe('useProductNavigation', () => {
       freeShipping: true,
       imageUrl: 'samsung.jpg',
       tags: ['phone', 'samsung', 'smartphone'],
+      images: {
+        main: 'samsung_main.jpg',
+        gallery: ['samsung1.jpg', 'samsung2.jpg', 'samsung3.jpg'],
+      },
     },
   ]
 
@@ -86,6 +94,10 @@ describe('useProductNavigation', () => {
     freeShipping: false,
     imageUrl: 'generic.jpg',
     tags: ['generic', 'budget'],
+    images: {
+      main: 'generic_main.jpg',
+      gallery: ['generic1.jpg', 'generic2.jpg'],
+    },
   }
 
   beforeEach(() => {

@@ -28,6 +28,13 @@ const productBase = {
   freeShipping: false,
   discountPercentage: 0,
   brand: 'Local Farms',
+  images: {
+    main: 'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372433/product_opkufp.png',
+    gallery: [
+      'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372433/product_opkufp.png',
+      'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372433/product_opkufp.png',
+    ],
+  },
 }
 
 const productWithExtras = {
