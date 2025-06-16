@@ -1,7 +1,6 @@
 import { TextEncoder } from 'util'
 global.TextEncoder = TextEncoder
-import { waitFor } from '@testing-library/react'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { Navbar } from './Navbar'
 
@@ -85,8 +84,10 @@ describe('Navbar - Interactive', () => {
     )
 
     // Find mobile menu button
-    const mobileMenuButton = container.querySelector('button')
-    expect(mobileMenuButton).toBeInTheDocument()
+    const mobileMenuButton = container.querySelector(
+      'button'
+    ) as HTMLButtonElement
+    expect(mobileMenuButton).not.toBeNull()
 
     // Click to open mobile menu
     fireEvent.click(mobileMenuButton)
@@ -99,7 +100,7 @@ describe('Navbar - Interactive', () => {
     })
 
     // Click to close mobile menu
-    fireEvent.click(closeButton)
+    fireEvent.click(closeButton as HTMLElement)
 
     // Verify the menu is closed
     await waitFor(() => {
