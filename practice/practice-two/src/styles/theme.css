@@ -8,7 +8,7 @@
   border: none;
   padding: 0;
   margin: 0;
-  font: inherit;
+  font-family: inherit;
 }
 .rt-Button {
   font-family: var(--font-family-primary);

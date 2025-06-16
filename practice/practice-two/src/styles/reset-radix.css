@@ -1,0 +1,25 @@
+.rt-BaseButton,
+.rt-Button,
+.rt-DialogOverlay,
+.rt-DialogContent,
+.rt-SelectTrigger,
+.rt-SelectContent,
+.rt-TextFieldInput,
+.rt-CheckboxRoot,
+.rt-RadioGroupItem,
+.rt-TabsList,
+.rt-ToastRoot,
+.rt-MenubarRoot,
+.rt-AccordionRoot {
+  all: revert !important;
+}
+
+.rt-variant-solid,
+.rt-variant-soft,
+.rt-variant-outline,
+.rt-variant-ghost {
+  background-color: revert !important;
+  color: revert !important;
+  border: revert !important;
+  padding: revert !important;
+}
