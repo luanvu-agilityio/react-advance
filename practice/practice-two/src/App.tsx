@@ -99,14 +99,7 @@ function App() {
                     </ErrorBoundary>
                   }
                 />
-                <Route
-                  path="/:categoryPath"
-                  element={
-                    <ErrorBoundary>
-                      <CategoryPage />
-                    </ErrorBoundary>
-                  }
-                />
+                <Route path="/:categoryPath" element={<CategoryPage />} />
                 <Route
                   path="/checkout"
                   element={
