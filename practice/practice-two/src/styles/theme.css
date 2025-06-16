@@ -127,54 +127,94 @@
    SELECT STYLES
 ======================================== */
 .rt-SelectTrigger {
-  height: 42px;
-  padding: 0 var(--space-md);
-  background-color: var(--background);
-  border: var(--border-width) solid var(--border);
-  border-radius: var(--radius);
-  font-family: var(--font-family-primary);
-  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  gap: 8px;
+  background-color: transparent;
+  color: #1f2937;
+  border: none;
+  width: 100%;
   cursor: pointer;
-  transition: border-color var(--transition);
 }
 
-.rt-SelectTrigger:hover {
-  border-color: var(--primary-light);
-}
-
-.rt-SelectTrigger:focus,
-.rt-SelectTrigger[data-state='open'] {
-  border-color: var(--primary);
+.rt-SelectTrigger:focus {
   outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.rt-SelectTrigger[data-placeholder] {
+  color: #9ca3af;
+}
+
+.rt-SelectTrigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .rt-SelectContent {
-  background-color: var(--background);
-  border: var(--border-width) solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
   z-index: 1000;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow:
+    0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+  min-width: var(--radix-select-trigger-width);
+  max-height: 300px;
+}
+
+.rt-SelectViewport {
+  padding: 5px;
 }
 
 .rt-SelectItem {
-  padding: var(--space-sm) var(--space-md);
-  font-family: var(--font-secondary);
-  color: var(--text);
+  font-size: 15px;
+  line-height: 1;
+  color: #1f2937;
+  border-radius: 3px;
+  padding: 10px 35px 10px 10px;
+  position: relative;
+  user-select: none;
   cursor: pointer;
-  transition: background-color var(--transition);
 }
 
-.rt-SelectItem:hover,
-.rt-SelectItem[data-highlighted] {
-  background-color: var(--primary-light);
-  color: white;
+.rt-SelectItem:focus {
   outline: none;
+  background-color: #f3f4f6;
 }
 
-.rt-SelectItem[data-state='checked'] {
-  background-color: var(--primary);
-  color: white;
+.rt-SelectItem[data-disabled] {
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.rt-SelectItem[data-highlighted] {
+  background-color: #f3f4f6;
+}
+
+.rt-SelectItemIndicator {
+  position: absolute;
+  right: 10px;
+  width: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rt-SelectScrollUpButton,
+.rt-SelectScrollDownButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  background-color: white;
+  color: #6b7280;
+  cursor: pointer;
 }
 
 /* ========================================
