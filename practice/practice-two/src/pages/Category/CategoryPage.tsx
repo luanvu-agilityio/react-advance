@@ -141,15 +141,17 @@ const CategoryPage = () => {
     [updateFilters]
   )
 
-  // Use effect with the coordinating function
-  useEffect(() => {
-    updateFiltersFromTags(selectedTags)
-  }, [selectedTags, updateFiltersFromTags])
+const prevCategoryRef = useRef(categoryPath)
 
-  // Single effect for URL and route-based changes
+  // Use effect with the coordinating function
   useEffect(() => {
     // Handle category from route params
     if (categoryPath) {
+      // If category has changed, reset filters
+      if (prevCategoryRef.current !== categoryPath) {
+        resetFilters()
+        prevCategoryRef.current = categoryPath
+      }
       setCategory(categoryPath)
     }
 
