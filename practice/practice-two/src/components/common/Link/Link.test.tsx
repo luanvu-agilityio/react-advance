@@ -34,7 +34,11 @@ describe('Link Component', () => {
 
       // External link (opens in new tab)
       const { container: externalContainer } = render(
-        <Link href="https://example.com" target="_blank">
+        <Link
+          href="https://example.com"
+          target="_blank"
+          onClick={() => console.log('External link clicked')}
+        >
           External Link
         </Link>
       )
