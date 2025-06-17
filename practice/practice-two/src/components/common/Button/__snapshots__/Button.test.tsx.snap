@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Snapshot Tests renders all button variants and sizes correctly: disabled-button 1`] = `
+<button
+  class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-solid rt-Button"
+  data-accent-color=""
+>
+  Disabled Button
+</button>
+`;
+
+exports[`Button Snapshot Tests renders all button variants and sizes correctly: ghost-button 1`] = `
+<button
+  class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-ghost rt-Button"
+  data-accent-color=""
+>
+  Ghost Button
+</button>
+`;
+
+exports[`Button Snapshot Tests renders all button variants and sizes correctly: icon-button 1`] = `
+<button
+  class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-solid rt-Button"
+  data-accent-color=""
+>
+  <span>
+    🔍
+  </span>
+   Search
+</button>
+`;
+
+exports[`Button Snapshot Tests renders all button variants and sizes correctly: large-button 1`] = `
+<button
+  class="rt-reset rt-BaseButton rt-r-size-3 rt-variant-solid rt-Button"
+  data-accent-color=""
+>
+  Large Button
+</button>
+`;
+
+exports[`Button Snapshot Tests renders all button variants and sizes correctly: medium-button 1`] = `
+<button
+  class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-solid rt-Button"
+  data-accent-color=""
+>
+  Medium Button
+</button>
+`;
+
+exports[`Button Snapshot Tests renders all button variants and sizes correctly: outline-button 1`] = `
+<button
+  class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-outline rt-Button"
+  data-accent-color=""
+>
+  Outline Button
+</button>
+`;
+
+exports[`Button Snapshot Tests renders all button variants and sizes correctly: small-button 1`] = `
+<button
+  class="rt-reset rt-BaseButton rt-r-size-1 rt-variant-solid rt-Button"
+  data-accent-color=""
+>
+  Small Button
+</button>
+`;
+
+exports[`Button Snapshot Tests renders all button variants and sizes correctly: soft-button 1`] = `
+<button
+  class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-soft rt-Button"
+  data-accent-color=""
+>
+  Soft Button
+</button>
+`;
+
+exports[`Button Snapshot Tests renders all button variants and sizes correctly: solid-button 1`] = `
+<button
+  class="rt-reset rt-BaseButton rt-r-size-2 rt-variant-solid rt-Button"
+  data-accent-color=""
+>
+  Solid Button
+</button>
+`;

@@ -2,17 +2,19 @@
 
 ## Overview
 
-Welcome to my Ecommerce Website - a React and TypeScript-based administrative interface for efficient shopping cart management. This project demonstrates the implementation of CRUD (Create, Read, Update, Delete) operations within a responsive dashboard environment.
+Welcome to my Ecommerce Website - a React and TypeScript-based administrative interface for efficient shopping cart management. This project demonstrates the implementation of CRUD (Create, Read, Update, Delete) operations within a responsive environment.
 <b>Key Features:<b>
 
 - Sorting and search capabilities
 - Intuitive user interface for administrative tasks
+- Friendly shopping cart
+- Export the order details via Print, Excel or Text file
 
 This project showcases practical applications of React with TypeScript while delivering essential functionalities for shopping cart management. All necessary resources and documentation links are provided below.
 
 ## Timeline
 
-- Estimation time: 06 May, 2025 - 19 May, 2025 
+- Estimation time: 06 May, 2025 - 19 May, 2025
 
 ## Team size
 
@@ -26,7 +28,14 @@ This project showcases practical applications of React with TypeScript while del
 
 - REACT HOOK FORM
 
-- MOCKAPI
+- ZUSTAND
+
+- TANSTACK QUERY
+
+- JEST
+
+- REACT TESTING LIBRARY
+- RADIX UI
 
 ## Target
 
@@ -37,14 +46,14 @@ This project showcases practical applications of React with TypeScript while del
 - Become better understood and create your own custom hook to reduce redundant code.
 
 - Study and apply uncontrolled components in some cases to avoid needless state management gradually.
- 
+
 - Be aware of catching common and specific errors (errors from api, from logic,...) for one React application to prevent crashing issues dramatically.
 
 - Check PageSpeed scores frequently during development time and ensure the scores at minimum 98 points.
 
 - Keep moving with Storybook which will assist to manage components in the development environment.
 
-- Practice shouldn’t consist of additional libraries namely React Query, React Hook Form, Zustand. They might need to get back and update practice with the aforementioned after passing the main concepts (the ideal timeline for this is 7-8 days).
+- Apply React Query, React Hook Form, Zustand.
 
 ## Prerequisite
 
@@ -63,8 +72,6 @@ This project showcases practical applications of React with TypeScript while del
 - Vite [6.3.5]
 
 - Storybook [8.6.7]
-
-- Zod [3.25.30]
 
 - React Hook Form [7.56.4]
 
@@ -87,18 +94,16 @@ This project showcases practical applications of React with TypeScript while del
     |- constants/
     |- component/
         |- common/
-    |- configs/
+    |- config/
     |- contexts/
     |- data/
-    |- styles/
     |- helpers/
     |- hooks/
     |- layouts/
     |- pages/
-    |- schemas/
-    |- store/
     |- services/
-    |- route/
+    |- store/
+    |- styles/
     |- types/
     |- utils/
     |- App.tsx
@@ -123,18 +128,17 @@ This project showcases practical applications of React with TypeScript while del
 
 ## Step by step to run this app in your local
 
-| Command                                                              | Action                           |
-| -------------------------------------------------------------------- | -------------------------------- |
-| git clone git@gitlab.asoft-python.com:luan.vu/react-training.git     | Download the source code         |
-| git checkout feat/practice-two                                       | Checkout to branch feat/practice |
-| cd practice/practice-two                                             | Move to folder                   |
-| pnpm install                                                         | Install dependencies             |
-| pnpm run dev                                                         | Run the application              |
-| Open new terminal for story book                                     |                                  |
-| pnpm run storybook                                                   | Run storybook                    |
-| Implement unit test                                                  |                                  |
-| pnpm run test:coverage src/path-to-the-test-component                | Run the unit test                |                 
-
+| Command                                                          | Action                           |
+| ---------------------------------------------------------------- | -------------------------------- |
+| git clone git@gitlab.asoft-python.com:luan.vu/react-training.git | Download the source code         |
+| git checkout feat/practice-two                                   | Checkout to branch feat/practice |
+| cd practice/practice-two                                         | Move to folder                   |
+| pnpm install                                                     | Install dependencies             |
+| pnpm run dev                                                     | Run the application              |
+| Open new terminal for story book                                 |                                  |
+| pnpm run storybook                                               | Run storybook                    |
+| Implement unit test                                              |                                  |
+| pnpm run test:coverage src/path-to-the-test-component            | Run the unit test                |
 
 <b>Notes:<b>
 

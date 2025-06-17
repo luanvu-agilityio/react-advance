@@ -140,15 +140,13 @@ const CategoryPage = () => {
     },
     [updateFilters]
   )
-  
+
   // Use effect with the coordinating function
   useEffect(() => {
     updateFiltersFromTags(selectedTags)
   }, [selectedTags, updateFiltersFromTags])
 
- 
-  
-const prevCategoryRef = useRef(categoryPath)
+  const prevCategoryRef = useRef(categoryPath)
 
   // Use effect with the coordinating function
   useEffect(() => {

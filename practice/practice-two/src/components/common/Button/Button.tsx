@@ -9,6 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant
   size?: ButtonSize
   children: ReactNode
+  onClick: () => void
 }
 
 // Button component
@@ -16,9 +17,10 @@ const BaseButton = ({
   variant = 'solid',
   size = '2',
   children,
+  onClick,
 }: ButtonProps) => {
   return (
-    <Button variant={variant} size={size}>
+    <Button variant={variant} size={size} onClick={onClick}>
       {children}
     </Button>
   )

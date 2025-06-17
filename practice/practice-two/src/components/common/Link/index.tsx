@@ -4,7 +4,7 @@ import { StyledLink } from './Link.style'
 export interface LinkProps {
   href: string
   children: ReactNode
-  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void
+  onClick: (event: MouseEvent<HTMLAnchorElement>) => void
   className?: string
   target?: '_blank' | '_self' | '_parent' | '_top'
   disabled?: boolean

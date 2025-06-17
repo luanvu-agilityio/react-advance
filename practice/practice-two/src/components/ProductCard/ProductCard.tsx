@@ -30,7 +30,6 @@ import {
 } from './ProductCard.styles'
 import { useCartStore } from '@stores/cartStore'
 import { useToast } from '@stores/toastStore'
-import BaseButton from '@components/common/Button/Button'
 const fullBlackStarIcon =
   'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372429/black-star_vfret7.svg'
 const emptyStarIcon =
@@ -219,7 +218,7 @@ export const ProductCard = memo(
       return (
         <ButtonsContainer $variant={variant}>
           {variant === 'list' ? (
-            <BaseButton variant="solid" size="2" onClick={handleProductDetail}>
+            <Button variant="solid" size="2" onClick={handleProductDetail}>
               <Flex align="center">
                 Product Detail
                 <ChevronRight
@@ -228,7 +227,7 @@ export const ProductCard = memo(
                   style={{ strokeWidth: 5, marginLeft: '8px' }}
                 />
               </Flex>
-            </BaseButton>
+            </Button>
           ) : (
             <Button variant="solid" size="1" onClick={handleBuy}>
               Buy now

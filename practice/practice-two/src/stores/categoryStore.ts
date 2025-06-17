@@ -1,4 +1,5 @@
 import productApi from '@services/product'
+import type { SortOrder } from 'types/sort-order'
 import { create } from 'zustand'
 
 export interface CategoryState {
@@ -20,9 +21,9 @@ export interface CategoryState {
 
   //Sorting
   sortBy: string
-  sortOrder: 'asc' | 'desc'
+  sortOrder: SortOrder
   setSortBy: (field: string) => void
-  setSortOrder: (order: 'asc' | 'desc') => void
+  setSortOrder: (order: SortOrder) => void
 
   // Actions
   setPage: (page: number) => void
@@ -57,7 +58,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
   priceRange: defaultPriceRange,
   viewMode: 'grid',
   sortBy: 'name',
-  sortOrder: 'asc',
+  sortOrder: 'asc' as SortOrder,
 
   // Sorting actions
   // Sort actions
@@ -65,7 +66,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
     set({ sortBy: field, currentPage: 1 })
   },
 
-  setSortOrder: (order: 'asc' | 'desc') => {
+  setSortOrder: (order: SortOrder) => {
     set({ sortOrder: order, currentPage: 1 })
   },
 
@@ -173,7 +174,7 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
       subcategory: subcategory || undefined,
       searchQuery: search || undefined,
       sortBy: sort,
-      sortOrder: order as 'asc' | 'desc',
+      sortOrder: order as SortOrder,
     })
   },
 

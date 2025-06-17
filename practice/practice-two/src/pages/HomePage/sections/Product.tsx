@@ -2,7 +2,7 @@ import { ChevronRight } from 'lucide-react'
 import { useMemo } from 'react'
 import type { MouseEvent } from 'react'
 import { productData } from '@data/product-data'
-import ContentContainer from '@components/common/ContentContainer/ContentContainer'
+import ContentContainer from '@layouts/ContentContainer/ContentContainer'
 import { ProductCard } from '@components/ProductCard/ProductCard'
 import {
   HeaderContainer,

@@ -16,6 +16,7 @@ import axios, { AxiosError } from 'axios'
 import { productData } from '@data/product-data'
 import { getTabDataByProductId } from '@data/tab-data'
 import type { TabData } from 'types/tab-data'
+import type { SortOrder } from 'types/sort-order'
 
 // Base URL for the product API
 const API_BASE_URL =
@@ -47,7 +48,7 @@ export interface ProductApiParams {
   ratings?: number[] // Rating filter (multiple values)
   search?: string // Search term
   sortBy?: string // Field to sort by
-  sortOrder?: 'asc' | 'desc' // Sort direction
+  sortOrder?: SortOrder // Sort direction
 }
 
 /**
@@ -312,7 +313,7 @@ const productApi = {
 function sortProducts(
   products: Product[],
   sortBy?: string,
-  sortOrder: 'asc' | 'desc' = 'asc'
+  sortOrder: SortOrder = 'asc'
 ): Product[] {
   // Return original array if no sort criteria specified
   if (!sortBy || sortBy === 'default') return products
