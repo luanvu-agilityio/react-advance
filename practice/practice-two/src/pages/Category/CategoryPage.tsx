@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from 'react'
+import { useEffect, useState, useMemo, useCallback, useRef } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 
 // Stores and Hooks
@@ -140,7 +140,13 @@ const CategoryPage = () => {
     },
     [updateFilters]
   )
+  // Use effect with the coordinating function
+  useEffect(() => {
+    updateFiltersFromTags(selectedTags)
+  }, [selectedTags, updateFiltersFromTags])
 
+  const prevCategoryRef = useRef(categoryPath)
+  
 const prevCategoryRef = useRef(categoryPath)
 
   // Use effect with the coordinating function
