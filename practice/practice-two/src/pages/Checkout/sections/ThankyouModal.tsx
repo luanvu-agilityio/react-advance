@@ -17,6 +17,7 @@ import {
   CloseButton,
 } from '../CheckoutStyle'
 import { withErrorBoundary } from '@utils/withErrorBoundary'
+import { calculateSubtotal, calculateTax } from '@utils/cartCalculation'
 
 // Styled components using Radix UI
 
@@ -33,18 +34,18 @@ const ThankYouModal = ({
 }: ThankYouModalProps) => {
   const [isRedirecting, setIsRedirecting] = useState(false)
   const { formData, resetForm } = useCheckoutStore()
-  const { items, clearCart, getSubtotal, getTax } = useCartStore()
+  const { items, clearCart } = useCartStore()
   const navigate = useNavigate()
 
   // Calculate order totals accurately using store functions
   const orderCalculations = useMemo(() => {
-    const subtotal = getSubtotal()
-    const tax = getTax()
+    const subtotal = calculateSubtotal(items)
+    const tax = calculateTax(subtotal)
     const shipping = formData.shipping.price || 0
     const total = subtotal + tax + shipping
 
     return { subtotal, tax, shipping, total }
-  }, [items, formData.shipping.price, getSubtotal, getTax])
+  }, [items, formData.shipping.price])
 
   // Prepare complete customer data for export
   const customerData = useMemo(

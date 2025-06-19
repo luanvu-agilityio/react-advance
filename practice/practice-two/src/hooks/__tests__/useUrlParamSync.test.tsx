@@ -2,6 +2,10 @@ import { renderHook, act } from '@testing-library/react'
 import { useSearchParams } from 'react-router-dom'
 import { useUrlParamSync } from '../useUrlParamSync'
 import { useCategoryStore } from '@stores/categoryStore'
+import {
+  categoryStateToUrlParams,
+  urlParamsToCategoryState,
+} from '@utils/categoryUrlParams'
 
 // Mock React Router
 jest.mock('react-router-dom', () => ({
@@ -13,14 +17,19 @@ jest.mock('@stores/categoryStore', () => ({
   useCategoryStore: jest.fn(),
 }))
 
+// Mock utility functions
+jest.mock('@utils/categoryUrlParams', () => ({
+  categoryStateToUrlParams: jest.fn(),
+  urlParamsToCategoryState: jest.fn(),
+}))
+
 describe('useUrlParamSync', () => {
   // Mock URL search params
   const setSearchParams = jest.fn()
   let mockSearchParams: URLSearchParams
 
   // Mock store functions and state
-  const setFromUrl = jest.fn()
-  const getUrlParams = jest.fn()
+  const updateFilters = jest.fn()
   let mockCurrentPage = 1
   let mockLimit = 5
 
@@ -34,16 +43,21 @@ describe('useUrlParamSync', () => {
       setSearchParams,
     ])
 
-    // Set up store mock
+    // Set up store mock with the correct functions
     ;(useCategoryStore as unknown as jest.Mock).mockReturnValue({
-      setFromUrl,
-      getUrlParams,
+      updateFilters,
       currentPage: mockCurrentPage,
       limit: mockLimit,
     })
 
-    // Default mock implementation
-    getUrlParams.mockReturnValue(new URLSearchParams())
+    // Default mock implementation for utility functions
+    ;(categoryStateToUrlParams as jest.Mock).mockReturnValue(
+      new URLSearchParams()
+    )
+    ;(urlParamsToCategoryState as jest.Mock).mockReturnValue({
+      currentPage: 1,
+      limit: 5,
+    })
   })
 
   test('should sync URL params to store on mount', () => {
@@ -54,17 +68,21 @@ describe('useUrlParamSync', () => {
       setSearchParams,
     ])
 
+    const mockStateUpdates = { currentPage: 2, limit: 10, sort: 'price' }
+    ;(urlParamsToCategoryState as jest.Mock).mockReturnValue(mockStateUpdates)
+
     // Act
     renderHook(() => useUrlParamSync())
 
     // Assert
-    expect(setFromUrl).toHaveBeenCalledWith(mockSearchParams)
+    expect(urlParamsToCategoryState).toHaveBeenCalledWith(mockSearchParams)
+    expect(updateFilters).toHaveBeenCalledWith(mockStateUpdates)
   })
 
   test('should sync store to URL when store state changes', () => {
     // Arrange
     const updatedParams = new URLSearchParams('page=3&limit=20')
-    getUrlParams.mockReturnValue(updatedParams)
+    ;(categoryStateToUrlParams as jest.Mock).mockReturnValue(updatedParams)
 
     // Set up component - isInitialized will be true after first render
     const { rerender } = renderHook(() => useUrlParamSync())
@@ -73,8 +91,7 @@ describe('useUrlParamSync', () => {
     mockCurrentPage = 3
     mockLimit = 20
     ;(useCategoryStore as unknown as jest.Mock).mockReturnValue({
-      setFromUrl,
-      getUrlParams,
+      updateFilters,
       currentPage: mockCurrentPage,
       limit: mockLimit,
     })
@@ -83,7 +100,7 @@ describe('useUrlParamSync', () => {
     rerender()
 
     // Assert
-    expect(getUrlParams).toHaveBeenCalled()
+    expect(categoryStateToUrlParams).toHaveBeenCalled()
     expect(setSearchParams).toHaveBeenCalledWith(expect.any(URLSearchParams), {
       replace: true,
     })
@@ -97,7 +114,11 @@ describe('useUrlParamSync', () => {
       setSearchParams,
     ])
 
-    getUrlParams.mockReturnValue(new URLSearchParams('page=1&limit=5'))
+    const mockParamsString = 'page=1&limit=5'
+    ;(categoryStateToUrlParams as jest.Mock).mockImplementation(() => {
+      const params = new URLSearchParams(mockParamsString)
+      return params
+    })
 
     // Act
     const { rerender } = renderHook(() => useUrlParamSync())
@@ -116,7 +137,7 @@ describe('useUrlParamSync', () => {
     ])
 
     const updatedStoreParams = new URLSearchParams('page=2&limit=10')
-    getUrlParams.mockReturnValue(updatedStoreParams)
+    ;(categoryStateToUrlParams as jest.Mock).mockReturnValue(updatedStoreParams)
 
     // Set up component
     const { rerender } = renderHook(() => useUrlParamSync())
@@ -125,8 +146,7 @@ describe('useUrlParamSync', () => {
     mockCurrentPage = 2
     mockLimit = 10
     ;(useCategoryStore as unknown as jest.Mock).mockReturnValue({
-      setFromUrl,
-      getUrlParams,
+      updateFilters,
       currentPage: mockCurrentPage,
       limit: mockLimit,
     })
@@ -145,7 +165,7 @@ describe('useUrlParamSync', () => {
   test('syncToUrl should manually sync store state to URL', () => {
     // Arrange
     const updatedParams = new URLSearchParams('page=5&limit=25')
-    getUrlParams.mockReturnValue(updatedParams)
+    ;(categoryStateToUrlParams as jest.Mock).mockReturnValue(updatedParams)
 
     // Act
     const { result } = renderHook(() => useUrlParamSync())
@@ -155,7 +175,7 @@ describe('useUrlParamSync', () => {
     })
 
     // Assert
-    expect(getUrlParams).toHaveBeenCalled()
+    expect(categoryStateToUrlParams).toHaveBeenCalled()
     expect(setSearchParams).toHaveBeenCalledWith(updatedParams, {
       replace: true,
     })

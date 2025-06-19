@@ -4,6 +4,7 @@ import { useProductFetch } from '../useProductFetch'
 import { useCategoryStore } from '@stores/categoryStore'
 import productApi from '@services/product'
 import { type ReactNode } from 'react'
+import { categoryStateToApiParams } from '@utils/categoryApiParams'
 
 // Mock dependencies
 jest.mock('@stores/categoryStore', () => ({
@@ -15,6 +16,11 @@ jest.mock('@services/product', () => ({
   default: {
     getProducts: jest.fn(),
   },
+}))
+
+// Add this mock for the categoryStateToApiParams utility
+jest.mock('@utils/categoryApiParams', () => ({
+  categoryStateToApiParams: jest.fn(),
 }))
 
 describe('useProductFetch', () => {
@@ -37,13 +43,23 @@ describe('useProductFetch', () => {
   beforeEach(() => {
     jest.clearAllMocks()
 
-    // Default mock implementation for categoryStore
-    ;(useCategoryStore as unknown as jest.Mock).mockReturnValue({
-      getApiParams: jest.fn().mockReturnValue({
-        p: 1,
-        l: 10,
-        category: 'electronics',
-      }),
+    // Mock the category store
+    const mockCategoryStore = {
+      // Include whatever properties the store should have
+      category: 'electronics',
+      currentPage: 1,
+      limit: 10,
+    }
+
+    ;(useCategoryStore as unknown as jest.Mock).mockReturnValue(
+      mockCategoryStore
+    )
+
+    // Mock the utility function to return the params we want to test
+    ;(categoryStateToApiParams as jest.Mock).mockReturnValue({
+      p: 1,
+      l: 10,
+      category: 'electronics',
     })
 
     // Mock successful API response
@@ -62,9 +78,8 @@ describe('useProductFetch', () => {
   test('should fetch products with correct parameters', async () => {
     // Arrange
     const mockParams = { p: 2, l: 5, category: 'electronics' }
-    ;(useCategoryStore as unknown as jest.Mock).mockReturnValue({
-      getApiParams: jest.fn().mockReturnValue(mockParams),
-    })
+    // Update this mock to return our test parameters
+    ;(categoryStateToApiParams as jest.Mock).mockReturnValue(mockParams)
 
     // Act
     const { result } = renderHook(() => useProductFetch(), {
