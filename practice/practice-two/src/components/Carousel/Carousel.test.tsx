@@ -1,3 +1,6 @@
+import { TextEncoder } from 'util'
+global.TextEncoder = TextEncoder
+import { BrowserRouter } from 'react-router-dom'
 import { fireEvent, render } from '@testing-library/react'
 import CustomerFeedbackCarousel from './Carousel'
 import { useCarousel } from '@hooks/useCarousel'
@@ -30,12 +33,20 @@ describe('CustomerFeedbackCarousel - Rendering', () => {
   })
 
   test('renders carousel with correct title', () => {
-    const { getByText } = render(<CustomerFeedbackCarousel />)
+    const { getByText } = render(
+      <BrowserRouter>
+        <CustomerFeedbackCarousel />
+      </BrowserRouter>
+    )
     expect(getByText('Our customers says')).toBeInTheDocument()
   })
 
   test('renders previous and next navigation buttons', () => {
-    const { container } = render(<CustomerFeedbackCarousel />)
+    const { container } = render(
+      <BrowserRouter>
+        <CustomerFeedbackCarousel />
+      </BrowserRouter>
+    )
 
     // Find prev button - using the styling and structure
     const prevButton = container.querySelector('button:first-of-type')
@@ -59,7 +70,11 @@ describe('CustomerFeedbackCarousel - Rendering', () => {
       maxIndex: feedbacks.length - 3,
     })
 
-    const { container } = render(<CustomerFeedbackCarousel />)
+    const { container } = render(
+      <BrowserRouter>
+        <CustomerFeedbackCarousel />
+      </BrowserRouter>
+    )
     const prevButton = container.querySelector('button:first-of-type')
     expect(prevButton).toHaveAttribute('disabled')
   })
@@ -79,7 +94,11 @@ describe('CustomerFeedbackCarousel - Rendering', () => {
       maxIndex: feedbackMaxIndex,
     })
 
-    const { container } = render(<CustomerFeedbackCarousel />)
+    const { container } = render(
+      <BrowserRouter>
+        <CustomerFeedbackCarousel />
+      </BrowserRouter>
+    )
     const nextButton = container.querySelector('button:last-of-type')
     expect(nextButton).toHaveAttribute('disabled')
   })
@@ -117,7 +136,11 @@ describe('CustomerFeedbackCarousel - Interactive', () => {
     })
   })
   test('calls handlePrev when previous button is clicked', () => {
-    const { container } = render(<CustomerFeedbackCarousel />)
+    const { container } = render(
+      <BrowserRouter>
+        <CustomerFeedbackCarousel />
+      </BrowserRouter>
+    )
     const prevButton = container.querySelector('button:first-of-type')
     if (prevButton) {
       fireEvent.click(prevButton)
@@ -128,7 +151,11 @@ describe('CustomerFeedbackCarousel - Interactive', () => {
   })
 
   test('calls handleNext when next button is clicked', () => {
-    const { container } = render(<CustomerFeedbackCarousel />)
+    const { container } = render(
+      <BrowserRouter>
+        <CustomerFeedbackCarousel />
+      </BrowserRouter>
+    )
     const nextButton = container.querySelector('button:last-of-type')
 
     if (nextButton) {

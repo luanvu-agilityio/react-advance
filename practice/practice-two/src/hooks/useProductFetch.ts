@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useCategoryStore } from '@stores/categoryStore'
 import productApi, { type PaginatedResponse } from '@services/product'
 import type { Product } from 'types/Product'
+import { categoryStateToApiParams } from '@utils/categoryApiParams'
 
 /**
  * useProductFetch - A custom hook for fetching paginated product data with filter parameters
@@ -20,13 +21,15 @@ import type { Product } from 'types/Product'
  */
 
 export const useProductFetch = (enabled: boolean = true) => {
-  const { getApiParams } = useCategoryStore()
+  const categoryStore = useCategoryStore()
 
-  const apiParams = getApiParams()
+  const apiParams = categoryStateToApiParams(categoryStore)
 
-  return useQuery({
+  const result = useQuery({
     queryKey: ['products', apiParams],
-    queryFn: () => productApi.getProducts(apiParams),
+    queryFn: () => {
+      return productApi.getProducts(apiParams)
+    },
     enabled,
     staleTime: 2 * 60 * 1000, // 2 minutes
     gcTime: 5 * 60 * 1000, // 5 minutes
@@ -35,4 +38,6 @@ export const useProductFetch = (enabled: boolean = true) => {
       return data
     },
   })
+
+  return result
 }

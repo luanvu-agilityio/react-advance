@@ -14,6 +14,14 @@ export const FeedbackCard = styled.div`
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   position: relative;
   padding-bottom: 48px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    margin: 0 auto 20px;
+  }
+  @media (min-width: 481px) and (max-width: 768px) {
+    margin: 0 auto 20px;
+  }
 `
 
 export const FeedbackQuote = styled.p`

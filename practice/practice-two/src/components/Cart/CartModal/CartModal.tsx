@@ -16,11 +16,12 @@ import {
 import CartItem from '../CartItem/CartItem'
 import { useRemoveFromCart } from '@hooks/useCartMutation'
 import { Button } from '@radix-ui/themes'
+import { calculateSubtotal } from '@utils/cartCalculation'
 
 const CartModal = () => {
-  const { items, updateItem, isOpen, closeCart, getSubtotal } = useCartStore()
+  const { items, updateItem, isOpen, closeCart } = useCartStore()
   const navigate = useNavigate()
-
+  const subtotal = calculateSubtotal(items)
   const { mutate: removeCartItem } = useRemoveFromCart()
 
   // Close modal when Escape key is pressed
@@ -110,7 +111,7 @@ const CartModal = () => {
           <CartFooter>
             <Subtotal>
               <span style={{ fontSize: '12px' }}>Subtotal</span>
-              <span>{getSubtotal().toFixed(2)} USD</span>
+              <span>{subtotal.toFixed(2)} USD</span>
             </Subtotal>
             <ButtonsContainer>
               <Button variant="soft" onClick={closeCart}>

@@ -61,13 +61,7 @@ const FooterLink = memo(({ sections = footerSections }: FooterLinkProps) => {
                 <LinkList>
                   {section.links.map((link) => (
                     <LinkItem key={link.text}>
-                      <Link
-                        href={link.href}
-                        onClick={handleLinkClick}
-                        target={
-                          link.href.startsWith('http') ? '_blank' : '_self'
-                        }
-                      >
+                      <Link href={link.href} onClick={handleLinkClick}>
                         {link.text}
                       </Link>
                     </LinkItem>
@@ -104,11 +98,7 @@ const FooterLink = memo(({ sections = footerSections }: FooterLinkProps) => {
               <LinkList>
                 {section.links.map((link) => (
                   <LinkItem key={link.text}>
-                    <Link
-                      href={link.href}
-                      onClick={handleLinkClick}
-                      target={link.href.startsWith('http') ? '_blank' : '_self'}
-                    >
+                    <Link href={link.href} onClick={handleLinkClick}>
                       {link.text}
                     </Link>
                   </LinkItem>

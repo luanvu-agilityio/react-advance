@@ -63,10 +63,7 @@ class ProductApiError extends Error {
     this.name = 'ProductApiError'
   }
 }
-
-// Cache to store product counts and avoid redundant API calls
 const countCache = new Map<string, number>()
-
 const productApi = {
   /**
    * Fetches products with pagination and filtering
@@ -97,6 +94,12 @@ const productApi = {
         l: limit.toString(),
       }
 
+      // Handle sorting
+      if (params.sortBy) {
+        queryParams.sortby = params.sortBy
+        queryParams.order = params.sortOrder || 'asc'
+      }
+
       // Convert category/subcategory from kebab-case to Title Case for API
       if (params.category) {
         queryParams.category = params.category
@@ -112,18 +115,26 @@ const productApi = {
           .join(' ')
       }
 
-      // Add remaining filter parameters
-      if (params.search) queryParams.search = params.search
-      if (params.brands?.length) queryParams.brand = params.brands[0]
-
-      if (params.ratings?.length) {
-        // Use the minimum rating value for filtering
-        queryParams.rating = Math.min(...params.ratings).toString()
+      // Handle server-side filtering for single brand
+      if (params.brands?.length === 1) {
+        queryParams.brand = params.brands[0]
       }
 
-      // Make the API request with a timeout of 10 seconds
-      const response = await axios.get(`${API_BASE_URL}/products`, {
-        params: queryParams,
+      // Handle server-side filtering for single rating
+      if (params.ratings?.length === 1) {
+        queryParams.rating = params.ratings[0].toString()
+      }
+
+      // Create URL with query parameters
+      const url = new URL(`${API_BASE_URL}/products`)
+
+      // Add all query parameters to the URL
+      Object.entries(queryParams).forEach(([key, value]) => {
+        url.searchParams.append(key, value)
+      })
+
+      // Make the API request with the properly formatted URL
+      const response = await axios.get(url.toString(), {
         timeout: 10000,
       })
 
@@ -143,7 +154,20 @@ const productApi = {
         )
       }
 
-      // Determine total count either from headers or by making a separate request
+      // Handle multiple brands client-side if more than one selected
+      if (params.brands !== undefined && params.brands.length > 1) {
+        filteredData = filteredData.filter((product: Product) =>
+          params.brands!.includes(product.brand)
+        )
+      }
+
+      // Handle multiple ratings client-side if more than one selected
+      if (params.ratings !== undefined && params.ratings.length > 1) {
+        filteredData = filteredData.filter((product: Product) =>
+          params.ratings!.includes(product.rating)
+        )
+      }
+
       let totalCount = 0
       const headerTotal = response.headers['x-total-count']
       if (headerTotal) {
@@ -186,9 +210,9 @@ const productApi = {
       // Calculate total pages based on count and limit
       const totalPages = Math.max(1, Math.ceil(totalCount / limit))
 
-      // Return the paginated response with sorted data
+      // Return the paginated response with filtered data
       return {
-        data: sortProducts(filteredData, params.sortBy, params.sortOrder),
+        data: filteredData,
         total: totalCount,
         page,
         limit,
@@ -292,7 +316,6 @@ const productApi = {
       return 0
     }
   },
-
   /**
    * Clears the product count cache
    * Call this when product data might have changed
@@ -303,6 +326,21 @@ const productApi = {
 }
 
 /**
+ * Gets product count for a specific subcategory
+ */
+export const getProductCountBySubcategory = async (
+  subcategory: string
+): Promise<number> => {
+  try {
+    const response = await productApi.getProductCount({ subcategory })
+    return response
+  } catch (error) {
+    console.error('Error getting product count:', error)
+    return 0
+  }
+}
+
+/**
  * Sorts an array of products based on specified criteria
  *
  * @param products - Array of products to sort
@@ -310,30 +348,6 @@ const productApi = {
  * @param sortOrder - Sort direction (asc or desc)
  * @returns Sorted array of products
  */
-function sortProducts(
-  products: Product[],
-  sortBy?: string,
-  sortOrder: SortOrder = 'asc'
-): Product[] {
-  // Return original array if no sort criteria specified
-  if (!sortBy || sortBy === 'default') return products
-
-  const direction = sortOrder === 'desc' ? -1 : 1
-
-  // Create a new sorted array to avoid mutating the original
-  return [...products].sort((a, b) => {
-    switch (sortBy) {
-      case 'price':
-        return (a.price - b.price) * direction
-      case 'name':
-        return a.title.localeCompare(b.title) * direction
-      case 'rating':
-        return (a.rating - b.rating) * direction
-      default:
-        return 0
-    }
-  })
-}
 
 /**
  * Handles API errors and provides consistent error messaging

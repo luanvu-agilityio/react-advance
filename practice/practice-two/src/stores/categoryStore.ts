@@ -1,4 +1,3 @@
-import productApi from '@services/product'
 import type { SortOrder } from 'types/sort-order'
 import { create } from 'zustand'
 
@@ -22,10 +21,10 @@ export interface CategoryState {
   //Sorting
   sortBy: string
   sortOrder: SortOrder
-  setSortBy: (field: string) => void
-  setSortOrder: (order: SortOrder) => void
 
   // Actions
+  setSortBy: (field: string) => void
+  setSortOrder: (order: SortOrder) => void
   setPage: (page: number) => void
   setLimit: (limit: number) => void
   setCategory: (category?: string) => void
@@ -39,16 +38,11 @@ export interface CategoryState {
   resetPagination: () => void
   setDisplayLimit: (limit: number) => void
   updateFilters: (updates: Partial<CategoryState>) => void
-  // URL helpers
-  getUrlParams: () => URLSearchParams
-  setFromUrl: (searchParams: URLSearchParams) => void
-  getApiParams: () => Record<string, string | number | string[] | number[]>
-  getProductCountBySubcategory: (subcategory: string) => Promise<number>
 }
 
 const defaultPriceRange = { min: 0, max: 1000 }
 
-export const useCategoryStore = create<CategoryState>()((set, get) => ({
+export const useCategoryStore = create<CategoryState>()((set) => ({
   // Initial state
   currentPage: 1,
   limit: 5,
@@ -129,86 +123,6 @@ export const useCategoryStore = create<CategoryState>()((set, get) => ({
 
   resetPagination: () => {
     set({ currentPage: 1 })
-  },
-
-  // URL management
-  getUrlParams: () => {
-    const state = get()
-    const params = new URLSearchParams()
-
-    if (state.currentPage > 1) {
-      params.set('page', state.currentPage.toString())
-    }
-
-    // Always include limit in URL params
-    params.set('limit', state.limit.toString())
-
-    if (state.subcategory) {
-      params.set(
-        'subcategory',
-        state.subcategory.toLowerCase().replace(/\s+/g, '-')
-      )
-    }
-
-    if (state.searchQuery) {
-      params.set('search', state.searchQuery)
-    }
-
-    params.set('sort', state.sortBy)
-    params.set('order', state.sortOrder)
-
-    return params
-  },
-
-  setFromUrl: (searchParams) => {
-    const page = parseInt(searchParams.get('page') || '1', 10)
-    const limit = parseInt(searchParams.get('limit') || '5', 10)
-    const subcategory = searchParams.get('subcategory')
-    const search = searchParams.get('search')
-    const sort = searchParams.get('sort') || 'name'
-    const order = searchParams.get('order') === 'desc' ? 'desc' : 'asc'
-
-    set({
-      currentPage: Math.max(1, page),
-      limit: Math.max(1, limit),
-      subcategory: subcategory || undefined,
-      searchQuery: search || undefined,
-      sortBy: sort,
-      sortOrder: order as SortOrder,
-    })
-  },
-
-  // API params
-  getApiParams: () => {
-    const state = get()
-    const params: Record<string, string | number | string[] | number[]> = {
-      p: state.currentPage,
-      l: state.limit,
-    }
-    if (state.category) params.category = state.category
-    if (state.subcategory) params.subcategory = state.subcategory
-    if (state.selectedBrands.length > 0) params.brands = state.selectedBrands
-    if (state.priceRange.min > defaultPriceRange.min)
-      params.minPrice = state.priceRange.min
-    if (state.priceRange.max < defaultPriceRange.max)
-      params.maxPrice = state.priceRange.max
-    if (state.searchQuery) params.search = state.searchQuery
-    if (state.selectedRatings.length > 0) params.ratings = state.selectedRatings
-
-    params.sortBy = state.sortBy
-    params.sortOrder = state.sortOrder
-    return params
-  },
-
-  getProductCountBySubcategory: async (subcategory: string) => {
-    try {
-      // Make a specific API call to count products
-      const response = await productApi.getProductCount({ subcategory })
-      return response
-    } catch (error) {
-      console.error('Error getting product count:', error)
-      return 0
-    }
   },
 
   updateFilters: (updates: Partial<CategoryState>) => {

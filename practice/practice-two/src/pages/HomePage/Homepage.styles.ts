@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Box } from '@radix-ui/themes'
-import Link from '@components/common/Link'
+import { Link } from 'react-router-dom'
 // Responsive container with consistent breakpoints
 export const ResponsiveContainer = styled(Box)`
   width: 100%;
@@ -60,7 +60,7 @@ export const BreadcrumbWrapper = styled(Box)`
   @media (min-width: 768px) {
     display: block;
     margin: 0 auto;
-    width: 1260px;
+    max-width: 1260px;
     padding: 12px 45px;
   }
 `
@@ -82,28 +82,10 @@ export const SectionWrapper = styled.div`
 
   /* Tablet styles */
   @media (min-width: 768px) and (max-width: 1023px) {
-    &.blog-section {
-      margin: 0 -32px;
-      padding: 0 32px;
-    }
-
-    &.banner-section {
-      margin: 0 -32px;
-      padding: 0 32px;
-    }
   }
 
   /* Desktop styles */
   @media (min-width: 1024px) and (max-width: 1259px) {
-    &.blog-section {
-      margin: 0 -45px;
-      padding: 0 45px;
-    }
-
-    &.banner-section {
-      margin: 0 -45px;
-      padding: 0 45px;
-    }
   }
 `
 // Banner section styles
@@ -112,10 +94,17 @@ export const BannerContainer = styled.div`
   display: flex;
   gap: 32px;
 
-  // Mobile
+  // Mobile - improved spacing and padding
   @media (max-width: 767px) {
     flex-direction: column;
     padding: 0 16px;
+    gap: 24px; // Reduced gap on mobile
+  }
+
+  // Tablet - better horizontal spacing
+  @media (min-width: 768px) and (max-width: 1023px) {
+    gap: 24px;
+    flex-wrap: wrap;
   }
 
   // Design width (1260px)
@@ -130,8 +119,44 @@ export const BannerContainer = styled.div`
   }
 `
 
+export const MobileCategoryScroll = styled.div`
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 0 0 16px 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`
+
+export const MobileCategoryChip = styled.div`
+  white-space: nowrap;
+  padding: 8px 16px;
+  background-color: var(--green-shade-4);
+  border-radius: 24px;
+  font-size: 14px;
+  color: var(--green-color-default);
+
+  &.active {
+    background-color: var(--green-color-default);
+    color: white;
+  }
+`
+
 export const CategoryMenu = styled.div`
   width: 100%;
+
+  @media (max-width: 1023px) {
+    // Add bottom margin to accommodate mobile category scroll
+    margin-bottom: 8px;
+  }
 
   @media (min-width: 1024px) {
     width: 268px;
@@ -193,8 +218,18 @@ export const Banner = styled.div`
   height: auto;
   width: 100%;
 
+  // Better mobile layout
   @media (max-width: 767px) {
-    padding: 32px;
+    padding: 24px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 48%;
+    min-height: 240px;
   }
 
   @media (min-width: 1024px) {
@@ -259,6 +294,10 @@ export const SectionTitle = styled.h2`
     color: var(--black-color-default);
   }
 
+  @media (max-width: 767px) {
+    padding: 0 16px;
+  }
+
   @media (max-width: 1023px) {
     margin-bottom: 1.5rem;
   }
@@ -271,18 +310,23 @@ export const StyledLink = styled.div`
 export const ProductsGrid = styled.div`
   width: 100%;
   display: grid;
-  gap: 32px;
+  gap: 16px; // Smaller gap on mobile
 
-  // Mobile
+  // Mobile - 1 column with smaller gap
   grid-template-columns: 1fr;
 
   // Tablet
-  @media (min-width: 640px) and (max-width: 1023px) {
+  @media (max-width: 468px) {
+    gap: 24px;
+  }
+
+  @media (min-width: 468px) and (max-width: 1259px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
   // Design width (1260px) and above
-  @media (min-width: 1024px) {
+  @media (min-width: 1260px) {
+    gap: 32px;
     grid-template-columns: repeat(3, minmax(269px, 1fr));
   }
 `
@@ -301,18 +345,24 @@ export const SectionHeader = styled.div`
 
 export const PostsGrid = styled.div`
   display: grid;
-  gap: 32px;
+  gap: 24px;
 
-  // Mobile
+  // Mobile - Single column, smaller gap
   grid-template-columns: 1fr;
 
   // Tablet
   @media (min-width: 640px) and (max-width: 1023px) {
     grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1259px) {
+    grid-template-columns: 350px 270px 1fr;
   }
 
   // Design width (1260px)
-  @media (min-width: 1024px) {
+  @media (min-width: 1260px) {
+    gap: 32px;
     grid-template-columns: 469px 270px 1fr;
   }
 `
@@ -351,15 +401,16 @@ export const LargeCard = styled.article`
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  height: 300px;
+  height: 250px; // Smaller height on mobile
   width: 100%;
   cursor: pointer;
 
   @media (min-width: 768px) {
-    height: 400px;
+    height: 300px;
   }
 
   @media (min-width: 1024px) {
+    height: 400px;
     width: 469px;
     max-width: 100%;
   }
@@ -518,15 +569,28 @@ export const StyledLinkButton = styled(Link)`
   font-weight: var(--font-weight-bold);
   color: var(--black-color-default);
   gap: 6px;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 export const ProductFlex = styled.div`
-  display: flex;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
 
-  gap: 32px;
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr; // One column on very small screens
+  }
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    gap: 24px;
+  }
+
+  @media (min-width: 1260px) {
+    gap: 32px;
+    grid-template-columns: repeat(4, 1fr);
   }
 `
 export const CategoryColumn = styled.div`

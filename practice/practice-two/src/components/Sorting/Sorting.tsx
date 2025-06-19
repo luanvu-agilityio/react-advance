@@ -6,6 +6,7 @@ import {
   FilterLabel,
   FilterRadio,
   FilterValue,
+  RadioWrapper,
 } from '@components/Pagination/PaginationStyles'
 
 const sortOptions = [
@@ -18,10 +19,16 @@ export const Sorting = () => {
   const { sortBy, sortOrder, setSortBy, setSortOrder } = useCategoryStore()
 
   return (
-    <FilterControlContainer style={{ minWidth: '180px', height: '60px' }}>
-      <FilterLabel>Sort By :</FilterLabel>
+    <FilterControlContainer>
+      <FilterLabel>Sort By:</FilterLabel>
       <SelectWrapper
-        style={{ width: 'auto', minWidth: '100px', margin: '0', padding: 0 }}
+        style={{
+          width: '100%',
+          margin: '0',
+          padding: 0,
+          minWidth: '100px',
+          maxWidth: '200px',
+        }}
       >
         <Select
           options={sortOptions}
@@ -30,7 +37,7 @@ export const Sorting = () => {
           variant="filter"
         />
       </SelectWrapper>
-      <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+      <RadioWrapper>
         <label
           style={{
             display: 'flex',
@@ -65,7 +72,7 @@ export const Sorting = () => {
             <span>Descending</span>
           </FilterValue>
         </label>
-      </div>
+      </RadioWrapper>
     </FilterControlContainer>
   )
 }

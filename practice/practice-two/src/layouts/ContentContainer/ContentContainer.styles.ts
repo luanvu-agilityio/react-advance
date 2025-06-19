@@ -18,12 +18,12 @@ export const Container = styled.div<{
 
   @media (max-width: 768px) {
     flex-direction: column;
-    padding: ${(props) => props.$padding ?? '0 16px'};
+    padding: ${(props) => props.$padding ?? '0 '};
     gap: ${(props) => (props.$gap ? `calc(${props.$gap} * 0.75)` : '0')};
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
-    padding: ${(props) => props.$padding ?? '0 24px'};
+    padding: ${(props) => props.$padding ?? '0 '};
   }
 
   @media (min-width: 1260px) {

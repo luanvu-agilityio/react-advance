@@ -1,3 +1,6 @@
+import { TextEncoder } from 'util'
+global.TextEncoder = TextEncoder
+
 import { render, screen, fireEvent } from '@testing-library/react'
 import Link from './index'
 
@@ -6,6 +9,7 @@ describe('Link Component', () => {
     href: 'https://example.com',
     children: 'Click me',
     onClick: jest.fn(),
+    disabled: false,
   }
 
   beforeEach(() => {
@@ -34,13 +38,7 @@ describe('Link Component', () => {
 
       // External link (opens in new tab)
       const { container: externalContainer } = render(
-        <Link
-          href="https://example.com"
-          target="_blank"
-          onClick={() => console.log('External link clicked')}
-        >
-          External Link
-        </Link>
+        <Link href="https://example.com">External Link</Link>
       )
       expect(externalContainer).toMatchSnapshot('external-link')
 

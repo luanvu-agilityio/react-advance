@@ -6,13 +6,12 @@ exports[`ProductTabs Component Snapshots renders default state correctly: defaul
     class="sc-Qotzb OMzYM"
   >
     <div
-      class="rt-TabsRoot"
       data-orientation="horizontal"
       dir="ltr"
     >
       <div
         aria-orientation="horizontal"
-        class="rt-BaseTabList rt-TabsList rt-r-size-2"
+        class="sc-fYsHOw inrSZO"
         data-orientation="horizontal"
         role="tablist"
         style="outline: none;"
@@ -21,7 +20,7 @@ exports[`ProductTabs Component Snapshots renders default state correctly: defaul
         <button
           aria-controls="radix-«r0»-content-description"
           aria-selected="true"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="active"
@@ -30,21 +29,12 @@ exports[`ProductTabs Component Snapshots renders default state correctly: defaul
           tabindex="-1"
           type="button"
         >
-          <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
-          >
-            Description
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Description
-          </span>
+          Description
         </button>
         <button
           aria-controls="radix-«r0»-content-reviews"
           aria-selected="false"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="inactive"
@@ -53,31 +43,17 @@ exports[`ProductTabs Component Snapshots renders default state correctly: defaul
           tabindex="-1"
           type="button"
         >
+          Reviews 
           <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
+            class="sc-fWnslK geqhwY"
           >
-            Reviews 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              2
-            </span>
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Reviews 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              2
-            </span>
+            2
           </span>
         </button>
         <button
           aria-controls="radix-«r0»-content-questions"
           aria-selected="false"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="inactive"
@@ -86,31 +62,16 @@ exports[`ProductTabs Component Snapshots renders default state correctly: defaul
           tabindex="-1"
           type="button"
         >
+          Questions 
           <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
+            class="sc-fWnslK geqhwY"
           >
-            Questions 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              1
-            </span>
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Questions 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              1
-            </span>
+            1
           </span>
         </button>
       </div>
       <div
         aria-labelledby="radix-«r0»-trigger-description"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="active"
         id="radix-«r0»-content-description"
@@ -120,31 +81,31 @@ exports[`ProductTabs Component Snapshots renders default state correctly: defaul
       >
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             Origins
           </h3>
           <p
-            class="sc-fWnslK fngUmq"
+            class="sc-iQQCXo kOtSHc"
           >
             Test origins content
           </p>
         </div>
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             How to cook
           </h3>
           <p
-            class="sc-fWnslK fngUmq"
+            class="sc-iQQCXo kOtSHc"
           >
             Test cooking information
           </p>
         </div>
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             Full of Vitamins!
           </h3>
@@ -152,24 +113,24 @@ exports[`ProductTabs Component Snapshots renders default state correctly: defaul
             style="overflow-x: auto;"
           >
             <table
-              class="sc-dIMoHT dXpkLy"
+              class="sc-gDpztx djuMQI"
             >
               <thead
-                class="sc-iQQCXo LYtZC"
+                class="sc-kpOvIu kvhDdF"
               >
                 <tr>
                   <th
-                    class="sc-kpOvIu iTblYG"
+                    class="sc-jMsorb fduaaT"
                   >
                     Vitamins
                   </th>
                   <th
-                    class="sc-kpOvIu iTblYG"
+                    class="sc-jMsorb fduaaT"
                   >
                     Quantity
                   </th>
                   <th
-                    class="sc-kpOvIu iTblYG"
+                    class="sc-jMsorb fduaaT"
                   >
                     % DV
                   </th>
@@ -177,39 +138,39 @@ exports[`ProductTabs Component Snapshots renders default state correctly: defaul
               </thead>
               <tbody>
                 <tr
-                  class="sc-gDpztx ipNMIn"
+                  class="sc-icnseD cjkhCM"
                 >
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     Vitamin C
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     89.2mg
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     99%
                   </td>
                 </tr>
                 <tr
-                  class="sc-gDpztx ipNMIn"
+                  class="sc-icnseD cjkhCM"
                 >
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     Vitamin K
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     102μg
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     85%
                   </td>
@@ -221,7 +182,6 @@ exports[`ProductTabs Component Snapshots renders default state correctly: defaul
       </div>
       <div
         aria-labelledby="radix-«r0»-trigger-reviews"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="inactive"
         hidden=""
@@ -231,7 +191,6 @@ exports[`ProductTabs Component Snapshots renders default state correctly: defaul
       />
       <div
         aria-labelledby="radix-«r0»-trigger-questions"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="inactive"
         hidden=""
@@ -250,13 +209,12 @@ exports[`ProductTabs Component Snapshots renders different content states correc
     class="sc-Qotzb OMzYM"
   >
     <div
-      class="rt-TabsRoot"
       data-orientation="horizontal"
       dir="ltr"
     >
       <div
         aria-orientation="horizontal"
-        class="rt-BaseTabList rt-TabsList rt-r-size-2"
+        class="sc-fYsHOw inrSZO"
         data-orientation="horizontal"
         role="tablist"
         style="outline: none;"
@@ -265,7 +223,7 @@ exports[`ProductTabs Component Snapshots renders different content states correc
         <button
           aria-controls="radix-«rg»-content-description"
           aria-selected="true"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="active"
@@ -274,21 +232,12 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
-          <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
-          >
-            Description
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Description
-          </span>
+          Description
         </button>
         <button
           aria-controls="radix-«rg»-content-reviews"
           aria-selected="false"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="inactive"
@@ -297,31 +246,17 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
+          Reviews 
           <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
+            class="sc-fWnslK geqhwY"
           >
-            Reviews 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              0
-            </span>
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Reviews 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              0
-            </span>
+            0
           </span>
         </button>
         <button
           aria-controls="radix-«rg»-content-questions"
           aria-selected="false"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="inactive"
@@ -330,31 +265,16 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
+          Questions 
           <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
+            class="sc-fWnslK geqhwY"
           >
-            Questions 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              0
-            </span>
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Questions 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              0
-            </span>
+            0
           </span>
         </button>
       </div>
       <div
         aria-labelledby="radix-«rg»-trigger-description"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="active"
         id="radix-«rg»-content-description"
@@ -364,28 +284,27 @@ exports[`ProductTabs Component Snapshots renders different content states correc
       >
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             Origins
           </h3>
           <p
-            class="sc-fWnslK fngUmq"
+            class="sc-iQQCXo kOtSHc"
           />
         </div>
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             How to cook
           </h3>
           <p
-            class="sc-fWnslK fngUmq"
+            class="sc-iQQCXo kOtSHc"
           />
         </div>
       </div>
       <div
         aria-labelledby="radix-«rg»-trigger-reviews"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="inactive"
         hidden=""
@@ -395,7 +314,6 @@ exports[`ProductTabs Component Snapshots renders different content states correc
       />
       <div
         aria-labelledby="radix-«rg»-trigger-questions"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="inactive"
         hidden=""
@@ -414,13 +332,12 @@ exports[`ProductTabs Component Snapshots renders different content states correc
     class="sc-Qotzb OMzYM"
   >
     <div
-      class="rt-TabsRoot"
       data-orientation="horizontal"
       dir="ltr"
     >
       <div
         aria-orientation="horizontal"
-        class="rt-BaseTabList rt-TabsList rt-r-size-2"
+        class="sc-fYsHOw inrSZO"
         data-orientation="horizontal"
         role="tablist"
         style="outline: none;"
@@ -429,7 +346,7 @@ exports[`ProductTabs Component Snapshots renders different content states correc
         <button
           aria-controls="radix-«rc»-content-description"
           aria-selected="true"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="active"
@@ -438,21 +355,12 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
-          <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
-          >
-            Description
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Description
-          </span>
+          Description
         </button>
         <button
           aria-controls="radix-«rc»-content-reviews"
           aria-selected="false"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="inactive"
@@ -461,31 +369,17 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
+          Reviews 
           <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
+            class="sc-fWnslK geqhwY"
           >
-            Reviews 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              2
-            </span>
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Reviews 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              2
-            </span>
+            2
           </span>
         </button>
         <button
           aria-controls="radix-«rc»-content-questions"
           aria-selected="false"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="inactive"
@@ -494,31 +388,16 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
+          Questions 
           <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
+            class="sc-fWnslK geqhwY"
           >
-            Questions 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              0
-            </span>
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Questions 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              0
-            </span>
+            0
           </span>
         </button>
       </div>
       <div
         aria-labelledby="radix-«rc»-trigger-description"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="active"
         id="radix-«rc»-content-description"
@@ -528,31 +407,31 @@ exports[`ProductTabs Component Snapshots renders different content states correc
       >
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             Origins
           </h3>
           <p
-            class="sc-fWnslK fngUmq"
+            class="sc-iQQCXo kOtSHc"
           >
             Test origins content
           </p>
         </div>
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             How to cook
           </h3>
           <p
-            class="sc-fWnslK fngUmq"
+            class="sc-iQQCXo kOtSHc"
           >
             Test cooking information
           </p>
         </div>
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             Full of Vitamins!
           </h3>
@@ -560,24 +439,24 @@ exports[`ProductTabs Component Snapshots renders different content states correc
             style="overflow-x: auto;"
           >
             <table
-              class="sc-dIMoHT dXpkLy"
+              class="sc-gDpztx djuMQI"
             >
               <thead
-                class="sc-iQQCXo LYtZC"
+                class="sc-kpOvIu kvhDdF"
               >
                 <tr>
                   <th
-                    class="sc-kpOvIu iTblYG"
+                    class="sc-jMsorb fduaaT"
                   >
                     Vitamins
                   </th>
                   <th
-                    class="sc-kpOvIu iTblYG"
+                    class="sc-jMsorb fduaaT"
                   >
                     Quantity
                   </th>
                   <th
-                    class="sc-kpOvIu iTblYG"
+                    class="sc-jMsorb fduaaT"
                   >
                     % DV
                   </th>
@@ -585,39 +464,39 @@ exports[`ProductTabs Component Snapshots renders different content states correc
               </thead>
               <tbody>
                 <tr
-                  class="sc-gDpztx ipNMIn"
+                  class="sc-icnseD cjkhCM"
                 >
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     Vitamin C
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     89.2mg
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     99%
                   </td>
                 </tr>
                 <tr
-                  class="sc-gDpztx ipNMIn"
+                  class="sc-icnseD cjkhCM"
                 >
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     Vitamin K
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     102μg
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     85%
                   </td>
@@ -629,7 +508,6 @@ exports[`ProductTabs Component Snapshots renders different content states correc
       </div>
       <div
         aria-labelledby="radix-«rc»-trigger-reviews"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="inactive"
         hidden=""
@@ -639,7 +517,6 @@ exports[`ProductTabs Component Snapshots renders different content states correc
       />
       <div
         aria-labelledby="radix-«rc»-trigger-questions"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="inactive"
         hidden=""
@@ -658,13 +535,12 @@ exports[`ProductTabs Component Snapshots renders different content states correc
     class="sc-Qotzb OMzYM"
   >
     <div
-      class="rt-TabsRoot"
       data-orientation="horizontal"
       dir="ltr"
     >
       <div
         aria-orientation="horizontal"
-        class="rt-BaseTabList rt-TabsList rt-r-size-2"
+        class="sc-fYsHOw inrSZO"
         data-orientation="horizontal"
         role="tablist"
         style="outline: none;"
@@ -673,7 +549,7 @@ exports[`ProductTabs Component Snapshots renders different content states correc
         <button
           aria-controls="radix-«r8»-content-description"
           aria-selected="true"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="active"
@@ -682,21 +558,12 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
-          <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
-          >
-            Description
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Description
-          </span>
+          Description
         </button>
         <button
           aria-controls="radix-«r8»-content-reviews"
           aria-selected="false"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="inactive"
@@ -705,31 +572,17 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
+          Reviews 
           <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
+            class="sc-fWnslK geqhwY"
           >
-            Reviews 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              0
-            </span>
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Reviews 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              0
-            </span>
+            0
           </span>
         </button>
         <button
           aria-controls="radix-«r8»-content-questions"
           aria-selected="false"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="inactive"
@@ -738,31 +591,16 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
+          Questions 
           <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
+            class="sc-fWnslK geqhwY"
           >
-            Questions 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              1
-            </span>
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Questions 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              1
-            </span>
+            1
           </span>
         </button>
       </div>
       <div
         aria-labelledby="radix-«r8»-trigger-description"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="active"
         id="radix-«r8»-content-description"
@@ -772,31 +610,31 @@ exports[`ProductTabs Component Snapshots renders different content states correc
       >
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             Origins
           </h3>
           <p
-            class="sc-fWnslK fngUmq"
+            class="sc-iQQCXo kOtSHc"
           >
             Test origins content
           </p>
         </div>
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             How to cook
           </h3>
           <p
-            class="sc-fWnslK fngUmq"
+            class="sc-iQQCXo kOtSHc"
           >
             Test cooking information
           </p>
         </div>
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             Full of Vitamins!
           </h3>
@@ -804,24 +642,24 @@ exports[`ProductTabs Component Snapshots renders different content states correc
             style="overflow-x: auto;"
           >
             <table
-              class="sc-dIMoHT dXpkLy"
+              class="sc-gDpztx djuMQI"
             >
               <thead
-                class="sc-iQQCXo LYtZC"
+                class="sc-kpOvIu kvhDdF"
               >
                 <tr>
                   <th
-                    class="sc-kpOvIu iTblYG"
+                    class="sc-jMsorb fduaaT"
                   >
                     Vitamins
                   </th>
                   <th
-                    class="sc-kpOvIu iTblYG"
+                    class="sc-jMsorb fduaaT"
                   >
                     Quantity
                   </th>
                   <th
-                    class="sc-kpOvIu iTblYG"
+                    class="sc-jMsorb fduaaT"
                   >
                     % DV
                   </th>
@@ -829,39 +667,39 @@ exports[`ProductTabs Component Snapshots renders different content states correc
               </thead>
               <tbody>
                 <tr
-                  class="sc-gDpztx ipNMIn"
+                  class="sc-icnseD cjkhCM"
                 >
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     Vitamin C
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     89.2mg
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     99%
                   </td>
                 </tr>
                 <tr
-                  class="sc-gDpztx ipNMIn"
+                  class="sc-icnseD cjkhCM"
                 >
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     Vitamin K
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     102μg
                   </td>
                   <td
-                    class="sc-icnseD dGkaht"
+                    class="sc-cXawGu kVKrLI"
                   >
                     85%
                   </td>
@@ -873,7 +711,6 @@ exports[`ProductTabs Component Snapshots renders different content states correc
       </div>
       <div
         aria-labelledby="radix-«r8»-trigger-reviews"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="inactive"
         hidden=""
@@ -883,7 +720,6 @@ exports[`ProductTabs Component Snapshots renders different content states correc
       />
       <div
         aria-labelledby="radix-«r8»-trigger-questions"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="inactive"
         hidden=""
@@ -902,13 +738,12 @@ exports[`ProductTabs Component Snapshots renders different content states correc
     class="sc-Qotzb OMzYM"
   >
     <div
-      class="rt-TabsRoot"
       data-orientation="horizontal"
       dir="ltr"
     >
       <div
         aria-orientation="horizontal"
-        class="rt-BaseTabList rt-TabsList rt-r-size-2"
+        class="sc-fYsHOw inrSZO"
         data-orientation="horizontal"
         role="tablist"
         style="outline: none;"
@@ -917,7 +752,7 @@ exports[`ProductTabs Component Snapshots renders different content states correc
         <button
           aria-controls="radix-«r4»-content-description"
           aria-selected="true"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="active"
@@ -926,21 +761,12 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
-          <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
-          >
-            Description
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Description
-          </span>
+          Description
         </button>
         <button
           aria-controls="radix-«r4»-content-reviews"
           aria-selected="false"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="inactive"
@@ -949,31 +775,17 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
+          Reviews 
           <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
+            class="sc-fWnslK geqhwY"
           >
-            Reviews 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              2
-            </span>
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Reviews 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              2
-            </span>
+            2
           </span>
         </button>
         <button
           aria-controls="radix-«r4»-content-questions"
           aria-selected="false"
-          class="rt-reset rt-BaseTabListTrigger rt-TabsTrigger"
+          class="sc-dKREkF eqZWqf"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-state="inactive"
@@ -982,31 +794,16 @@ exports[`ProductTabs Component Snapshots renders different content states correc
           tabindex="-1"
           type="button"
         >
+          Questions 
           <span
-            class="rt-BaseTabListTriggerInner rt-TabsTriggerInner"
+            class="sc-fWnslK geqhwY"
           >
-            Questions 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              1
-            </span>
-          </span>
-          <span
-            class="rt-BaseTabListTriggerInnerHidden rt-TabsTriggerInnerHidden"
-          >
-            Questions 
-            <span
-              class="sc-fYsHOw dpDMHz"
-            >
-              1
-            </span>
+            1
           </span>
         </button>
       </div>
       <div
         aria-labelledby="radix-«r4»-trigger-description"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="active"
         id="radix-«r4»-content-description"
@@ -1016,24 +813,24 @@ exports[`ProductTabs Component Snapshots renders different content states correc
       >
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             Origins
           </h3>
           <p
-            class="sc-fWnslK fngUmq"
+            class="sc-iQQCXo kOtSHc"
           >
             Test origins content
           </p>
         </div>
         <div>
           <h3
-            class="sc-dKREkF hylWb"
+            class="sc-dIMoHT iMAMLt"
           >
             How to cook
           </h3>
           <p
-            class="sc-fWnslK fngUmq"
+            class="sc-iQQCXo kOtSHc"
           >
             Test cooking information
           </p>
@@ -1041,7 +838,6 @@ exports[`ProductTabs Component Snapshots renders different content states correc
       </div>
       <div
         aria-labelledby="radix-«r4»-trigger-reviews"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="inactive"
         hidden=""
@@ -1051,7 +847,6 @@ exports[`ProductTabs Component Snapshots renders different content states correc
       />
       <div
         aria-labelledby="radix-«r4»-trigger-questions"
-        class="rt-TabsContent"
         data-orientation="horizontal"
         data-state="inactive"
         hidden=""

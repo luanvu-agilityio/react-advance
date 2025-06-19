@@ -7,9 +7,12 @@ export const StyledContainer = styled(Container)`
 
   margin: 0 auto;
   background-color: transparent;
-  padding: 24px 16px 32px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 767px) and (max-width: 1023px) {
+    padding: 32px 32px 48px;
+  }
+
+  @media (min-width: 1023px) {
     padding: 32px 45px 48px;
   }
 `

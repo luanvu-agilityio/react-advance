@@ -1,71 +1,68 @@
-import type { MouseEvent, ReactNode, CSSProperties } from 'react'
-import Link from '../Link/index'
-import { StyledButtonTag, StyledLinkWrapper } from './Tag.style'
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import Link from '@components/common/Link'
+import { StyledButton, StyledContainer } from './Tag.style'
 
-// Base props for all tag variants
-type BaseTagProps = {
-  label: string
-  variant?: 'default' | 'selected' | 'disabled'
+type TagVariant = 'default' | 'selected' | 'disabled'
+type TagAs = 'button' | 'link'
+
+interface BaseTagProps {
+  variant?: TagVariant
+  label?: string
   className?: string
-  style?: CSSProperties
   children?: ReactNode
-  'data-tag-type'?: string
+  as?: TagAs
 }
 
-// Props specific to button variant
-type ButtonTagProps = BaseTagProps & {
+interface ButtonTagProps
+  extends BaseTagProps,
+    ButtonHTMLAttributes<HTMLButtonElement> {
   as: 'button'
-  onClick: (e: MouseEvent<HTMLButtonElement>) => void
-  disabled?: boolean
+  onClick: () => void
+  href?: never
 }
 
-// Props specific to link variant
-type LinkTagProps = BaseTagProps & {
+interface LinkTagProps extends BaseTagProps {
   as: 'link'
   href: string
-  target?: '_blank' | '_self' | '_parent' | '_top'
-  onClick: (e: MouseEvent<HTMLAnchorElement>) => void
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void
 }
 
-export type TagProps = ButtonTagProps | LinkTagProps
+type TagProps = ButtonTagProps | LinkTagProps
 
-export const Tag = (props: TagProps) => {
-  const { label, variant = 'default', className = '', style } = props
+const Tag = ({
+  variant = 'default',
+  label = '',
+  className,
+  children,
+  as = 'button',
+  ...props
+}: TagProps) => {
+  const isDisabled = variant === 'disabled'
 
-  // For button variant
-  if (props.as === 'button') {
+  // Render either button or link based on 'as' prop
+  if (as === 'button') {
+    const { onClick } = props as ButtonTagProps
     return (
-      <StyledButtonTag
-        type="button"
-        className={className}
+      <StyledButton
         $variant={variant}
-        onClick={props.onClick}
-        disabled={props.disabled ?? variant === 'disabled'}
-        style={style}
-        data-tag-type={props['data-tag-type']}
+        onClick={isDisabled ? undefined : onClick}
+        disabled={isDisabled}
+        className={className}
       >
-        {props.children ?? label}
-      </StyledButtonTag>
+        {children || label}
+      </StyledButton>
+    )
+  } else {
+    // For link variant
+    const { href, onClick } = props as LinkTagProps
+    return (
+      <StyledContainer $variant={variant} className={className}>
+        <Link href={href} onClick={onClick} disabled={isDisabled}>
+          {children ?? label}
+        </Link>
+      </StyledContainer>
     )
   }
-
-  return (
-    <StyledLinkWrapper
-      $variant={variant}
-      className={className}
-      data-tag-type={props['data-tag-type']}
-    >
-      <Link
-        href={props.href}
-        onClick={props.onClick}
-        target={props.target ?? '_self'}
-        disabled={variant === 'disabled'}
-        style={style}
-      >
-        {props.children ?? label}
-      </Link>
-    </StyledLinkWrapper>
-  )
 }
 
 export default Tag

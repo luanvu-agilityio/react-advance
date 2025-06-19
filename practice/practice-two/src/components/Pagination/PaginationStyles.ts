@@ -139,13 +139,24 @@ export const EmptyStateText = styled.p`
 
 export const FilterControlContainer = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   background-color: #f9f9f9;
   border-radius: 12px;
-  padding: 9px 16px;
-  gap: 8px;
+  padding: 12px 16px;
+  gap: 12px;
   border: 1px solid #eaeaea;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  height: auto;
+
+  @media (min-width: 576px) {
+    flex-direction: row;
+    align-items: center;
+    padding: 9px 16px;
+    gap: 8px;
+    height: 60px;
+    width: auto;
+  }
 `
 
 export const FilterLabel = styled.span`
@@ -210,4 +221,15 @@ export const SelectedCount = styled.span`
   border-radius: 12px;
   font-size: 12px;
   margin-left: 8px;
+`
+export const RadioWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+
+  @media (max-width: 575px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `

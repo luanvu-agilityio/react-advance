@@ -3,17 +3,16 @@
 exports[`Sorting rendering renders correctly with default values 1`] = `
 <DocumentFragment>
   <div
-    class="sc-fpEFIB ksmUmw"
-    style="min-width: 180px; height: 60px;"
+    class="sc-fpEFIB gJeBUE"
   >
     <span
       class="sc-gAqISa bdMoJO"
     >
-      Sort By :
+      Sort By:
     </span>
     <div
       class="sc-fWnslK jxddlX"
-      style="width: auto; min-width: 100px; margin: 0px; padding: 0px;"
+      style="width: 100%; margin: 0px; padding: 0px; min-width: 100px; max-width: 200px;"
     >
       <div
         data-testid="select-mock"
@@ -40,7 +39,7 @@ exports[`Sorting rendering renders correctly with default values 1`] = `
       </div>
     </div>
     <div
-      style="display: flex; gap: 12px; align-items: center;"
+      class="sc-lpbaSe jeXvxE"
     >
       <label
         style="display: flex; align-items: center; gap: 4px; cursor: pointer;"
@@ -83,17 +82,16 @@ exports[`Sorting rendering renders correctly with default values 1`] = `
 exports[`Sorting rendering renders correctly with descending order 1`] = `
 <DocumentFragment>
   <div
-    class="sc-fpEFIB ksmUmw"
-    style="min-width: 180px; height: 60px;"
+    class="sc-fpEFIB gJeBUE"
   >
     <span
       class="sc-gAqISa bdMoJO"
     >
-      Sort By :
+      Sort By:
     </span>
     <div
       class="sc-fWnslK jxddlX"
-      style="width: auto; min-width: 100px; margin: 0px; padding: 0px;"
+      style="width: 100%; margin: 0px; padding: 0px; min-width: 100px; max-width: 200px;"
     >
       <div
         data-testid="select-mock"
@@ -120,7 +118,7 @@ exports[`Sorting rendering renders correctly with descending order 1`] = `
       </div>
     </div>
     <div
-      style="display: flex; gap: 12px; align-items: center;"
+      class="sc-lpbaSe jeXvxE"
     >
       <label
         style="display: flex; align-items: center; gap: 4px; cursor: pointer;"
@@ -163,17 +161,16 @@ exports[`Sorting rendering renders correctly with descending order 1`] = `
 exports[`Sorting rendering renders correctly with price sorting 1`] = `
 <DocumentFragment>
   <div
-    class="sc-fpEFIB ksmUmw"
-    style="min-width: 180px; height: 60px;"
+    class="sc-fpEFIB gJeBUE"
   >
     <span
       class="sc-gAqISa bdMoJO"
     >
-      Sort By :
+      Sort By:
     </span>
     <div
       class="sc-fWnslK jxddlX"
-      style="width: auto; min-width: 100px; margin: 0px; padding: 0px;"
+      style="width: 100%; margin: 0px; padding: 0px; min-width: 100px; max-width: 200px;"
     >
       <div
         data-testid="select-mock"
@@ -200,7 +197,7 @@ exports[`Sorting rendering renders correctly with price sorting 1`] = `
       </div>
     </div>
     <div
-      style="display: flex; gap: 12px; align-items: center;"
+      class="sc-lpbaSe jeXvxE"
     >
       <label
         style="display: flex; align-items: center; gap: 4px; cursor: pointer;"

@@ -12,7 +12,7 @@ export const NavbarWrapper = styled.div`
   z-index: 100;
   padding: 5px 0;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1023px) {
     padding: 0;
   }
 `
@@ -20,7 +20,7 @@ export const NavbarWrapper = styled.div`
 export const MenubarRoot = styled(Menubar.Root)`
   display: none; // Hide on mobile
 
-  @media (min-width: 768px) {
+  @media (min-width: 1023px) {
     display: flex;
     padding: 0 45px;
     overflow: visible;
@@ -35,7 +35,7 @@ export const MobileMenuButton = styled.button`
   border: none;
   cursor: pointer;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1023px) {
     display: none;
   }
 `
@@ -54,8 +54,9 @@ export const MobileMenu = styled.div<{ $isOpen: boolean }>`
   padding: 16px;
   overflow-y: auto;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1023px) {
     display: none;
+    width: 50%;
   }
 `
 export const MenuTitle = styled.p`

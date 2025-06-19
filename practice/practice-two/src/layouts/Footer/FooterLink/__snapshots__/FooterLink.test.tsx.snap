@@ -13,27 +13,27 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
     data-scaling="100%"
   >
     <div
-      class="rt-Container rt-r-size-4 sc-fYsHOw dzqQTM"
+      class="rt-Container rt-r-size-4 sc-dKREkF hQnCSn"
     >
       <div
         class="rt-ContainerInner"
       >
         <div
-          class="rt-Box sc-dKREkF ewMOXs"
+          class="rt-Box sc-fWnslK fvayEG"
         >
           <div
-            class="sc-dIMoHT fiEXjO"
+            class="sc-iQQCXo iVsoZM"
             data-orientation="vertical"
           >
             <div
-              class="sc-iQQCXo hIsANv"
+              class="sc-gDpztx fYwqbf"
               data-orientation="vertical"
               data-state="closed"
             >
               <button
                 aria-controls="radix-«r1»"
                 aria-expanded="false"
-                class="sc-gDpztx hFqOKu"
+                class="sc-kpOvIu lhozLR"
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
@@ -41,7 +41,7 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
                 type="button"
               >
                 <div
-                  class="rt-Flex rt-r-ai-center rt-r-jc-space-between sc-icnseD kgvDEc"
+                  class="rt-Flex rt-r-ai-center rt-r-jc-space-between sc-jMsorb gtiVR"
                 >
                   <h3
                     style="font-size: 18px; font-weight: var(--font-weight-semibold); margin: 0px;"
@@ -70,7 +70,7 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
               </button>
               <div
                 aria-labelledby="radix-«r0»"
-                class="sc-kpOvIu jjvMs"
+                class="sc-icnseD dVVNyc"
                 data-orientation="vertical"
                 data-state="closed"
                 hidden=""
@@ -80,14 +80,14 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
               />
             </div>
             <div
-              class="sc-iQQCXo hIsANv"
+              class="sc-gDpztx fYwqbf"
               data-orientation="vertical"
               data-state="closed"
             >
               <button
                 aria-controls="radix-«r3»"
                 aria-expanded="false"
-                class="sc-gDpztx hFqOKu"
+                class="sc-kpOvIu lhozLR"
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
@@ -95,7 +95,7 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
                 type="button"
               >
                 <div
-                  class="rt-Flex rt-r-ai-center rt-r-jc-space-between sc-icnseD kgvDEc"
+                  class="rt-Flex rt-r-ai-center rt-r-jc-space-between sc-jMsorb gtiVR"
                 >
                   <h3
                     style="font-size: 18px; font-weight: var(--font-weight-semibold); margin: 0px;"
@@ -124,7 +124,7 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
               </button>
               <div
                 aria-labelledby="radix-«r2»"
-                class="sc-kpOvIu jjvMs"
+                class="sc-icnseD dVVNyc"
                 data-orientation="vertical"
                 data-state="closed"
                 hidden=""
@@ -134,14 +134,14 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
               />
             </div>
             <div
-              class="sc-iQQCXo hIsANv"
+              class="sc-gDpztx fYwqbf"
               data-orientation="vertical"
               data-state="closed"
             >
               <button
                 aria-controls="radix-«r5»"
                 aria-expanded="false"
-                class="sc-gDpztx hFqOKu"
+                class="sc-kpOvIu lhozLR"
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
@@ -149,7 +149,7 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
                 type="button"
               >
                 <div
-                  class="rt-Flex rt-r-ai-center rt-r-jc-space-between sc-icnseD kgvDEc"
+                  class="rt-Flex rt-r-ai-center rt-r-jc-space-between sc-jMsorb gtiVR"
                 >
                   <h3
                     style="font-size: 18px; font-weight: var(--font-weight-semibold); margin: 0px;"
@@ -178,7 +178,7 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
               </button>
               <div
                 aria-labelledby="radix-«r4»"
-                class="sc-kpOvIu jjvMs"
+                class="sc-icnseD dVVNyc"
                 data-orientation="vertical"
                 data-state="closed"
                 hidden=""
@@ -190,7 +190,7 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="rt-Box sc-fWnslK hoHqUa"
+          class="rt-Box sc-dIMoHT fFa-DKa"
         >
           <div
             class="rt-Flex rt-r-fw-wrap rt-r-gap-6"
@@ -205,26 +205,26 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
                 Get in touch
               </h3>
               <ul
-                class="sc-jMsorb ddihlD"
+                class="sc-cXawGu fBFvsf"
               >
                 <li
-                  class="sc-cXawGu twrLz"
+                  class="sc-jJAtPt chzrZx"
                 >
                   <a
-                    class="sc-Qotzb jUyYcI"
+                    class="sc-fYsHOw kWZTnm"
+                    data-discover="true"
                     href="/about"
-                    target="_self"
                   >
                     About Us
                   </a>
                 </li>
                 <li
-                  class="sc-cXawGu twrLz"
+                  class="sc-jJAtPt chzrZx"
                 >
                   <a
-                    class="sc-Qotzb jUyYcI"
+                    class="sc-fYsHOw kWZTnm"
+                    data-discover="true"
                     href="/careers"
-                    target="_self"
                   >
                     Careers
                   </a>
@@ -241,10 +241,10 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
                 Connections
               </h3>
               <ul
-                class="sc-jMsorb ddihlD"
+                class="sc-cXawGu fBFvsf"
               >
                 <li
-                  class="sc-cXawGu twrLz"
+                  class="sc-jJAtPt chzrZx"
                 >
                   <a
                     class="sc-Qotzb jUyYcI"
@@ -256,7 +256,7 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
                   </a>
                 </li>
                 <li
-                  class="sc-cXawGu twrLz"
+                  class="sc-jJAtPt chzrZx"
                 >
                   <a
                     class="sc-Qotzb jUyYcI"
@@ -279,26 +279,26 @@ exports[`FooterLink Component Snapshot Tests renders correctly 1`] = `
                 Earnings
               </h3>
               <ul
-                class="sc-jMsorb ddihlD"
+                class="sc-cXawGu fBFvsf"
               >
                 <li
-                  class="sc-cXawGu twrLz"
+                  class="sc-jJAtPt chzrZx"
                 >
                   <a
-                    class="sc-Qotzb jUyYcI"
+                    class="sc-fYsHOw kWZTnm"
+                    data-discover="true"
                     href="/affiliate"
-                    target="_self"
                   >
                     Become an Affiliate
                   </a>
                 </li>
                 <li
-                  class="sc-cXawGu twrLz"
+                  class="sc-jJAtPt chzrZx"
                 >
                   <a
-                    class="sc-Qotzb jUyYcI"
+                    class="sc-fYsHOw kWZTnm"
+                    data-discover="true"
                     href="/sell"
-                    target="_self"
                   >
                     Sell on Market
                   </a>

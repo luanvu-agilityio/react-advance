@@ -3,8 +3,7 @@
 exports[`Tag Component Rendering Snapshots renders button tag variants correctly: button-with-children 1`] = `
 <div>
   <button
-    class="sc-fYsHOw iGnnHV"
-    type="button"
+    class="sc-Qotzb cMZrNL"
   >
     <span>
       Custom Content
@@ -16,8 +15,7 @@ exports[`Tag Component Rendering Snapshots renders button tag variants correctly
 exports[`Tag Component Rendering Snapshots renders button tag variants correctly: default-button 1`] = `
 <div>
   <button
-    class="sc-fYsHOw iGnnHV"
-    type="button"
+    class="sc-Qotzb cMZrNL"
   >
     Button Tag
   </button>
@@ -27,9 +25,8 @@ exports[`Tag Component Rendering Snapshots renders button tag variants correctly
 exports[`Tag Component Rendering Snapshots renders button tag variants correctly: disabled-button 1`] = `
 <div>
   <button
-    class="sc-fYsHOw dhNhzg"
+    class="sc-Qotzb WeeEn"
     disabled=""
-    type="button"
   >
     Disabled Button
   </button>
@@ -39,8 +36,7 @@ exports[`Tag Component Rendering Snapshots renders button tag variants correctly
 exports[`Tag Component Rendering Snapshots renders button tag variants correctly: selected-button 1`] = `
 <div>
   <button
-    class="sc-fYsHOw cMHZiV"
-    type="button"
+    class="sc-Qotzb fqEkNb"
   >
     Selected Button
   </button>
@@ -49,66 +45,60 @@ exports[`Tag Component Rendering Snapshots renders button tag variants correctly
 
 exports[`Tag Component Rendering Snapshots renders link tag variants correctly: default-link 1`] = `
 <div>
-  <span
-    class="sc-dKREkF bRrHLa"
+  <div
+    class="sc-fYsHOw gJPlhc"
   >
     <a
-      class="sc-Qotzb jUyYcI"
+      data-testid="link"
       href="/test"
-      target="_self"
     >
       Link Tag
     </a>
-  </span>
+  </div>
 </div>
 `;
 
 exports[`Tag Component Rendering Snapshots renders link tag variants correctly: disabled-link 1`] = `
 <div>
-  <span
-    class="sc-dKREkF iSTpNP"
+  <div
+    class="sc-fYsHOw EUICk"
   >
     <a
-      class="sc-Qotzb kzgBsp"
-      disabled=""
+      data-testid="link"
       href="/test"
-      target="_self"
     >
       Disabled Link
     </a>
-  </span>
+  </div>
 </div>
 `;
 
 exports[`Tag Component Rendering Snapshots renders link tag variants correctly: link-with-target 1`] = `
 <div>
-  <span
-    class="sc-dKREkF bRrHLa"
+  <div
+    class="sc-fYsHOw gJPlhc"
   >
     <a
-      class="sc-Qotzb jUyYcI"
-      href="/test"
-      rel="noopener noreferrer"
-      target="_blank"
+      data-testid="link"
+      href="https://example.com"
     >
       External Link
     </a>
-  </span>
+  </div>
 </div>
 `;
 
 exports[`Tag Component Rendering Snapshots renders link tag variants correctly: selected-link 1`] = `
 <div>
-  <span
-    class="sc-dKREkF fdeVZx"
+  <div
+    class="sc-fYsHOw ginhKY"
   >
     <a
-      class="sc-Qotzb jUyYcI"
+      data-testid="link"
       href="/test"
-      target="_self"
     >
       Selected Link
     </a>
-  </span>
+  </div>
 </div>
 `;

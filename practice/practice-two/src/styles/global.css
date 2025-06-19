@@ -23,10 +23,6 @@ body[style*='overflow: hidden'] {
   padding: 24px 0;
   margin: 0 auto;
 
-  @media (min-width: 768px) {
-    padding: 0 24px;
-  }
-
   @media (min-width: 1260px) {
     padding: 0 45px;
   }

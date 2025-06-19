@@ -1,3 +1,6 @@
+import { TextEncoder } from 'util'
+global.TextEncoder = TextEncoder
+import { BrowserRouter } from 'react-router-dom'
 import { render, screen } from '@testing-library/react'
 import { Theme as ThemeProvider } from '@radix-ui/themes'
 import type { ReactElement } from 'react'
@@ -44,7 +47,11 @@ describe('FooterLink Component', () => {
   // SNAPSHOT TESTS
   describe('Snapshot Tests', () => {
     it('renders correctly', () => {
-      const { container } = renderWithTheme(<FooterLink />)
+      const { container } = renderWithTheme(
+        <BrowserRouter>
+          <FooterLink />
+        </BrowserRouter>
+      )
       expect(container).toMatchSnapshot()
     })
   })
@@ -52,23 +59,35 @@ describe('FooterLink Component', () => {
   // BASIC RENDERING TESTS
   describe('Basic Rendering', () => {
     it('renders all footer links', () => {
-      renderWithTheme(<FooterLink />)
+      renderWithTheme(
+        <BrowserRouter>
+          <FooterLink />
+        </BrowserRouter>
+      )
       expect(screen.getByText('About Us')).toBeInTheDocument()
       expect(screen.getByText('Facebook')).toBeInTheDocument()
       expect(screen.getByText('Become an Affiliate')).toBeInTheDocument()
     })
 
     it('applies correct attributes to external links', () => {
-      renderWithTheme(<FooterLink />)
+      renderWithTheme(
+        <BrowserRouter>
+          <FooterLink />
+        </BrowserRouter>
+      )
       const facebookLink = screen.getByText('Facebook').closest('a')
-      expect(facebookLink).toHaveAttribute('target', '_blank')
+
       expect(facebookLink).toHaveAttribute('rel', 'noopener noreferrer')
     })
 
     it('applies correct attributes to internal links', () => {
-      renderWithTheme(<FooterLink />)
+      renderWithTheme(
+        <BrowserRouter>
+          <FooterLink />
+        </BrowserRouter>
+      )
       const aboutLink = screen.getByText('About Us').closest('a')
-      expect(aboutLink).toHaveAttribute('target', '_self')
+
       expect(aboutLink).not.toHaveAttribute('rel')
     })
   })
@@ -86,7 +105,11 @@ describe('FooterLink Component', () => {
         },
       ]
 
-      renderWithTheme(<FooterLink sections={customSections} />)
+      renderWithTheme(
+        <BrowserRouter>
+          <FooterLink sections={customSections} />
+        </BrowserRouter>
+      )
 
       expect(screen.getByText('Custom Link 1')).toBeInTheDocument()
       expect(screen.getByText('Custom Link 2')).toBeInTheDocument()

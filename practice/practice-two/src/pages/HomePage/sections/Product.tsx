@@ -1,6 +1,5 @@
 import { ChevronRight } from 'lucide-react'
 import { useMemo } from 'react'
-import type { MouseEvent } from 'react'
 import { productData } from '@data/product-data'
 import ContentContainer from '@layouts/ContentContainer/ContentContainer'
 import { ProductCard } from '@components/ProductCard/ProductCard'
@@ -10,7 +9,6 @@ import {
   SectionTitle,
   StyledLinkButton,
 } from '../Homepage.styles'
-import { useNavigate } from 'react-router-dom'
 
 interface ProductSectionProps {
   title?: string
@@ -23,7 +21,6 @@ const ProductSection = ({
   showRandomProducts = true,
   maxItems = 4,
 }: ProductSectionProps) => {
-  const navigate = useNavigate()
   // Use imported productData instead of hardcoded products
   const displayProducts = useMemo(() => {
     // Get products with both "best-selling" and "featured" tags
@@ -63,17 +60,12 @@ const ProductSection = ({
     return combinedProducts.slice(0, maxItems)
   }, [showRandomProducts, maxItems])
 
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    navigate('/all-products')
-  }
-
   return (
     <section className="section">
       <ContentContainer direction="column">
         <HeaderContainer>
           <SectionTitle className="section-title">{title}</SectionTitle>
-          <StyledLinkButton href="/products" onClick={handleClick}>
+          <StyledLinkButton to="/all-products">
             See more{' '}
             <ChevronRight
               size={14}

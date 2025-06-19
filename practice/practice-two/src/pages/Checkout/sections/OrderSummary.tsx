@@ -16,28 +16,27 @@ import { useCartStore } from '@stores/cartStore'
 import { useCheckoutStore } from '@stores/checkoutStore'
 import { withErrorBoundary } from '@utils/withErrorBoundary'
 import { Button } from '@radix-ui/themes'
+import {
+  calculateShippingCost,
+  calculateSubtotal,
+  calculateTax,
+} from '@utils/cartCalculation'
 
 export const OrderSummarySection = () => {
-  const { items, removeItem, getSubtotal, getTax, updateQuantity, updateUnit } =
-    useCartStore()
+  const { items, removeItem, updateQuantity, updateUnit } = useCartStore()
 
   const { formData } = useCheckoutStore()
   const { toast } = useToast()
   const [promoCode, setPromoCode] = useState('')
   // Calculate order totals
   const orderCalculations = useMemo(() => {
-    const shipping = formData.shipping.price
-    const subtotal = getSubtotal()
-    const tax = getTax()
+    const subtotal = calculateSubtotal(items)
+    const tax = calculateTax(subtotal)
+    const shipping = calculateShippingCost(formData.shipping.method)
     const total = subtotal + tax + shipping
 
-    return {
-      subtotal,
-      tax,
-      shipping,
-      total,
-    }
-  }, [formData.shipping.price, items, getSubtotal, getTax])
+    return { subtotal, tax, shipping, total }
+  }, [items, formData.shipping.method])
 
   // Handle promo code application
   const handleApplyPromo = useCallback(() => {

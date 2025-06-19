@@ -1,8 +1,7 @@
 import Link from '@components/common/Link/index'
 import { Button, Flex } from '@radix-ui/themes'
-import { useMemo, useState, useCallback, memo, type MouseEvent } from 'react'
+import { useMemo, useState, useCallback, memo } from 'react'
 import { ChevronRight, ChevronUp } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 import { navbarData } from '@data/navbar'
 import {
   Banner,
@@ -14,27 +13,19 @@ import {
   CategoryList,
   CategoryMenu,
   CategoryTitle,
+  MobileCategoryChip,
+  MobileCategoryScroll,
 } from '../Homepage.styles'
+import { useNavigate } from 'react-router-dom'
 
 // Memoized category link component to prevent re-renders
 const MemoizedCategoryLink = memo(
-  ({
-    category,
-    isNew,
-    onClick,
-  }: {
-    category: string
-    isNew: boolean
-    onClick: (e: MouseEvent<HTMLAnchorElement>) => void
-  }) => (
+  ({ category, isNew }: { category: string; isNew: boolean }) => (
     <CategoryLink
       key={category.toLowerCase().replace(/\s+/g, '-')}
       $isNew={isNew}
     >
-      <Link
-        href={`/${category.toLowerCase().replace(/\s+/g, '-')}`}
-        onClick={onClick}
-      >
+      <Link href={`/${category.toLowerCase().replace(/\s+/g, '-')}`}>
         {category}
       </Link>
     </CategoryLink>
@@ -68,8 +59,9 @@ const BannerComponent = memo(
 BannerComponent.displayName = 'BannerComponent'
 
 function BannerSection() {
-  const navigate = useNavigate()
   const [showAllCategories, setShowAllCategories] = useState(false)
+  const [activeCategory, setActiveCategory] = useState('Bakery')
+  const navigate = useNavigate()
 
   // Memoize all computed values
   const allCategories = useMemo(() => {
@@ -86,34 +78,44 @@ function BannerSection() {
     return allCategories.length > 5
   }, [allCategories])
 
-  // Memoize event handlers
-  const handleCategoryClick = useCallback(
-    (e: MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault()
-      const categoryPath = e.currentTarget.pathname.slice(1)
-      navigate(`/${categoryPath}`)
-    },
-    [navigate]
-  )
-
   const handleToggleCategories = useCallback(() => {
     setShowAllCategories((prev) => !prev)
+  }, [])
+
+  const handleMobileCategoryClick = useCallback((category: string) => {
+    setActiveCategory(category)
+    navigate(`/${category.toLowerCase().replace(/\s+/g, '-')}`)
   }, [])
 
   return (
     <BannerContainer className="section">
       <CategoryMenu>
         <CategoryTitle>Category menu</CategoryTitle>
+
+        {/* Mobile horizontal scrolling categories */}
+        <MobileCategoryScroll>
+          {allCategories.map((category) => (
+            <MobileCategoryChip
+              key={`mobile-${category}`}
+              className={activeCategory === category ? 'active' : ''}
+              onClick={() => handleMobileCategoryClick(category)}
+            >
+              {category}
+            </MobileCategoryChip>
+          ))}
+        </MobileCategoryScroll>
+
+        {/* Desktop category list - unchanged */}
         <CategoryList>
           {displayedCategories.map((category, index) => (
             <MemoizedCategoryLink
               key={category.toLowerCase().replace(/\s+/g, '-')}
               category={category}
               isNew={showAllCategories && index >= 5}
-              onClick={handleCategoryClick}
             />
           ))}
         </CategoryList>
+
         {hasMoreCategories && (
           <Button
             variant="ghost"
@@ -132,6 +134,7 @@ function BannerSection() {
         )}
       </CategoryMenu>
 
+      {/* Rest of the component remains the same */}
       <BannerComponent
         subtitle="Farm fresh"
         heading="Get garden fresh fruits and vegetables"

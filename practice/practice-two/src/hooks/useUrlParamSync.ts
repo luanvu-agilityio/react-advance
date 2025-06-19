@@ -1,6 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useCategoryStore } from '@stores/categoryStore'
+import {
+  categoryStateToUrlParams,
+  urlParamsToCategoryState,
+} from '@utils/categoryUrlParams'
 
 /**
  * useUrlParamSync - A custom hook for bidirectional synchronization between URL parameters and  state
@@ -20,7 +24,8 @@ import { useCategoryStore } from '@stores/categoryStore'
 
 export const useUrlParamSync = () => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const { getUrlParams, setFromUrl, currentPage, limit } = useCategoryStore()
+  const categoryStore = useCategoryStore()
+  const { currentPage, limit } = categoryStore
   const isInitialized = useRef(false)
   const lastSyncedParams = useRef<string>('')
 
@@ -30,18 +35,19 @@ export const useUrlParamSync = () => {
 
     // Only sync if params actually changed
     if (currentParamsString !== lastSyncedParams.current) {
-      setFromUrl(searchParams)
+      const stateUpdates = urlParamsToCategoryState(searchParams)
+      categoryStore.updateFilters(stateUpdates)
       lastSyncedParams.current = currentParamsString
     }
 
     isInitialized.current = true
-  }, [searchParams, setFromUrl])
+  }, [searchParams, categoryStore.updateFilters])
 
   // Update URL when store changes (but not during initialization)
   useEffect(() => {
     if (!isInitialized.current) return
 
-    const newParams = getUrlParams()
+    const newParams = categoryStateToUrlParams(categoryStore)
     const newParamsString = newParams.toString()
 
     // Only update URL if it's different from current
@@ -65,11 +71,11 @@ export const useUrlParamSync = () => {
       setSearchParams(currentParams, { replace: true })
       lastSyncedParams.current = newParamsString
     }
-  }, [currentPage, limit, getUrlParams, setSearchParams, searchParams])
+  }, [currentPage, limit, categoryStore, setSearchParams, searchParams])
 
   return {
     syncToUrl: () => {
-      const newParams = getUrlParams()
+      const newParams = categoryStateToUrlParams(categoryStore)
       setSearchParams(newParams, { replace: true })
     },
   }

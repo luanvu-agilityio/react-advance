@@ -1,124 +1,57 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const StyledButtonTag = styled.button<{
-  $variant?: 'default' | 'selected' | 'disabled'
-}>`
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: var(--font-weight-semibold);
-  transition: all 0.2s ease;
+type TagVariant = 'default' | 'selected' | 'disabled'
+
+interface StyleProps {
+  $variant: TagVariant
+}
+
+const tagVariantStyles = {
+  default: css`
+    background-color: var(--gray-shade-1, #f3f3f3);
+    color: var(--black-shade-1, #1a1a1a);
+
+    &:hover {
+      background-color: var(--gray-shade-2, #e6e6e6);
+    }
+  `,
+  selected: css`
+    background-color: var(--green-color-default, #6a983c);
+    color: var(--white-color, #ffffff);
+  `,
+  disabled: css`
+    background-color: var(--gray-shade-1, #f3f3f3);
+    color: var(--black-shade-3, #999999);
+    cursor: not-allowed;
+    pointer-events: none;
+  `,
+}
+
+export const StyledButton = styled.button<StyleProps>`
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
   border: none;
-  cursor: ${({ $variant }) =>
-    $variant === 'disabled' ? 'not-allowed' : 'pointer'};
+  font-family: var(--font-family-primary, 'Open Sans', sans-serif);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 
-  /* Variant styles */
-  ${({ $variant }) => {
-    switch ($variant) {
-      case 'selected':
-        return `
-            background-color:var(--cyan-shade-4);
-            color: var(--cyan-shade-1);
-            box-shadow: 0 0 0 2px #a8c7fa;
-            &:hover {
-              background-color:var(--cyan-shade-3);
-              text-decoration: none;
-          }
-        `
-      case 'disabled':
-        return `
-          background-color: var(--black-shade-6);
-          color:var(--black-shade-3);
-          opacity: 0.7;
-        `
-      default:
-        return `
-          background-color: var(--black-shade-5);
-          color: var(--black-color-default);
-          &:hover {
-            background-color: var(--black-shade-5);
-          }
-        `
-    }
-  }}
-
-  &[data-tag-type="category"] {
-    border-color: var(--green-color-default);
-    border-width: 2px;
-
-    &:hover {
-      background-color: var(--green-50);
-      border-color: var(--green-color-dark);
-    }
-  }
-
-  &[data-tag-type='subcategory'] {
-    border-color: var(--blue-color-default);
-    border-width: 2px;
-
-    &:hover {
-      background-color: var(--blue-50);
-      border-color: var(--blue-color-dark);
-    }
-  }
-
-  &[data-tag-type='product'] {
-    border-color: var(--gray-300);
-    border-width: 1px;
-
-    &:hover {
-      background-color: var(--gray-50);
-      border-color: var(--gray-400);
-    }
-  }
+  ${({ $variant }) => tagVariantStyles[$variant]};
 `
 
-export const StyledLinkWrapper = styled.span<{
-  $variant?: 'default' | 'selected' | 'disabled'
-}>`
+export const StyledContainer = styled.div<StyleProps>`
   display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  font-family: var(--font-family-primary, 'Open Sans', sans-serif);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 
-  /* Reset Link styles when used in a tag */
+  ${({ $variant }) => tagVariantStyles[$variant]};
+
   a {
-    display: inline-flex;
-    align-items: center;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 600;
-    transition: all 0.2s ease;
+    color: inherit;
     text-decoration: none;
-
-    /* Variant styles */
-    ${({ $variant }) => {
-      switch ($variant) {
-        case 'selected':
-          return `
-            background-color: var(--green-shade-3);
-            color:var(--green-shade-1);
-            box-shadow: 0 0 0 2px #a8c7fa;
-            &:hover {
-              background-color:var(--green-shade-2);
-              text-decoration: none;
-            }
-          `
-        case 'disabled':
-          return `
-         background-color: var(--black-shade-6);
-          color:var(--black-shade-3);
-          opacity: 0.7;
-          `
-        default:
-          return `
-            background-color: var(--black-shade-5);
-            &:hover {
-              background-color: var(--black-shade-6);
-              text-decoration: none;
-            }
-          `
-      }
-    }}
   }
 `

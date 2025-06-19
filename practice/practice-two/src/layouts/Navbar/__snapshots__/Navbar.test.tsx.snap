@@ -3,10 +3,10 @@
 exports[`Navbar - Rendering matches desktop snapshot 1`] = `
 <div>
   <div
-    class="sc-Qotzb cUSTmH section"
+    class="sc-Qotzb WMlGO section"
   >
     <button
-      class="sc-dKREkF iYShG"
+      class="sc-dKREkF hSrWKL"
     >
       <svg
         aria-hidden="true"
@@ -33,7 +33,7 @@ exports[`Navbar - Rendering matches desktop snapshot 1`] = `
       </svg>
     </button>
     <div
-      class="sc-fYsHOw dIRERo"
+      class="sc-fYsHOw dlcMLp"
       data-orientation="horizontal"
       role="menubar"
       style="outline: none;"

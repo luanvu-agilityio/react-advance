@@ -23,6 +23,6 @@ export const Copyright = styled.div`
   margin: 48px auto 0;
 
   @media (min-width: 768px) {
-    width: 1260px;
+    max-width: 1260px;
   }
 `

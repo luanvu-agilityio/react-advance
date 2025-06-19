@@ -70,6 +70,20 @@ export const useCarousel = ({
   const cardWidth = itemWidth + gap
   const maxIndex = Math.max(0, itemsCount - itemsPerSlide)
 
+  // Listen for dot navigation events
+  useEffect(() => {
+    const handleDotNavigation = (e: Event) => {
+      const customEvent = e as CustomEvent
+      if (customEvent.detail && typeof customEvent.detail.index === 'number') {
+        setCurrentIndex(customEvent.detail.index)
+      }
+    }
+
+    document.addEventListener('dotnavigation', handleDotNavigation)
+    return () =>
+      document.removeEventListener('dotnavigation', handleDotNavigation)
+  }, [])
+
   // Navigation functions
   const handlePrev = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1))
@@ -78,8 +92,7 @@ export const useCarousel = ({
   const handleNext = () => {
     setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
   }
-
-  // Effect to update the translate when currentIndex changes
+  // Effect to update the translate when currentIndex changes or when itemWidth/gap changes
   useEffect(() => {
     const translate = currentIndex * -cardWidth
     setCurrentTranslate(translate)
@@ -88,7 +101,7 @@ export const useCarousel = ({
     if (slideRef.current) {
       slideRef.current.style.transform = `translateX(${translate}px)`
     }
-  }, [currentIndex, cardWidth])
+  }, [currentIndex, cardWidth, itemWidth, gap])
 
   // Drag handlers
   const handleDragStart = (e: MouseEvent | TouchEvent) => {

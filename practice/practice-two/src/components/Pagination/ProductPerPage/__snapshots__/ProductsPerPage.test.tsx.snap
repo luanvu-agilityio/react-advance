@@ -3,8 +3,7 @@
 exports[`ProductsPerPage Rendering renders different component states correctly: default-5-per-page 1`] = `
 <div>
   <div
-    class="sc-fpEFIB ksmUmw"
-    style="min-width: 180px; height: 60px;"
+    class="sc-fpEFIB gJeBUE"
   >
     <span
       class="sc-gAqISa bdMoJO"
@@ -13,7 +12,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
     </span>
     <div
       class="sc-fWnslK jxddlX"
-      style="width: auto; min-width: 100px; margin: 0px; padding: 0px;"
+      style="width: 100%; margin: 0px; padding: 0px; min-width: 120px; max-width: 200px;"
     >
       <div
         data-testid="mock-select"
@@ -52,8 +51,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
 exports[`ProductsPerPage Rendering renders different component states correctly: with-10-per-page 1`] = `
 <div>
   <div
-    class="sc-fpEFIB ksmUmw"
-    style="min-width: 180px; height: 60px;"
+    class="sc-fpEFIB gJeBUE"
   >
     <span
       class="sc-gAqISa bdMoJO"
@@ -62,7 +60,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
     </span>
     <div
       class="sc-fWnslK jxddlX"
-      style="width: auto; min-width: 100px; margin: 0px; padding: 0px;"
+      style="width: 100%; margin: 0px; padding: 0px; min-width: 120px; max-width: 200px;"
     >
       <div
         data-testid="mock-select"
@@ -101,8 +99,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
 exports[`ProductsPerPage Rendering renders different component states correctly: with-15-per-page 1`] = `
 <div>
   <div
-    class="sc-fpEFIB ksmUmw"
-    style="min-width: 180px; height: 60px;"
+    class="sc-fpEFIB gJeBUE"
   >
     <span
       class="sc-gAqISa bdMoJO"
@@ -111,7 +108,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
     </span>
     <div
       class="sc-fWnslK jxddlX"
-      style="width: auto; min-width: 100px; margin: 0px; padding: 0px;"
+      style="width: 100%; margin: 0px; padding: 0px; min-width: 120px; max-width: 200px;"
     >
       <div
         data-testid="mock-select"
@@ -150,8 +147,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
 exports[`ProductsPerPage Rendering renders different component states correctly: with-20-per-page 1`] = `
 <div>
   <div
-    class="sc-fpEFIB ksmUmw"
-    style="min-width: 180px; height: 60px;"
+    class="sc-fpEFIB gJeBUE"
   >
     <span
       class="sc-gAqISa bdMoJO"
@@ -160,7 +156,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
     </span>
     <div
       class="sc-fWnslK jxddlX"
-      style="width: auto; min-width: 100px; margin: 0px; padding: 0px;"
+      style="width: 100%; margin: 0px; padding: 0px; min-width: 120px; max-width: 200px;"
     >
       <div
         data-testid="mock-select"
@@ -199,8 +195,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
 exports[`ProductsPerPage Rendering renders different component states correctly: with-invalid-value 1`] = `
 <div>
   <div
-    class="sc-fpEFIB ksmUmw"
-    style="min-width: 180px; height: 60px;"
+    class="sc-fpEFIB gJeBUE"
   >
     <span
       class="sc-gAqISa bdMoJO"
@@ -209,7 +204,7 @@ exports[`ProductsPerPage Rendering renders different component states correctly:
     </span>
     <div
       class="sc-fWnslK jxddlX"
-      style="width: auto; min-width: 100px; margin: 0px; padding: 0px;"
+      style="width: 100%; margin: 0px; padding: 0px; min-width: 120px; max-width: 200px;"
     >
       <div
         data-testid="mock-select"

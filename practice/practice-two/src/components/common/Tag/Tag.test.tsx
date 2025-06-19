@@ -1,5 +1,35 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import Tag from './index'
+import type { MouseEvent, ReactNode } from 'react'
+
+// Mock Link component to avoid router context issues
+jest.mock('@components/common/Link', () => {
+  return ({
+    children,
+    href,
+    onClick,
+    disabled,
+  }: {
+    children: ReactNode
+    href: string
+    onClick: (e: MouseEvent<HTMLAnchorElement>) => void
+    disabled: boolean
+  }) => (
+    <a
+      href={href}
+      onClick={(e) => {
+        if (disabled) {
+          e.preventDefault()
+          return
+        }
+        if (onClick) onClick(e)
+      }}
+      data-testid="link"
+    >
+      {children}
+    </a>
+  )
+})
 
 describe('Tag Component', () => {
   const mockOnClick = jest.fn()
@@ -84,8 +114,7 @@ describe('Tag Component', () => {
         <Tag
           as="link"
           label="External Link"
-          href="/test"
-          target="_blank"
+          href="https://example.com"
           onClick={mockOnClick}
         />
       )
@@ -126,6 +155,21 @@ describe('Tag Component', () => {
 
       fireEvent.click(screen.getByText('Link Tag'))
       expect(mockOnClick).toHaveBeenCalledTimes(1)
+    })
+
+    it('does not call onClick when disabled link tag is clicked', () => {
+      render(
+        <Tag
+          as="link"
+          label="Disabled Link"
+          href="/test"
+          onClick={mockOnClick}
+          variant="disabled"
+        />
+      )
+
+      fireEvent.click(screen.getByText('Disabled Link'))
+      expect(mockOnClick).not.toHaveBeenCalled()
     })
   })
 })

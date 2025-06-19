@@ -17,7 +17,7 @@ jest.mock('@contexts/ToastContext', () => ({
 }))
 
 // Mock the star icon URLs
-jest.mock('@components/ProductCard/ProductCard', () => {
+jest.mock('../../../src/components/ProductCard/ProductCard', () => {
   const actual = jest.requireActual(
     '../../../src/components/ProductCard/ProductCard'
   )
@@ -55,7 +55,10 @@ const sampleProduct = {
   brand: "Nature's Best",
   images: {
     main: 'https://example.com/apple.jpg',
-    gallery: ['https://example.com/apple.jpg'],
+    gallery: [
+      'https://example.com/apple.jpg',
+      'https://example.com/apple-2.jpg',
+    ],
   },
 }
 

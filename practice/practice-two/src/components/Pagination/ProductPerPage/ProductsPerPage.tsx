@@ -19,10 +19,16 @@ export const ProductsPerPage = () => {
   }
 
   return (
-    <FilterControlContainer style={{ minWidth: '180px', height: '60px' }}>
+    <FilterControlContainer>
       <FilterLabel>Product per page</FilterLabel>
       <SelectWrapper
-        style={{ width: 'auto', minWidth: '100px', margin: '0', padding: 0 }}
+        style={{
+          width: '100%',
+          margin: '0',
+          padding: 0,
+          minWidth: '120px',
+          maxWidth: '200px',
+        }}
       >
         <Select
           options={productsPerPageOptions}

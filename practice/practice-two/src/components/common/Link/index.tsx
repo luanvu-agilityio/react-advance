@@ -1,43 +1,58 @@
-import type { ReactNode, MouseEvent, CSSProperties } from 'react'
-import { StyledLink } from './Link.style'
+import type { CSSProperties } from 'styled-components'
+import { StyledLink, StyledRouterLink } from './Link.style'
+import type { MouseEvent } from 'react'
 
-export interface LinkProps {
+interface LinkProps {
   href: string
-  children: ReactNode
-  onClick: (event: MouseEvent<HTMLAnchorElement>) => void
+  children: React.ReactNode
   className?: string
-  target?: '_blank' | '_self' | '_parent' | '_top'
-  disabled?: boolean
+  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
   style?: CSSProperties
+  disabled?: boolean
 }
 
 const Link = ({
-  href = '#',
+  href,
   children,
-  onClick,
   className,
-  target = '_self',
-  disabled = false,
+  onClick,
   style,
+  disabled = false,
 }: LinkProps) => {
-  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (disabled) {
-      event.preventDefault()
+      e.preventDefault()
       return
     }
 
-    onClick?.(event)
+    // Only call onClick if not disabled
+    onClick?.(e)
+  }
+  // If it starts with '/' or is a relative path, use RouterLink
+  if (href.startsWith('/') || !href.includes('://')) {
+    return (
+      <StyledRouterLink
+        to={href}
+        className={className}
+        onClick={handleClick}
+        style={style}
+        disabled={disabled}
+      >
+        {children}
+      </StyledRouterLink>
+    )
   }
 
+  // Otherwise, it's an external link, use regular anchor
   return (
     <StyledLink
       href={href}
-      onClick={handleClick}
       className={className}
-      target={target}
-      disabled={disabled}
-      rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+      onClick={handleClick}
       style={style}
+      target="_blank"
+      rel="noopener noreferrer"
+      disabled={disabled}
     >
       {children}
     </StyledLink>

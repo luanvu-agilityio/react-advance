@@ -5,10 +5,17 @@ export const TagContainer = styled.div`
   display: none;
 
   // Show on tablet and larger screens
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1022px) {
+    display: block;
+    padding: 0 32px;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1023px) {
     display: block;
     padding: 0 45px;
-    width: 1260px;
+    max-width: 1260px;
     margin: 0 auto;
   }
 `

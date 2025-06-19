@@ -4,6 +4,11 @@ import { useCartStore } from '@stores/cartStore'
 import { useCheckoutStore } from '@stores/checkoutStore'
 import type { CheckoutFormData } from 'types/checkout'
 import type { CartItem } from 'types/cart-items'
+import {
+  calculateShippingCost,
+  calculateSubtotal,
+  calculateTax,
+} from '@utils/cartCalculation'
 
 // Mock API functions
 const checkoutApi = {
@@ -11,9 +16,11 @@ const checkoutApi = {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 300))
 
+    const price = calculateShippingCost(method)
+
     return {
       valid: true,
-      price: method === 'fedex' ? 32 : 15,
+      price: price,
       estimatedDelivery: method === 'fedex' ? '1-2 days' : '3-5 days',
     }
   },
@@ -186,14 +193,14 @@ export const usePromoCodeQuery = (code: string) => {
  */
 export const useOrderSubmitMutation = () => {
   const { formData } = useCheckoutStore()
-  const { items, getSubtotal, getTax } = useCartStore()
+  const { items } = useCartStore()
   const { toast } = useToast()
 
   return useMutation({
     mutationFn: async () => {
-      const subtotal = getSubtotal()
-      const tax = getTax()
-      const shipping = formData.shipping.price || 0
+      const subtotal = calculateSubtotal(items)
+      const tax = calculateTax(subtotal)
+      const shipping = calculateShippingCost(formData.shipping.method)
       const total = subtotal + tax + shipping
 
       return await checkoutApi.submitOrder({

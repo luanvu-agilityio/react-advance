@@ -7,6 +7,9 @@ import styled from 'styled-components'
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 768px) and (max-width: 1260px) {
+  padding: 32px;
 `
 
 export const PageHeader = styled.div`
@@ -14,26 +17,34 @@ export const PageHeader = styled.div`
   flex-direction: column;
   gap: 16px;
   padding: 0 16px;
+  margin-bottom: 16px;
 
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0;
+    margin-bottom: 24px;
   }
 `
 
 export const FilterControlsWrapper = styled.div`
   display: flex;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  gap: 12px;
   padding: 0 16px;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin: 16px 0;
+
+  @media (min-width: 576px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
 
   @media (min-width: 768px) {
     padding: 0;
     gap: 16px;
+    margin: 24px 0;
   }
 `
 
@@ -56,9 +67,13 @@ export const ViewModeContainer = styled.div`
   font-family: var(--font-family-secondary);
   font-size: 12px;
   font-weight: var(--font-weight-regular);
+  width: 100%;
+  justify-content: space-between;
 
   @media (min-width: 768px) {
+    width: auto;
     gap: 24px;
+    justify-content: flex-end;
   }
 `
 
@@ -74,10 +89,15 @@ export const ContentContainer = styled.div`
   gap: 24px;
   padding: 0 16px 32px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1260px) {
     flex-direction: row;
-    gap: 32px;
+    gap: 16px;
     padding: 64px 0;
+  }
+  @media (min-width: 1260px) {
+    padding: 64px 0;
+    gap: 32px;
+    flex-direction: row;
   }
 `
 

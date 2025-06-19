@@ -19,6 +19,7 @@ import {
 import FormError from '@components/common/FormError/FormError'
 import type { CheckoutFormData } from 'types/checkout'
 import { useShippingMethodMutation } from '@hooks/useCheckoutQuery'
+import { calculateShippingCost } from '@utils/cartCalculation'
 // Define shipping method configuration type
 interface ShippingMethodOption {
   id: string
@@ -53,7 +54,7 @@ export const ShippingMethodSection = () => {
         id: 'fedex',
         value: 'fedex',
         label: 'FedEx',
-        price: 32,
+        price: calculateShippingCost('fedex'),
         logoSrc:
           'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372451/fedex_gcko1l.png',
         logoAlt: 'FedEx',
@@ -64,7 +65,7 @@ export const ShippingMethodSection = () => {
         id: 'dhl',
         value: 'dhl',
         label: 'DHL',
-        price: 15,
+        price: calculateShippingCost('dhl'),
         logoSrc:
           'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372450/dhl_it43vr.png',
         logoAlt: 'DHL',
@@ -82,11 +83,13 @@ export const ShippingMethodSection = () => {
   const handleMethodChange = useCallback(
     (method: 'fedex' | 'dhl') => {
       // Find shipping method info by value
+
+      const shippingPrice = calculateShippingCost(method)
       shippingMethodMutation.mutate(method)
 
       // Update form state (React Hook Form)
       setValue('shipping.method', method)
-      setValue('shipping.price', method === 'fedex' ? 32 : 15)
+      setValue('shipping.price', shippingPrice)
     },
     [setValue, shippingMethodMutation]
   )

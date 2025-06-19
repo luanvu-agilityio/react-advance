@@ -33,6 +33,7 @@ import {
   PageContainer,
   FilterControlsWrapper,
 } from './CategoryStyles'
+import { getProductCountBySubcategory } from '@services/product'
 
 /**
  * CategoryPage component displaying product listings with filtering capabilities
@@ -57,7 +58,7 @@ const CategoryPage = () => {
     subcategory,
     viewMode,
     updateFilters,
-    getProductCountBySubcategory,
+
     setPage,
     setCategory,
     setSubcategory,
@@ -191,7 +192,7 @@ const CategoryPage = () => {
     }
 
     fetchAccurateCount()
-  }, [subcategory, getProductCountBySubcategory])
+  }, [subcategory])
 
   // --------- EVENT HANDLERS ---------
   const handlePageChange = (page: number) => {
@@ -272,7 +273,7 @@ const CategoryPage = () => {
   // --------- COMPONENT RENDER ---------
   return (
     <PageContainer className="section">
-      <Breadcrumbs style={{ padding: '12px 0' }} />
+      <Breadcrumbs style={{ padding: '12px 16px' }} />
 
       <CategoryPageHeader
         title={displayTitle}

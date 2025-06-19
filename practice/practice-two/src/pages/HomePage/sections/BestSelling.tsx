@@ -1,4 +1,4 @@
-import { type MouseEvent, useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 import { ChevronRight } from 'lucide-react'
 import { Button, Flex } from '@radix-ui/themes'
 import Link from '@components/common/Link/index'
@@ -49,15 +49,6 @@ const BestSellingProducts = ({
       .slice(0, maxItems)
   }, [sectionType, maxItems])
 
-  const handleCategoryClick = useCallback(
-    (e: MouseEvent<HTMLAnchorElement>, category: string) => {
-      e.preventDefault()
-      const categoryPath = category.toLowerCase().replace(/\s+/g, '-')
-      navigate(`/${categoryPath}`)
-    },
-    [navigate]
-  )
-
   return (
     <Container className="section">
       <ContentContainer>
@@ -66,22 +57,24 @@ const BestSellingProducts = ({
           <CategoryColumn>
             <SectionTitle>{title}</SectionTitle>
             <CategoryList>
-              {randomCategories.map((category) => (
-                <StyledLink key={category.toLowerCase().replace(/\s+/g, '-')}>
-                  <Link
-                    href={`/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                    onClick={(e) => handleCategoryClick(e, category)}
-                    style={{
-                      color: 'var(--green-color-default)',
-                      fontFamily: 'var(--font-family-secondary)',
-                      fontWeight: 'var(--font-weight-regular)',
-                      fontSize: '14px',
-                    }}
-                  >
-                    {category}
-                  </Link>
-                </StyledLink>
-              ))}
+              {randomCategories.map((category) => {
+                const categoryPath = category.toLowerCase().replace(/\s+/g, '-')
+                return (
+                  <StyledLink key={categoryPath}>
+                    <Link
+                      href={`/${categoryPath}`}
+                      style={{
+                        color: 'var(--green-color-default)',
+                        fontFamily: 'var(--font-family-secondary)',
+                        fontWeight: 'var(--font-weight-regular)',
+                        fontSize: '14px',
+                      }}
+                    >
+                      {category}
+                    </Link>
+                  </StyledLink>
+                )
+              })}
             </CategoryList>
             <Button
               variant="ghost"

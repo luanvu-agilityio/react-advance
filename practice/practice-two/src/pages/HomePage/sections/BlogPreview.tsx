@@ -1,6 +1,5 @@
 import { ChevronRight } from 'lucide-react'
 import { blogPosts, type BlogPostType } from '@data/blog-posts'
-import type { MouseEvent } from 'react'
 import Badge from '@components/common/Badge'
 import {
   AuthorAvatar,
@@ -114,17 +113,13 @@ const ArticleCard = ({ post, variant }: ArticleCardProps) => {
 
 // Main Component
 export default function BlogPreviewSection() {
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-  }
-
   return (
     <SectionContainer className="section">
       <SectionHeader>
         <SectionTitle className="section-title">
           Read our Blog posts
         </SectionTitle>
-        <StyledLinkButton href="/blog" onClick={handleClick}>
+        <StyledLinkButton to="/blog">
           Go to Blog{' '}
           <ChevronRight
             size={14}
