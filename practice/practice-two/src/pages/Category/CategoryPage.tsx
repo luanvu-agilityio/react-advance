@@ -45,6 +45,7 @@ import {
 } from './CategoryStyles'
 import { getProductCountBySubcategory } from '@services/product'
 import { useToastStore } from '@stores/toastStore'
+import type { Product } from 'types/Product'
 
 /**
  * CategoryPage component displaying product listings with filtering capabilities
@@ -92,7 +93,16 @@ const CategoryPage = () => {
   const { data, isLoading, error, refetch } = useProductFetch(true)
 
   const [optimisticProducts, setOptimisticProducts] = useOptimistic(
-    data?.data ?? []
+    data?.data ?? [],
+    (currentProducts: Product[], predictedProducts: Product[]) => {
+      const merged = [
+        ...predictedProducts,
+        ...currentProducts.filter(
+          (p) => !predictedProducts.some((np) => np.id === p.id)
+        ),
+      ]
+      return merged
+    }
   )
 
   // Filter data for UI
