@@ -55,11 +55,7 @@ const HomePage = () => (
 
         <Suspense fallback={<LoadingSpinner minHeight="200px" />}>
           <SectionWrapper>
-            <LazyProductSection
-              title="Products You May Like"
-              showRandomProducts={true}
-              maxItems={4}
-            />
+            <LazyProductSection title="Products You May Like" maxItems={4} />
           </SectionWrapper>
         </Suspense>
 

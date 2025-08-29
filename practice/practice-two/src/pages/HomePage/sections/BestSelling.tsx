@@ -2,7 +2,6 @@ import { ChevronRight } from 'lucide-react'
 import { Button, Flex } from '@radix-ui/themes'
 import Link from '@components/common/Link/index'
 import { navbarData } from '@data/navbar'
-import { productData } from '@data/product-data'
 import ContentContainer from '@layouts/ContentContainer/ContentContainer'
 import { getRandomItems } from '@helpers/getRandomItems'
 import { ProductCard } from '@components/ProductCard/ProductCard'
@@ -16,6 +15,8 @@ import {
   SectionTitle,
   StyledLink,
 } from '../Homepage.styles'
+import { use } from 'react'
+import { fetchSectionProducts } from '@services/product'
 
 interface BestSellingProductsProps {
   sectionType?: 'best-selling' | 'featured'
@@ -30,16 +31,13 @@ const BestSellingProducts = ({
     : 'Featured products',
   maxItems = 5,
 }: BestSellingProductsProps) => {
+  const products = use(fetchSectionProducts(sectionType, maxItems))
+
   // Get random categories from navbar data
   const categories = navbarData
     .filter((item) => item.type !== 'simple')
     .map((item) => item.label)
   const randomCategories = getRandomItems(categories, 5)
-
-  // Filter products by section tag
-  const filteredProducts = productData
-    .filter((product) => product.section?.includes(sectionType))
-    .slice(0, maxItems)
 
   return (
     <Container className="section">
@@ -74,7 +72,7 @@ const BestSellingProducts = ({
               asChild
               style={{ marginTop: '24px' }}
             >
-              <a href="/all-products">
+              <a href="/all-products" style={{ background: 'none' }}>
                 <Flex align="center" gap="1">
                   More products
                   <ChevronRight size={16} strokeWidth={4} />
@@ -85,8 +83,8 @@ const BestSellingProducts = ({
 
           {/* Right Column - Products */}
           <ProductsGrid>
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
+            {products.length > 0 ? (
+              products.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}

@@ -49,6 +49,7 @@ export interface ProductApiParams {
   search?: string // Search term
   sortBy?: string // Field to sort by
   sortOrder?: SortOrder // Sort direction
+  section?: 'best-selling' | 'featured'
 }
 
 /**
@@ -233,12 +234,17 @@ const productApi = {
   getProductById: async (id: number): Promise<Product> => {
     if (!id) throw new Error('Product ID is required')
 
-    // Currently using mock data - would be replaced with API call in production
-    const product = productData.find((p) => p.id === Number(id))
-    if (!product) throw new Error(`Product with ID ${id} not found`)
-
-    await new Promise((resolve) => setTimeout(resolve, 300))
-    return product
+    try {
+      const response = await axios.get(`${API_BASE_URL}/products/${id}`, {
+        timeout: 10000,
+      })
+      return response.data
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 404) {
+        throw new Error(`Product with ID ${id} not found`)
+      }
+      throw error
+    }
   },
 
   /**
@@ -376,4 +382,20 @@ function handleApiError(error: unknown): never {
   throw new ProductApiError('An unexpected error occurred. Please try again.')
 }
 
+const sectionProductsPromiseCache = new Map<string, Promise<Product[]>>()
+
+export const fetchSectionProducts = (
+  section: 'best-selling' | 'featured',
+  maxItems: number
+): Promise<Product[]> => {
+  const cacheKey = `${section}:${maxItems}`
+  if (sectionProductsPromiseCache.has(cacheKey)) {
+    return sectionProductsPromiseCache.get(cacheKey)!
+  }
+  const promise = productApi
+    .getProducts({ section, l: maxItems })
+    .then((res) => res.data)
+  sectionProductsPromiseCache.set(cacheKey, promise)
+  return promise
+}
 export default productApi
