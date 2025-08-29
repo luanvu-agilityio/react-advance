@@ -13,10 +13,7 @@ const meta = {
     children: { control: 'text' },
     onClick: { action: 'clicked' },
     className: { control: 'text' },
-    target: {
-      control: 'select',
-      options: ['_blank', '_self', '_parent', '_top'],
-    },
+
     disabled: { control: 'boolean' },
     style: { control: 'object' },
   },
@@ -29,7 +26,7 @@ export const Default: Story = {
   args: {
     href: 'https://google.com.vn',
     children: 'Google VN',
-    onClick: (e) => e.preventDefault(),
+    onClick: (e: React.MouseEvent<HTMLAnchorElement>) => e.preventDefault(),
   },
 }
 
@@ -37,8 +34,8 @@ export const ExternalLink: Story = {
   args: {
     href: 'https://google.com.vn',
     children: 'Google VN',
-    target: '_blank',
-    onClick: (e) => e.preventDefault(),
+
+    onClick: (e: React.MouseEvent<HTMLAnchorElement>) => e.preventDefault(),
   },
 }
 
@@ -47,7 +44,7 @@ export const DisabledLink: Story = {
     href: 'https://google.com.vn',
     children: 'Google VN',
     disabled: true,
-    onClick: (e) => e.preventDefault(),
+    onClick: (e: React.MouseEvent<HTMLAnchorElement>) => e.preventDefault(),
   },
 }
 
@@ -55,7 +52,7 @@ export const CustomStyledLink: Story = {
   args: {
     href: 'https://google.com.vn',
     children: 'Google VN',
-    onClick: (e) => e.preventDefault(),
+    onClick: (e: React.MouseEvent<HTMLAnchorElement>) => e.preventDefault(),
     style: {
       color: 'var(--green-color-default)',
       fontSize: '20px',

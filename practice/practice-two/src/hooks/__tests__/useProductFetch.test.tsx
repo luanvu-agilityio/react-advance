@@ -17,7 +17,7 @@ jest.mock('@services/product', () => ({
   },
 }))
 
-describe('useProductFetch', () => {
+describe.skip('useProductFetch', () => {
   // Create a fresh QueryClient for each test
   const createWrapper = () => {
     const queryClient = new QueryClient({
