@@ -1,3 +1,5 @@
+'use client'
+
 import { ProductCard } from '@components/ProductCard/ProductCard'
 import { useMemo } from 'react'
 import { useProductNavigation } from '@hooks/useProductNavigation'

@@ -1,3 +1,4 @@
+'use client'
 import { useState, useMemo, type RefObject } from 'react'
 import { useOrderExport } from '@hooks/useOrderExport'
 import { useCheckoutStore } from '@stores/checkoutStore'

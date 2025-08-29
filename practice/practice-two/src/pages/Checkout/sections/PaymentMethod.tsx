@@ -1,3 +1,4 @@
+'use client'
 import { useCallback, useMemo, useEffect, type CSSProperties } from 'react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { useFormContext, Controller } from 'react-hook-form'
@@ -20,7 +21,7 @@ import {
 import FormError from '@components/common/FormError/FormError'
 import { formatCardField } from '@utils/validateField'
 import type { CheckoutFormData } from 'types/checkout'
-import { ValidationMessage } from '@config/validation/validation-message'
+import { ValidationMessage } from '@constants/validation-message'
 import { withErrorBoundary } from '@utils/withErrorBoundary'
 
 // Payment method configuration type

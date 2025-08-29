@@ -1,3 +1,5 @@
+'use client'
+
 import { useMediaQuery } from '@hooks/useMediaQuery'
 import { BillingInfoSection } from './BillingInfo'
 import PaymentMethodWithErrorBoundary from './PaymentMethod'
@@ -15,13 +17,29 @@ import {
 import { ShippingMethodSection } from './ShippingMethod'
 import AdditionalInfoSection from './AdditionalInfo'
 import ConfirmationSection from './Confirmation'
-import { useEffect, useState, type FormEvent, type RefObject } from 'react'
+import {
+  useActionState,
+  useEffect,
+  useState,
+  type FormEvent,
+  type RefObject,
+} from 'react'
 import { Form } from '@radix-ui/react-form'
 import SecurityNoticeSection from './SecurityNotice'
 import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
 import FormErrorSummary from './FormErrorSummary'
 import OrderSummaryWithErrorBoundary from './OrderSummary'
 import ThankYouModalWithErrorBoundary from './ThankyouModal'
+import { submitOrderAction } from '../actions/submitOrderActions'
+
+type OrderState = {
+  success: boolean
+  orderId: string
+  estimatedDelivery: string
+  processingDate: string
+  data: { [k: string]: FormDataEntryValue }
+} | null
+
 const CheckoutContent = ({
   orderDetailsRef,
   onSubmit,
@@ -39,15 +57,31 @@ const CheckoutContent = ({
   const { formState } = useFormContext()
   const { isSubmitted: formIsSubmitted, errors } = formState
 
+  const [orderState, submitOrder] = useActionState(
+    async (_state: OrderState, formData: FormData) => {
+      return await submitOrderAction(formData)
+    },
+    null
+  )
+
   useEffect(() => {
     if (formIsSubmitted) {
       setIsFormSubmitted(true)
     }
   }, [formIsSubmitted])
 
+  useEffect(() => {
+    if (orderState?.success) {
+      setShowThankYou(true)
+      if (onCheckoutSuccess) {
+        onCheckoutSuccess()
+      }
+    }
+  }, [orderState, onCheckoutSuccess])
+
   const handleSubmit = (e: FormEvent) => {
-    setIsFormSubmitted(true) // Mark form as submitted
-    onSubmit(e) // Call the original submit handler
+    setIsFormSubmitted(true)
+    onSubmit(e)
   }
 
   const handleCheckoutSuccess = () => {
@@ -57,7 +91,6 @@ const CheckoutContent = ({
       onCheckoutSuccess()
     }
   }
-
   const checkoutSteps = [
     {
       id: 'billing',
@@ -106,7 +139,7 @@ const CheckoutContent = ({
     <CheckoutContainer>
       <Breadcrumbs />
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} action={submitOrder}>
         <CheckoutGrid>
           <div
             style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}

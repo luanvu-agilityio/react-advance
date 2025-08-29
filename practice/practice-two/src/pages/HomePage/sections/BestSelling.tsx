@@ -1,11 +1,9 @@
-import { useMemo } from 'react'
 import { ChevronRight } from 'lucide-react'
 import { Button, Flex } from '@radix-ui/themes'
 import Link from '@components/common/Link/index'
 import { navbarData } from '@data/navbar'
 import { productData } from '@data/product-data'
 import ContentContainer from '@layouts/ContentContainer/ContentContainer'
-import { useNavigate } from 'react-router-dom'
 import { getRandomItems } from '@helpers/getRandomItems'
 import { ProductCard } from '@components/ProductCard/ProductCard'
 
@@ -32,28 +30,22 @@ const BestSellingProducts = ({
     : 'Featured products',
   maxItems = 5,
 }: BestSellingProductsProps) => {
-  const navigate = useNavigate()
-
   // Get random categories from navbar data
-  const randomCategories = useMemo(() => {
-    const categories = navbarData
-      .filter((item) => item.type !== 'simple')
-      .map((item) => item.label)
-    return getRandomItems(categories, 5)
-  }, [])
+  const categories = navbarData
+    .filter((item) => item.type !== 'simple')
+    .map((item) => item.label)
+  const randomCategories = getRandomItems(categories, 5)
 
-  // Filter products by section tag using useMemo for performance
-  const filteredProducts = useMemo(() => {
-    return productData
-      .filter((product) => product.section?.includes(sectionType))
-      .slice(0, maxItems)
-  }, [sectionType, maxItems])
+  // Filter products by section tag
+  const filteredProducts = productData
+    .filter((product) => product.section?.includes(sectionType))
+    .slice(0, maxItems)
 
   return (
     <Container className="section">
       <ContentContainer>
         <FlexContainer>
-          {/* Left Column - Categories - Hidden on mobile, shown as a horizontal scrollbar */}
+          {/* Left Column - Categories */}
           <CategoryColumn>
             <SectionTitle>{title}</SectionTitle>
             <CategoryList>
@@ -78,13 +70,16 @@ const BestSellingProducts = ({
             </CategoryList>
             <Button
               variant="ghost"
-              onClick={() => navigate('/all-products')}
+              // Use a regular link for navigation
+              asChild
               style={{ marginTop: '24px' }}
             >
-              <Flex align="center" gap="1">
-                More products
-                <ChevronRight size={16} strokeWidth={4} />
-              </Flex>
+              <a href="/all-products">
+                <Flex align="center" gap="1">
+                  More products
+                  <ChevronRight size={16} strokeWidth={4} />
+                </Flex>
+              </a>
             </Button>
           </CategoryColumn>
 

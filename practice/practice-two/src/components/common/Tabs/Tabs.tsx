@@ -1,3 +1,5 @@
+'use client'
+
 import { Tabs as RadixTabs } from '@radix-ui/themes'
 import { renderStars } from '@helpers/renderStar'
 import {

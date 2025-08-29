@@ -1,3 +1,5 @@
+'use client'
+
 import { memo, useCallback, type MouseEvent } from 'react'
 import ImageIcon from '@components/common/ImageIcon'
 import { useNavigate } from 'react-router-dom'

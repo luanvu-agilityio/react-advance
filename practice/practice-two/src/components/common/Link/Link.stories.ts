@@ -13,7 +13,10 @@ const meta = {
     children: { control: 'text' },
     onClick: { action: 'clicked' },
     className: { control: 'text' },
-
+    target: {
+      control: 'select',
+      options: ['_blank', '_self', '_parent', '_top'],
+    },
     disabled: { control: 'boolean' },
     style: { control: 'object' },
   },
@@ -34,7 +37,7 @@ export const ExternalLink: Story = {
   args: {
     href: 'https://google.com.vn',
     children: 'Google VN',
-
+    target: '_blank',
     onClick: (e) => e.preventDefault(),
   },
 }

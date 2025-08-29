@@ -1,3 +1,5 @@
+'use client'
+
 import Select from '@components/common/Select/index'
 import TextField from '@components/common/TextField/index'
 import ImageIcon from '@components/common/ImageIcon'

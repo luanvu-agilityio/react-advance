@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useMemo, useState } from 'react'
 import CartItem from '@components/Cart/CartItem/CartItem'
 import { useToast } from '@stores/toastStore'

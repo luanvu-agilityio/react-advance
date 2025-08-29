@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Flex } from '@radix-ui/themes'
 import Link from '@components/common/Link'
 import { footerSections } from '@constants/footer-link'

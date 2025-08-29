@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useRef, useCallback } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { withErrorBoundary } from '@utils/withErrorBoundary'
@@ -114,7 +115,6 @@ const CheckoutPage = () => {
 /**
  * Error handling functions
  */
-const handleRetry = () => window.location.reload()
 
 const handleCheckoutError = (error: Error) => {
   console.error('Checkout Error:', error)
@@ -124,7 +124,7 @@ const handleCheckoutError = (error: Error) => {
  * Wrap the component with error boundary
  */
 const CheckoutPageWithErrorBoundary = withErrorBoundary(CheckoutPage, {
-  fallback: <CheckoutErrorFallback onRetry={handleRetry} />,
+  fallback: <CheckoutErrorFallback />,
   onError: handleCheckoutError,
 })
 

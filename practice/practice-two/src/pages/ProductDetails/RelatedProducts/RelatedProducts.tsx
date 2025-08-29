@@ -1,7 +1,5 @@
 import { ChevronRight } from 'lucide-react'
-import { Spinner } from '@radix-ui/themes'
 import { ProductCard } from '@components/ProductCard/ProductCard'
-import { useNavigate } from 'react-router-dom'
 import {
   Container,
   Header,
@@ -9,46 +7,23 @@ import {
   Title,
   ViewMoreLink,
 } from './RelatedProducts.styles'
+import type { Product } from 'types/Product'
 
-// Import the related products query hook
-import { useRelatedProducts } from '@hooks/useProductQuery'
-
-interface RelatedProductsProps {
-  currentProductId: number
+export interface RelatedProductsProps {
+  products: Product[]
   subcategory: string
 }
 
-const RelatedProducts = ({
-  currentProductId,
-  subcategory,
-}: RelatedProductsProps) => {
-  const navigate = useNavigate()
+const RelatedProducts = ({ products, subcategory }: RelatedProductsProps) => {
+  if (!products || products.length === 0) return null
 
-  const {
-    data: relatedProducts,
-    isLoading,
-    error,
-  } = useRelatedProducts(currentProductId, subcategory)
-
-  const handleViewMore = () => {
-    // Navigate to category page
-    const categoryPath = subcategory.toLowerCase().replace(/ /g, '-')
-    navigate(`/${categoryPath}`)
-  }
-
-  // Don't render anything if there's an error or no products
-  if (
-    error ||
-    (!isLoading && (!relatedProducts || relatedProducts.length === 0))
-  ) {
-    return null
-  }
+  const categoryPath = subcategory.toLowerCase().replace(/ /g, '-')
 
   return (
     <Container>
       <Header>
         <Title>Related products</Title>
-        <ViewMoreLink onClick={handleViewMore}>
+        <ViewMoreLink href={`/${categoryPath}`}>
           More products
           <ChevronRight
             size={15}
@@ -57,31 +32,16 @@ const RelatedProducts = ({
           />
         </ViewMoreLink>
       </Header>
-
-      {isLoading ? (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '40px 0',
-          }}
-        >
-          <Spinner size="3" />
-        </div>
-      ) : (
-        <ProductGrid>
-          {relatedProducts?.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              viewMode="grid"
-              onAddToWishlist={() =>
-                console.log('Add to wishlist:', product.id)
-              }
-            />
-          ))}
-        </ProductGrid>
-      )}
+      <ProductGrid>
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            viewMode="grid"
+            onAddToWishlist={() => console.log('Add to wishlist:', product.id)}
+          />
+        ))}
+      </ProductGrid>
     </Container>
   )
 }

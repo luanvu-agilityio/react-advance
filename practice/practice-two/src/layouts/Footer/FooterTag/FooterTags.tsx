@@ -1,3 +1,5 @@
+'use client'
+
 import Tag from '@components/common/Tag/index'
 import { memo, useMemo } from 'react'
 import { TagContainer, TagsContainer, Title } from './FooterTags.styles'

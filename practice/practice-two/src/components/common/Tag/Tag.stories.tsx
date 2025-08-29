@@ -53,7 +53,10 @@ const meta = {
     label: { control: 'text' },
     onClick: { action: 'clicked' },
     href: { control: 'text' },
-
+    target: {
+      control: 'select',
+      options: ['_blank', '_self', '_parent', '_top'],
+    },
     className: { control: 'text' },
     disabled: { control: 'boolean' },
   },
@@ -67,7 +70,7 @@ export const ButtonTag: Story = {
   args: {
     as: 'button',
     label: 'Button Tag',
-    onClick: () => console.log('Clicked'),
+    onClick: (e) => console.log('Clicked', e),
   },
 }
 
@@ -77,7 +80,7 @@ export const SelectedButtonTag: Story = {
     as: 'button',
     label: 'Selected Tag',
     variant: 'selected',
-    onClick: () => console.log('Clicked'),
+    onClick: (e) => console.log('Clicked', e),
   },
 }
 
@@ -87,7 +90,7 @@ export const DisabledButtonTag: Story = {
     as: 'button',
     label: 'Disabled Tag',
     variant: 'disabled',
-    onClick: () => console.log('Clicked'),
+    onClick: (e) => console.log('Clicked', e),
   },
 }
 

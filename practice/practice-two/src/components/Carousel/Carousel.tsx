@@ -1,3 +1,5 @@
+'use client'
+
 import { ArrowLeftRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useCarousel } from '@hooks/useCarousel'
 import { feedbacks } from '@constants/feedbacks'

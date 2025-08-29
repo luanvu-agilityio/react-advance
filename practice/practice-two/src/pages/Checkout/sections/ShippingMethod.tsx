@@ -1,3 +1,4 @@
+'use client'
 import { useCallback, useMemo, useEffect } from 'react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { useFormContext, Controller } from 'react-hook-form'

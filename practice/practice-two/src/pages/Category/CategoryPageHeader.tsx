@@ -1,3 +1,4 @@
+'use client'
 import { RadioGroup } from '@radix-ui/themes'
 import { ViewModeOption } from './ViewModeOption'
 

@@ -1,4 +1,13 @@
-import { useEffect, useState, useMemo, useCallback, useRef } from 'react'
+'use client'
+
+import {
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+  useRef,
+  useOptimistic,
+} from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 
 // Stores and Hooks
@@ -17,6 +26,7 @@ import ErrorDisplay from '@components/common/ErrorDisplay'
 import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
 import { CategoryPageHeader } from './CategoryPageHeader'
 import { NoResultsSection } from './NoResultSection'
+
 import ErrorBoundary from '@components/common/ErrorBoundary/ErrorBoundary'
 import SelectedTags from '@components/SelectedTag/SelectedTag'
 import { ProductsPerPage } from '@components/Pagination/ProductPerPage/ProductsPerPage'
@@ -34,6 +44,7 @@ import {
   FilterControlsWrapper,
 } from './CategoryStyles'
 import { getProductCountBySubcategory } from '@services/product'
+import { useToastStore } from '@stores/toastStore'
 
 /**
  * CategoryPage component displaying product listings with filtering capabilities
@@ -69,6 +80,7 @@ const CategoryPage = () => {
     resetFilters,
     setSearchQuery,
   } = useCategoryStore()
+  const prevSubcategoryRef = useRef(subcategory)
 
   const { selectedTags, clearTags } = useProductTagStore()
 
@@ -78,6 +90,10 @@ const CategoryPage = () => {
 
   // API data fetching
   const { data, isLoading, error, refetch } = useProductFetch(true)
+
+  const [optimisticProducts, setOptimisticProducts] = useOptimistic(
+    data?.data ?? []
+  )
 
   // Filter data for UI
   const { subcategories, categoryBrands } = useFilterOptions({
@@ -200,30 +216,139 @@ const CategoryPage = () => {
     window.scrollTo(0, 0)
   }
 
-  const handleSubcategoryClick = (subcategoryName: string) => {
+  const handleSubcategoryClick = async (subcategoryName: string) => {
+    prevSubcategoryRef.current = subcategory
     const newSubcategory =
       subcategoryName === subcategory ? '' : subcategoryName
+
+    const predictedProducts = (data?.data ?? []).filter((product) =>
+      newSubcategory ? product.subcategory === newSubcategory : true
+    )
+
+    setOptimisticProducts(predictedProducts)
     setSubcategory(newSubcategory || undefined)
+
+    await new Promise((res) => setTimeout(res, 1200))
+
+    try {
+      await refetch()
+      // throw new Error('Simulated subcategory filter error')
+    } catch (err) {
+      // Revert to previous subcategory and products if failed
+      setSubcategory(prevSubcategoryRef.current)
+      setOptimisticProducts(data?.data ?? [])
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : 'Could not update the product list for this subcategory'
+      useToastStore.getState().addToast({
+        title: 'Failed to apply subcategory filter',
+        description: errorMessage,
+        variant: 'error',
+        duration: 1500,
+      })
+    }
   }
 
-  const handleBrandSelect = (brandName: string, isSelected: boolean) => {
+  const handleBrandSelect = async (brandName: string, isSelected: boolean) => {
+    const prevBrands = selectedBrands
     const newBrands = isSelected
       ? [...selectedBrands, brandName]
       : selectedBrands.filter((brand) => brand !== brandName)
+
+    const predictedProducts = (data?.data ?? []).filter((product) =>
+      newBrands.length === 0 ? true : newBrands.includes(product.brand)
+    )
+
+    setOptimisticProducts(predictedProducts)
     setBrands(newBrands)
+
+    try {
+      await refetch()
+      // throw new Error('Simulated brand filter error')
+    } catch (err) {
+      setBrands(prevBrands)
+      setOptimisticProducts(data?.data ?? [])
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : 'Could not update the product list for this brand.'
+      useToastStore.getState().addToast({
+        title: 'Failed to apply brand filter',
+        description: errorMessage,
+        variant: 'error',
+        duration: 1500,
+      })
+    }
   }
 
-  const handleRatingSelect = (rating: number, isSelected: boolean) => {
+  const handleRatingSelect = async (rating: number, isSelected: boolean) => {
+    const prevRatings = selectedRatings
     const newRatings = isSelected
       ? [...selectedRatings, rating].sort((a, b) => b - a)
       : selectedRatings.filter((r) => r !== rating)
+
+    const predictedProducts = (data?.data ?? []).filter((product) =>
+      newRatings.length === 0
+        ? true
+        : newRatings.includes(Math.floor(product.rating))
+    )
+
+    setOptimisticProducts(predictedProducts)
     setRatings(newRatings)
+
+    await new Promise((res) => setTimeout(res, 1200))
+
+    try {
+      await refetch()
+      throw new Error('Simulated rating filter error')
+    } catch (err) {
+      setRatings(prevRatings)
+      setOptimisticProducts(data?.data ?? [])
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : 'Could not update the product list for this rating.'
+      useToastStore.getState().addToast({
+        title: 'Failed to apply rating filter',
+        description: errorMessage,
+        variant: 'error',
+        duration: 1500,
+      })
+    }
   }
 
-  const handlePriceRangeChange = (min: number, max: number) => {
-    setPriceRange({ min, max })
-  }
+  const handlePriceRangeChange = async (min: number, max: number) => {
+    const prevPriceRange = priceRange
+    const newPriceRange = { min, max }
 
+    const predictedProducts = (data?.data ?? []).filter(
+      (product) => product.price >= min && product.price <= max
+    )
+
+    setOptimisticProducts(predictedProducts)
+    setPriceRange(newPriceRange)
+
+    await new Promise((res) => setTimeout(res, 1200))
+
+    try {
+      await refetch()
+      // throw new Error('Simulated price filter error')
+    } catch (err) {
+      setPriceRange(prevPriceRange)
+      setOptimisticProducts(data?.data ?? [])
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : 'Could not update the product list for this price range.'
+      useToastStore.getState().addToast({
+        title: 'Failed to apply price filter',
+        description: errorMessage,
+        variant: 'error',
+        duration: 1500,
+      })
+    }
+  }
   const handleResetFilters = () => {
     resetFilters()
     clearTags()
@@ -235,15 +360,7 @@ const CategoryPage = () => {
       return <ErrorDisplay error={error.message} onRetry={refetch} />
     }
 
-    if (isLoading) {
-      return (
-        <div style={{ width: '100%', textAlign: 'center', padding: '2rem' }}>
-          <LoadingSpinner />
-        </div>
-      )
-    }
-
-    if (data?.data && data.data.length > 0) {
+    if (optimisticProducts && optimisticProducts.length > 0) {
       // If current page is beyond total pages, redirect to page 1
       if (currentPage > totalPages) {
         setTimeout(() => setPage(1), 0)
@@ -252,13 +369,21 @@ const CategoryPage = () => {
 
       return (
         <ProductListing
-          products={data.data}
+          products={optimisticProducts}
           viewMode={viewMode}
           currentPage={currentPage}
           totalProducts={totalProductCount}
           productsPerPage={displayLimit}
           onPageChange={handlePageChange}
         />
+      )
+    }
+
+    if (isLoading) {
+      return (
+        <div style={{ width: '100%', textAlign: 'center', padding: '2rem' }}>
+          <LoadingSpinner />
+        </div>
       )
     }
 

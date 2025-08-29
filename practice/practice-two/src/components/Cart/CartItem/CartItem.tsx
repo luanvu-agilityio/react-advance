@@ -1,3 +1,5 @@
+'use client'
+
 import { renderStars } from '@helpers/renderStar'
 import BuyingUnit from '@components/common/BuyingUnit/BuyingUnit'
 import type { CartItem as CartItemType } from 'types/cart-items'

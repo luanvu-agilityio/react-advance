@@ -1,5 +1,4 @@
 import { Button } from '@radix-ui/themes'
-import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const ErrorContainer = styled.div`
@@ -27,13 +26,7 @@ const ButtonContainer = styled.div`
   gap: 1rem;
 `
 
-interface CheckoutErrorFallbackProps {
-  onRetry?: () => void
-}
-
-const CheckoutErrorFallback = ({ onRetry }: CheckoutErrorFallbackProps) => {
-  const navigate = useNavigate()
-
+const CheckoutErrorFallback = () => {
   return (
     <ErrorContainer>
       <ErrorTitle>Checkout Error</ErrorTitle>
@@ -42,9 +35,12 @@ const CheckoutErrorFallback = ({ onRetry }: CheckoutErrorFallbackProps) => {
         a temporary issue with our system.
       </ErrorMessage>
       <ButtonContainer>
-        <Button onClick={onRetry}>Retry Checkout</Button>
-        <Button variant="outline" onClick={() => navigate('/cart')}>
-          Return to Cart
+        {/* Buttons are now just links, since server components can't handle client events */}
+        <Button asChild>
+          <a href="/checkout">Retry Checkout</a>
+        </Button>
+        <Button asChild variant="outline">
+          <a href="/cart">Return to Cart</a>
         </Button>
       </ButtonContainer>
     </ErrorContainer>

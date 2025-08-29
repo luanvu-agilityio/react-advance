@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, Flex } from '@radix-ui/themes'
 import { Heart, ChevronRight } from 'lucide-react'
 import {

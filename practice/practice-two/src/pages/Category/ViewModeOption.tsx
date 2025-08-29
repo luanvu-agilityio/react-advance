@@ -1,3 +1,5 @@
+'use client'
+
 import { Text, RadioGroup } from '@radix-ui/themes'
 import type { ViewModeOptionProps } from 'types/Category'
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, type MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCartStore } from '@stores/cartStore'

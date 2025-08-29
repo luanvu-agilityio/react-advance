@@ -1,3 +1,5 @@
+'use client'
+
 import { type ButtonHTMLAttributes, type ReactNode } from 'react'
 import { Button } from '@radix-ui/themes'
 // Button variant types

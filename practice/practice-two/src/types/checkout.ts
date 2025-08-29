@@ -1,3 +1,5 @@
+import type { CheckoutFormSchema } from '@utils/validation'
+
 export interface CheckoutFormData {
   billing: {
     firstName: string
@@ -34,7 +36,7 @@ export interface CheckoutFormData {
   }
 }
 export interface CheckoutState {
-  formData: CheckoutFormData
+  formData: CheckoutFormSchema
   errors: Record<string, string>
   currentStep: string
   isLoading: boolean

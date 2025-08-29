@@ -1,3 +1,5 @@
+'use client'
+
 import type { NoResultsSectionProps } from 'types/Category'
 
 import {

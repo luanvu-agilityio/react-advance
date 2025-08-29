@@ -1,3 +1,5 @@
+'use client'
+
 import { Filter, X } from 'lucide-react'
 import * as Dialog from '@radix-ui/react-dialog'
 import {

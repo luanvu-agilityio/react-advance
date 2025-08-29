@@ -1,3 +1,4 @@
+'use client'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import Link from '@components/common/Link'
 import { StyledButton, StyledContainer } from './Tag.style'

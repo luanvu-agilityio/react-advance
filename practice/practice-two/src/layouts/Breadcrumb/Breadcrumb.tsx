@@ -1,3 +1,5 @@
+'use client'
+
 import { useNavigate } from 'react-router-dom'
 import { SlashIcon } from '@radix-ui/react-icons'
 import type { CSSProperties } from 'react'

@@ -1,3 +1,5 @@
+'use client'
+
 import { useCategoryStore } from '@stores/categoryStore'
 import Select from '@components/common/Select'
 import { SelectWrapper } from '@components/Searchbar/Searchbar.styles'

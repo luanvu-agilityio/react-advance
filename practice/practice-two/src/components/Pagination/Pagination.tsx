@@ -1,3 +1,5 @@
+'use client'
+
 import { useCategoryStore } from '@stores/categoryStore'
 import { ProductCount } from './ProductCount/ProductCount'
 import { ChevronsLeft, ChevronsRight } from 'lucide-react'

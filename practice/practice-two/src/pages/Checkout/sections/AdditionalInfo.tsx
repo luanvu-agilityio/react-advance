@@ -1,3 +1,5 @@
+'use client'
+
 import { useFormContext, Controller } from 'react-hook-form'
 import {
   StepContainer,
@@ -7,7 +9,7 @@ import {
 } from '../CheckoutStyle'
 import FormError from '@components/common/FormError/FormError'
 import type { CheckoutFormData } from 'types/checkout'
-import { ValidationMessage } from '@config/validation/validation-message'
+import { ValidationMessage } from '@constants/validation-message'
 
 const AdditionalInfoSection = () => {
   const {

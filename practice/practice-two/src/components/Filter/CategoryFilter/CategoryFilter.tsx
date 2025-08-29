@@ -1,3 +1,5 @@
+'use client'
+
 import type { CategoryProps } from 'types/Filter'
 import {
   SectionTitle,

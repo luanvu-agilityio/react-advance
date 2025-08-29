@@ -1,3 +1,4 @@
+'use client'
 import { CheckIcon } from '@radix-ui/react-icons'
 import { useFormContext, Controller } from 'react-hook-form'
 import FormError from '@components/common/FormError/FormError'
@@ -16,7 +17,7 @@ import {
   CheckboxLabel,
 } from '../CheckoutStyle'
 import type { CheckoutFormData } from 'types/checkout'
-import { ValidationMessage } from '@config/validation/validation-message'
+import { ValidationMessage } from '@constants/validation-message'
 
 export const BillingInfoSection = () => {
   const { control, watch, setValue } = useFormContext<CheckoutFormData>()
@@ -47,7 +48,7 @@ export const BillingInfoSection = () => {
               <Controller
                 name={`billing.${field.name}`}
                 control={control}
-                rules={{ required: ValidationMessage.REQUIRED }}
+                rules={{ required: ValidationMessage.REQUIRED(field.name) }}
                 render={({ field: controllerField, fieldState }) => (
                   <>
                     <FormSelect
@@ -77,7 +78,7 @@ export const BillingInfoSection = () => {
                 name={`billing.${field.name}`}
                 control={control}
                 rules={{
-                  required: ValidationMessage.REQUIRED,
+                  required: ValidationMessage.REQUIRED(field.name),
                   minLength: {
                     value: 2,
                     message: ValidationMessage.MIN_LENGTH(field.name, 2),

@@ -1,3 +1,5 @@
+'use client'
+
 import { useFormContext, Controller } from 'react-hook-form'
 import { CheckIcon } from '@radix-ui/react-icons'
 import { useEffect, type CSSProperties, type FormEvent } from 'react'
@@ -11,9 +13,9 @@ import {
   StyledCheckbox,
   StyledCheckboxIndicator,
   CheckboxLabel,
-  SubmitButton,
 } from '../CheckoutStyle'
 import { useCheckoutStore } from '@stores/checkoutStore'
+import SubmitButtonWithStatus from './SubmitButton'
 
 interface ConsentOption {
   id: string
@@ -35,7 +37,7 @@ interface ConfirmationSectionProps {
 
 const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
   const {
-    formState: { isSubmitting, dirtyFields, isValid },
+    formState: { dirtyFields, isValid },
     control,
     trigger,
     watch,
@@ -82,7 +84,6 @@ const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
       name: 'additional.termsConsent',
       label: 'I agree with our terms and conditions and privacy policy.',
       required: true,
-
       validation: {
         required: 'You must accept the terms and conditions to proceed',
       },
@@ -243,17 +244,7 @@ const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {consentOptions.map(renderConsentOption)}
       </div>
-
-      <SubmitButton
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation()
-          e.preventDefault()
-          handleSubmitSuccess(e)
-        }}
-      >
-        {isSubmitting ? 'Processing...' : 'Complete order'}
-      </SubmitButton>
+      <SubmitButtonWithStatus onClick={handleSubmitSuccess} />
     </StepContainer>
   )
 }

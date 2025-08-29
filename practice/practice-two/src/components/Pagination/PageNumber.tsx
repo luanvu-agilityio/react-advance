@@ -1,3 +1,5 @@
+'use client'
+
 import type { PageNumbersProps } from 'types/Pagination'
 import { Ellipsis, PageButton, PageNumbersContainer } from './PaginationStyles'
 
