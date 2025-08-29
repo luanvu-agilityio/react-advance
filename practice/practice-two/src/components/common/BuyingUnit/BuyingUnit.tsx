@@ -84,7 +84,7 @@ const BuyingUnit = ({
           {unit}
           <ChevronDown size={12} />
         </SelectButton>
-        <DropdownList $isOpen={isOpen} data-testId="dropdown-list">
+        <DropdownList $isOpen={isOpen}>
           {units.map((option) => (
             <DropdownItem
               key={option}

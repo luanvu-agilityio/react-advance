@@ -28,3 +28,22 @@ export interface OrderExportConfig {
   orderDetailsRef: RefObject<HTMLDivElement | null>
   customerData: OrderSummaryProps
 }
+
+export type OrderState =
+  | {
+      error: string
+      success?: never
+      orderId?: undefined
+      estimatedDelivery?: undefined
+      processingDate?: undefined
+      data?: undefined
+    }
+  | {
+      success: boolean
+      orderId: string
+      estimatedDelivery: string
+      processingDate?: string
+      data?: { [k: string]: FormDataEntryValue }
+      error?: undefined
+    }
+  | null

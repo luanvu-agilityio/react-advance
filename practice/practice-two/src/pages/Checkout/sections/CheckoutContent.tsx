@@ -31,14 +31,7 @@ import FormErrorSummary from './FormErrorSummary'
 import OrderSummaryWithErrorBoundary from './OrderSummary'
 import ThankYouModalWithErrorBoundary from './ThankyouModal'
 import { submitOrderAction } from '../actions/submitOrderActions'
-
-type OrderState = {
-  success: boolean
-  orderId: string
-  estimatedDelivery: string
-  processingDate: string
-  data: { [k: string]: FormDataEntryValue }
-} | null
+import type { OrderState } from 'types/Order'
 
 const CheckoutContent = ({
   orderDetailsRef,
