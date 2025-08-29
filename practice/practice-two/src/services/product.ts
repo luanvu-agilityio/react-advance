@@ -328,16 +328,17 @@ const productApi = {
 /**
  * Gets product count for a specific subcategory
  */
-export const getProductCountBySubcategory = async (
+const subcategoryCountPromiseCache = new Map<string, Promise<number>>()
+
+export const getProductCountBySubcategory = (
   subcategory: string
 ): Promise<number> => {
-  try {
-    const response = await productApi.getProductCount({ subcategory })
-    return response
-  } catch (error) {
-    console.error('Error getting product count:', error)
-    return 0
+  if (subcategoryCountPromiseCache.has(subcategory)) {
+    return subcategoryCountPromiseCache.get(subcategory)!
   }
+  const promise = productApi.getProductCount({ subcategory })
+  subcategoryCountPromiseCache.set(subcategory, promise)
+  return promise
 }
 
 /**

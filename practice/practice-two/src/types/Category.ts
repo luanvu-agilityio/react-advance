@@ -1,5 +1,6 @@
 import type { BrandProps } from './Filter'
 import type { Product } from './Product'
+import type { ReactNode } from 'react'
 
 export interface Category {
   title: string
@@ -11,7 +12,7 @@ export interface CurrentCategory {
 
 export interface CategoryPageHeaderProps {
   title: string
-  productCount: number
+  productCount: number | ReactNode
   viewMode: string
   onViewModeChange: (value: string) => void
 }

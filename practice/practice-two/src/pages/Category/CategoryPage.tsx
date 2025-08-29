@@ -2,11 +2,11 @@
 
 import {
   useEffect,
-  useState,
   useMemo,
   useCallback,
   useRef,
   useOptimistic,
+  Suspense,
 } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 
@@ -43,9 +43,10 @@ import {
   PageContainer,
   FilterControlsWrapper,
 } from './CategoryStyles'
-import { getProductCountBySubcategory } from '@services/product'
+
 import { useToastStore } from '@stores/toastStore'
 import type { Product } from 'types/Product'
+import { ProductCountSuspense } from './ProductCountSuspense'
 
 /**
  * CategoryPage component displaying product listings with filtering capabilities
@@ -54,7 +55,6 @@ const CategoryPage = () => {
   // --------- STATE & STORE ACCESS ---------
   const location = useLocation()
   const { categoryPath } = useParams()
-  const [productCount, setProductCount] = useState<number | null>(null)
 
   // Get category data from URL and hook
   const { currentCategory, productsInCategory, searchQuery } =
@@ -116,7 +116,7 @@ const CategoryPage = () => {
   })
 
   // --------- DERIVED STATE ---------
-  const totalProductCount = productCount ?? data?.total ?? 0
+  const totalProductCount = data?.total ?? 0
   const totalPages = Math.max(1, Math.ceil(totalProductCount / displayLimit))
 
   const displayTitle = useMemo(
@@ -205,20 +205,6 @@ const CategoryPage = () => {
     setSearchQuery,
     resetFilters,
   ])
-
-  // Effect: Get accurate product count by subcategory
-  useEffect(() => {
-    const fetchAccurateCount = async () => {
-      if (subcategory) {
-        const count = await getProductCountBySubcategory(subcategory)
-        setProductCount(count)
-      } else {
-        setProductCount(null)
-      }
-    }
-
-    fetchAccurateCount()
-  }, [subcategory])
 
   // --------- EVENT HANDLERS ---------
   const handlePageChange = (page: number) => {
@@ -414,7 +400,15 @@ const CategoryPage = () => {
         title={displayTitle}
         viewMode={viewMode}
         onViewModeChange={setViewMode}
-        productCount={totalProductCount}
+        productCount={
+          subcategory ? (
+            <Suspense fallback={0}>
+              <ProductCountSuspense subcategory={subcategory} />
+            </Suspense>
+          ) : (
+            totalProductCount
+          )
+        }
       />
 
       <FilterControlsWrapper>
