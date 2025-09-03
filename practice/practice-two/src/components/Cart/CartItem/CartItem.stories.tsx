@@ -60,8 +60,12 @@ const baseCartItem: CartItemType = {
   category: 'Vegetables',
   subcategory: 'Fresh Produce',
   rating: 4,
-  imageUrl:
-    'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372403/tomato_sample.jpg',
+  images: {
+    main: 'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372403/tomato_sample.jpg',
+    gallery: [
+      'https://res.cloudinary.com/ds82onf5q/image/upload/v1748372403/tomato_sample.jpg',
+    ],
+  },
   discountPercentage: 29,
   farm: 'Green Valley Farm',
   freshness: 'New (1 day)',

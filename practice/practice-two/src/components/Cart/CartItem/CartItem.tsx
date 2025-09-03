@@ -40,7 +40,7 @@ const CartItem = ({
         }}
       >
         <ItemImage>
-          <img src={item.imageUrl} alt={item.title} />
+          <img src={item?.images?.main} alt={item.title} />
         </ItemImage>
         <ActionButtons>
           <ActionButton>

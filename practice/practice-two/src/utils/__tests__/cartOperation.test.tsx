@@ -12,7 +12,7 @@ describe('Cart Operations', () => {
     id: 1,
     title: 'Apple',
     price: 2.5,
-    imageUrl: 'apple.jpg',
+
     farm: 'Organic Farm',
     freshness: 'New',
     rating: 4.5,
@@ -35,7 +35,7 @@ describe('Cart Operations', () => {
     id: 2,
     title: 'Orange',
     price: 1.5,
-    imageUrl: 'orange.jpg',
+
     farm: 'Citrus Grove',
     freshness: 'Fresh',
     rating: 4.0,
@@ -62,7 +62,10 @@ describe('Cart Operations', () => {
       price: 2.5,
       quantity: 2,
       buyUnit: 'kg',
-      imageUrl: 'apple.jpg',
+      images: {
+        main: 'apple.jpg',
+        gallery: ['apple-2.jpg'],
+      },
       farm: 'Organic Farm',
       freshness: 'New',
       rating: 4.5,
@@ -148,7 +151,10 @@ describe('Cart Operations', () => {
           price: 1.5,
           quantity: 3,
           buyUnit: 'kg',
-          imageUrl: 'orange.jpg',
+          images: {
+            main: 'orange.jpg',
+            gallery: ['orange-2.jpg'],
+          },
           farm: 'Citrus Grove',
           freshness: 'Fresh',
           rating: 4.0,

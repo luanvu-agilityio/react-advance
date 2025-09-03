@@ -8,7 +8,10 @@ export interface CartItem
   quantity: number
   buyUnit: string
   originalPrice?: number
-  imageUrl?: string
+  images: {
+    main: string
+    gallery: string[]
+  }
   farm?: string
   freshness?: string
   rating?: number

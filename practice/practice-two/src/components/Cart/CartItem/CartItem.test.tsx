@@ -64,7 +64,6 @@ describe('CartItem Component', () => {
     category: 'Test Category',
     subcategory: 'Test Subcategory',
     rating: 4,
-    imageUrl: 'https://test-image.jpg',
     discountPercentage: 23,
     farm: 'Test Farm',
     freshness: 'Fresh (1 day)',
@@ -76,6 +75,7 @@ describe('CartItem Component', () => {
     freeShipping: true,
     quantity: 2,
     buyUnit: 'kg',
+    images: { main: 'test-image.jpg', gallery: ['test-image.jpg'] }, // Add a mock image object
   }
 
   const mockProps = {

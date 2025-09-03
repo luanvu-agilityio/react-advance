@@ -37,7 +37,7 @@ describe('useProductNavigation', () => {
       freshness: 'New',
       farm: 'Apple Farm',
       freeShipping: true,
-      imageUrl: 'iphone.jpg',
+
       tags: ['phone', 'apple', 'smartphone'],
       images: {
         main: 'iphone_main.jpg',
@@ -63,7 +63,7 @@ describe('useProductNavigation', () => {
       freshness: 'New',
       farm: 'Samsung Farm',
       freeShipping: true,
-      imageUrl: 'samsung.jpg',
+
       tags: ['phone', 'samsung', 'smartphone'],
       images: {
         main: 'samsung_main.jpg',
@@ -92,7 +92,7 @@ describe('useProductNavigation', () => {
     freshness: 'New',
     farm: 'Generic Farm',
     freeShipping: false,
-    imageUrl: 'generic.jpg',
+
     tags: ['generic', 'budget'],
     images: {
       main: 'generic_main.jpg',
