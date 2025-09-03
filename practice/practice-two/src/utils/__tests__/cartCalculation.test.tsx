@@ -14,7 +14,10 @@ describe('Cart Calculation Utilities', () => {
       title: 'Product 1',
       price: 100,
       quantity: 2,
-      imageUrl: '',
+      images: {
+        main: '',
+        gallery: [],
+      },
       buyUnit: 'kg',
     },
     {
@@ -22,7 +25,10 @@ describe('Cart Calculation Utilities', () => {
       title: 'Product 2',
       price: 50,
       quantity: 1,
-      imageUrl: '',
+      images: {
+        main: '',
+        gallery: [],
+      },
       buyUnit: 'pcs',
     },
     {
@@ -30,7 +36,10 @@ describe('Cart Calculation Utilities', () => {
       title: 'Product 3',
       price: 75,
       quantity: 3,
-      imageUrl: '',
+      images: {
+        main: '',
+        gallery: [],
+      },
       buyUnit: 'box',
     },
   ]

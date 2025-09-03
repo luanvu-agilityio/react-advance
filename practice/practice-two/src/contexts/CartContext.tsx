@@ -85,7 +85,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           quantity,
           buyUnit,
           originalPrice: product.originalPrice,
-          imageUrl: product.imageUrl,
+          images: product.images ?? { main: '', gallery: [] },
           farm: product.farm,
           freshness: product.freshness,
           rating: product.rating,

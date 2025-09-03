@@ -27,7 +27,7 @@ export const addItemToCart = (
       price: product.price,
       quantity,
       buyUnit,
-      imageUrl: product.imageUrl,
+      images: product.images ?? { main: '', gallery: [] },
       farm: product.farm,
       freshness: product.freshness,
       rating: product.rating,
