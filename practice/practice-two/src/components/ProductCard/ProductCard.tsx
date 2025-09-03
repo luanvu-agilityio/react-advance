@@ -60,7 +60,7 @@ export const ProductCard = memo(
       originalPrice,
       discountPercentage,
       rating,
-      imageUrl,
+      images,
       delivery,
       farm,
       freshness,
@@ -94,7 +94,7 @@ export const ProductCard = memo(
             category,
             subcategory,
             rating: rating,
-            imageUrl,
+            images: images,
             discountPercentage,
             farm: farm,
             freshness: freshness,
@@ -125,7 +125,7 @@ export const ProductCard = memo(
         category,
         subcategory,
         rating,
-        imageUrl,
+        images,
         discountPercentage,
         farm,
         freshness,
@@ -267,9 +267,9 @@ export const ProductCard = memo(
     return (
       <Card $variant={variant} onClick={handleClick}>
         <CardImage $variant={variant}>
-          {imageUrl && (
+          {images?.main && (
             <img
-              src={imageUrl}
+              src={images.main}
               alt={title}
               style={{ objectFit: 'cover', width: '100%', height: '100%' }}
             />

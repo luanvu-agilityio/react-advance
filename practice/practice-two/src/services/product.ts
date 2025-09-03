@@ -270,13 +270,26 @@ const productApi = {
     productId: number,
     subcategory: string
   ): Promise<Product[]> => {
-    // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 400))
+    try {
+      // Fetch products from the same subcategory via API
+      const response = await productApi.getProducts({
+        subcategory: subcategory,
+        l: 20, // Fetch more than needed to filter out current product
+      })
 
-    // Find products in the same subcategory, excluding the current product
-    return productData
-      .filter((p) => p.subcategory === subcategory && p.id !== productId)
-      .slice(0, 4)
+      // Filter out the current product and limit to 4 items
+      const relatedProducts = response.data
+        .filter((product: Product) => product.id !== productId)
+        .slice(0, 4)
+
+      return relatedProducts
+    } catch (error) {
+      console.error('Error fetching related products:', error)
+      // Fallback to local data if API fails
+      return productData
+        .filter((p) => p.subcategory === subcategory && p.id !== productId)
+        .slice(0, 4)
+    }
   },
 
   /**

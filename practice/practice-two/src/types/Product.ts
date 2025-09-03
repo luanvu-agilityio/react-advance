@@ -19,7 +19,6 @@ export interface Product {
   farm: string
   stock: string
   freeShipping: boolean
-  imageUrl: string
   brand: string
   category: string
   subcategory: string
