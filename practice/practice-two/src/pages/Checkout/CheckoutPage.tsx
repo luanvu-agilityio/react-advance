@@ -94,7 +94,7 @@ const CheckoutPage = () => {
   const orderDetailsRef = useRef<HTMLDivElement>(null)
 
   // Get form handling logic
-  const { methods, handleSubmit } = useCheckoutForm()
+  const { methods } = useCheckoutForm()
 
   // Success callback when checkout completes
   const handleCheckoutSuccess = useCallback(() => {
@@ -105,7 +105,6 @@ const CheckoutPage = () => {
     <FormProvider {...methods}>
       <CheckoutContent
         orderDetailsRef={orderDetailsRef}
-        onSubmit={methods.handleSubmit(handleSubmit)}
         onCheckoutSuccess={handleCheckoutSuccess}
       />
     </FormProvider>

@@ -29,3 +29,14 @@ export interface TabData {
     }>
   }
 }
+
+export interface RawTabData {
+  productId: number
+  originsText: string
+  cookingInfoText: string
+  vitaminsJson?: string
+  reviewsCount: number
+  reviewsJson?: string
+  questionsCount: number
+  questionsJson?: string
+}

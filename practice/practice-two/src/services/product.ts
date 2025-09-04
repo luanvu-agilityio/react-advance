@@ -14,8 +14,7 @@
 import type { Product } from 'types/Product'
 import axios, { AxiosError } from 'axios'
 import { productData } from '@data/product-data'
-import { getTabDataByProductId } from '@data/tab-data'
-import type { TabData } from 'types/tab-data'
+import type { RawTabData, TabData } from 'types/tab-data'
 import type { SortOrder } from 'types/sort-order'
 
 // Base URL for the product API
@@ -248,15 +247,77 @@ const productApi = {
   },
 
   /**
-   * Fetches additional tab data for product details page
-   *
-   * @param id - Product ID to fetch tab data for
-   * @returns Promise containing tab data (description, specs, reviews)
+   * Fetches additional tab data for product details page from MockAPI
    */
   getTabDataByProductId: async (id: number): Promise<TabData> => {
-    await new Promise((resolve) => setTimeout(resolve, 200))
-    const tabData = getTabDataByProductId(id)
-    return { id, ...tabData }
+    try {
+      const response = await axios.get(`${API_BASE_URL}/productTabData`, {
+        params: { productId: id },
+        timeout: 10000,
+      })
+
+      const tabData = (response.data as RawTabData[]).find(
+        (item) => item.productId === id
+      )
+
+      if (!tabData) {
+        return {
+          id,
+          description: {
+            origins:
+              'We work hard to ensure that our products are fresh and high in quality.',
+            cookingInfo:
+              'This product can be used in various recipes to enhance your meals.',
+            vitamins: [],
+          },
+          reviews: { count: 0, items: [] },
+          questions: { count: 0, items: [] },
+        }
+      }
+
+      // Parse JSON strings back to objects
+      const vitamins = tabData.vitaminsJson
+        ? JSON.parse(tabData.vitaminsJson)
+        : []
+      const reviewItems = tabData.reviewsJson
+        ? JSON.parse(tabData.reviewsJson)
+        : []
+      const questionItems = tabData.questionsJson
+        ? JSON.parse(tabData.questionsJson)
+        : []
+
+      return {
+        id,
+        description: {
+          origins: tabData.originsText,
+          cookingInfo: tabData.cookingInfoText,
+          vitamins,
+        },
+        reviews: {
+          count: tabData.reviewsCount,
+          items: reviewItems,
+        },
+        questions: {
+          count: tabData.questionsCount,
+          items: questionItems,
+        },
+      }
+    } catch (error) {
+      console.error('Error fetching tab data:', error)
+
+      return {
+        id,
+        description: {
+          origins:
+            'We work hard to ensure that our products are fresh and high in quality.',
+          cookingInfo:
+            'This product can be used in various recipes to enhance your meals.',
+          vitamins: [],
+        },
+        reviews: { count: 0, items: [] },
+        questions: { count: 0, items: [] },
+      }
+    }
   },
 
   /**

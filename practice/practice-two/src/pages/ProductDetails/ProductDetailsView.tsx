@@ -41,7 +41,7 @@ import type { TabData } from 'types/tab-data'
 import RelatedProducts from './RelatedProducts/RelatedProducts'
 
 // Props are passed from the server component
-const ProductDetailsClient = ({
+const ProductDetailsView = ({
   product,
   productTabData,
   relatedProducts,
@@ -274,4 +274,4 @@ const ProductDetailsClient = ({
   )
 }
 
-export default ProductDetailsClient
+export default ProductDetailsView

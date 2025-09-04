@@ -1,9 +1,32 @@
 import type { RefObject } from 'react'
+import type { CartItem } from './cart-items'
 
 export interface OrderItem {
   name: string
   quantity: number
   price: number
+}
+
+export interface CreatedOrder {
+  id: string
+  customerEmail: string
+  customerFirstName: string
+  customerLastName: string
+  customerPhone: string
+  customerAddress: string
+  customerCity: string
+  customerCountry: string
+  customerZip: string
+  paymentMethod: string
+  termsConsent: boolean
+  items: CartItem[]
+  subtotal: number
+  tax: number
+  shippingCost: number
+  total: number
+  orderDate: string
+  status: string
+  formData: Record<string, unknown>
 }
 
 export interface OrderSummaryProps {
@@ -29,21 +52,20 @@ export interface OrderExportConfig {
   customerData: OrderSummaryProps
 }
 
-export type OrderState =
-  | {
-      error: string
-      success?: never
-      orderId?: undefined
-      estimatedDelivery?: undefined
-      processingDate?: undefined
-      data?: undefined
-    }
-  | {
-      success: boolean
-      orderId: string
-      estimatedDelivery: string
-      processingDate?: string
-      data?: { [k: string]: FormDataEntryValue }
-      error?: undefined
-    }
-  | null
+export type OrderState = {
+  success: boolean
+  orderId?: string
+  estimatedDelivery?: string
+  processingDate?: string
+  data?:
+    | { [k: string]: FormDataEntryValue }
+    | {
+        customerName?: string
+        customerEmail?: string
+        orderTotal?: number
+        itemCount?: number
+      }
+  error?: string
+  message?: string
+  errors?: Record<string, string>
+}

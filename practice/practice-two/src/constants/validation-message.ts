@@ -1,5 +1,5 @@
 export const ValidationMessage = {
-  REQUIRED: (field: string) => `${field} is required`,
+  REQUIRED: (fieldLabel: string) => `${fieldLabel} is required`,
   EMAIL: 'Please enter a valid email address',
   PHONE: 'Please enter a valid phone number',
   ZIP: 'Please enter a valid ZIP/Postal code',

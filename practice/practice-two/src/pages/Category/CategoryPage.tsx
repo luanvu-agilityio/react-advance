@@ -7,6 +7,7 @@ import {
   useRef,
   useOptimistic,
   Suspense,
+  useState,
 } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 
@@ -47,6 +48,8 @@ import {
 import { useToastStore } from '@stores/toastStore'
 import type { Product } from 'types/Product'
 import { ProductCountSuspense } from './ProductCountSuspense'
+import { optimisticProductUpdater } from '@utils/optimisticUpdater'
+import type { OptimisticAction } from 'types/optimistic-action'
 
 /**
  * CategoryPage component displaying product listings with filtering capabilities
@@ -55,6 +58,7 @@ const CategoryPage = () => {
   // --------- STATE & STORE ACCESS ---------
   const location = useLocation()
   const { categoryPath } = useParams()
+  const [isRefetching, setIsRefetching] = useState(false)
 
   // Get category data from URL and hook
   const { currentCategory, productsInCategory, searchQuery } =
@@ -81,7 +85,7 @@ const CategoryPage = () => {
     resetFilters,
     setSearchQuery,
   } = useCategoryStore()
-  const prevSubcategoryRef = useRef(subcategory)
+  // const prevSubcategoryRef = useRef(subcategory)
 
   const { selectedTags, clearTags } = useProductTagStore()
 
@@ -92,16 +96,14 @@ const CategoryPage = () => {
   // API data fetching
   const { data, isLoading, error, refetch } = useProductFetch(true)
 
-  const [optimisticProducts, setOptimisticProducts] = useOptimistic(
-    data?.data ?? [],
-    (currentProducts: Product[], predictedProducts: Product[]) => {
-      const merged = [
-        ...predictedProducts,
-        ...currentProducts.filter(
-          (p) => !predictedProducts.some((np) => np.id === p.id)
-        ),
-      ]
-      return merged
+  const [optimisticProducts, addOptimisticUpdate] = useOptimistic(
+    data?.data ?? [], // Current state
+    (currentProducts: Product[], action: OptimisticAction): Product[] => {
+      return optimisticProductUpdater(
+        currentProducts,
+        action,
+        productsInCategory
+      )
     }
   )
 
@@ -213,26 +215,28 @@ const CategoryPage = () => {
   }
 
   const handleSubcategoryClick = async (subcategoryName: string) => {
-    prevSubcategoryRef.current = subcategory
+    const prevSubcategory = subcategory
     const newSubcategory =
       subcategoryName === subcategory ? '' : subcategoryName
 
-    const predictedProducts = (data?.data ?? []).filter((product) =>
-      newSubcategory ? product.subcategory === newSubcategory : true
-    )
+    addOptimisticUpdate({
+      type: 'FILTER_SUBCATEGORY',
+      subcategory: newSubcategory,
+    })
 
-    setOptimisticProducts(predictedProducts)
     setSubcategory(newSubcategory || undefined)
-
-    await new Promise((res) => setTimeout(res, 1200))
-
+    setIsRefetching(true)
     try {
       await refetch()
       // throw new Error('Simulated subcategory filter error')
     } catch (err) {
       // Revert to previous subcategory and products if failed
-      setSubcategory(prevSubcategoryRef.current)
-      setOptimisticProducts(data?.data ?? [])
+      setSubcategory(prevSubcategory)
+      addOptimisticUpdate({
+        type: 'FILTER_SUBCATEGORY',
+        subcategory: prevSubcategory || '',
+      })
+
       const errorMessage =
         err instanceof Error
           ? err.message
@@ -243,6 +247,8 @@ const CategoryPage = () => {
         variant: 'error',
         duration: 1500,
       })
+    } finally {
+      setIsRefetching(false)
     }
   }
 
@@ -252,19 +258,24 @@ const CategoryPage = () => {
       ? [...selectedBrands, brandName]
       : selectedBrands.filter((brand) => brand !== brandName)
 
-    const predictedProducts = (data?.data ?? []).filter((product) =>
-      newBrands.length === 0 ? true : newBrands.includes(product.brand)
-    )
+    addOptimisticUpdate({
+      type: 'FILTER_BRANDS',
+      brands: newBrands,
+    })
 
-    setOptimisticProducts(predictedProducts)
     setBrands(newBrands)
+    setIsRefetching(true)
 
     try {
       await refetch()
       // throw new Error('Simulated brand filter error')
     } catch (err) {
       setBrands(prevBrands)
-      setOptimisticProducts(data?.data ?? [])
+      addOptimisticUpdate({
+        type: 'FILTER_BRANDS',
+        brands: prevBrands,
+      })
+
       const errorMessage =
         err instanceof Error
           ? err.message
@@ -275,6 +286,8 @@ const CategoryPage = () => {
         variant: 'error',
         duration: 1500,
       })
+    } finally {
+      setIsRefetching(false)
     }
   }
 
@@ -284,23 +297,24 @@ const CategoryPage = () => {
       ? [...selectedRatings, rating].sort((a, b) => b - a)
       : selectedRatings.filter((r) => r !== rating)
 
-    const predictedProducts = (data?.data ?? []).filter((product) =>
-      newRatings.length === 0
-        ? true
-        : newRatings.includes(Math.floor(product.rating))
-    )
+    addOptimisticUpdate({
+      type: 'FILTER_RATINGS',
+      ratings: newRatings,
+    })
 
-    setOptimisticProducts(predictedProducts)
     setRatings(newRatings)
-
-    await new Promise((res) => setTimeout(res, 1200))
+    setIsRefetching(true)
 
     try {
       await refetch()
       throw new Error('Simulated rating filter error')
     } catch (err) {
       setRatings(prevRatings)
-      setOptimisticProducts(data?.data ?? [])
+      addOptimisticUpdate({
+        type: 'FILTER_RATINGS',
+        ratings: prevRatings,
+      })
+
       const errorMessage =
         err instanceof Error
           ? err.message
@@ -311,28 +325,34 @@ const CategoryPage = () => {
         variant: 'error',
         duration: 1500,
       })
+    } finally {
+      setIsRefetching(false)
     }
   }
 
   const handlePriceRangeChange = async (min: number, max: number) => {
     const prevPriceRange = priceRange
-    const newPriceRange = { min, max }
 
-    const predictedProducts = (data?.data ?? []).filter(
-      (product) => product.price >= min && product.price <= max
-    )
+    addOptimisticUpdate({
+      type: 'FILTER_PRICE',
+      min,
+      max,
+    })
 
-    setOptimisticProducts(predictedProducts)
-    setPriceRange(newPriceRange)
-
-    await new Promise((res) => setTimeout(res, 1200))
+    setPriceRange({ min, max })
+    setIsRefetching(true)
 
     try {
       await refetch()
-      // throw new Error('Simulated price filter error')
+      throw new Error('Simulated price filter error')
     } catch (err) {
       setPriceRange(prevPriceRange)
-      setOptimisticProducts(data?.data ?? [])
+      addOptimisticUpdate({
+        type: 'FILTER_PRICE',
+        min: prevPriceRange.min,
+        max: prevPriceRange.max,
+      })
+
       const errorMessage =
         err instanceof Error
           ? err.message
@@ -343,6 +363,8 @@ const CategoryPage = () => {
         variant: 'error',
         duration: 1500,
       })
+    } finally {
+      setIsRefetching(false)
     }
   }
   const handleResetFilters = () => {
@@ -375,7 +397,7 @@ const CategoryPage = () => {
       )
     }
 
-    if (isLoading) {
+    if (isLoading || isRefetching) {
       return (
         <div style={{ width: '100%', textAlign: 'center', padding: '2rem' }}>
           <LoadingSpinner />

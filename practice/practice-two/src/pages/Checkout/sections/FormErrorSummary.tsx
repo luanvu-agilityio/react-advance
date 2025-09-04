@@ -1,8 +1,8 @@
 'use client'
 
 import { useFormContext } from 'react-hook-form'
-
 import type { FieldErrors } from 'react-hook-form'
+import type { OrderState } from 'types/Order'
 import {
   ErrorItem,
   ErrorList,
@@ -10,12 +10,22 @@ import {
   ErrorSummaryContainer,
 } from '../CheckoutStyle'
 
-const FormErrorSummary = () => {
+interface FormErrorSummaryProps {
+  serverErrors?: OrderState['errors']
+  title?: string
+}
+
+const FormErrorSummary = ({
+  serverErrors,
+  title = 'Please fix the following errors:',
+}: FormErrorSummaryProps) => {
   const {
-    formState: { errors },
+    formState: { errors: clientErrors },
   } = useFormContext()
 
-  const hasErrors = Object.keys(errors).length > 0
+  const hasClientErrors = Object.keys(clientErrors).length > 0
+  const hasServerErrors = serverErrors && Object.keys(serverErrors).length > 0
+  const hasErrors = hasClientErrors || hasServerErrors
 
   if (!hasErrors) return null
 
@@ -28,8 +38,8 @@ const FormErrorSummary = () => {
 
   const errorMessages: string[] = []
 
-  // More robust error extraction function that handles React Hook Form's error structure
-  const extractErrors = (obj: FieldErrors, path: string = '') => {
+  // Extract React Hook Form client-side errors
+  const extractClientErrors = (obj: FieldErrors, path: string = '') => {
     if (!obj || typeof obj !== 'object') return
 
     Object.entries(obj).forEach(([key, value]) => {
@@ -41,18 +51,38 @@ const FormErrorSummary = () => {
       }
       // Handle case where value is a nested object with more errors
       else if (value && typeof value === 'object') {
-        extractErrors(value as FieldErrors, newPath)
+        extractClientErrors(value as FieldErrors, newPath)
       }
     })
   }
 
-  extractErrors(errors)
+  // Extract server-side errors
+  const extractServerErrors = (serverErrs: Record<string, string>) => {
+    Object.entries(serverErrs).forEach(([field, message]) => {
+      // Format server error field names to be user-friendly
+      const formattedField = formatErrorPath(field)
+      errorMessages.push(`${formattedField}: ${message}`)
+    })
+  }
+
+  // Process client errors if present
+  if (hasClientErrors) {
+    extractClientErrors(clientErrors)
+  }
+
+  // Process server errors if present
+  if (hasServerErrors) {
+    extractServerErrors(serverErrors!)
+  }
+
+  // Remove duplicates (in case both client and server have same error)
+  const uniqueErrorMessages = [...new Set(errorMessages)]
 
   return (
     <ErrorSummaryContainer>
-      <ErrorTitle>Please fix the following errors:</ErrorTitle>
+      <ErrorTitle>{title}</ErrorTitle>
       <ErrorList>
-        {errorMessages.map((message, index) => (
+        {uniqueErrorMessages.map((message, index) => (
           <ErrorItem key={index}>{message}</ErrorItem>
         ))}
       </ErrorList>

@@ -21,41 +21,65 @@ import {
   useActionState,
   useEffect,
   useState,
-  type FormEvent,
+  useRef,
   type RefObject,
 } from 'react'
 import { Form } from '@radix-ui/react-form'
 import SecurityNoticeSection from './SecurityNotice'
 import Breadcrumbs from '@layouts/Breadcrumb/Breadcrumb'
-import FormErrorSummary from './FormErrorSummary'
 import OrderSummaryWithErrorBoundary from './OrderSummary'
 import ThankYouModalWithErrorBoundary from './ThankyouModal'
 import { submitOrderAction } from '../actions/submitOrderActions'
 import type { OrderState } from 'types/Order'
+import { useToast } from '@stores/toastStore'
+import FormErrorSummary from './FormErrorSummary'
 
 const CheckoutContent = ({
   orderDetailsRef,
-  onSubmit,
   onCheckoutSuccess,
 }: {
   orderDetailsRef: RefObject<HTMLDivElement | null>
-  onSubmit: (e: FormEvent) => void
   onCheckoutSuccess?: () => void
 }) => {
   const [showThankYou, setShowThankYou] = useState(false)
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
+  const [hasShownToast, setHasShownToast] = useState(false)
   const isMobile = useMediaQuery('(max-width: 1023px)')
-  const { currentStep, setCurrentStep } = useCheckoutStore()
+  const { currentStep, setCurrentStep, setFormData } = useCheckoutStore()
+  const { toast } = useToast()
 
-  const { formState } = useFormContext()
+  const { formState, watch, getValues } = useFormContext()
   const { isSubmitted: formIsSubmitted, errors } = formState
 
+  const formData = watch()
+  const formDataRef = useRef(formData)
+
+  // React 19 server action with useActionState
   const [orderState, submitOrder] = useActionState(
-    async (_state: OrderState, formData: FormData) => {
+    async (_state: OrderState | null, formData: FormData) => {
+      setIsFormSubmitted(true)
+      setHasShownToast(false)
       return await submitOrderAction(formData)
     },
     null
   )
+
+  useEffect(() => {
+    const hasFormDataChanged =
+      JSON.stringify(formData) !== JSON.stringify(formDataRef.current)
+
+    if (
+      hasFormDataChanged &&
+      orderState &&
+      !orderState.success &&
+      hasShownToast
+    ) {
+      setHasShownToast(false)
+      setIsFormSubmitted(false)
+    }
+
+    formDataRef.current = formData
+  }, [formData, orderState, hasShownToast])
 
   useEffect(() => {
     if (formIsSubmitted) {
@@ -63,27 +87,38 @@ const CheckoutContent = ({
     }
   }, [formIsSubmitted])
 
+  // Handle server action response
   useEffect(() => {
-    if (orderState?.success) {
-      setShowThankYou(true)
-      if (onCheckoutSuccess) {
-        onCheckoutSuccess()
+    if (orderState && !hasShownToast) {
+      if (orderState.success) {
+        const currentFormData = getValues()
+        setFormData(currentFormData)
+        setShowThankYou(true)
+        setHasShownToast(true)
+
+        if (onCheckoutSuccess) {
+          onCheckoutSuccess()
+        }
+
+        toast({
+          title: 'Order Submitted!',
+          description: orderState.message,
+          variant: 'success',
+          duration: 3000,
+        })
+      } else {
+        setHasShownToast(true)
+
+        toast({
+          title: 'Order Failed',
+          description: orderState.message,
+          variant: 'error',
+          duration: 3000,
+        })
       }
     }
-  }, [orderState, onCheckoutSuccess])
+  }, [orderState, hasShownToast, onCheckoutSuccess, toast])
 
-  const handleSubmit = (e: FormEvent) => {
-    setIsFormSubmitted(true)
-    onSubmit(e)
-  }
-
-  const handleCheckoutSuccess = () => {
-    setShowThankYou(true)
-
-    if (onCheckoutSuccess) {
-      onCheckoutSuccess()
-    }
-  }
   const checkoutSteps = [
     {
       id: 'billing',
@@ -124,21 +159,30 @@ const CheckoutContent = ({
       description:
         'We are getting to the end. Just few clicks and your order is ready!',
       isComplete: formState.dirtyFields?.confirmation,
-      content: <ConfirmationSection onSuccess={handleCheckoutSuccess} />,
+      content: <ConfirmationSection />,
     },
   ]
+
+  const shouldShowErrors =
+    isFormSubmitted &&
+    (Object.keys(errors).length > 0 ||
+      (orderState?.errors && Object.keys(orderState.errors).length > 0))
 
   return (
     <CheckoutContainer>
       <Breadcrumbs />
 
-      <Form onSubmit={handleSubmit} action={submitOrder}>
+      {/* React 19 Form with server action */}
+      <Form action={submitOrder}>
         <CheckoutGrid>
           <div
             style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}
           >
-            {isFormSubmitted && Object.keys(errors).length > 0 && (
-              <FormErrorSummary />
+            {shouldShowErrors && (
+              <FormErrorSummary
+                serverErrors={orderState?.errors}
+                title="Please fix the following errors:"
+              />
             )}
 
             {isMobile ? (
@@ -187,4 +231,5 @@ const CheckoutContent = ({
     </CheckoutContainer>
   )
 }
+
 export default CheckoutContent

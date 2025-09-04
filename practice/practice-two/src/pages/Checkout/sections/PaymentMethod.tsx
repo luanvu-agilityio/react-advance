@@ -1,5 +1,5 @@
 'use client'
-import { useCallback, useMemo, useEffect, type CSSProperties } from 'react'
+import { useCallback, useMemo, type CSSProperties } from 'react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { useFormContext, Controller } from 'react-hook-form'
 import { usePaymentMethodMutation } from '@hooks/useCheckoutQuery'
@@ -49,7 +49,7 @@ export const PaymentMethodSection = () => {
     watch,
     setValue,
     trigger,
-    formState: { errors },
+    formState: { errors, touchedFields },
     clearErrors,
   } = useFormContext<CheckoutFormData>()
   const paymentMethodMutation = usePaymentMethodMutation()
@@ -121,18 +121,6 @@ export const PaymentMethodSection = () => {
     },
   ]
 
-  // Validate card fields when payment method changes or component mounts
-  useEffect(() => {
-    if (paymentMethod === 'credit-card') {
-      trigger([
-        'payment.cardNumber',
-        'payment.cardHolder',
-        'payment.expirationDate',
-        'payment.cvc',
-      ])
-    }
-  }, [paymentMethod, trigger])
-
   // Handle payment method selection
   const handleMethodChange = useCallback(
     (method: 'credit-card' | 'paypal' | 'bitcoin') => {
@@ -149,16 +137,6 @@ export const PaymentMethodSection = () => {
         if (!watch('payment.expirationDate'))
           setValue('payment.expirationDate', '')
         if (!watch('payment.cvc')) setValue('payment.cvc', '')
-
-        // Increased timeout to ensure DOM updates
-        setTimeout(() => {
-          trigger([
-            'payment.cardNumber',
-            'payment.cardHolder',
-            'payment.expirationDate',
-            'payment.cvc',
-          ])
-        }, 200)
       } else {
         clearErrors([
           'payment.cardNumber',
@@ -168,7 +146,7 @@ export const PaymentMethodSection = () => {
         ])
       }
     },
-    [setValue, paymentMethodMutation, watch, trigger, clearErrors]
+    [setValue, paymentMethodMutation, watch, clearErrors]
   )
 
   // Render a card field based on its configuration
@@ -237,14 +215,17 @@ export const PaymentMethodSection = () => {
             />
           )}
         />
-        {errors.payment?.[field.name] && (
-          <FormError
-            message={
-              (errors.payment[field.name]?.message as string) || 'Invalid value'
-            }
-            style={{ marginTop: '4px', color: 'var(--error-color, #e53935)' }}
-          />
-        )}
+
+        {errors.payment?.[field.name] &&
+          touchedFields.payment?.[field.name] && (
+            <FormError
+              message={
+                (errors.payment[field.name]?.message as string) ||
+                'Invalid value'
+              }
+              style={{ marginTop: '4px', color: 'var(--error-color, #e53935)' }}
+            />
+          )}
       </FormField>
     )
   }
@@ -325,12 +306,17 @@ export const PaymentMethodSection = () => {
                   )}
               </PaymentMethodOption>
             ))}
+            <input
+              type="hidden"
+              name="payment.method"
+              value={paymentMethod || ''}
+            />
           </RadioGroup.Root>
         )}
       />
 
       {/* Show error if payment method is not selected */}
-      {errors.payment?.method && (
+      {errors.payment?.method && touchedFields.payment?.method && (
         <FormError
           message={errors.payment.method.message as string}
           style={{ marginTop: '8px' }}

@@ -2,10 +2,8 @@
 
 import { useFormContext, Controller } from 'react-hook-form'
 import { CheckIcon } from '@radix-ui/react-icons'
-import { useEffect, type CSSProperties, type FormEvent } from 'react'
-import { useToast } from '@stores/toastStore'
+import { useEffect, type CSSProperties } from 'react'
 import { useCartStore } from '@stores/cartStore'
-import { useOrderSubmitMutation } from '@hooks/useCheckoutQuery'
 
 import {
   StepContainer,
@@ -14,7 +12,6 @@ import {
   StyledCheckboxIndicator,
   CheckboxLabel,
 } from '../CheckoutStyle'
-import { useCheckoutStore } from '@stores/checkoutStore'
 import SubmitButtonWithStatus from './SubmitButton'
 
 interface ConsentOption {
@@ -31,37 +28,13 @@ interface ConsentOption {
   }
 }
 
-interface ConfirmationSectionProps {
-  onSuccess?: () => void
-}
+const ConfirmationSection = () => {
+  const { control, trigger, watch } = useFormContext()
 
-const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
-  const {
-    formState: { dirtyFields, isValid },
-    control,
-    trigger,
-    watch,
-    clearErrors,
-    getValues,
-  } = useFormContext()
-
-  const { setFormData } = useCheckoutStore()
-  const { toast } = useToast()
   const { items } = useCartStore()
-  const isEmpty = items.length === 0
-  const orderSubmitMutation = useOrderSubmitMutation()
 
   // Watch consent value to trigger validation when changed
   const termsConsent = watch('additional.termsConsent')
-
-  // Check if required sections are filled out
-  const hasBillingInfo = !!dirtyFields.billing
-  const hasShippingInfo = !!dirtyFields.shipping
-  const hasPaymentInfo = !!dirtyFields.payment
-
-  // Check if user has completed all required sections
-  const hasCompletedRequiredSections =
-    hasBillingInfo && hasShippingInfo && hasPaymentInfo
 
   // Trigger validation for terms consent when it changes
   useEffect(() => {
@@ -69,6 +42,16 @@ const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
       trigger('additional.termsConsent')
     }
   }, [termsConsent, trigger])
+
+  // Add cart items as hidden input for server action
+  useEffect(() => {
+    const cartInput = document.querySelector(
+      'input[name="cart.items"]'
+    ) as HTMLInputElement
+    if (cartInput) {
+      cartInput.value = JSON.stringify(items)
+    }
+  }, [items])
 
   // Configuration array for consent options
   const consentOptions: ConsentOption[] = [
@@ -89,120 +72,6 @@ const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
       },
     },
   ]
-
-  const handleSubmitSuccess = async (e: FormEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-
-    // Get shipping method and same-as-billing status
-    const formValues = getValues()
-    const sameAsBilling = watch('shipping.sameAsBilling')
-    const paymentMethod = watch('payment.method')
-
-    // Clear errors for hidden/conditional fields first
-    if (sameAsBilling) {
-      clearErrors([
-        'shipping.address',
-        'shipping.city',
-        'shipping.zip',
-        'shipping.country',
-      ])
-    }
-
-    if (paymentMethod !== 'credit-card') {
-      clearErrors([
-        'payment.cardNumber',
-        'payment.cardHolder',
-        'payment.expirationDate',
-        'payment.cvc',
-      ])
-    }
-
-    // Trigger validation on all fields
-    const requiredFields = [
-      'billing.firstName',
-      'billing.lastName',
-      'billing.email',
-      'billing.phone',
-      'billing.address',
-      'billing.city',
-      'billing.country',
-      'billing.zip',
-      'shipping.method',
-      'payment.method',
-      'additional.termsConsent',
-    ]
-
-    // Add payment fields only if credit card is selected
-    if (paymentMethod === 'credit-card') {
-      requiredFields.push(
-        'payment.cardNumber',
-        'payment.cardHolder',
-        'payment.expirationDate',
-        'payment.cvc'
-      )
-    }
-
-    // Add shipping address fields only if shipping to a different address
-    if (!sameAsBilling) {
-      requiredFields.push(
-        'shipping.address',
-        'shipping.city',
-        'shipping.zip',
-        'shipping.country'
-      )
-    }
-
-    const isFormValid = await trigger(requiredFields, { shouldFocus: true })
-
-    if (!isFormValid) {
-      toast({
-        title: 'Form Validation Error',
-        description: 'Please check the form for errors and try again',
-        variant: 'error',
-        duration: 3000,
-      })
-
-      // Find first error and scroll to it
-      const firstError = document.querySelector('.error')
-      if (firstError) {
-        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }
-      return
-    }
-
-    // Save form data
-    setFormData(formValues)
-
-    if (isEmpty) {
-      toast({
-        title: 'Empty Cart',
-        description: 'You cannot proceed with an empty cart',
-        variant: 'error',
-        duration: 2500,
-      })
-      return
-    }
-
-    // Submit order
-    try {
-      const result = await orderSubmitMutation.mutateAsync()
-
-      if (result?.success && onSuccess) {
-        setTimeout(() => {
-          console.log('Submit conditions:', {
-            isEmpty,
-            hasCompletedRequiredSections,
-            isValid,
-            termsConsent,
-          })
-          onSuccess()
-        }, 1000)
-      }
-    } catch (error) {
-      // Error handling is done in the mutation hook
-      console.error('Order submission error:', error)
-    }
-  }
 
   // Render a single consent option
   const renderConsentOption = (option: ConsentOption) => (
@@ -233,6 +102,13 @@ const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
             <CheckboxLabel htmlFor={option.id} style={option.style}>
               {option.label}
             </CheckboxLabel>
+
+            {/* Hidden input for server action */}
+            <input
+              type="hidden"
+              name={option.name}
+              value={value ? 'true' : 'false'}
+            />
           </>
         )}
       />
@@ -243,8 +119,13 @@ const ConfirmationSection = ({ onSuccess }: ConfirmationSectionProps) => {
     <StepContainer>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {consentOptions.map(renderConsentOption)}
+
+        {/* Hidden input for cart items */}
+        <input type="hidden" name="cart.items" value="" />
       </div>
-      <SubmitButtonWithStatus onClick={handleSubmitSuccess} />
+
+      {/* Simple submit button - no onClick needed */}
+      <SubmitButtonWithStatus />
     </StepContainer>
   )
 }
